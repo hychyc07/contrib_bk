@@ -1,0 +1,67 @@
+<application>
+<name>colorfulOutput App</name>
+        <!-- we need the robot interface and wholeBodyDynamics running -->
+        <dependencies>
+                <port>/wholeBodyDynamics/left_arm/endEffectorWrench:o</port>
+                <port>/icub/left_arm/state:o</port>
+        </dependencies>
+
+        <!-- plot the endEffectorWrench as a traffic light -->
+        <module>
+                <name>colorfulOutput</name>
+                <prefix>/direct</prefix>
+        </module>
+        <connection>
+                <from>/wholeBodyDynamics/left_arm/endEffectorWrench:o</from>
+                <to>/direct/colorfulOutput/vector:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <module>
+                <name>yarpview</name>
+                <prefix>/direct</prefix>
+        </module>
+        <connection>
+                <from>/direct/colorfulOutput/img:o</from>
+                <to>/direct/yarpview/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <!-- learningEndEffectorWrench -->
+        <module>
+                <name>learningEndEffectorWrench</name>
+                <parameters>--robot icub --part left_arm</parameters>
+        </module>
+        <connection>
+                <from>/wholeBodyDynamics/left_arm/endEffectorWrench:o</from>
+                <to>/learningEndEffectorWrench/f:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/icub/left_arm/state:o</from>
+                <to>/learningEndEffectorWrench/q:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+
+        <!-- plot the learningEndEffectorWrench as a traffic light -->
+        <module>
+                <name>colorfulOutput</name>
+                <prefix>/filtered</prefix>
+        </module>
+        <connection>
+                <from>/learningEndEffectorWrench/fc:o</from>
+                <to>/filtered/colorfulOutput/vector:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <module>
+                <name>yarpview</name>
+                <prefix>/filtered</prefix>
+        </module>
+        <connection>
+                <from>/filtered/colorfulOutput/img:o</from>
+                <to>/filtered/yarpview/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+</application>
+

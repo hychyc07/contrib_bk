@@ -1,0 +1,151 @@
+<application>
+<name>binocularVergence with NO rectification and logpolar images</name>
+
+<dependencies>
+   <port>/icub/cam/left</port>
+   <port>/icub/cam/right</port>
+   <port>/icub/head/state:o</port>
+</dependencies>
+
+
+<module>
+   <name>binocularVergence</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/binocularVergence/conf --std_dev 15</parameters>
+   <node>icub1</node>
+   <tag>binocularVergence</tag>
+</module>
+
+
+<module>
+   <name>iKinGazeCtrl</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/binocularVergence/conf --config iKinGazeCtrl.ini </parameters>
+   <node>icub1</node>
+   <tag>iKinGazeCtrl</tag>
+</module>
+ 
+ 
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/binocularVergence/conf  --name logpolarTransformRight --xsize 320  --ysize 240  --angles 120  --rings 48  --overlap 0.5 </parameters>
+   <node>icub1</node>
+   <tag>logpolarTransformRight</tag>
+</module>
+
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/binocularVergence/conf --name inverselogpolarTransformRight  --xsize 320  --ysize 240  --angles 120  --rings 48  --overlap 0.5  --direction LOGPOLAR2CARTESIAN</parameters>
+   <node>icub1</node>
+   <tag>inverselogpolarTransformRight</tag>
+</module>
+
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/binocularVergence/conf  --name logpolarTransformLeft --xsize 320  --ysize 240  --angles 120  --rings 48  --overlap 0.5 </parameters>
+   <node>icub1</node>
+   <tag>logpolarTransformLeft</tag>
+</module>
+
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/binocularVergence/conf --name inverselogpolarTransformLeft  --xsize 320  --ysize 240  --angles 120  --rings 48  --overlap 0.5  --direction LOGPOLAR2CARTESIAN</parameters>
+   <node>icub1</node>
+   <tag>inverselogpolarTransformLeft</tag>
+</module>
+
+ 
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /left_image --x 1920 --y 0 --w 256 --h 334 </parameters>
+   <node>icub1</node>
+   <tag>left_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /right_image --x 2195 --y 0 --w 256 --h 334</parameters>
+   <node>icub1</node>
+   <tag>right_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /cross-power_spectrum --x 2470 --y 0 --w 256 --h 334</parameters>
+   <node>icub1</node>
+   <tag>spectrum</tag>
+</module>
+ 
+<connection>
+  <from>/icub/head/state:o</from>
+  <to>/binocularVergence/head_state:i</to>
+  <protocol>tcp</protocol>
+</connection>
+ 
+ 
+<connection>
+  <from>/icub/cam/right</from>
+   <to>/logpolarTransformRight/image:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/logpolarTransformRight/image:o</from>
+  <to>/inverselogpolarTransformRight/image:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+  <from>/inverselogpolarTransformRight/image:o</from>
+  <to>/binocularVergence/right_camera:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/cam/left</from>
+  <to>/logpolarTransformLeft/image:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/logpolarTransformLeft/image:o</from>
+  <to>/inverselogpolarTransformLeft/image:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/inverselogpolarTransformLeft/image:o</from>
+  <to>/binocularVergence/left_camera:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+  <from>/binocularVergence/left_image:o</from>
+  <to>/left_image</to>
+  <protocol>tcp</protocol>
+</connection>
+ 
+<connection>
+  <from>/binocularVergence/right_image:o </from>
+  <to>/right_image</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/binocularVergence/cross-power_spectrum:o</from>
+  <to>/cross-power_spectrum</to>
+  <protocol>tcp</protocol>
+</connection>
+ 
+<connection>
+  <from>/binocularVergence/vergence_angles:o</from>
+  <to>/iKinGazeCtrl/head/angles:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+</application>

@@ -1,0 +1,36 @@
+<application>
+<name>forceGuidance Application </name>
+
+<dependencies>	
+<port>/ikart/control:i</port>
+<port>/wholeBodyDynamics/right_arm/cartesianEndEffectorWrench:o</port>
+<port>/wholeBodyDynamics/left_arm/cartesianEndEffectorWrench:o</port>
+</dependencies>
+
+<module>
+   <name>forceGuidance</name>
+   <parameters></parameters>
+   <node>ikart</node>
+   <stdio>ikart</stdio>
+   <tag>forceGuidance</tag>
+</module>
+
+<connection>
+  <from>/wholeBodyDynamics/left_arm/cartesianEndEffectorWrench:o</from>
+  <to>/forceGuidance/l_wrenches:i</to>
+  <protocol>udp</protocol>
+</connection>
+
+<connection>
+  <from>/wholeBodyDynamics/right_arm/cartesianEndEffectorWrench:o</from>
+  <to>/forceGuidance/r_wrenches:i</to>
+  <protocol>udp</protocol>
+</connection>
+
+<connection>
+  <from>/forceGuidance/commands:o</from>
+  <to>/ikart/control:i</to>
+  <protocol>udp</protocol>
+</connection>
+
+</application>

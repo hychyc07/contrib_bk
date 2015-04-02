@@ -1,0 +1,17 @@
+<application>
+   <name>Tactile Grasping Demo Left</name>
+   <dependencies>
+	   <port>/icub/skin/left_hand_comp</port>
+	   <port>/skinManager/rpc</port>
+   </dependencies>
+
+  <module>
+    <name>tactileGrasp</name>
+    <parameters>--from tactileGraspLeft.ini --context tactileGraspingDemo/conf</parameters>
+    <node>console</node>
+    <stdio>console</stdio>
+    <tag>openHandL</tag>
+  </module> 
+
+</application>
+

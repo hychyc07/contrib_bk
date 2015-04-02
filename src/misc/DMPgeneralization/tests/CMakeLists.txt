@@ -1,0 +1,5 @@
+include_directories(${DynamicMovementPrimitives_INCLUDE_DIRS}  ${YARP_INCLUDE_DIRS} ${ctrlLib_INCLUDE_DIRS} )
+add_executable (DMPp2ptest testP2P.cpp)
+target_link_libraries(DMPp2ptest DynamicMovementPrimitives ${YARP_LIBRARIES} ctrlLib)
+add_executable (DMPperiodicTest testPeriodic.cpp)
+target_link_libraries(DMPperiodicTest DynamicMovementPrimitives ${YARP_LIBRARIES} ${ICUB_LIBRARIES})

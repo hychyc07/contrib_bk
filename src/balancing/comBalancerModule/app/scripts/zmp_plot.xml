@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<portscope rows="2" columns="2">
+    <plot gridx="0"
+          gridy="0"
+          hspan="1"
+          vspan="1"
+          title="COP X"
+          size="60"
+          minval="-0.1"
+          maxval="0.1"
+          bgcolor="white">
+        <graph remote="/balanceModule/DSPzmp:o"
+               index="0"
+               color="Red"
+               type="lines"
+               size="2" />
+    </plot>
+
+    <plot gridx="1"
+          gridy="0"
+          hspan="1"
+          vspan="1"
+          title="COP Y"
+          size="60"
+          minval="-0.1"
+          maxval="0.1"
+          bgcolor="white">
+        <graph remote="/balanceModule/DSPzmp:o"
+               index="1"
+               color="Red"
+               type="lines"
+               size="2" /> 
+    </plot>    
+</portscope>

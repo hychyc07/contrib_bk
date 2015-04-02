@@ -1,0 +1,76 @@
+<application>
+<name>perceptionActionCycleGui</name>
+<dependencies>
+  <port>/icub/camcalib/left/out</port>
+  <port>/icub/camcalib/right/out</port>
+  <port>/leftDetector/img:o</port>
+  <port>/rightDetector/img:o</port>
+  <port>/shapeSelector/leftImage:o</port>
+  <port>/shapeSelector/rightImage:o</port>
+  <port>/vergence/histo:o</port>
+</dependencies>
+
+<module>
+ <name>yarpview</name>
+  <parameters>--name /objectsViewLeft --x 000 --y 400  --RefreshTime 33</parameters>
+  <node>icub14</node>
+  <tag>objectsViewLeft</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /objectsViewRight --x 500 --y 400  --RefreshTime 33</parameters>
+  <node>icub14</node>
+  <tag>objectsViewRight</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /earlyVisionOutputImageLeft --x 000 --y 000  --RefreshTime 33</parameters>
+  <node>icub14</node>
+  <tag>earlyVisionOutputImageLeft</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /earlyVisionOutputImageRight --x 400 --y 000  --RefreshTime 33</parameters>
+  <tag>earlyVisionOutputImageRight</tag>
+  <node>icub14</node>
+</module>
+<module>
+  <name>yarpview</name>
+  <parameters>--name /histogramView --x 900 --y 000  --RefreshTime 33</parameters>
+  <node>icub14</node>
+  <tag>histogramView</tag>
+</module>
+
+
+
+<connection>
+  <from>/vergence/histo:o</from>
+  <to>/histogramView</to>
+  <protocol>udp</protocol>
+</connection> 
+
+<connection>
+  <from>/shapeSelector/leftImage:o</from>
+  <to>/objectsViewLeft</to>
+  <protocol>udp</protocol>
+</connection> 
+<connection>
+  <from>/shapeSelector/rightImage:o</from>
+  <to>/objectsViewRight</to>
+  <protocol>udp</protocol>
+</connection> 
+<connection>
+  <from>/leftDetector/img:o</from>
+  <to>/earlyVisionOutputImageLeft</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/rightDetector/img:o</from>
+  <to>/earlyVisionOutputImageRight</to>
+  <protocol>udp</protocol>
+</connection>
+
+</application>

@@ -1,0 +1,290 @@
+<application>
+    <name>TakeAndReturn_New_Debug</name>
+    <description>Take and Return a ball using port arbitration system</description>
+    <version>1.0</version>
+    <authors>
+        <author email="ali.paikan@iit.it">Ali Paikan</author>
+    </authors>
+    <module>
+        <name>faceDetector</name>
+        <parameters>--cascade haarcascade_frontalface_alt.xml --eye left --eyeDist 0.5 --expression ang --from face_detector.ini</parameters>
+        <node>icub-b14</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 622) (y 291.9))</geometry>
+    </module>
+    <module>
+        <name>graspDetect</name>
+        <parameters>--part right_arm --expression evi</parameters>
+        <node>localhost</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 967) (y 113.9))</geometry>
+    </module>
+    <module>
+        <name>graspObject</name>
+        <parameters>--hand right --from grasp_object.ini</parameters>
+        <node>localhost</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 1620) (y 843.9))</geometry>
+    </module>
+    <module>
+        <name>pf3dDetector</name>
+        <parameters>--part right_arm --expression hap</parameters>
+        <node>localhost</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 621) (y 137.9))</geometry>
+    </module>
+    <module>
+        <name>pf3dTracker</name>
+        <parameters>--from pf3dTracker_iCubGenova01_left.ini</parameters>
+        <node>icub-b14</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 363) (y 149.9))</geometry>
+    </module>
+    <module>
+        <name>reachObject</name>
+        <parameters>--part right_arm --T 1.5 --DOF9</parameters>
+        <node>localhost</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 1633) (y 618.9))</geometry>
+    </module>
+    <module>
+        <name>releaseDetect</name>
+        <parameters>--part right_arm --expression hap --threshold 0.15</parameters>
+        <node>localhost</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 964) (y 290.9))</geometry>
+    </module>
+    <module>
+        <name>wonderAround</name>
+        <parameters>--expression shy --arm right</parameters>
+        <node>localhost</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 622.9) (y 443.9))</geometry>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <parameters>--y 100</parameters>
+        <node>icub16</node>
+        <prefix>/ViewBall</prefix>
+        <geometry>(Pos (x 646) (y 32.9))</geometry>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <parameters>--y 500</parameters>
+        <node>icub16</node>
+        <prefix>/ViewFace</prefix>
+        <geometry>(Pos (x 923) (y 34.9))</geometry>
+    </module>
+    <connection>
+        <from external="true">/icub/camcalib/left/out</from>
+        <to>/icub/PF3DTracker_L/videoIn</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 322.5) (y 180.5)) ((x 302) (y 173)) ((x 364) (y 180))  )</geometry>
+    </connection>
+    <connection>
+        <from>/icub/PF3DTracker_L/dataOut</from>
+        <to>/pf3dDetector/data/in</to>
+        <protocol>tcp</protocol>
+        <geometry>(Pos ((x 562) (y 168)) ((x 523) (y 168)) ((x 622) (y 168))  )</geometry>
+    </connection>
+    <connection>
+        <from>/icub/PF3DTracker_L/videoOut</from>
+        <to>/ViewBall/yarpview/img:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 589.5) (y 30.5)) ((x 523) (y 193)) ((x 550) (y 193)) ((x 550) (y 51)) ((x 647) (y 51))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/icub/camcalib/left/out</from>
+        <to>/faceDetector/image/in</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 441.5) (y 316.5)) ((x 302) (y 173)) ((x 304) (y 335)) ((x 623) (y 335))  )</geometry>
+    </connection>
+    <connection>
+        <from>/faceDetector/image/out</from>
+        <to>/ViewFace/yarpview/img:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 865.5) (y 32.5)) ((x 790) (y 310)) ((x 820) (y 310)) ((x 820) (y 53)) ((x 924) (y 53))  )</geometry>
+    </connection>
+    <connection id="C1">
+        <from>/graspDetect/graspCmd</from>
+        <to external="true">/iKinGazeCtrl/head/xd:i</to>
+        <protocol>tcp+recv.priority+st.10+tc.3+virtual+bs.10+(ex (/pf3dDetector/gazeXd -10) (/faceDetector/gazeXd -10) (/wonderAround/gazeXd -10))</protocol>
+        <geometry>(Pos ((x 1380.5) (y 136.5)) ((x 1127) (y 132)) ((x 1351) (y 133)) ((x 1551) (y 132))  )</geometry>
+    </connection>
+    <connection id="C2">
+        <from>/pf3dDetector/gazeXd</from>
+        <to external="true">/iKinGazeCtrl/head/xd:i</to>
+        <protocol>tcp+recv.priority+st.10+tc.3+bs.10+(ex (/faceDetector/gazeXd -10) (/wonderAround/gazeXd -10))</protocol>
+        <geometry>(Pos ((x 1377.5) (y 164.5)) ((x 789) (y 156)) ((x 884) (y 156)) ((x 884) (y 241)) ((x 1271) (y 241)) ((x 1347) (y 159)) ((x 1551) (y 159))  )</geometry>
+    </connection>
+    <connection id="C3">
+        <from>/faceDetector/gazeXd</from>
+        <to external="true">/iKinGazeCtrl/head/xd:i</to>
+        <protocol>tcp+recv.priority+st.2+tc.3+bs.10+(ex (/wonderAround/gazeXd -10))</protocol>
+        <geometry>(Pos ((x 1379.5) (y 190.5)) ((x 790) (y 335)) ((x 839) (y 335)) ((x 839) (y 258)) ((x 1284) (y 258)) ((x 1352) (y 186)) ((x 1551) (y 186))  )</geometry>
+    </connection>
+    <connection id="C4">
+        <from>/releaseDetect/releaseCmd</from>
+        <to external="true">/iKinGazeCtrl/head/xd:i</to>
+        <protocol>tcp+recv.priority+st.10+tc.3+virtual+bs.0+(ex (/faceDetector/gazeXd -10) (/wonderAround/gazeXd -10))</protocol>
+        <geometry>(Pos ((x 1381.5) (y 217.5)) ((x 1140) (y 309)) ((x 1268) (y 309)) ((x 1364) (y 213)) ((x 1551) (y 213))  )</geometry>
+    </connection>
+    <connection id="C5">
+        <from>/wonderAround/gazeXd</from>
+        <to external="true">/iKinGazeCtrl/head/xd:i</to>
+        <protocol>tcp+recv.priority+bs.10</protocol>
+        <geometry>(Pos ((x 1383.5) (y 242.5)) ((x 786) (y 462)) ((x 1172) (y 462)) ((x 1376) (y 240)) ((x 1551) (y 240))  )</geometry>
+    </connection>
+    <connection id="C6">
+        <from>/graspObject/status/out</from>
+        <to external="true">/iKinGazeCtrl/head/xd:i</to>
+        <protocol>tcp+recv.priority+st.10+tc.3+virtual+bs.10+(ex (/graspDetect/graspCmd -10) (/pf3dDetector/gazeXd -10) (/releaseDetect/releaseCmd 10))</protocol>
+        <geometry>(Pos ((x 1637.5) (y 305.5)) ((x 1780) (y 874)) ((x 1828) (y 874)) ((x 1828) (y 326)) ((x 1490) (y 326)) ((x 1490) (y 267)) ((x 1551) (y 267))  )</geometry>
+    </connection>
+    <connection id="C1">
+        <from>/graspDetect/face:rpc</from>
+        <to external="true">/icub/face/emotions/in</to>
+        <protocol>tcp+recv.priority+st.10+tc.5+bs.10+(ex (/faceDetector/face:rpc -10) (/wonderAround/face:rpc -10) (/pf3dDetector/face:rpc -10))</protocol>
+        <geometry>(Pos ((x 1354.5) (y 344.5)) ((x 1127) (y 182)) ((x 1346) (y 365)) ((x 1540) (y 365))  )</geometry>
+    </connection>
+    <connection id="C2">
+        <from>/releaseDetect/face:rpc</from>
+        <to external="true">/icub/face/emotions/in</to>
+        <protocol>tcp+recv.priority+st.10+tc.3+bs.0+(ex (/faceDetector/face:rpc -10) (/wonderAround/face:rpc -10))</protocol>
+        <geometry>(Pos ((x 1358.5) (y 375.5)) ((x 1140) (y 359)) ((x 1310) (y 359)) ((x 1346) (y 392)) ((x 1540) (y 392))  )</geometry>
+    </connection>
+    <connection id="C3">
+        <from>/faceDetector/face:rpc</from>
+        <to external="true">/icub/face/emotions/in</to>
+        <protocol>tcp+recv.priority+st.2+tc.3+bs.10+(ex (/wonderAround/face:rpc -10))</protocol>
+        <geometry>(Pos ((x 1361.5) (y 401.5)) ((x 790) (y 360)) ((x 910) (y 419)) ((x 1540) (y 419))  )</geometry>
+    </connection>
+    <connection id="C4">
+        <from>/wonderAround/face:rpc</from>
+        <to external="true">/icub/face/emotions/in</to>
+        <protocol>tcp+recv.priority+bs.10</protocol>
+        <geometry>(Pos ((x 1364.5) (y 430.5)) ((x 786) (y 537)) ((x 1248) (y 537)) ((x 1347) (y 446)) ((x 1540) (y 446))  )</geometry>
+    </connection>
+    <connection id="C5">
+        <from>/pf3dDetector/face:rpc</from>
+        <to external="true">/icub/face/emotions/in</to>
+        <protocol>tcp+recv.priority+st.10+tc.3+bs.10+(ex (/faceDetector/face:rpc -10) (/wonderAround/face:rpc -10))</protocol>
+        <geometry>(Pos ((x 1361.5) (y 456.5)) ((x 789) (y 181)) ((x 925) (y 181)) ((x 925) (y 473)) ((x 1540) (y 473))  )</geometry>
+    </connection>
+    <connection id="C1">
+        <from>/graspDetect/graspCmd</from>
+        <to>/reachObject/xd:i</to>
+        <protocol>tcp+recv.priority+debug+st.10+tc.3+virtual+bs.10+(ex (/pf3dDetector/gazeXd -10) (/wonderAround/rightArmXd -10))</protocol>
+        <geometry>(Pos ((x 1369.5) (y 549.5)) ((x 1127) (y 132)) ((x 1211) (y 132)) ((x 1211) (y 569)) ((x 1540) (y 569))  )</geometry>
+    </connection>
+    <connection id="C2">
+        <from>/releaseDetect/releaseCmd</from>
+        <to>/reachObject/xd:i</to>
+        <protocol>tcp+recv.priority+debug+st.10+tc.3+virtual+bs.0+(ex (/faceDetector/gazeXd -10) (/wonderAround/rightArmXd -10))</protocol>
+        <geometry>(Pos ((x 1363.5) (y 577.5)) ((x 1140) (y 309)) ((x 1150) (y 309)) ((x 1150) (y 596)) ((x 1540) (y 596))  )</geometry>
+    </connection>
+    <connection id="C3">
+        <from>/pf3dDetector/gazeXd</from>
+        <to>/reachObject/xd:i</to>
+        <protocol>tcp+recv.priority+debug+st.10+tc.3+bs.10+(ex (/wonderAround/rightArmXd -10))</protocol>
+        <geometry>(Pos ((x 1364.5) (y 608.5)) ((x 789) (y 156)) ((x 903) (y 156)) ((x 903) (y 623)) ((x 1540) (y 623))  )</geometry>
+    </connection>
+    <connection id="C4">
+        <from>/faceDetector/gazeXd</from>
+        <to>/reachObject/xd:i</to>
+        <protocol>tcp+recv.priority+debug+st.2+tc.3+bs.0+(ex (/wonderAround/rightArmXd -10))</protocol>
+        <geometry>(Pos ((x 1364.5) (y 630.5)) ((x 790) (y 335)) ((x 875) (y 335)) ((x 875) (y 650)) ((x 1540) (y 650))  )</geometry>
+    </connection>
+    <connection id="C5">
+        <from>/wonderAround/rightArmXd</from>
+        <to>/reachObject/xd:i</to>
+        <protocol>tcp+recv.priority+debug+bs.10</protocol>
+        <geometry>(Pos ((x 1368.5) (y 657.5)) ((x 786) (y 512)) ((x 844) (y 512)) ((x 844) (y 677)) ((x 1540) (y 677))  )</geometry>
+    </connection>
+    <connection id="C6">
+        <from>/graspObject/status/out</from>
+        <to>/reachObject/xd:i</to>
+        <protocol>tcp+recv.priority+debug+st.10+tc.3+virtual+bs.10+(ex (/graspDetect/graspCmd -10) (/releaseDetect/releaseCmd 10) (/pf3dDetector/gazeXd -10) (/faceDetector/gazeXd 10))</protocol>
+        <geometry>(Pos ((x 1651.5) (y 734.5)) ((x 1780) (y 874)) ((x 1828) (y 874)) ((x 1828) (y 754)) ((x 1482) (y 754)) ((x 1482) (y 704)) ((x 1540) (y 704))  )</geometry>
+    </connection>
+    <connection id="C1">
+        <from>/graspDetect/graspCmd</from>
+        <to>/graspObject/cmd/in</to>
+        <protocol>tcp+recv.priority+st.10+tc.3+bs.10+(ex (/wonderAround/graspCmd -10))</protocol>
+        <geometry>(Pos ((x 1374.5) (y 799.5)) ((x 1127) (y 132)) ((x 1211) (y 132)) ((x 1211) (y 820)) ((x 1540) (y 820))  )</geometry>
+    </connection>
+    <connection id="C2">
+        <from>/releaseDetect/releaseCmd</from>
+        <to>/graspObject/cmd/in</to>
+        <protocol>tcp+recv.priority+st.10+tc.3+bs.0+(ex (/wonderAround/graspCmd -10))</protocol>
+        <geometry>(Pos ((x 1371.5) (y 827.5)) ((x 1140) (y 309)) ((x 1150) (y 309)) ((x 1150) (y 847)) ((x 1540) (y 847))  )</geometry>
+    </connection>
+    <connection id="C3">
+        <from>/wonderAround/graspCmd</from>
+        <to>/graspObject/cmd/in</to>
+        <protocol>tcp+recv.priority+bs.10</protocol>
+        <geometry>(Pos ((x 1354.5) (y 853.5)) ((x 786) (y 562)) ((x 824) (y 562)) ((x 824) (y 874)) ((x 1540) (y 874))  )</geometry>
+    </connection>
+    <connection id="C4">
+        <from>/graspObject/status/out</from>
+        <to>/graspObject/cmd/in</to>
+        <protocol>tcp+recv.priority+st.10+tc.3+virtual+bs.10+(ex (/wonderAround/graspCmd -10) (/releaseDetect/releaseCmd 10) (/graspDetect/graspCmd -10))</protocol>
+        <geometry>(Pos ((x 1651.5) (y 927.5)) ((x 1780) (y 874)) ((x 1827) (y 874)) ((x 1827) (y 946)) ((x 1486) (y 946)) ((x 1486) (y 901)) ((x 1540) (y 901))  )</geometry>
+    </connection>
+    <connection id="C6">
+        <from>/graspObject/status/out</from>
+        <to external="true">/icub/face/emotions/in</to>
+        <protocol>tcp+recv.priority+st.10+tc.3+virtual+bs.10+(ex (/graspDetect/face:rpc -10) (/releaseDetect/face:rpc 10) (/pf3dDetector/face:rpc -10))</protocol>
+        <geometry>(Pos ((x 1612.5) (y 514.5)) ((x 1780) (y 874)) ((x 1828) (y 874)) ((x 1828) (y 535)) ((x 1487) (y 535)) ((x 1487) (y 500)) ((x 1540) (y 500))  )</geometry>
+    </connection>
+    <connection>
+        <from>/pf3dDetector/gazeXd</from>
+        <to>/graspDetect/xd:i</to>
+        <protocol>tcp</protocol>
+        <geometry>(Pos ((x 868) (y 156.5)) ((x 789) (y 156)) ((x 968) (y 157))  )</geometry>
+    </connection>
+    <connection>
+        <from>/faceDetector/gazeXd</from>
+        <to>/releaseDetect/xd:i</to>
+        <protocol>tcp</protocol>
+        <geometry>(Pos ((x 867) (y 334.5)) ((x 790) (y 335)) ((x 965) (y 334))  )</geometry>
+    </connection>
+    <arbitrator>
+        <port>/iKinGazeCtrl/head/xd:i</port>
+        <rule connection="C1">~C6</rule>
+        <rule connection="C2">~C6 &amp; ~C1</rule>
+        <rule connection="C3">~C1 &amp; ~C2 &amp; ~C4</rule>
+        <rule connection="C4">C6</rule>
+        <rule connection="C5">~C1 &amp; ~C2 &amp; ~C3 &amp; ~C4</rule>
+        <rule connection="C6"></rule>
+        <geometry>(Pos ((x 1551) (y 115))  )</geometry>
+    </arbitrator>
+    <arbitrator>
+        <port>/reachObject/xd:i</port>
+        <rule connection="C1">~C6</rule>
+        <rule connection="C2">C6</rule>
+        <rule connection="C3">~C6 &amp; ~C1</rule>
+        <rule connection="C4">C6 &amp; ~C2</rule>
+        <rule connection="C5">~C1 &amp; ~C2 &amp; ~C3 &amp; ~C4</rule>
+        <rule connection="C6"></rule>
+        <geometry>(Pos ((x 1540) (y 552))  )</geometry>
+    </arbitrator>
+    <arbitrator>
+        <port>/icub/face/emotions/in</port>
+        <rule connection="C1">~C6</rule>
+        <rule connection="C2">C6</rule>
+        <rule connection="C3">~C1 &amp; ~C2 &amp; ~C5</rule>
+        <rule connection="C4">~C1 &amp; ~C2 &amp; ~C3 &amp; ~C5</rule>
+        <rule connection="C5">~C6 &amp; ~C1</rule>
+        <rule connection="C6"></rule>
+        <geometry>(Pos ((x 1540) (y 348))  )</geometry>
+    </arbitrator>
+    <arbitrator>
+        <port>/graspObject/cmd/in</port>
+        <rule connection="C1">~C4</rule>
+        <rule connection="C2">C4</rule>
+        <rule connection="C3">~C1 &amp; ~C2 &amp; ~C4</rule>
+        <rule connection="C4"></rule>
+        <geometry>(Pos ((x 1540) (y 803.5))  )</geometry>
+    </arbitrator>
+</application>

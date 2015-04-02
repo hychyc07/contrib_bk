@@ -1,0 +1,99 @@
+<application>
+<name>Optical flow directly on log-polar images</name>
+
+<dependencies>
+/icub/cam/left
+/icub/head/state:o
+</dependencies>
+
+<module>
+   <name>imageSource</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/opticalFlow/conf </parameters>
+   <node>icub1</node>
+   <tag>imageSource</tag>
+</module>
+
+<module>
+   <name>opticalFlow</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/opticalFlow/conf --from opticalFlowLogpolar.ini</parameters>
+   <node>icub1</node>
+   <tag>opticalFlow</tag>
+</module>
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/opticalFlow/conf  --name logpolarTransform  </parameters>
+   <node>icub1</node>
+   <tag>logpolarTransform</tag>
+</module>
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/opticalFlow/conf --name inverseLogpolarTransform   --direction LOGPOLAR2CARTESIAN</parameters>
+   <node>icub1</node>
+   <tag>inverseLogpolarTransform</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /inputImage --x 000 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>input_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /plotImage --x 340 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>plot_image</tag>
+
+</module><module>
+   <name>yarpview</name>
+   <parameters>--name /logpolarImage --x 680 --y 000 --w 512 --h 206 </parameters>
+   <node>icub1</node>
+   <tag>logpolar_image</tag>
+</module>
+
+<connection>
+  <from>/icub/cam/left</from>
+  <to>/inputImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/cam/left</from>
+  <to>/logpolarTransform/image:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/head/state:o</from>
+  <to>/opticalFlow/headState:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/logpolarTransform/image:o</from>
+  <to>/opticalFlow/visualImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/opticalFlow/plotImage:o</from>
+  <to>/inverseLogpolarTransform/image:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/opticalFlow/plotImage:o</from>
+  <to>/logpolarImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/inverseLogpolarTransform/image:o</from>
+  <to>/plotImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+</application>

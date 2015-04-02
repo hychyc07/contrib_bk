@@ -1,0 +1,1 @@
+portScope --local /psVel --title Velocities --dx 400 --dy 600 --x 2500 --y 0 --remote /skinForceControl/monitor:o --rows 3 --cols 1 --index "((48 51) (49 52) (50 53))"

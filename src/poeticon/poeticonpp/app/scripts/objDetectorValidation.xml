@@ -1,0 +1,89 @@
+<application>
+    <name>objDetectorValidation</name>
+    <version>1.0</version>
+    <authors>
+        <author email="vadim.tikhanoff@iit.it">Vadim Tikhanoff</author>
+        <author email="ali.paikan@iit.it">Ali Paikan</author>
+    </authors>
+    <module>
+        <name>approximateSensing</name>
+        <parameters>--threshold 80 --erode_itr 8</parameters>
+        <node>icub15</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 633) (y 485.9))</geometry>
+    </module>
+    <module>
+        <name>nearestObjDetector</name>
+        <parameters></parameters>
+        <node>icub15</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 883) (y 338.9))</geometry>
+    </module>
+    <module>
+        <name>stereoDisparity</name>
+        <parameters>--from icubEyes.ini --context cameraCalibration/conf</parameters>
+        <node>icub15</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 357) (y 495.9))</geometry>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <parameters></parameters>
+        <node>icub15</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 944) (y 514.9))</geometry>
+    </module>
+    <application>
+        <name>segAndTrack</name>
+        <prefix></prefix>
+        <geometry>(Pos (x -191.602) (y -0.601562))</geometry>
+    </application>
+    <connection>
+        <from external="true">/icub/camcalib/left/out</from>
+        <to>/stereoDisparity/cam/left:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 285) (y 417)) ((x 20) (y 319)) ((x 358) (y 514))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/icub/camcalib/right/out</from>
+        <to>/stereoDisparity/cam/right:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 305) (y 541)) ((x 252) (y 542)) ((x 358) (y 539))  )</geometry>
+    </connection>
+    <connection>
+        <from>/stereoDisparity/disparity:o</from>
+        <to>/approximateSensing/stereo/disparity:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 591.5) (y 540)) ((x 549) (y 539)) ((x 634) (y 554))  )</geometry>
+    </connection>
+    <connection>
+        <from>/stereoDisparity/world:o</from>
+        <to>/nearestObjDetector/stereo/world:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 565) (y 465)) ((x 549) (y 514)) ((x 581) (y 416)) ((x 884) (y 382))  )</geometry>
+    </connection>
+    <connection>
+        <from>/approximateSensing/blobs:o</from>
+        <to>/nearestObjDetector/blobs:i</to>
+        <protocol>tcp</protocol>
+        <geometry>(Pos ((x 866.5) (y 430.5)) ((x 849) (y 504)) ((x 884) (y 357))  )</geometry>
+    </connection>
+    <connection>
+        <from>/approximateSensing/img:o</from>
+        <to>/yarpview/img:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 897) (y 531)) ((x 849) (y 529)) ((x 945) (y 533))  )</geometry>
+    </connection>
+    <connection>
+        <from>/templatePFTracker/target:o</from>
+        <to>/nearestObjDetector/target:i</to>
+        <protocol>tcp</protocol>
+        <geometry>(Pos ((x 686) (y 340)) ((x 488) (y 273)) ((x 884) (y 407))  )</geometry>
+    </connection>
+    <connection>
+        <from>/nearestObjDetector/target:o</from>
+        <to external="true">/iKinGazeCtrl/head/xd:i</to>
+        <protocol>tcp</protocol>
+        <geometry>(Pos ((x 1107.5) (y 262.5)) ((x 1099) (y 382)) ((x 1116) (y 143))  )</geometry>
+    </connection>
+</application>

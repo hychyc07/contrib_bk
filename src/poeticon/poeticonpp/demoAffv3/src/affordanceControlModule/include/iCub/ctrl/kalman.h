@@ -1,0 +1,251 @@
+/* 
+ * Copyright (C) 2010 RobotCub Consortium, European Commission FP6 Project IST-004370
+ * Author: Ugo Pattacini
+ * email:  ugo.pattacini@iit.it
+ * website: www.robotcub.org
+ * Permission is granted to copy, distribute, and/or modify this program
+ * under the terms of the GNU General Public License, version 2 or any
+ * later version published by the Free Software Foundation.
+ *
+ * A copy of the license can be found at
+ * http://www.robotcub.org/icub/license/gpl.txt
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+ * Public License for more details
+*/
+
+/**
+ * \defgroup Kalman Kalman 
+ *  
+ * @ingroup ctrlLib
+ *
+ * Classes for Kalman estimation
+ *
+ * \author Ugo Pattacini
+ *
+ */ 
+
+#ifndef __KALMAN_H__
+#define __KALMAN_H__
+
+#include <yarp/sig/Vector.h>
+#include <yarp/sig/Matrix.h>
+#include <iCub/ctrl/math.h>
+
+
+namespace iCub
+{
+
+namespace ctrl
+{
+
+/**
+* \ingroup Kalman
+*
+* Classic Kalman estimator.
+*/
+class Kalman
+{
+protected:
+    yarp::sig::Matrix A, At;
+    yarp::sig::Matrix H, Ht;
+    yarp::sig::Matrix B;
+    yarp::sig::Matrix Q;
+    yarp::sig::Matrix R;
+    yarp::sig::Matrix I;
+    
+    yarp::sig::Vector x;
+    yarp::sig::Matrix P;
+    yarp::sig::Matrix K;
+
+    size_t n;
+    size_t m;
+
+    void initialize();
+
+    // Default constructor: not implemented.
+    Kalman();
+
+public:
+    /**
+     * Init a Kalman state estimator.
+     * 
+     * @param _A State transition matrix.
+     * @param _H Measurement matrix.
+     * @param _Q Process noise covariance.
+     * @param _R Measurement noise covariance.
+     */
+    Kalman(const yarp::sig::Matrix &_A, const yarp::sig::Matrix &_H,
+           const yarp::sig::Matrix &_Q, const yarp::sig::Matrix &_R);
+
+    /**
+     * Init a Kalman state estimator.
+     * 
+     * @param _A State transition matrix.
+     * @param _B Input matrix. 
+     * @param _H Measurement matrix.
+     * @param _Q Process noise covariance.
+     * @param _R Measurement noise covariance.
+     */
+    Kalman(const yarp::sig::Matrix &_A, const yarp::sig::Matrix &_B,
+           const yarp::sig::Matrix &_H, const yarp::sig::Matrix &_Q,
+           const yarp::sig::Matrix &_R);
+
+    /**
+     * Set initial state and error covariance.
+     * 
+     * @param _x0 Initial condition for estimated state. 
+     * @param _P0 Initial condition for estimated error covariance.
+     * @return true/false on success/failure. 
+     */
+    bool init(const yarp::sig::Vector &_x0, const yarp::sig::Matrix &_P0);
+
+    /**
+     * Predicts the next state vector given the current input. 
+     * 
+     * @param u Current input. 
+     * 
+     * @return Estimated state vector.
+     */
+    yarp::sig::Vector predict(const yarp::sig::Vector &u);
+
+    /**
+     * Corrects the current estimation of the state vector given the
+     * current measurement. 
+     * 
+     * @param z Current measurement. 
+     * 
+     * @return Estimated state vector.
+     */
+    yarp::sig::Vector correct(const yarp::sig::Vector &z);
+
+    /**
+     * Returns the estimated state vector given the current 
+     * measurement by performing a prediction and then correcting 
+     * the result. 
+     * 
+     * @param z Current measurement.
+     * 
+     * @return Estimated state vector.
+     */
+    yarp::sig::Vector filt(const yarp::sig::Vector &z);
+
+    /**
+     * Returns the estimated state vector given the current 
+     * input and the current measurement by performing a prediction 
+     * and then correcting the result. 
+     * 
+     * @param u Current input. 
+     * @param z Current measurement. 
+     * 
+     * @return Estimated state vector.
+     */
+    yarp::sig::Vector filt(const yarp::sig::Vector &u, const yarp::sig::Vector &z);
+
+    /**
+     * Returns the estimated state.
+     * 
+     * @return Estimated state.
+     */
+    yarp::sig::Vector get_x() const { return x; }
+
+    /**
+     * Returns the estimated error covariance.
+     * 
+     * @return Estimated error covariance.
+     */
+    yarp::sig::Matrix get_P() const { return P; }
+
+    /**
+     * Returns the Kalman gain matrix.
+     * 
+     * @return Kalman gain matrix.
+     */
+    yarp::sig::Matrix get_K() const { return K; }
+
+    /**
+     * Returns the state transition matrix.
+     * 
+     * @return State transition matrix.
+     */
+    yarp::sig::Matrix get_A() const { return A; }
+
+    /**
+     * Returns the input matrix.
+     * 
+     * @return Input matrix.
+     */
+    yarp::sig::Matrix get_B() const { return B; }
+
+    /**
+     * Returns the measurement matrix.
+     * 
+     * @return Measurement matrix.
+     */
+    yarp::sig::Matrix get_H() const { return H; }
+
+    /**
+     * Returns the process noise covariance matrix.
+     * 
+     * @return Process noise covariance matrix.
+     */
+    yarp::sig::Matrix get_Q() const { return Q; }
+
+    /**
+     * Returns the measurement noise covariance matrix.
+     * 
+     * @return Measurement noise covariance matrix.
+     */
+    yarp::sig::Matrix get_R() const { return R; }
+
+    /**
+     * Returns the state transition matrix. 
+     *  
+     * @param _A State transition matrix. 
+     * @return true/false on success/failure.
+     */
+    bool set_A(const yarp::sig::Matrix &_A);
+
+    /**
+     * Returns the input matrix. 
+     *  
+     * @param _B Input matrix. 
+     * @return true/false on success/failure.
+     */
+    bool set_B(const yarp::sig::Matrix &_B);
+
+    /**
+     * Returns the measurement transition matrix. 
+     *  
+     * @param _H Measurement matrix. 
+     * @return true/false on success/failure.
+     */
+    bool set_H(const yarp::sig::Matrix &_H);
+
+    /**
+     * Returns the process noise covariance matrix. 
+     *  
+     * @param _Q Process noise covariance matrix. 
+     * @return true/false on success/failure.
+     */
+    bool set_Q(const yarp::sig::Matrix &_Q);
+
+    /**
+     * Returns the measurement noise covariance matrix. 
+     *  
+     * @param _R Mearurement noise covariance matrix. 
+     * @return true/false on success/failure.
+     */
+    bool set_R(const yarp::sig::Matrix &_R);
+};
+
+}
+
+}
+
+#endif
+
+
+

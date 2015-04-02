@@ -1,0 +1,4 @@
+SET(PM_PROJECT_NAME iCubMotionControllerExt)
+SET(PM_PROJECT_TYPE Executable)
+SET(PM_PROJECT_DEPS YARP ICUB MathLib)
+

@@ -1,0 +1,12 @@
+﻿RobotGrammarManager uses a custom format for defining grammars.
+It handles a dictionnary of vocabulories, by default 3 vocabulories are created at startup :
+#Object, #Agent and #Action.
+
+The grammar definition is fairly simple :
+"Please #Agent #Action the #object with the other #Object | Did you #Action the #Object ?"
+Will recognize the according sentences using the vocabulories defined previously. The operator '|' allows you to specify multiple different
+sentences to be recognized.
+
+Some special vocabulories can be used : 
+#Dictation : provides an open recognition (can be multiple words at the moment. Todo : make it so that only one word is recognized)
+#WildCard : recognize any word, but doesn't returns it (it returns [...] )

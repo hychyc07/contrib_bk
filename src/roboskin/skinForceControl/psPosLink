@@ -1,0 +1,1 @@
+portScope --title xLink_xdLink--local /psPosLink --remote /skinForceControl/monitor:o --rows 3 --cols 1 --index "((25 35) (26 36) (27 37))"

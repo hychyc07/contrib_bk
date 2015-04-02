@@ -1,0 +1,33 @@
+<application>
+<name>Skin Force Control</name>
+	<dependencies>
+    <port>/wholeBodyDynamics/dyn_contacts:o</port>
+  </dependencies>
+  
+	<module>
+    <name>skinForceControl</name>
+    <parameters>--robot icub --period 10 --left_arm --name skinForceControlL</parameters>
+    <node>icubsrv</node>
+    <stdio>icubsrv</stdio>
+    <tag>sfcL</tag>
+  </module>
+  <module>
+    <name>yarp rpc</name>
+    <parameters>/skinForceControlL/rpc</parameters>
+    <node>icubsrv</node>
+    <stdio>icubsrv</stdio>
+    <tag>sfcL_rpc</tag>
+  </module>
+  <module>
+    <name>iCubGui</name>
+    <parameters></parameters>
+    <node>icubsrv</node>
+    <tag>iCubGui</tag>
+  </module>
+
+  <connection>
+    <from>/wholeBodyDynamics/dyn_contacts:o</from>
+    <to>/iCubGui/forces</to>
+    <protocol>udp</protocol>
+  </connection>
+</application>

@@ -1,0 +1,125 @@
+<application>
+<name>Demo of selectiveTuning and overtAttention; covert mode online</name>
+
+<dependencies>
+</dependencies>
+
+<module>
+   <name>laplacianOfGaussian</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/overtAttention/conf </parameters>
+   <node>icub1</node>
+   <tag>laplacianOfGaussian</tag>
+</module>
+
+
+<module>
+   <name>selectiveTuning</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/overtAttention/conf </parameters>
+   <node>icub1</node>
+   <tag>selectiveTuning</tag>
+</module>
+
+<module>
+   <name>overtAttention</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/overtAttention/conf --covertMode 1</parameters>
+   <node>icub1</node>
+   <tag>overtAttention</tag>
+</module>
+ 
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /inputImage --x 1920 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>input_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /wtaImage --x 2260 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>wta_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /weightedImage --x 2600 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>weighted_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /iorImage --x 2600 --y 360 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>ior_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /postSaccadeImage --x 2940 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>postsaccade_image</tag>
+</module>
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/inputImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/laplacianOfGaussian/visualImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/laplacianOfGaussian/logImage:o</from>
+  <to>/selectiveTuning/visualImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/overtAttention/visualImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/selectiveTuning/wtaImage:o</from>
+  <to>/wtaImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/selectiveTuning/wtaUnits:o</from>
+  <to>/overtAttention/wtaUnits:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/overtAttention/iorImage:o</from>
+  <to>/iorImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/overtAttention/visualImage:o</from>
+  <to>/postSaccadeImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/overtAttention/weightedImage:o</from>
+  <to>/weightedImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/overtAttention/iorImage:o</from>
+  <to>/selectiveTuning/biasImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+</application>

@@ -1,0 +1,6 @@
+############################## AUTO GENERATED CONFIG.IN ##############################
+ 
+SET(cartesianImpedance_DIR @CMAKE_CURRENT_SOURCE_DIR@)
+SET(cartesianImpedance_INCLUDES @V_INCLUDE_LIST@)
+SET(cartesianImpedance_LIBRARY @V_LIBRARY@)
+SET(cartesianImpedance_LIBRARIES @V_LIBRARIES@)

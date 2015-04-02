@@ -1,0 +1,92 @@
+<module>
+    <!-- module's name should match its executable file's name. -->
+    <name>graspManager</name>
+    <description>uses 3d info to grasp an object</description>
+    <version>1.0</version>
+
+    <!-- <arguments> can have multiple <param> tags-->
+    <arguments>
+        <param default="" required="no" desc="config file"> from</param> 
+        <param default="" required="no" desc="context"> context</param> 
+        <!-- <switch desc="" default="off"> inverted </switch> -->
+    </arguments>
+
+    <!-- <authors> can have multiple <author> tags. -->
+    <authors>
+        <author email="vadim.tikhanoff@iit.it">Vadim Tikhanoff</author>
+        <author email="ali.paikan@iit.it">Ali Paikan</author>
+    </authors>
+
+     <!-- <data> can have multiple <input> or <output> tags. -->
+     <data>
+        <input>
+            <type>Vector</type>
+            <port carrier="tcp">/graspManager/trackTarget:i</port>
+            <required>yes</required>
+            <priority>no</priority>
+            <description>input 3D data</description>
+        </input>
+         <input>
+            <type>Vector</type>
+            <port carrier="tcp">/graspManager/era:i</port>
+            <required>yes</required>
+            <priority>no</priority>
+            <description>input from ERA</description>
+        </input>
+
+        <input>
+            <type>Vector</type>
+            <port carrier="tcp">/graspManager/trackFace:i</port>
+            <required>yes</required>
+            <priority>no</priority>
+            <description>input 3D face data</description>
+        </input>
+        <input>
+            <type>String</type>
+            <port carrier="tcp">/graspManager/cmdString:i</port>
+            <required>yes</required>
+            <priority>no</priority>
+            <description>get string from speech</description>
+        </input>
+
+        <!-- output datas if available -->
+        <output>
+            <type>String</type>
+            <port carrier="tcp">/graspManager/status:o</port>
+            <description>status running stream</description>
+        </output>
+        
+        <output>
+            <type>Rpc</type>
+            <port carrier="tcp">/graspManager/cmdString:rpc</port>
+            <description>rpc to talk with learning module</description>
+        </output>
+
+        <output>
+            <type>String</type>
+            <port carrier="tcp">/graspManager/speak:o</port>
+            <description>speech port</description>
+        </output>
+
+        <output>
+            <type>Rpc</type>
+            <port carrier="tcp">/graspManager/cmdParticle:rpc</port>
+            <description>rpc to talk with particle filtering</description>
+        </output>
+
+    </data>
+
+    <dependencies>
+        <computer>
+        </computer>
+    </dependencies>
+
+    <!-- specific libraries or header files which are used for development -->
+    <development>
+        <header></header>
+        <library>YARP</library>
+	    <library>OpenCV</library>
+    </development>
+
+</module>
+

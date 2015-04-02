@@ -1,0 +1,21 @@
+<application>
+<name>LowLevelController_DARWIN</name>
+
+<module>
+  <name>LowLevelController_DARWIN</name>
+  <node>icub14</node>
+  <stdio>icub14</stdio>
+  <tag>LLController</tag>
+</module>
+
+<connection>
+<from>/icub/skin/right_hand_comp </from>
+<to>/touchHandler/right_hand:i </to>
+</connection>
+
+<connection>
+<from>/icub/skin/left_hand_comp </from>
+<to>/touchHandler/left_hand:i </to>
+</connection>
+
+ </application>

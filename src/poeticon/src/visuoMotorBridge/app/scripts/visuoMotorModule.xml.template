@@ -1,0 +1,272 @@
+
+<application>
+<name>Interaction and Learning Demo</name>
+
+        <dependencies>
+            <port>/icub/camcalib/left/out</port>
+            <port>/icub/camcalib/right/out</port>
+            <port>/icub/head/state:o</port>
+            <port>/icub/torso/state:o</port>
+            <port>/icub/cartesianController/left_arm/state:o</port>
+            <port>/icub/cartesianController/right_arm/state:o</port>
+            <port>/iKinGazeCtrl/head/angles:o</port>
+        </dependencies>
+
+        <module>
+            <name>visuoMotorBridge</name>
+            <stdio>icub15</stdio>            
+            <node>icub15</node>
+            <tag>visuoMotorBridge</tag>
+        </module>
+        
+        <module>
+            <name>yarpview</name>
+            <parameters>--name /view/left --x 0 --y 0 --RefreshTime 33</parameters>
+            <node>icub15</node>
+            <tag>viewLeft</tag>
+        </module>
+        
+        <module>
+            <name>yarpview</name>
+            <parameters>--name /view/right --x 308 --y 0 --RefreshTime 33</parameters>
+            <node>icub15</node>
+            <tag>viewRight</tag>
+        </module>
+        
+        <module>
+                <name>templatePFTracker</name>
+                <node>icub-b3</node>
+                <tag>pfTracker</tag>
+        </module>
+        <module>
+                <name>motionCUT</name>
+                <parameters>--name motionCUT/left --coverXratio 0.7 --coverYratio 0.7 --framesPersistence 2 --numThreads 5 --nodesStep 6 --recogThres 0.512</parameters>
+                <node>icub-b1</node>
+                <tag>mCutLeft</tag>
+        </module>
+        <module>
+                <name>motionCUT</name>
+                <parameters>--name motionCUT/right --coverXratio 0.7 --coverYratio 0.7 --framesPersistence 2 --numThreads 5 --nodesStep 6 --recogThres 0.512</parameters>
+                <node>icub-b9</node>
+                <tag>mCutRight</tag>
+        </module>
+
+        <module>
+                <name>eye2world</name>
+                <parameters>--robot icub --context cameraCalibration/conf --eyeCalibration icubEyes.ini --tableConfiguration /usr/local/src/robot/iCub/contrib/src/poeticon/src/visuoMotorBridge/table_eye.ini</parameters>
+                <node>icub-b4</node>
+                <tag>eye2world</tag>
+        </module>
+
+        <module>
+    	    <name>iCubSkinGui</name>
+    	    <parameters>--from lefthandcomp.ini --width 320 --height 320 --useCalibration --xpos 0 --ypos 0</parameters>
+    	    <node>icub16</node>
+    	    <tag>skinGuiLeftHandComp</tag>
+    	</module>   
+
+        <module>
+    	    <name>iCubSkinGui</name>
+    	    <parameters>--from righthandcomp.ini --width 320 --height 320 --useCalibration --xpos 340 --ypos 0</parameters>
+    	    <node>icub16</node>
+    	    <tag>skinGuiRightHandComp</tag>
+    	</module>  
+
+        <module>
+    	    <name>skinDriftCompensation</name>
+    	    <parameters>--from skinDriftCompensationLeft.ini --context skinGui/conf</parameters>
+    	    <node>icub-b5</node>
+    	    <tag>driftCompLeftHand</tag>
+    	</module>  
+
+        <module>
+    	    <name>skinDriftCompensation</name>
+    	    <parameters>--from skinDriftCompensationRight.ini --context skinGui/conf</parameters>
+    	    <node>icub-b5</node>
+    	    <tag>driftCompRightHand</tag>
+    	</module>         
+
+        <connection>
+            <from>/icub/camcalib/left/out</from>
+            <to>/motionCUT/left/img:i</to>
+            <protocol>udp</protocol>
+        </connection>
+        <connection>
+            <from>/icub/camcalib/right/out</from>
+            <to>/motionCUT/right/img:i</to>
+            <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+            <from>/motionCUT/left/blobs:o</from>
+            <to>/visuoMotorBridge/left/blobs:i</to>
+            <protocol>udp</protocol>
+        </connection>
+        <connection>
+            <from>/motionCUT/right/blobs:o</from>
+            <to>/visuoMotorBridge/right/blobs:i</to>
+            <protocol>udp</protocol>
+        </connection>
+
+
+
+        <!-- template tracking-->  
+        <connection>
+            <from>/icub/camcalib/left/out</from>
+            <to>/templatePFTracker/left/image:i</to>
+            <protocol>udp</protocol>
+        </connection>
+        <connection>
+            <from>/icub/camcalib/right/out</from>
+            <to>/templatePFTracker/right/image:i</to>
+            <protocol>udp</protocol>
+        </connection>
+        
+        <connection>
+            <from>/visuoMotorBridge/tracker:o</from>
+            <to>/templatePFTracker/template/image:i</to>
+            <protocol>tcp</protocol>
+        </connection>
+        <connection>
+            <from>/templatePFTracker/target:o</from>
+            <to>/visuoMotorBridge/tracker:i</to>
+            <protocol>udp</protocol>
+        </connection>
+        
+        <connection>
+            <from>/icub/camcalib/left/out</from>
+            <to>/visuoMotorBridge/left/img:i</to>
+            <protocol>udp</protocol>
+        </connection>
+        <connection>
+            <from>/icub/camcalib/right/out</from>
+            <to>/visuoMotorBridge/right/img:i</to>
+            <protocol>udp</protocol>
+        </connection>
+        <connection>
+            <from>/visuoMotorBridge/left/img:o</from>
+            <to>/view/left</to>
+            <protocol>udp</protocol>
+        </connection>
+        <connection>
+            <from>/visuoMotorBridge/right/img:o</from>
+            <to>/view/right</to>
+            <protocol>udp</protocol>
+        </connection>
+		
+		<connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/MIL/left/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/icub/camcalib/right/out</from>
+                <to>/MIL/right/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/visuoMotorBridge/MIL/cmd:o</from>
+                <to>/MIL/rpc</to>
+                <protocol>tcp</protocol>
+        </connection>
+        <connection>
+                <from>/visuoMotorBridge/MIL/window:o</from>
+                <to>/MIL/window:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        
+        <!-- From MIL to Localizer-->        
+        <connection>
+                <from>/MIL/loc:o</from>
+                <to>/localizer/loc:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+         <connection>
+                <from>/localizer/loc:o</from>
+                <to>/visuoMotorBridge/MIL/rec:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/localizer/left/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/icub/camcalib/right/out</from>
+                <to>/localizer/right/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+
+        <!-- grasp detection-->     
+    	<connection>
+    	    <from>/icub/left_hand/analog:o</from> 
+    	    <to>/visuoMotorBridge/left/detectGrasp:i</to>
+            <protocol>udp</protocol>
+    	</connection>
+
+    	<connection>
+    	    <from>/icub/right_hand/analog:o</from> 
+    	    <to>/visuoMotorBridge/right/detectGrasp:i</to>
+            <protocol>udp</protocol>
+    	</connection>
+
+        <!-- Skin connections-->  
+
+        <connection>
+                <from>/icub/skin/left_hand_comp</from>
+                <to>/skinGuiComp/left_hand:i</to>
+                <protocol>tcp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/skin/right_hand_comp</from>
+                <to>/skinGuiComp/right_hand:i</to>
+                <protocol>tcp</protocol>
+        </connection>
+        
+        <connection>
+                <from>/icub/skin/left_hand_comp</from>
+                <to>/visuoMotorBridge/compTactDataLeft:i</to>
+                <protocol>tcp</protocol>
+        </connection>
+
+         <connection>
+                <from>/icub/skin/right_hand_comp</from>
+                <to>/visuoMotorBridge/compTactDataRight:i</to>
+                <protocol>tcp</protocol>
+        </connection>
+
+
+        <!-- eye2world connections-->  
+        
+         <connection>
+                <from>/visuoMotorBridge/eye2world/out</from>
+                <to>/eye2world/in</to>
+                <protocol>tcp</protocol>
+        </connection>
+
+        <connection>
+                <from>/eye2world/out</from>
+                <to>/visuoMotorBridge/eye2world/in</to>
+                <protocol>tcp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/torso/state:o</from>
+                <to>/eye2world/icub/torso/state:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/head/state:o</from>
+                <to>/eye2world/icub/head/state:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+
+
+</application>

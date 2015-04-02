@@ -1,0 +1,20 @@
+Musicretr-1.0
+Christian Dondrup
+cdondrup@techfak.uni-bielefeld.de
+
+This small collection of files aims to download, modify, build and install
+the musicretr-1.0 sources.
+The original sources are located at: http://www.cs.cmu.edu/~yke/musicretrieval/
+The musicretr-1.0 is a necessary dependency of this program and needs to be installed.
+
+This package was designed to download the source archive and extract it.
+Afterwards the sources will be patched (explained below). These patched sources
+will then be build to a shared library and installed to a custom location.
+
+Installation:
+Please see INSTALL file in this directory.
+
+Patching:
+Patching of the sources is necessary because they were never ment to build as
+a shared library. But since I wanted to use them in my project I decided to
+do so my self.

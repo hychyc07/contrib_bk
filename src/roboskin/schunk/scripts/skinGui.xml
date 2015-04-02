@@ -1,0 +1,88 @@
+<application>
+  <name>Skin Gui Arm</name>
+  <module>
+    <name>skinManager</name>
+    <parameters>--from skinManArm.ini --context skinGui/conf </parameters>
+    <node>console</node>
+    <tag>skinCompA</tag>
+  </module>
+  <module>
+    <name>skinManagerGui</name>
+    <parameters>--from skinManGuiArm.ini --context skinGui/conf --xpos 1020 --ypos 350</parameters>
+    <node>console</node>
+    <tag>skinCompGuiA</tag>
+  </module>
+
+  
+  <module>
+    <name>iCubSkinGui</name>
+    <parameters>--from cover1.ini --context skinGui/conf/skinGui --useCalibration  --xpos 0 --ypos 450 --width 800 --height 550</parameters>
+    <node>console</node>
+    <tag>skinGuiC1</tag>
+  </module>
+ <module>
+    <name>iCubSkinGui</name>
+    <parameters>--from cover2.ini --context skinGui/conf/skinGui --useCalibration   --xpos 0 --ypos 450 --width 800 --height 550</parameters>
+    <node>console</node>
+    <tag>skinGuiC2</tag>
+  </module>
+   <module>
+    <name>iCubSkinGui</name>
+    <parameters>--from cover3.ini --context skinGui/conf/skinGui  --useCalibration  --xpos 0 --ypos 450 --width 800 --height 550</parameters>
+    <node>console</node>
+    <tag>skinGuiC3</tag>
+  </module>
+   <module>
+    <name>iCubSkinGui</name>
+    <parameters>--from cover4.ini --context skinGui/conf/skinGui  --useCalibration  --xpos 0 --ypos 450 --width 800 --height 550</parameters>
+    <node>console</node>
+    <tag>skinGuiC4</tag>
+  </module>
+   <module>
+    <name>iCubSkinGui</name>
+    <parameters>--from cover5.ini --context skinGui/conf/skinGui  --useCalibration  --xpos 0 --ypos 450 --width 800 --height 550</parameters>
+    <node>console</node>
+    <tag>skinGuiC5</tag>
+  </module>
+  
+  <connection>
+    <from>/skinManGuiArm/rpc:o</from>
+    <to>/armSkinMan/rpc</to>
+    <protocol>tcp</protocol>
+  </connection>
+  <connection>
+    <from>/armSkinMan/monitor:o</from>
+    <to>/skinManGuiArm/monitor:i</to>
+    <protocol>udp</protocol>
+  </connection>
+  <connection>
+    <from>/armSkinMan/info:o</from>
+    <to>/skinManGuiArm/info:i</to>
+    <protocol>tcp</protocol>
+  </connection>
+  <connection>
+    <from>/schunk/skin/cover1_comp</from>
+    <to>/skinGui/cover1:i</to>
+    <protocol>udp</protocol>
+  </connection>
+   <connection>
+    <from>/schunk/skin/cover2_comp</from>
+    <to>/skinGui/cover2:i</to>
+    <protocol>udp</protocol>
+  </connection>
+  <connection>
+    <from>/schunk/skin/cover3_comp</from>
+    <to>/skinGui/cover3:i</to>
+    <protocol>udp</protocol>
+  </connection>  
+  <connection>
+    <from>/schunk/skin/cover4_comp</from>
+    <to>/skinGui/cover4:i</to>
+    <protocol>udp</protocol>
+  </connection>
+  <connection>
+    <from>/schunk/skin/cover5_comp</from>
+    <to>/skinGui/cover5:i</to>
+    <protocol>udp</protocol>
+  </connection>  
+</application>

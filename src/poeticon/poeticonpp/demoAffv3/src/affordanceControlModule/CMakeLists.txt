@@ -1,0 +1,105 @@
+cmake_minimum_required(VERSION 2.8)
+SET(KEYWORD "affordanceController")
+
+PROJECT(${KEYWORD})
+
+FIND_PACKAGE(YARP REQUIRED)
+FIND_PACKAGE(ICUB REQUIRED)
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${YARP_MODULE_PATH})
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ICUB_MODULE_PATH})
+INCLUDE(iCubHelpers)
+
+FIND_PACKAGE(OpenCV REQUIRED)
+#Message(***OpenCV_DIR:${OpenCV_DIR})
+#Message(***OpenCV_INC:${OpenCV_INCLUDE_DIR})
+#Message(***OpenCV_LIBS:${OpenCV_LIBS})
+
+# Helper variable defining the root of the current project
+SET(AFFORDANCEMODULE_SOURCE_DIR ${AFFORDANCEMODULE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/src/affordanceControlModule)
+
+# Check for PNL lib
+set(PNL_INCLUDE_DIRS ${PNL_INCLUDE_DIRS} ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/include/*.h ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/include/*.hpp)
+if(EXISTS ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/libpnl.a)
+        MESSAGE("-- Using OpenPNL")
+        set(PNL_LIBRARIES ${PNL_LIBRARIES}
+                ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/libcxcore.a
+                ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/libhigh.a
+                ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/libpnl.a
+                ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/libtrs.a
+        )
+endif()
+
+# Compile against the correct version of the PNL library, architecture wise.
+#if(${CMAKE_SIZEOF_VOID_P} EQUAL 8)
+#        MESSAGE("-- Using PNL 64-bit")
+#        set(PNL_LIBRARIES ${PNL_LIBRARIES}
+#                ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/libcxcore_x64.a
+#                ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/libhigh_x64.a
+#                ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/libpnl_x64.a
+#                ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/libtrs_x64.a
+#        )
+#else()
+#        MESSAGE("-- Using PNL 32-bit")
+#        set(PNL_LIBRARIES ${PNL_LIBRARIES}
+#                ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/libcxcore_x86.a
+#                ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/libhigh_x86.a
+#                ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/libpnl_x86.a
+#                ${AFFORDANCEMODULE_SOURCE_DIR}/lib/pnl/libtrs_x86.a
+#        )
+#endif()
+
+# Check for Eye2World lib (EyeTableProjection)
+set(LIBEYECUB_INCLUDE_DIRS ${LIBEYECUB_INCLUDE_DIRS} ${AFFORDANCEMODULE_SOURCE_DIR}/lib/eye2world/include/iCub/eye2world/*.h)
+
+# Check for AttentionSelection Lib
+set(ATTENTIONSELECTIONLIB_INCLUDE_DIRS ${ATTENTIONSELECTIONLIB_INCLUDE_DIRS} ${AFFORDANCEMODULE_SOURCE_DIR}/lib/attentionSystem/attentionSelection/include/iCub/*.h)
+set(ATTENTIONSELECTIONLIB_LIBRARIES ${ATTENTIONSELECTIONLIB_LIBRARIES} ${CMAKE_SOURCE_DIR}/build/src/behaviorControlModule/lib/attentionSystem/src/attentionSelection/libattentionSelectionLib.a)
+
+
+INCLUDE_DIRECTORIES(    ${PROJECT_SOURCE_DIR}/include
+			${AFFORDANCEMODULE_SOURCE_DIR}
+			${ICUB_INCLUDE_DIRS}
+			${ICUB_DIR}/src/kinematics/include
+			${OpenCV_INCLUDE_DIR}
+			${iKin_INCLUDE_DIRS}
+			${ctrlLib_INCLUDE_DIRS}
+			${YARP_INCLUDE_DIRS}
+			${actionPrimitives_INCLUDE_DIRS}
+			${ATTENTIONSELECTIONLIB_INCLUDE_DIRS}
+			${PNL_INCLUDE_DIRS}
+)
+
+# Search some for source code.
+set(folder_source)
+set(folder_header)
+FILE(GLOB folder_source ./src/*.cpp 
+			# eye2world doesn't procude a library, added manually
+			./src/iCub/eye2world/*.cpp
+			)
+FILE(GLOB folder_header ./include/iCub/*.h 
+			./include/iCub/action/*.h 
+			./include/iCub/eye2world/*.h	
+			)
+
+SOURCE_GROUP("Source Files" FILES ${folder_source})
+SOURCE_GROUP("Header Files" FILES ${folder_header})
+      
+# Set up our main executable.
+IF (folder_source)
+	ADD_EXECUTABLE(${KEYWORD} ${folder_source} ${folder_header})
+ELSE (folder_source)
+	MESSAGE(FATAL_ERROR "No source code files found. Please add something")
+ENDIF (folder_source)
+
+# Link libraries
+# Apparently, OpenCV has to be the last one or the linking will fail. You have been warned!
+TARGET_LINK_LIBRARIES(${KEYWORD} 
+		      ${YARP_LIBRARIES}
+		      icubmod 
+		      iKin
+		      ctrlLib
+          	      actionPrimitives	
+		      ${ATTENTIONSELECTIONLIB_LIBRARIES} 
+                      ${PNL_LIBRARIES} 
+		      ${OpenCV_LIBS} 
+)

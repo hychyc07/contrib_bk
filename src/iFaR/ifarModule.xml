@@ -1,0 +1,67 @@
+<application>
+	<name>Ifar Module</name>
+ 	<dependencies>
+		<port>/icub/cam/left</port>
+    <port>/icub/cam/right</port>
+ 	</dependencies>
+
+  <module>
+    <name>yarpview</name>
+    <parameters>--name /leftImage --x 000 --y 0 --synch</parameters>
+    <node>icubL</node>
+    <tag>left_image</tag>
+  </module>
+  
+  <module>
+    <name>yarpview</name>
+    <parameters>--name /rightImage --x 350 --y 0 --synch</parameters>
+    <node>icubR</node>
+    <tag>right_image</tag>
+  </module>
+
+  <module>
+    <name>yarpview</name>
+    <parameters>--name /filtImage --x 000 --y 350 --synch</parameters>
+    <node>icubB</node>
+    <tag>filt_image</tag>
+  </module>
+  
+  <module>
+    <name>ifarModule</name> 
+    <parameters></parameters>
+    <tag>ifar</tag>
+    <node>/ifarNode</node>
+  </module>        
+
+  <connection>
+    <from>/icub/cam/left</from>
+	  <to>/ifar/imageL:i</to>
+	  <protocol>udp</protocol>
+  </connection> 
+  
+  <connection>
+    <from>/icub/cam/right</from>
+    <to>/ifar/imageR:i</to>
+	  <protocol>udp</protocol>
+  </connection>
+
+  <connection>
+    <from>/icub/cam/left</from>
+    <to>/leftImage</to>
+    <protocol>tcp</protocol>
+  </connection>
+
+  <connection>
+    <from>/icub/cam/right</from>
+    <to>/rightImage</to>
+    <protocol>tcp</protocol>
+  </connection>
+
+  <connection>
+    <from>/ifar/salMap:o</from>
+    <to>/filtImage</to>
+    <protocol>tcp</protocol>
+  </connection>
+
+</application>
+

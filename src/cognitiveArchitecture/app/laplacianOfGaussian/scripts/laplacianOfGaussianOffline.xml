@@ -1,0 +1,82 @@
+<application>
+<name>Demo of laplacianOfGaussian</name>
+
+<dependencies>
+</dependencies>
+
+<module>
+   <name>imageSource</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/laplacianOfGaussian/conf </parameters>
+   <node>icub1</node>
+   <tag>imageSource</tag>
+</module>
+
+
+<module>
+   <name>laplacianOfGaussian</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/laplacianOfGaussian/conf</parameters>
+   <node>icub1</node>
+   <tag>laplacianOfGaussian</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /inputImage --x 1920 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>input_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /logImage --x 2260 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>log_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /zcImage --x 2600 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>zc_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /plotImage --x 2940 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>plot_image</tag>
+</module>
+
+<connection>
+  <from>/icub/cam/left</from>
+  <to>/inputImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/cam/left</from>
+  <to>/laplacianOfGaussian/visualImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/laplacianOfGaussian/logImage:o</from>
+  <to>/logImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/laplacianOfGaussian/zcImage:o</from>
+  <to>/zcImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/laplacianOfGaussian/plotImage:o</from>
+  <to>/plotImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+</application>

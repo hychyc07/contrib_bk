@@ -1,0 +1,70 @@
+
+<application>
+<name>localizer</name>
+
+        <module>
+                <name>localizer</name>
+                <parameters>--filter 1</parameters>
+                <node>icub-b11</node>
+                <tag>localizer</tag>
+        </module>
+        
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /localizer/left/viewer --x 0 --y 350</parameters>
+                <node>icub16</node>
+                <tag>viewerLocalizer</tag>
+        </module>
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /bkgSub/view --x 0 --y 800</parameters>
+                <node>icub16</node>
+                <tag>bkviewer</tag>
+        </module>
+        <!-- From cameras -->        
+        <connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/MIL/left/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/localizer/left/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/visuoMotorBridge/MIL/cmd:o</from>
+                <to>/MIL/rpc</to>
+                <protocol>tcp</protocol>
+        </connection>
+        <!-- From MIL to Localizer-->        
+        <connection>
+                <from>/MIL/loc:o</from>
+                <to>/localizer/loc:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/localizer/loc:o</from>
+                <to>/visuoMotorBridge/MIL/rec:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <!-- Viewers connections-->        
+        <connection>
+                <from>/localizer/left/img:o</from>
+                <to>/localizer/left/viewer</to>
+                <protocol>udp</protocol>
+        </connection>
+        <!-- Bkg Segmentator-->
+        <connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/bkgSub/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/bkgSub/blob:o</from>
+                <to>/localizer/left/blobs:i</to>
+                <protocol>udp</protocol>
+        </connection>
+</application>
+
+

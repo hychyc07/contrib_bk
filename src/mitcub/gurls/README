@@ -1,0 +1,26 @@
+Build instructions:
+
+Linux (tested on Ubuntu 10.04):
+
+1. Install your favourite Blas/Lapack implementation
+	e.g. installing Netlib's Blas and Lapack:
+	$ sudo apt-get install libblas-dev libblas3gf liblapack3gf
+
+2. Install Boost's libraries date_time and serialization
+	$ sudo apt-get install libboost-serialization1.40.0 libboost-serialization1.40-dev libboost-date-time1.40.0 libboost-date-time1.40-dev
+
+3 To link against some Blas and Lapack implementations you may need a fortran compiler
+	e.g. for Netlib's Blas and Lapack:
+	$ sudo apt-get install gfortran
+
+4. Create a buld directory (e.g. "build") for gurls++
+	$ cd $GURLS_ROOT
+	$ mkdir build
+
+5. Run cmake into the build directory
+	$ cd build
+	$ ccmake ..
+
+6. Start gurls++ building
+	$ make
+

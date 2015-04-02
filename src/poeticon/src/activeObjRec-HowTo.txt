@@ -1,0 +1,78 @@
+-- Update repository
+
+-- Build programs
+You need Boost >= 1.46 and OpenCV >= 2.3 (maybe even 2.4) to compile. 
+
+-- Edit scripts in contrib/src/poeticon/app/scripts
+activeObjRec.xml.template for the simulator
+I think there is not script neccessary for the real robot as the kinematic/cartesian control stuff is already running. 
+However you need to connect the cam ports to the module. You can do it manually as well or use the script (change icubSim to icub).
+
+-- Create dirs:
+contrib/src/poeticon/app/data/handgazecontrol
+contrib/src/poeticon/app/data/objectviews_icubsim
+contrib/src/poeticon/app/data/objectviews
+contrib/src/poeticon/app/data/results
+
+-- Edit config file contrib/src/poeticon/app/scripts/activeObjRec[Sim].ini 
+Make sure the variables point to valid directories.
+Also have a look at the other parameters, but I think the default values should be fine for a start. 
+
+-- Run gyarpmanager and load application (or old manager)
+The application does not include the recognition and segmentation modules. 
+I prefer to run them manually, so I can change params more easily.  
+
+-- Run application (if simulator)
+
+-- Run recognition module
+$ ./activeObjRec --from activeObjRec[Sim].ini
+
+-- [optional] Learn inverse kinematics
+You could use the default file in /contrib/src/poeticon/app/data/handGazeControl or collect new data or collect new data. 
+Attention: Old data will be overwritten!!
+open rpc connection: $ yarp rpc /activeObjRec/rpc:i   
+kinexp
+You should at least get around 20 fps. Let it run for a while. 30000 samples should be enough.
+
+-- Check hand control
+RPC command: control hand
+Adjust the first two sliders to set a viewpoint. Check "err" value on console. There shouldn't be to high values, everything <10 deg is ok. 
+The robot can't reach all positions on the viewsphere. So some viewpoints will have a higher error. 
+
+-- Check if object is in focus 
+RPC command: calib gaze
+connect cam port
+You get a small gui that let's you adjust a gaze offset in respect to the palm. Drag the sliders to find the right values. 
+Note that 0.20 actually means 0.00 (there is no way of setting negative values to sliders). 
+Once you have found a good setting, replace the values in activeObjRec[Sim].ini for gazeOffset(X|Y|Z) with the new values. 
+
+-- Find params for segmentation 
+We need to find a good parameter config to get reasonable segmentations. 
+- grasp an object 
+- run objSeg module 
+$ ./objSeg --from objSeg[Sim].ini --display 1
+'display' enables/disables output windows
+- send rpc 'resume'
+The robot should now look at the object. Check the segmentation in the windows and adjust the params.  
+num_clusters_bkg: num of GMM clusters for background
+scaleFactor: size of window, decrease if too slow
+minSegmentSize: segments that have fewer pixels that this get deleted
+thresh_bgr: everything below this value will be regarded as object, decrease if too much get's labeled as object
+blur_level: degree of blur, don't think that needs to be changed
+modality: color space (rgb | lab | yuv)
+
+
+-- Learn object
+- grasp object
+- send rpc command 'explore <objname>'
+
+
+-- Recognize object
+- grasp object
+- send rpc command 'recog <objname>' 
+objname is only used for saving and evaluating results
+
+
+
+
+

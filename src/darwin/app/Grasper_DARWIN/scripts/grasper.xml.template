@@ -1,0 +1,38 @@
+<application>
+<name>Grasper_DARWIN</name>
+
+<dependencies>
+	<port>/icub/skin/left_hand_comp</port>
+	<port>/icub/skin/right_hand_comp</port>
+</dependencies>
+
+<module>
+  <name>LowLevelController_DARWIN</name>
+  <node>icub14</node>
+  <stdio>icub14</stdio>
+  <tag>LLController</tag>
+</module>
+
+<module>
+  <name>Grasper_DARWIN</name>
+  <node>icub14</node>
+  <stdio>icub14</stdio>
+  <tag>Grasper</tag>
+</module>
+
+<connection>
+<from>/grasper/cmd:o</from>
+<to>/DevDriver/rpc</to>
+</connection>
+
+<connection>
+<from>/icub/skin/right_hand_comp </from>
+<to>/touchHandler/right_hand:i </to>
+</connection>
+
+<connection>
+<from>/icub/skin/left_hand_comp </from>
+<to>/touchHandler/left_hand:i </to>
+</connection>
+
+ </application>

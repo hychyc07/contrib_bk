@@ -1,0 +1,39 @@
+
+<application>
+<name>EFAA Multi-Ball Hockey Demo</name>
+
+        <dependencies>
+            <port>/icub/camcalib/left/out</port>            
+            <port>/icub/cartesianController/right_arm/state:o</port>
+            <port>/icub/cartesianController/left_arm/state:o</port>
+            <port>/iKinGazeCtrl/head/rpc</port>
+        </dependencies>
+
+    	<module>
+    	    <name>sendBlobs</name>
+    	    <parameters></parameters>
+    	    <node>powerNode1</node>
+	        <stdio>console</stdio>
+    	    <tag>blobber</tag>
+    	</module>
+    	
+    	<module>
+    	    <name>iMultiTask</name>
+    	    <parameters> </parameters>
+    	    <node>powerNode2</node>
+	        <stdio>console</stdio>
+    	    <tag>hockeyer</tag>
+    	</module>
+
+       
+    	<connection>
+    	    <from>/icub/camcalib/left/out</from>
+    	    <to>/trackBlobs/left/in</to>
+    	</connection>
+    
+    	<connection>
+    	    <from>/trackBlobs/out</from> 
+    	    <to>/iMultiTask/blobs/in</to>
+    	</connection>
+
+ </application>

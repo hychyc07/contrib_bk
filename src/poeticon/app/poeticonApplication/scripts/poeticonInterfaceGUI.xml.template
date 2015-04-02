@@ -1,0 +1,121 @@
+<application>
+<name>Poeticon Application </name>
+
+<dependencies>
+	<port>/icub/cam/left</port>
+	<port>/icub/cam/right</port>	
+</dependencies>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /leftLogPolarImage --x 000 --y 0 --synch </parameters>
+   <node>console</node>
+   <tag>leftLogPolarImage</tag>
+</module>
+<module>
+		<name>zdfControl</name>
+		<parameters>--x 900 --y 0</parameters>
+		<tag>zdf control</tag>
+		<node>icub15</node>
+</module>
+<module>
+   <name>yarpview</name>
+   <parameters>--name /rightLogPolarImage --x 340 --y 0  --synch </parameters>
+   <node>console</node>
+   <tag>rightLogpolarImage</tag>
+</module>
+
+<module>
+		<name>selAttentionInterface</name>
+		<parameters>--name /selectiveAttentionInterface/icub/left_cam --x 700 --y 0</parameters>
+		<tag>selectiveAttInterfaceLeft</tag>
+		<node>console</node>
+</module>
+<module>
+		<name>yarpview</name>
+		<parameters>--name /icub/left_cam/attentionCartesian --x 000 --y 340 --synch</parameters>
+		<tag>attCartLeft</tag>
+		<node>console</node>
+</module>
+<module>
+		<name>yarpview</name>
+		<parameters>--name /icub/left_cam/combinationView --x 340 --y 340 --synch</parameters>
+		<tag>combViewLeft</tag>
+		<node>console</node>
+</module>
+<module>
+      <name>yarpview</name>
+      <parameters>--name /view/Seg --x 680 --y 360 --synch</parameters>
+      <node>console</node>
+	  <tag>view Seg</tag>
+</module>
+
+<module>
+       <name>yarpview</name>
+       <parameters>--name /trainerViewer --x 320 --y 0 --synch</parameters>
+       <node>display</node>
+       <tag>trainerView</tag>
+</module>
+
+<module>
+       <name>yarpview</name>
+       <parameters>--name /spikeNetViewer --x 640 --y 0 --synch</parameters>
+       <node>display</node>
+       <tag>spikeNetView</tag>
+</module>
+
+
+<connection>
+  <from>/logPolarTransform/icub/left_cam/image:o</from>
+  <to>/leftLogPolarImage</to>
+  <protocol>udp</protocol>
+</connection>
+
+<connection>
+  <from>/logPolarTransform/icub/right_cam/image:o</from>
+  <to>/rightLogPolarImage</to>
+  <protocol>udp</protocol>
+</connection>
+
+<connection>
+        <from>/selectiveAttentionInterface/icub/left_cam/command:o</from>
+		<to>/selectiveAttentionEngine/icub/left_cam</to>
+		<protocol>mcast</protocol>
+</connection>
+<connection>
+        <from>/zdfControl/command:o</from>
+		<to>/zdfMod</to>
+		<protocol>tcp</protocol>
+</connection>
+<connection>
+        <from>/selectiveAttentionEngine/icub/left_cam/cartesian:o</from>
+		<to>/icub/left_cam/attentionCartesian</to>
+		<protocol>mcast</protocol>
+</connection>
+
+<connection>
+        <from>/selectiveAttentionEngine/icub/left_cam/combination:o</from>
+		<to>/icub/left_cam/combinationView</to>
+		<protocol>tcp</protocol>
+</connection>
+
+<connection>
+		<from>/zdfMod/imageSeg:o</from>
+  		<to>/view/Seg</to>
+  		<protocol>mcast</protocol>
+</connection>
+
+<connection>
+    	<from>/vision/icub/spikenet/processedImg:o</from>
+    	<to>/spikeNetViewer</to>
+		<protocol>mcast</protocol>
+</connection>
+    
+<connection>
+    	<from>/vision/motionDetector/SpikenetTrainer_segmenter/processedImg:o</from>
+    	<to>/trainerViewer</to>
+		<protocol>mcast</protocol>
+</connection>
+
+
+</application>

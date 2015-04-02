@@ -1,0 +1,158 @@
+<application>
+<name>Crawling_ArmsDataLog </name>
+
+        <dependencies>     
+                <port>/icub/right_arm/rpc:i</port>
+                <port>/icub/right_arm/command:i</port>
+                <port>/icub/right_arm/state:o</port>
+                <port>/icub/left_arm/rpc:i</port>
+                <port>/icub/left_arm/command:i</port>
+                <port>/icub/left_arm/state:o</port>
+        </dependencies>
+    
+        <module>
+                <name>controlBoardDumper</name>
+                <parameters>--context crawlingApplication/conf/logconf --from log_right_arm.ini</parameters>
+                <node>node1</node>
+                <tag>controlBoardDumperRightArm</tag>
+        </module>
+        
+        <module>
+                <name>controlBoardDumper</name>
+                <parameters>--context crawlingApplication/conf/logconf --from log_left_arm.ini</parameters>
+                <node>node1</node>
+                <tag>controlBoardDumperLeftArm</tag>
+        </module>
+        
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/right_arm_pos_log --type bottle --downsample 10</parameters>
+                <node>node1</node>
+                <tag>dataDumperRightArmPs</tag>   
+        </module>    
+
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/right_arm_pos_error_log --type bottle --downsample 10</parameters>
+                <node>node1</node>
+                <tag>dataDumperRightArmPsErr</tag>   
+        </module> 
+        
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/right_arm_speed_log --type bottle --downsample 10</parameters>
+                <node>node1</node>
+                <tag>dataDumperRightArmSp</tag>   
+        </module>     
+
+        
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/right_arm_torque_log --type bottle --downsample 10</parameters>
+                <node>node1</node>
+                <tag>dataDumperRightArmTq</tag>   
+        </module>  
+
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/right_arm_torque_error_log --type bottle --downsample 10</parameters>
+                <node>node1</node>
+                <tag>dataDumperRightArmTqErr</tag>   
+        </module> 
+        
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/left_arm_pos_log --type bottle --downsample 10</parameters>
+                <node>node1</node>
+                <tag>dataDumperLeftArmPs</tag>   
+        </module>  
+
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/left_arm_pos_error_log --type bottle --downsample 10</parameters>
+                <node>node1</node>
+                <tag>dataDumperLeftArmPsErr</tag>   
+        </module>  
+
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/left_arm_speed_log --type bottle --downsample 10</parameters>
+                <node>node1</node>
+                <tag>dataDumperLeftArmSp</tag>   
+        </module>     
+
+        
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/left_arm_torque_log --type bottle --downsample 10</parameters>
+                <node>node1</node>
+                <tag>dataDumperLeftArmTq</tag>   
+        </module>  
+
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/left_arm_torque_error_log --type bottle --downsample 10</parameters>
+                <node>node1</node>
+                <tag>dataDumperLeftArmTqErr</tag>   
+        </module>  
+              
+        <connection>
+                <from>/icub/controlBoardDumper/right_arm/getEncoders</from>
+                <to>/crawlinglog/right_arm_pos_log</to>
+                <protocol>mcast</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/controlBoardDumper/right_arm/getPositionErrors</from>
+                <to>/crawlinglog/right_arm_pos_error_log</to>
+                <protocol>mcast</protocol>
+        </connection>
+        
+        <connection>
+                <from>/icub/controlBoardDumper/right_arm/getEncoderSpeeds</from>
+                <to>/crawlinglog/right_arm_speed_log</to>
+                <protocol>mcast</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/controlBoardDumper/right_arm/getTorques</from>
+                <to>/crawlinglog/right_arm_torque_log</to>
+                <protocol>mcast</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/controlBoardDumper/right_arm/getTorqueErrors</from>
+                <to>/crawlinglog/right_arm_torque_error_log</to>
+                <protocol>mcast</protocol>
+        </connection>
+        
+        <connection>
+                <from>/controlBoardDumper/left_arm/getEncoders</from>
+                <to>/crawlinglog/left_arm_pos_log</to>
+                <protocol>mcast</protocol>
+        </connection>
+
+        <connection>
+                <from>/controlBoardDumper/left_arm/getPositionErrors</from>
+                <to>/crawlinglog/left_arm_pos_error_log</to>
+                <protocol>mcast</protocol>
+        </connection>
+        
+        <connection>
+                <from>/controlBoardDumper/left_arm/getEncoderSpeeds</from>
+                <to>/crawlinglog/left_arm_speed_log</to>
+                <protocol>mcast</protocol>
+        </connection>
+
+        <connection>
+                <from>/controlBoardDumper/left_arm/getTorques</from>
+                <to>/crawlinglog/left_arm_torque_log</to>
+                <protocol>mcast</protocol>
+        </connection>
+        
+        <connection>
+                <from>/controlBoardDumper/left_arm/getTorqueErrors</from>
+                <to>/crawlinglog/left_arm_torque_error_log</to>
+                <protocol>mcast</protocol>
+        </connection>
+ </application>

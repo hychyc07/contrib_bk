@@ -1,0 +1,42 @@
+<application>
+<name>Test1 Application</name>
+
+	<dependencies>
+	        <port>/wholeBodyDynamics/right_arm/Torques:o</port>
+		<port>/gravityCompensator/right_arm_torques:o</port>
+<port>/wholeBodyDynamics/left_arm/Torques:o</port>
+		<port>/gravityCompensator/left_arm_torques:o</port>
+        </dependencies>
+
+	<module>
+
+		<name>cartesianForce</name>
+		<parameters>--robot icub --part right_arm</parameters>
+		<node>node1</node>
+		<stdio>console</stdio>
+		<tag>RightArmTest1</tag>
+	</module>
+
+	<module>
+		<name>cartesianForce</name>
+		<parameters>--robot icub --part left_arm</parameters>
+		<node>node1</node>
+		<stdio>console</stdio>
+		<tag>LeftArmTest1</tag>
+	</module>
+
+	<connection>
+		<from>/gravityCompensator/right_arm_torques:o</from>
+		<to>/cartesianImpedance/right_arm/gcomp</to>
+		<protocol>udp</protocol>
+	</connection>
+
+	<connection>
+		<from>/gravityCompensator/left_arm_torques:o</from>
+		<to>/cartesianImpedance/left_arm/gcomp</to>
+		<protocol>udp</protocol>
+	</connection>
+
+</application>
+
+

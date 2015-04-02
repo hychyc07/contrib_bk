@@ -1,0 +1,77 @@
+<application>
+<name>Crawling_manager</name>
+
+        <dependencies>
+                <port>/crawlGenerator/left_arm/parameters/in</port>
+                <port>/crawlGenerator/right_arm/parameters/in</port>
+                <port>/crawlGenerator/left_leg/parameters/in</port>
+                <port>/crawlGenerator/right_leg/parameters/in</port>
+                <port>/crawlGenerator/head/parameters/in</port>
+                <port>/crawlGenerator/torso/parameters/in</port>
+                <port>/crawlGenerator/left_arm/status_for_manager/out</port>
+                <port>/crawlGenerator/right_arm/status_for_manager/out</port>
+                <port>/crawlGenerator/left_leg/status_for_manager/out</port>
+                <port>/crawlGenerator/right_leg/status_for_manager/out</port>
+                <port>/crawlGenerator/head/status_for_manager/out</port>
+                <port>/crawlGenerator/torso/status_for_manager/out</port>
+        </dependencies>
+    
+ 
+        <module>
+                <name>crawlManager</name>
+                <parameters> </parameters>
+                <stdio>console</stdio>
+                <node>node1</node>
+                <tag>crawlManager</tag>
+        </module>
+ 
+        <connection>
+                <from>/manager/left_arm/out</from>
+                <to>/crawlGenerator/left_arm/parameters/in</to>
+                <protocol>tcp</protocol>
+        </connection>  
+        
+        <connection>
+                <from>/manager/right_arm/out</from>
+                <to>/crawlGenerator/right_arm/parameters/in</to>
+                <protocol>tcp</protocol>
+        </connection>    
+        
+        <connection>
+                <from>/manager/left_leg/out</from>
+                <to>/crawlGenerator/left_leg/parameters/in</to>
+                <protocol>tcp</protocol>
+        </connection> 
+        
+        <connection>
+                <from>/manager/right_leg/out</from>
+                <to>/crawlGenerator/right_leg/parameters/in</to>
+                <protocol>tcp</protocol>
+        </connection> 
+        
+        <connection>
+                <from>/crawlGenerator/left_arm/status_for_manager/out</from>
+                <to>/manager/left_arm/status/in</to>
+                <protocol>tcp</protocol>
+        </connection>  
+        
+        <connection>
+                <from>/crawlGenerator/right_arm/status_for_manager/out</from>
+                <to>/manager/right_arm/status/in</to>
+                <protocol>tcp</protocol>
+        </connection>
+        
+        <connection>
+                <from>/crawlGenerator/left_leg/status_for_manager/out</from>
+                <to>/manager/left_leg/status/in</to>
+                <protocol>tcp</protocol>
+        </connection>  
+        
+        <connection>
+                <from>/crawlGenerator/right_leg/status_for_manager/out</from>
+                <to>/manager/right_leg/status/in</to>
+                <protocol>tcp</protocol>
+        </connection>    
+ 
+
+</application>

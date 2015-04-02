@@ -1,0 +1,132 @@
+<application>
+<name>perceptionActionCycleVision</name>
+<dependencies>
+  <port>/icub/camcalib/left/out</port>
+  <port>/icub/camcalib/right/out</port>
+</dependencies>
+
+
+
+<module>
+  <name>downSampler</name>
+  <parameters>--name /leftSampler </parameters>
+  <tag>leftSampler</tag>
+  <node>icub-b16</node>
+</module>
+<module>
+  <name>downSampler</name>
+  <parameters>--name /rightSampler </parameters>
+  <tag>rightSampler</tag>
+  <node>icub-b16</node>
+</module>
+<module>
+  <name>earlyVision</name>
+  <parameters>--name /leftVision </parameters>
+  <tag>leftVision</tag>
+  <node>icub-b14</node>
+</module>
+<module>
+  <name>earlyVision</name>
+  <parameters>--name /rightVision </parameters>
+  <tag>rightVision</tag>
+  <node>icub-b14</node>
+</module>
+<module>
+  <name>blockDetector</name>
+  <parameters>--name /leftDetector </parameters>
+  <tag>leftDetector</tag>
+  <node>icub-b15</node>
+</module>
+<module>
+  <name>blockDetector</name>
+  <parameters>--name /rightDetector </parameters>
+  <tag>rightDetector</tag>
+  <node>icub-b15</node>
+</module>
+<module>
+  <name>shapeSelector</name>
+  <parameters>--name /shapeSelector --width 320 --height 240</parameters>
+  <tag>shapeSelector</tag>
+  <node>icub-b15</node>
+</module>
+<module>
+  <name>logpolarTransform</name>
+  <parameters>--name leftTransform --xsize 320 --ysize 240</parameters>
+  <tag>leftTransform</tag>
+  <node>icub-b16</node>
+</module>
+<module>
+  <name>logpolarTransform</name>
+  <parameters>--name rightTransform --xsize 320 --ysize 240</parameters>
+  <tag>rightTransform</tag>
+  <node>icub-b16</node>
+</module>
+
+
+
+
+
+<connection>
+  <from>/icub/camcalib/left/out</from>
+  <to>/leftSampler/image:i</to>
+  <protocol>mcast</protocol>
+</connection>
+<connection>
+  <from>/icub/camcalib/right/out</from>
+  <to>/rightSampler/image:i</to>
+  <protocol>mcast</protocol>
+</connection>
+<connection>
+  <from>/icub/camcalib/left/out</from>
+  <to>/leftDetector/img:i</to>
+  <protocol>mcast</protocol>
+</connection>
+<connection>
+  <from>/icub/camcalib/right/out</from>
+  <to>/rightDetector/img:i</to>
+  <protocol>mcast</protocol>
+</connection>
+<connection>
+  <from>/leftSampler/image:o</from>
+  <to>/leftVision/imageRGB:i</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/rightSampler/image:o</from>
+  <to>/rightVision/imageRGB:i</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/leftVision/edges/edges:o</from>
+  <to>/shapeSelector/leftImage:i</to>
+  <protocol>udp</protocol>
+</connection> 
+<connection>
+  <from>/rightVision/edges/edges:o</from>
+  <to>/shapeSelector/rightImage:i</to>
+  <protocol>udp</protocol>
+</connection> 
+<connection>
+  <from>/leftDetector/shapeData:o</from>
+  <to>/shapeSelector/leftBottle:i</to>
+  <protocol>udp</protocol>
+</connection> 
+<connection>
+  <from>/rightDetector/shapeData:o</from>
+  <to>/shapeSelector/rightBottle:i</to>
+  <protocol>udp</protocol>
+</connection> 
+<connection>
+  <from>/shapeSelector/leftImage:o</from>
+  <to>/leftTransform/image:i</to>
+  <protocol>udp</protocol>
+</connection> 
+<connection>
+  <from>/shapeSelector/rightImage:o</from>
+  <to>/rightTransform/image:i</to>
+  <protocol>udp</protocol>
+</connection> 
+
+
+
+</application>

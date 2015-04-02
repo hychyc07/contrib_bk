@@ -1,0 +1,91 @@
+<application>
+<name>SkinForceControl Data Collector</name>
+<dependencies>
+      
+</dependencies>
+    <module>
+        <name>dataDumper</name>
+        <parameters>--name /data/sfc --rxTime</parameters>
+        <node>icub15</node>
+        <stdio></stdio>
+        <tag>dataDumper1</tag>
+    </module>
+    <module>
+        <name>dataDumper</name>
+        <parameters>--name /data/head --rxTime</parameters>
+        <node>icub15</node>
+        <stdio></stdio>
+        <tag>dataDumper2</tag>
+    </module>
+	<module>
+        <name>dataDumper</name>
+        <parameters>--name /data/torso --rxTime</parameters>
+        <node>icub15</node>
+        <stdio></stdio>
+        <tag>dataDumper3</tag>
+    </module>
+	<module>
+        <name>dataDumper</name>
+        <parameters>--name /data/leftArm --rxTime</parameters>
+        <node>icub15</node>
+        <stdio></stdio>
+        <tag>dataDumper4</tag>
+    </module>
+	<module>
+        <name>dataDumper</name>
+        <parameters>--name /data/rightArm --rxTime</parameters>
+        <node>icub15</node>
+        <stdio></stdio>
+        <tag>dataDumper5</tag>
+    </module>
+    <module>
+        <name>dataDumper</name>
+        <parameters>--name /data/contacts --rxTime</parameters>
+        <node>icub15</node>
+        <stdio></stdio>
+        <tag>dataDumper6</tag>
+    </module>
+    <module>
+        <name>dataDumper</name>
+        <parameters>--name /data/skin_left_forearm --rxTime</parameters>
+        <node>icub15</node>
+        <stdio></stdio>
+        <tag>dataDumper7</tag>
+    </module>
+	
+    <connection>
+        <from>/skinForceControl/monitor:o</from>
+        <to>/data/sfc</to>
+        <protocol>udp</protocol>
+    </connection>
+    <connection>
+        <from>/icub/head/state:o</from>
+        <to>/data/head</to>
+        <protocol>udp</protocol>
+    </connection>
+	<connection>
+        <from>/icub/torso/state:o</from>
+        <to>/data/torso</to>
+        <protocol>udp</protocol>
+    </connection>
+	<connection>
+        <from>/icub/left_arm/state:o</from>
+        <to>/data/leftArm</to>
+        <protocol>udp</protocol>
+    </connection>
+	<connection>
+        <from>/icub/right_arm/state:o</from>
+        <to>/data/rightArm</to>
+        <protocol>udp</protocol>
+    </connection>
+    <connection>
+        <from>/wholeBodyDynamics/contacts:o</from>
+        <to>/data/contacts</to>
+        <protocol>udp</protocol>
+    </connection>
+    <connection>
+        <from>/icub/skin/left_forearm_comp</from>
+        <to>/data/skin_left_forearm</to>
+        <protocol>udp</protocol>
+    </connection>
+</application>

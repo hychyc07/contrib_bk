@@ -1,0 +1,73 @@
+<application>
+    <name>multiSensoryObjRec</name>
+
+    <dependencies>
+        <port>/bjoern1</port>
+    </dependencies>
+
+    <module>
+        <name>iCub_SIM</name>
+        <node>bjoern-laptop</node>
+        <tag>iCub_SIM</tag>
+    </module>
+
+    <!--<module>-->
+        <!--<name>learnObject</name>-->
+        <!--<parameters></parameters>-->
+        <!--<node>bjoern-laptop</node>-->
+        <!--<tag>learnObject</tag>-->
+    <!--</module>-->
+
+    <module>
+        <name>iKinCartesianSolver</name>
+        <parameters>--context ../main/app/simCartesianControl/conf --part right_arm</parameters>
+        <node>bjoern-laptop</node>
+        <tag>rightArmSolver</tag>
+    </module>
+
+    <module>
+        <name>simCartesianControl</name>
+        <parameters>--context ../main/app/simCartesianControl/conf --part right_arm</parameters>
+        <node>bjoern-laptop</node>
+        <tag>simCartesianSolver</tag>
+    </module>
+
+    <module>
+        <name>iKinGazeCtrl</name>
+        <parameters>--context ../main/app/simCartesianControl/conf --robot icubSim</parameters>
+        <node>bjoern-laptop</node>
+        <tag>iKinGazeCtrl</tag>
+    </module>
+
+
+    <connection>
+        <from>/icubSim/touch</from>
+        <to>/multiSensoryObjRec/touchSensors:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+    <connection>
+        <from>/multiSensoryObjRec/world:o</from>
+        <to>/icubSim/world</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+    <connection>
+        <from>/multiSensoryObjRec/worldSync:o</from>
+        <to>/icubSim/world</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+    <connection>
+        <from>/icubSim/cam/right</from>
+        <to>/multiSensoryObjRec/camRight:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+    <connection>
+        <from>/icubSim/cam/left</from>
+        <to>/multiSensoryObjRec/camLeft:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+</application>

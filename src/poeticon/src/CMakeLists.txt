@@ -1,0 +1,5 @@
+SET(USE_BOOST FALSE CACHE BOOL "Select false if you do not have boost installed")
+IF (USE_BOOST)
+  add_subdirectory(multiSensoryObjRec)
+ENDIF (USE_BOOST)
+add_subdirectory(praxiconModuleTemp)

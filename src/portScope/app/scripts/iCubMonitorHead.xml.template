@@ -1,0 +1,36 @@
+<application>
+<name> leftArmControlBoardMonitor </name>		
+    <dependencies>
+        <port>/icub/head/state:o </port>
+    </dependencies>
+
+    <module>
+        <name>controlBoardDumper</name>
+        <tag>iCubDumperHead</tag>
+        <parameters>--from icubHead.ini</parameters>
+        <node>icub_svr</node>
+    </module>
+
+    <module>
+        <name>portScope</name>
+        <tag>iCubScopeArmStatus</tag>
+        <parameters>--from headEncoders.ini --dx 390 --dy 325 --x 0 --y 50</parameters>
+        <node>console</node>
+    </module>
+
+    <module>
+        <name>portScope</name>
+        <tag>iCubScopeHeadCurrents</tag>
+        <parameters>--from headCurrents.ini --dx 390 --dy 325 --x 400 --y 375</parameters>
+        <node>console</node>
+    </module>
+
+    <module>
+        <name>portScope</name>
+        <tag>iCubScopeHeadOutputs</tag>
+        <parameters>--from headOutputs.ini --dx 390 --dy 325 --x 0 --y 375
+</parameters>
+        <node>console</node>
+    </module>
+
+</application>

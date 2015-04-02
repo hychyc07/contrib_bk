@@ -1,0 +1,14 @@
+Created date: 13 April 2010
+Description: adding 1 toe off 2 heel strike foot trajectory, 3 hip sine wave motion
+
+This evolves based on the file of 'Heel Strike Toe Off - Good Copy'. I copy 'Heel Strike Toe Off - Good Copy' and rename it as Rev01 version on 7 June 2010
+
+Updated date: 11 June 2010
+
+Updated date: 15 march 2011, i try to add yaw angle to make robot turn
+
+Updated date: June 2012 for Houman and Mohamad.
+
+Updated date: 14 Nov 2012, file transfered to Przemek.
+
+Updated date: 7 Feb 2013, file transfered to Jorhabib.

@@ -1,0 +1,3500 @@
+###
+### SCALE: 100
+### CSLUVERSION: 2.0.0
+###
+set Coord "-630.0 820.0 1512.0 1662.0"
+
+#----------------------------------------------------------------------------
+# Packages
+#----------------------------------------------------------------------------
+requirePackage Base {Built-in RAD object types} {Copyright (C) 1996-2002 Center for Spoken Language Understanding
+  OGI School of Science & Engineering
+  Oregon Health & Science University} http://cslu.cse.ogi.edu/toolkit/docs/2.0/apps/rad/objects/index.html#base
+#----------------------------------------------------------------------------
+
+
+##### ROOT SCREEN
+set offsetX [expr $x - -630.0]
+set offsetY [expr $y - 820.0]
+set p $ObjectTypes(activeScreen)
+
+# input_23
+set x0 [expr -310.0 + $offsetX] 
+set y0 [expr 820.0 + $offsetY] 
+set obvar [newO input $x0 $y0 {no 1}]
+set r(input_23) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {start}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+
+# action_24
+set x0 [expr -310.0 + $offsetX] 
+set y0 [expr 1250.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_24) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {CheckConnections}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set ConnectionStatus [ConnectionChecker_Connect]
+
+if { $ConnectionStatus == 0 } {
+Say "Connections missing"
+} else {
+Say "OK"
+}}
+
+# prect_25
+set x0 [expr -310.0 + $offsetX] 
+set y0 [expr 1340.0 + $offsetY] 
+set obvar [newO prect $x0 $y0 {no 2}]
+set r(prect_25) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {check}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{$ConnectionStatus == 1}} {} {}} {{{$ConnectionStatus == 0}} {} {}}}
+set ob(grammar) {{} {}}
+
+# action_26
+set x0 [expr -320.0 + $offsetX] 
+set y0 [expr 1430.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_26) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {Entry_Point}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {Say "Ready."}
+
+# queryone_27
+set x0 [expr -70.0 + $offsetX] 
+set y0 [expr 1390.0 + $offsetY] 
+set obvar [newO queryone $x0 $y0 {no 3}]
+set r(queryone_27) $obvar
+upvar #0 $obvar ob
+set ob(gif_original) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/base/gif/generic.gif}
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(changetrigger) {5}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(gif_tmmods) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/packages/Tucker-Maxon/gif_alt/generic.gif}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(action1) {Say "Retry, skip or give-up?"}
+set ob(recogportType,0) {Words}
+set ob(recogportType,1) {Words}
+set ob(recogportType,2) {Words}
+set ob(override:repair) {0}
+set ob(override:tts) {0}
+set ob(repairStatus) {default}
+set ob(changerate) {5}
+set ob(dynamicWords) {{retry {9r i: tc th 9r aI}} {skip {s kc kh I pc ph}} {give-up {gc g I v & pc ph}}}
+set ob(dyn:recog) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(portType,0) {Undefined}
+set ob(portType,1) {Undefined}
+set ob(package) {Base}
+set ob(portType,2) {Undefined}
+set ob(override:caption) {0}
+set ob(name) {Handle_connections}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{retry {} {{{9r i: tc th 9r aI}}}} {skip {} {{{s kc kh I pc ph}}}} {give-up {} {{{gc g I v & pc ph}}}}}
+set ob(grammar) {{{} {}} {{} {}} {{} {}}}
+set ob(recognizer) {name adult_english_16khz_0.ob}
+
+# action_28
+set x0 [expr -310.0 + $offsetX] 
+set y0 [expr 1150.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_28) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {module_MILmanager}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {Port managerPort
+managerPort open "/RAD/HRI:o"
+Port speechPort
+speechPort open "/RAD/Speech:o"
+
+Port karmaManagerPort
+karmaManagerPort open "/RAD/karmaManager:o"
+
+Port karmaLearnPort
+karmaLearnPort open "/RAD/karmaLearn:o"
+
+if {$usingRobot == 1} {
+	ConnectionChecker_Add "/RAD/HRI:o" "/iolStateMachineHandler/human:rpc"
+	ConnectionChecker_Add "/RAD/Speech:o" "/iSpeak"
+	ConnectionChecker_Add "/RAD/karmaManager:o" "/karmaManager/human:rpc"
+	ConnectionChecker_Add "/RAD/karmaLearn:o" "/karmaLearn/rpc"
+
+}
+
+#DEFINES USEFULL PROCEDURES
+
+proc MIL_reset { } {
+
+	#bottle clear
+	#bottle addString "home"
+	#managerPort write bottle reply
+	#puts [reply toString]
+
+	bottle clear
+	bottle addString "attention"
+	bottle addString "stop"
+	managerPort write bottle reply
+	puts [reply toString]
+	
+}
+
+proc KarmaManager_train { objectName } {
+
+	bottle clear
+	bottle addString "train"
+	bottle addString $objectName
+	karmaManagerPort write bottle reply
+	puts [reply toString]
+	
+}
+
+proc KarmaManager_eval { objectName } {
+
+	bottle clear
+	bottle addString "test"
+	bottle addString $objectName
+	karmaManagerPort write bottle reply
+	puts [reply toString]
+	
+}
+
+proc Speak { text } {
+	bottle clear
+	bottle addString $text
+	speechPort write bottle
+	puts "sent:"
+	puts [bottle toString]
+}
+
+proc MIL_What_Is { } {
+	bottle clear
+	bottle addString "what"
+	managerPort write bottle reply
+	return  [ [reply get 0] toString]
+}
+
+proc MIL_track_start { } {
+
+	bottle clear
+	bottle addString "track"
+	bottle addString "start"
+	managerPort write bottle reply
+	puts [reply toString]
+}
+
+proc MIL_track_stop { } {
+
+	bottle clear
+	bottle addString "track"
+	bottle addString "stop"
+	managerPort write bottle reply
+	puts [reply toString]
+}
+
+proc MIL_populate_name { objectName } {
+
+	bottle clear
+	bottle addString "name"
+	bottle addString $objectName
+	managerPort write bottle reply
+	puts [reply toString]
+}
+
+
+proc MIL_Calibrate_Table { } {
+
+	bottle clear
+	bottle addString "cata"
+	managerPort write bottle reply
+	puts [reply toString]
+
+}
+
+proc MIL_Home { } {
+
+	bottle clear
+	bottle addString "home"
+	managerPort write bottle reply
+	puts [reply toString]
+
+}
+
+proc MIL_Where_Is { objectName } {
+
+	bottle clear
+	bottle addString "where"
+	bottle addString $objectName
+	managerPort write bottle reply
+	puts "[ [reply get 0] asString]"
+	return  [ [reply get 0] toString]
+}
+
+proc MIL_Take { objectName } {
+
+	bottle clear
+	bottle addString "take"
+	bottle addString $objectName
+	managerPort write bottle reply
+	puts "[ [reply get 0] asString]"
+	return  [ [reply get 0] toString]
+}
+
+proc MIL_Take_Hold { objectName } {
+
+	bottle clear
+	bottle addString "hold"
+	bottle addString $objectName
+	managerPort write bottle reply
+	puts "[ [reply get 0] asString]"
+	return  [ [reply get 0] toString]
+}
+
+proc MIL_Drop { } {
+
+	bottle clear
+	bottle addString "drop"
+	managerPort write bottle reply
+	puts "[ [reply get 0] asString]"
+	return  [ [reply get 0] toString]
+}
+
+proc MIL_Drop_On { objectName } {
+
+	bottle clear
+	bottle addString "drop"
+	bottle addString $objectName
+	managerPort write bottle reply
+	puts "[ [reply get 0] asString]"
+	return  [ [reply get 0] toString]
+}
+
+proc MIL_Touch { objectName } {
+
+	bottle clear
+	bottle addString "touch"
+	bottle addString $objectName
+	managerPort write bottle reply
+	puts "[ [reply get 0] asString]"
+	return  [ [reply get 0] toString]
+}
+
+proc MIL_Push { objectName } {
+
+	bottle clear
+	bottle addString "push"
+	bottle addString $objectName
+	managerPort write bottle reply
+	puts "[ [reply get 0] asString]"
+	return  [ [reply get 0] toString]
+}
+
+proc MIL_Reward { rewardValue } {
+
+	bottle clear
+	bottle addString $rewardValue
+
+	managerPort write bottle reply
+	puts [reply toString]
+
+}
+
+proc MIL_Calib_Kin_Start { side objectName } {
+
+	puts "side is $side"
+	puts "obj is $objectName"
+
+	bottle clear
+	bottle addString "caki"
+	bottle addString "start"
+	bottle addString $side
+	bottle addString $objectName
+
+	managerPort write bottle reply
+	puts "and the reply is...."
+	puts [reply toString]
+	puts "ok now going ahead...."
+	return  [ [reply get 0] toString]
+}
+
+proc MIL_Calib_Kin_Stop { } {
+
+	bottle clear
+	bottle addString "caki"
+	bottle addString "stop"
+	managerPort write bottle reply
+	puts [reply toString]
+
+}
+
+proc MIL_Forget_Obj { objectName } {
+
+	bottle clear
+	bottle addString "forget"
+	bottle addString $objectName
+	managerPort write bottle reply
+	puts [reply toString]
+
+}
+
+proc KARMA_Forget { objectName } {
+	
+	bottle clear
+	bottle addString "clear"
+	bottle addString $objectName
+	karmaLearnPort write bottle reply
+	puts [reply toString]
+}}
+
+# subnet_29
+set x0 [expr -310.0 + $offsetX] 
+set y0 [expr 990.0 + $offsetY] 
+set obvar [newO subnet $x0 $y0 {no 1}]
+set r(subnet_29) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {Initialisation_Procedures}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+
+# action_30
+set x0 [expr -310.0 + $offsetX] 
+set y0 [expr 1070.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_30) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {module_microsoft_SAPI}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {Port SpeechManagerPort
+SpeechManagerPort open "/RAD/speechRecognizer:o"
+ConnectionChecker_Add "/RAD/speechRecognizer:o" "/speechRecognizer/rpc"
+
+#DEFINES USEFULL PROCEDURES
+
+proc Say { what } {
+	bottle clear
+	reply clear
+	bottle addString "tts"
+	bottle addString $what
+	SpeechManagerPort write bottle reply
+	puts "Say : $what "
+	#tts $what
+}
+
+proc SM_RGM_Expand_Auto { vocabulory } {
+	bottle clear
+	bottle addString "RGM"
+	bottle addString "vocabulory"
+	bottle addString "addAuto"
+	bottle addString $vocabulory
+	SpeechManagerPort write bottle reply
+	#puts "Received from SpeechManager : [reply toString] "
+	return  [ [reply get 1] toString] 
+}
+
+proc SM_RGM_Expand { vocabulory  word } {
+	bottle clear
+	bottle addString "RGM"
+	bottle addString "vocabulory"
+	bottle addString "add"
+	bottle addString $vocabulory
+	bottle addString $word
+	
+	SpeechManagerPort write bottle reply
+	#puts "Received from SpeechManager : [reply toString] "
+}
+
+proc SM_Expand_asyncrecog { gram } {
+
+	bottle clear
+	bottle addString "asyncrecog"
+	bottle addString "addGrammar"
+	bottle addString $gram
+	SpeechManagerPort write bottle reply
+	#puts "Received from SpeechManager : [reply toString] "
+}
+
+proc SM_Reco_Grammar { gram } {
+
+	bottle clear
+	bottle addString "recog"
+	bottle addString "grammarSimple"
+	bottle addString $gram
+	SpeechManagerPort write bottle reply
+	puts "Received from SpeechManager : [reply toString] "
+	set wordsList ""
+	for { set i 1 } { $i< [reply size] } {incr i 2} {
+		set wordsList [lappend wordsList [ [reply get $i] toString] ]
+	}
+	return $wordsList
+}
+
+proc SM_Reco_Dictation { } {
+	bottle clear
+	bottle addString "recog"
+	bottle addString "dictation"
+	SpeechManagerPort write bottle reply
+	puts "Received from SpeechManager : [reply toString] "
+	set wordsList ""
+	for { set i 1 } { $i< [reply size] } {incr i 2} {
+		set wordsList [lappend wordsList [ [reply get $i] toString] ]
+	}
+	return $wordsList
+}}
+
+# action_31
+set x0 [expr -550.0 + $offsetX] 
+set y0 [expr 1410.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_31) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {initialise_Vocabulories}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {#Vocabulory for objects
+puts "Initialising vocabulory..."
+
+set w1 "null"
+set w2 "null"
+set w3 "null"
+set w4 "null"
+set w5 "null"
+set w6 "null"
+set w7 "null"
+set w8 "null"
+set w9 "null"
+set w10 "null"
+set w11 "null"
+set w12 "null"
+set w13 "null"
+set w14 "null"
+set w15 "null"
+set w16 "null"
+
+set VOCABULORY "{purple-car} octopus lego {pink-ball} box toy left middle right"
+
+getIDs $VOCABULORY w1 w2 w3 w4 w5 w6 w7 w8 w9 w10 w11 w12 w13 w14 w15 w16
+
+puts "the objects are: $w1 $w2 $w3 $w4 $w5 $w6 $w7 $w8 $w9 $w10 $w11 $w12 $w13 $w14 $w15 $w16"
+
+if { $w1 == "ack" } {
+	set VOCABULORY "$w2 $w3 $w4 $w5 $w6 $w7 $w8 $w9 $w10 $w11 $w12 $w13 $w14 $w15 $w16"
+} else {
+	
+}
+
+for { set i 0 } { $i < [llength $VOCABULORY] } { incr i 1 } {
+	puts "Expanding vocabulory Object with \"[lindex $VOCABULORY $i]\""
+	SM_RGM_Expand "#Object" [lindex $VOCABULORY $i]
+}
+
+
+#Vocabulory for Actions
+puts "Initialising vocabulory..."
+
+set VOCABULORY "{point at} {what is this}"
+
+for { set i 0 } { $i < [llength $VOCABULORY] } { incr i 1 } {
+	puts "Expanding vocabulory Object with \"[lindex $VOCABULORY $i]\""
+	SM_RGM_Expand "#Action" [lindex $VOCABULORY $i]
+}
+
+puts "Adding stuff to the async grammar"
+SM_Expand_asyncrecog "icub-stop-now"}
+
+# action_32
+set x0 [expr -190.0 + $offsetX] 
+set y0 [expr 1750.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_32) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {Menu}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set results -1
+
+
+while { $results == -1 } {
+	Say "What should I do?"
+	set g "Return to home position | Calibrate on table | Where is the #Object | Take the #Object | See you soon  | I will teach you a new object | Touch the #Object | Push the #Object | Let me show you how to reach the #Object with your right arm | 
+	Let me show you how to reach the #Object with your left arm | Forget #Object | Forget all objects | Execute a plan | What is this | Learn the #Object | Test the #Object" 
+	set results [SM_Reco_Grammar $g ]
+	puts "Reco : $results"
+}
+set recoValue [lindex $results 0]}
+
+# prect_33
+set x0 [expr -190.0 + $offsetX] 
+set y0 [expr 1860.0 + $offsetY] 
+set obvar [newO prect $x0 $y0 {no 14}]
+set r(prect_33) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {Choose_action}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{$recoValue == "Calibrate"}} {} {}} {{{$recoValue == "Where"}} {} {}} {{{$recoValue == "See"}} {} {}} {{{$recoValue == "I"}} {} {}} {{{$recoValue == "Take"}} {} {}} {{{$recoValue == "Return"}} {} {}} {{{$recoValue == "Touch"}} {} {}} {{{$recoValue == "Push"}} {} {}} {{{$recoValue == "Let"}} {} {}} {{{$recoValue == "Forget"}} {} {}} {{{$recoValue == "Execute"}} {} {}} {{{$recoValue == "What"}} {} {}} {{{$recoValue == "Learn"}} {} {}} {{{$recoValue == "Test"}} {} {}}}
+set ob(grammar) {{} {} {} {} {} {} {} {} {} {} {} {} {} {}}
+
+# action_34
+set x0 [expr -470.0 + $offsetX] 
+set y0 [expr 1940.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_34) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {Calibrate}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {MIL_Calibrate_Table
+Say "OK, I know the table height"}
+
+# action_35
+set x0 [expr -390.0 + $offsetX] 
+set y0 [expr 2100.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_35) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {Where_is}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set whereIsResult [MIL_Where_Is $objectName]}
+
+# action_36
+set x0 [expr -470.0 + $offsetX] 
+set y0 [expr 2310.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_36) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {isItGood}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set results -1
+
+while { $results == -1 } {
+
+	#Say "beep"
+	set g "Yes you are | No here it is | Skip it"
+	set results [SM_Reco_Grammar $g]
+
+}
+set reward [lindex $results 0]
+
+if { $reward == "Yes" } {
+	MIL_Reward "ack"
+} 
+if { $reward == "No" } {
+	MIL_Reward "nack"
+} 
+if { $reward == "Skip" } {
+	MIL_Reward "skip"
+}}
+
+# prect_37
+set x0 [expr -390.0 + $offsetX] 
+set y0 [expr 2210.0 + $offsetY] 
+set obvar [newO prect $x0 $y0 {no 3}]
+set r(prect_37) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {isObjectFound}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{$whereIsResult == "ack"}} {} {}} {{{$whereIsResult == "nack"}} {} {}} {1 {} {}}}
+set ob(grammar) {{} {} {}}
+
+# action_38
+set x0 [expr -320.0 + $offsetX] 
+set y0 [expr 2300.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_38) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {bug}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {Say "AI AI AI! I cannot parse the reply!"}
+
+# action_39
+set x0 [expr -270.0 + $offsetX] 
+set y0 [expr 2020.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_39) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {quit}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {Say "OK. Bye bye!"}
+
+# action_40
+set x0 [expr -310.0 + $offsetX] 
+set y0 [expr 900.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_40) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {isUsingRobot}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set usingRobot 1}
+
+# action_41
+set x0 [expr -390.0 + $offsetX] 
+set y0 [expr 2340.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_41) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {noOctopus}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set results -1
+
+while { $results == -1 } {
+
+	#Say "I did not find the $objectName is it so?"
+	set g "You are right | No here it is | Skip it"
+	set results [SM_Reco_Grammar $g]
+
+}
+set reward [lindex $results 0]
+
+if { $reward == "Yes" } {
+	MIL_Reward "ack"
+} 
+if { $reward == "No" } {
+	MIL_Reward "nack"
+} 
+if { $reward == "Skip" } {
+	MIL_Reward "skip"
+}}
+
+# action_42
+set x0 [expr -320.0 + $offsetX] 
+set y0 [expr 1630.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_42) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {go_to_home}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {MIL_Home}
+
+# action_43
+set x0 [expr -190.0 + $offsetX] 
+set y0 [expr 2450.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_43) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {newObject}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {MIL_track_stop 
+set objectName [SM_RGM_Expand_Auto "#Object"]
+MIL_populate_name $objectName
+puts "New word added to vocabulory : $objectName"}
+
+# action_44
+set x0 [expr -390.0 + $offsetX] 
+set y0 [expr 2010.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_44) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {setObjectName}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set objectName [lindex $results 3]}
+
+# goodbye_45
+set x0 [expr -270.0 + $offsetX] 
+set y0 [expr 2100.0 + $offsetY] 
+set obvar [newO goodbye $x0 $y0 {no 0}]
+set r(goodbye_45) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt) {Goodbye.}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {goodbye}
+set ob(dtmf,interrupt) {0}
+
+# action_46
+set x0 [expr -110.0 + $offsetX] 
+set y0 [expr 2090.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_46) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {take}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {MIL_Take $objectName}
+
+# action_47
+set x0 [expr -120.0 + $offsetX] 
+set y0 [expr 2010.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_47) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {setObjectName_0}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set objectName [lindex $results 2]}
+
+# action_48
+set x0 [expr 90.0 + $offsetX] 
+set y0 [expr 2010.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_48) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {setObjectName_1}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set objectName [lindex $results 2]}
+
+# action_49
+set x0 [expr 90.0 + $offsetX] 
+set y0 [expr 2110.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_49) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {touch}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {MIL_Touch $objectName}
+
+# action_50
+set x0 [expr 250.0 + $offsetX] 
+set y0 [expr 2010.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_50) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {setObjectName_2}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set objectName [lindex $results 2]}
+
+# action_51
+set x0 [expr 250.0 + $offsetX] 
+set y0 [expr 2110.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_51) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {push}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {MIL_Push $objectName}
+
+# queryone_52
+set x0 [expr 440.0 + $offsetX] 
+set y0 [expr 2010.0 + $offsetY] 
+set obvar [newO queryone $x0 $y0 {no 2}]
+set r(queryone_52) $obvar
+upvar #0 $obvar ob
+set ob(gif_original) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/base/gif/generic.gif}
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(changetrigger) {5}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(gif_tmmods) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/packages/Tucker-Maxon/gif_alt/generic.gif}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(action1) {set objectName [lindex $results 8]
+set armSide [lindex $results 11]
+Say "Do you mean show me how to reach the $objectName with my $armSide arm?"}
+set ob(recogportType,0) {Words}
+set ob(recogportType,1) {Words}
+set ob(override:repair) {0}
+set ob(override:tts) {0}
+set ob(repairStatus) {default}
+set ob(changerate) {5}
+set ob(dynamicWords) {{yes_I_do {j E s [.pau] aI [.pau] dc d I dc d}} {no_I_do_not {n oU [.pau] aI [.pau] dc d I dc d [.pau] n A tc th}}}
+set ob(dyn:recog) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(portType,0) {Undefined}
+set ob(portType,1) {Undefined}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {state3}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{yes I do}} {} {{{j E s [.pau] aI [.pau] dc d I dc d}}}} {{{no I do not}} {} {{{n oU [.pau] aI [.pau] dc d I dc d [.pau] n A tc th}}}}}
+set ob(grammar) {{{} {}} {{} {}}}
+set ob(recognizer) {name adult_english_16khz_0.ob}
+
+# prect_53
+set x0 [expr 410.0 + $offsetX] 
+set y0 [expr 2220.0 + $offsetY] 
+set obvar [newO prect $x0 $y0 {no 2}]
+set r(prect_53) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {isObjectVisible}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{$error == "ack"}} {} {}} {{{$error == "nack"}} {} {}}}
+set ob(grammar) {{} {}}
+
+# queryone_54
+set x0 [expr 530.0 + $offsetX] 
+set y0 [expr 2340.0 + $offsetY] 
+set obvar [newO queryone $x0 $y0 {no 2}]
+set r(queryone_54) $obvar
+upvar #0 $obvar ob
+set ob(gif_original) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/base/gif/generic.gif}
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(changetrigger) {5}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(gif_tmmods) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/packages/Tucker-Maxon/gif_alt/generic.gif}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(action1) {#Say "Sorry but i don't see the $objectName"
+#Say "Should i try again?"}
+set ob(recogportType,0) {Words}
+set ob(recogportType,1) {Words}
+set ob(override:repair) {0}
+set ob(override:tts) {0}
+set ob(repairStatus) {default}
+set ob(changerate) {5}
+set ob(dynamicWords) {{Yes_you_should {j E s [.pau] j u [.pau] S U dc d}} {No_you_should_not {n oU [.pau] j u [.pau] S U dc d [.pau] n A tc th}}}
+set ob(dyn:recog) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(portType,0) {Undefined}
+set ob(portType,1) {Undefined}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {try_again}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{Yes you should}} {} {{{j E s [.pau] j u [.pau] S U dc d}}}} {{{No you should not}} {} {{{n oU [.pau] j u [.pau] S U dc d [.pau] n A tc th}}}}}
+set ob(grammar) {{{} {}} {{} {}}}
+set ob(recognizer) {name adult_english_16khz_0.ob}
+
+# openmic_55
+set x0 [expr 370.0 + $offsetX] 
+set y0 [expr 2340.0 + $offsetY] 
+set obvar [newO openmic $x0 $y0 {no 1}]
+set r(openmic_55) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {1}
+set ob(beep) {0}
+set ob(dtmf,mode) {off}
+set ob(garbageThreshold) {0}
+set ob(prompt,type) {tts}
+set ob(review) {0}
+set ob(override:sdet) {1}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(rejection) {8}
+set ob(repairID) {<none>}
+set ob(pronun) {.pau f I n I S .pau}
+set ob(override:repair) {0}
+set ob(override:tts) {0}
+set ob(prompt,ttsText) {Tell me finished when my posture is good}
+set ob(repairStatus) {default}
+set ob(lsilence) {60000}
+set ob(prompt) {Tell me finished when my posture is good}
+set ob(dynamicWords) {{finish {.pau f I n I S .pau}}}
+set ob(backoff) {500}
+set ob(run) {run:openmic}
+set ob(tsilence) {400}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(word) {finish}
+set ob(override:caption) {0}
+set ob(name) {finished}
+set ob(wordspot) {30}
+set ob(maxrec) {2}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{finish {} {{{.pau f I n I S .pau}}}}}
+set ob(grammar) {{}}
+set ob(recognizer) {name adult_english_8khz_2.ob}
+set ob(garbage) {8 30}
+
+# action_56
+set x0 [expr 410.0 + $offsetX] 
+set y0 [expr 2110.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_56) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {enter_teaching_mode}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set error [MIL_Calib_Kin_Start  $armSide $objectName ]
+puts "got reply $error"}
+
+# action_57
+set x0 [expr 370.0 + $offsetX] 
+set y0 [expr 2450.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_57) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {stop_teaching_mode}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {MIL_Calib_Kin_Stop}
+
+# action_58
+set x0 [expr 610.0 + $offsetX] 
+set y0 [expr 1970.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_58) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {forget}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {puts "Now forgeting $objectName"
+MIL_Forget_Obj  $objectName
+KARMA_Forget $objectName}
+
+# action_59
+set x0 [expr 610.0 + $offsetX] 
+set y0 [expr 1890.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_59) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {setObjectName_3}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set objectName [lindex $results 1]}
+
+# action_60
+set x0 [expr -190.0 + $offsetX] 
+set y0 [expr 2070.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_60) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {showMe}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {#set text "show me the object"
+#Speak $text
+
+MIL_track_start}
+
+# action_61
+set x0 [expr -160.0 + $offsetX] 
+set y0 [expr 2180.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_61) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {thereUgo}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set proceed -1
+
+while { $proceed == -1 } {
+
+	set g "There you go | Skip it"
+	set proceed [SM_Reco_Grammar $g]
+}
+
+set outcome [lindex $proceed 0]}
+
+# prect_62
+set x0 [expr -160.0 + $offsetX] 
+set y0 [expr 2290.0 + $offsetY] 
+set obvar [newO prect $x0 $y0 {no 2}]
+set r(prect_62) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {state6}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{$outcome=="There"}} {} {}} {{{$outcome=="Skip"}} {} {}}}
+set ob(grammar) {{} {}}
+
+# action_63
+set x0 [expr -80.0 + $offsetX] 
+set y0 [expr 2450.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_63) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {nothing}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {MIL_track_stop}
+
+# subnet_64
+set x0 [expr 850.0 + $offsetX] 
+set y0 [expr 1820.0 + $offsetY] 
+set obvar [newO subnet $x0 $y0 {no 1}]
+set r(subnet_64) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {SharedPlan}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+
+# action_65
+set x0 [expr 0.0 + $offsetX] 
+set y0 [expr 2030.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_65) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {what}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set whatIs [MIL_What_Is]}
+
+# prect_66
+set x0 [expr -30.0 + $offsetX] 
+set y0 [expr 2170.0 + $offsetY] 
+set obvar [newO prect $x0 $y0 {no 3}]
+set r(prect_66) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {isObjectFound_0}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{$whatIs == "ack"}} {} {}} {{{$whatIs == "nack"}} {} {}} {1 {} {}}}
+set ob(grammar) {{} {} {}}
+
+# action_67
+set x0 [expr -80.0 + $offsetX] 
+set y0 [expr 2250.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_67) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {isItGood_0}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set results -1
+
+while { $results == -1 } {
+
+	#Say "beep"
+	set g "Yes you are | No you are not | Skip it | Wrong this is a #Object"
+	set results [SM_Reco_Grammar $g]
+}
+
+set reward [lindex $results 0]
+
+if { $reward == "Yes" } {
+	MIL_Reward "ack"
+} 
+if { $reward == "No" } {
+	MIL_Reward "nack"
+} 
+if { $reward == "Skip" } {
+	MIL_Reward "skip"
+}
+if { $reward == "Wrong" } {
+	set objectName [lindex $results 4]
+	MIL_populate_name $objectName
+}}
+
+# action_68
+set x0 [expr 40.0 + $offsetX] 
+set y0 [expr 2310.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_68) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {noGood}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set results -1
+
+while { $results == -1 } {
+
+	#Say "I did not find the $objectName is it so?"
+	set g "This is a #Object | Skip it"
+	set results [SM_Reco_Grammar $g]
+}
+
+set reward [lindex $results 0]
+
+if { $reward == "Skip" } {
+	MIL_Reward "skip"
+} else {
+	set objectName [lindex $results 3]
+	MIL_populate_name $objectName
+}}
+
+# action_69
+set x0 [expr 90.0 + $offsetX] 
+set y0 [expr 2250.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_69) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {bug_0}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {Say "AI AI AI! I cannot parse the reply!"}
+
+# action_70
+set x0 [expr -500.0 + $offsetX] 
+set y0 [expr 1190.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_70) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {module_memory}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {Port objectPort
+objectPort open "/RAD/objects:i"
+ConnectionChecker_Add "/RAD/objects:i" "/iolRADHelper/rpc"
+
+proc sendIDs { VOCABULORY  } {
+	bottle clear
+	bottle addString "name"
+	for { set i 0 } { $i < [llength $VOCABULORY] } { incr i 1 } {
+		bottle addString [lindex $VOCABULORY $i]
+	}
+	objectPort write bottle reply
+	puts "Got reply size of [reply size]  "
+	#set VOCABULORY "w0 w1 w2 w3 w4 w5 w6 w7 w8 w9 w10 w11 w12 w13 w14 w15 w16 w17 w18 w19 w20 w21"
+	
+	if { [ [reply get 0] toString] == "ack" } {
+		
+		puts "got ACK from helper, setting new vocabulary..."
+		set VOCABULORY "[ [reply get 1] toString] [ [reply get 2] toString] [ [reply get 3] toString] [ [reply get 4] toString] [ [reply get 5] toString] [ [reply get 6] toString] [ [reply get 7] toString] [ [reply get 8] toString] [ [reply get 9] toString] [ [reply get 10] toString] [ [reply get 11] toString] [ [reply get 12] toString] [ [reply get 13] toString] [ [reply get 14] toString] [ [reply get 15] toString] [ [reply get 16] toString] [ [reply get 17] toString] [ [reply get 18] toString] [ [reply get 19] toString] [ [reply get 20] toString] [ [reply get 21] toString] "
+	} else {
+		puts "Got NACK from helper NOT setting new vocabulary..."
+	}
+	
+	return $VOCABULORY
+}}
+
+# action_71
+set x0 [expr -630.0 + $offsetX] 
+set y0 [expr 1370.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_71) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {test}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set VOCABULORY "{purple-car} octopus lego {pink-ball} box toy left middle right "
+
+
+set WHATEVER [sendIDs $VOCABULORY]
+puts " "
+puts " "
+for { set i 0 } { $i < [llength $WHATEVER] } { incr i 1 } {
+	puts "the objects [lindex $WHATEVER $i]"
+}
+
+set VOCABULORY $WHATEVER
+for { set i 0 } { $i < [llength $VOCABULORY] } { incr i 1 } {
+	puts "the VOCABULARY objects [lindex $VOCABULORY $i]"
+}
+
+
+
+
+
+
+
+proc getIDs { VOCABULORY w1 w2 w3 w4 w5 w6 w7 w8 w9 w10 w11 w12 w13 w14 w15 w16} {
+	
+	upvar $w1 tmpW1
+	upvar $w2 tmpW2
+	upvar $w3 tmpW3
+	upvar $w4 tmpW4
+	upvar $w5 tmpW5
+	upvar $w6 tmpW6
+	upvar $w7 tmpW7
+	upvar $w8 tmpW8
+	upvar $w9 tmpW9
+	upvar $w10 tmpW10
+	upvar $w11 tmpW11
+	upvar $w12 tmpW12
+	upvar $w13 tmpW13
+	upvar $w14 tmpW14
+	upvar $w15 tmpW15
+	upvar $w16 tmpW16
+
+	bottle clear
+	bottle addString "name"
+	for { set i 0 } { $i < [llength $VOCABULORY] } { incr i 1 } {
+		bottle addString [lindex $VOCABULORY $i]
+	}
+	objectPort write bottle reply
+	puts "asked IDs"
+
+	set tmpW1 [ [reply get 0] toString]
+	set tmpW2 [ [reply get 1] toString]
+	set tmpW3 [ [reply get 2] toString]
+	set tmpW4 [ [reply get 3] toString]
+	set tmpW5 [ [reply get 4] toString]
+	set tmpW6 [ [reply get 5] toString]
+	set tmpW7 [ [reply get 6] toString]
+	set tmpW8 [ [reply get 7] toString]
+	set tmpW9 [ [reply get 8] toString]
+	set tmpW10 [ [reply get 9] toString]
+	set tmpW11 [ [reply get 10] toString]
+	set tmpW12 [ [reply get 11] toString]
+	set tmpW13 [ [reply get 12] toString]
+	set tmpW14 [ [reply get 13] toString]
+	set tmpW15 [ [reply get 14] toString]
+	set tmpW16 [ [reply get 14] toString]
+
+
+
+	puts "[ [reply get 0]  toString]"
+	puts "[ [reply get 1]  toString]"
+	puts "[ [reply get 2]  toString]"
+	puts "[ [reply get 3]  toString]"
+	puts "[ [reply get 4]  toString]"
+	puts "[ [reply get 5]  toString]"
+	puts "[ [reply get 6]  toString]"
+	puts "[ [reply get 7]  toString]"
+	puts "[ [reply get 8]  toString]"
+	puts "[ [reply get 9]  toString]"
+	puts "[ [reply get 10]  toString]"
+	puts "[ [reply get 11]  toString]"
+	puts "[ [reply get 12]  toString]"
+	puts "[ [reply get 13]  toString]"
+	puts "[ [reply get 14]  toString]"
+	puts "[ [reply get 15]  toString]"
+	puts "[ [reply get 16]  toString]"
+
+}}
+
+# action_72
+set x0 [expr -320.0 + $offsetX] 
+set y0 [expr 1530.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_72) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {initialise_Vocabulories_new}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {#Vocabulory for objects
+
+puts " "
+puts " "
+
+puts "Initialising vocabulory..."
+set VOCABULORY "{purple-car} octopus lego {pink-ball} box toy left middle right"
+set newVocab [sendIDs $VOCABULORY]
+
+puts "the known objects are: "
+
+#for { set i 0 } { $i < [llength $newVocab] } { incr i 1 } {
+#	puts "Object [lindex $newVocab $i]"
+#}
+set VOCABULORY $newVocab
+
+for { set i 0 } { $i < [llength $VOCABULORY] } { incr i 1 } {
+	puts "Expanding vocabulory Object with \"[lindex $VOCABULORY $i]\""
+	SM_RGM_Expand "#Object" [lindex $VOCABULORY $i]
+}
+
+
+#Vocabulory for Actions
+#puts "Initialising vocabulory..."
+
+set VOCABULORY "{point at} {what is this}"
+
+for { set i 0 } { $i < [llength $VOCABULORY] } { incr i 1 } {
+	#puts "Expanding vocabulory Object with \"[lindex $VOCABULORY $i]\""
+	SM_RGM_Expand "#Action" [lindex $VOCABULORY $i]
+}
+
+puts "Adding \"icub stop\" to the async grammar"
+SM_Expand_asyncrecog "icub-stop-now"
+puts "Finished setting up Vocabulary"
+puts " "
+puts " "}
+
+# action_73
+set x0 [expr 160.0 + $offsetX] 
+set y0 [expr 1530.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_73) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {karma}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set objectName [lindex $results 2]
+MIL_reset
+Speak "let me see what this can do"
+
+KarmaManager_train $objectName
+Speak "nice"}
+
+# action_74
+set x0 [expr 330.0 + $offsetX] 
+set y0 [expr 1570.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_74) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {evaluate}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set objectName [lindex $results 2]
+MIL_reset
+Speak "Testing, let me see what this can do"
+
+KarmaManager_eval $objectName
+Speak "ok"}
+
+####### CONNECTIONS
+connect r prect_33 action_60 3 -244.0 1938.0 -209.0 1992.0 -174.0 2055.0 $offsetX $offsetY
+connect r prect_33 action_50 7 -164.0 1938.0 51.0 1962.0 266.0 1995.0 $offsetX $offsetY
+connect r queryone_52 action_32 1 426.0 2088.0 146.0 1907.0 -134.0 1735.0 $offsetX $offsetY
+connect r action_43 action_32 0 -214.0 2528.0 -214.0 1735.0 -174.0 1735.0 $offsetX $offsetY
+connect r action_48 action_49 0 106.0 2088.0 106.0 2087.0 106.0 2095.0 $offsetX $offsetY
+connect r action_70 action_24 0 -484.0 1268.0 -389.0 1247.0 -294.0 1235.0 $offsetX $offsetY
+connect r prect_33 action_48 6 -184.0 1938.0 -39.0 1962.0 106.0 1995.0 $offsetX $offsetY
+connect r queryone_27 action_26 1 -94.0 1468.0 -179.0 1437.0 -264.0 1415.0 $offsetX $offsetY
+connect r action_57 action_32 0 346.0 2528.0 106.0 2127.0 -134.0 1735.0 $offsetX $offsetY
+connect r prect_66 action_69 2 6.0 2248.0 56.0 2237.0 106.0 2235.0 $offsetX $offsetY
+connect r prect_25 queryone_27 1 -244.0 1418.0 -169.0 1392.0 -94.0 1375.0 $offsetX $offsetY
+connect r queryone_52 action_56 0 446.0 2088.0 436.0 2087.0 426.0 2095.0 $offsetX $offsetY
+connect r prect_33 action_59 9 -84.0 1938.0 251.0 1902.0 586.0 1875.0 $offsetX $offsetY
+connect r prect_53 queryone_54 1 436.0 2298.0 491.0 2307.0 546.0 2325.0 $offsetX $offsetY
+connect r prect_33 subnet_64 10 -64.0 1938.0 381.0 1867.0 826.0 1805.0 $offsetX $offsetY
+connect r action_56 prect_53 0 426.0 2188.0 426.0 2192.0 426.0 2205.0 $offsetX $offsetY
+connect r action_69 action_32 0 66.0 2328.0 -34.0 2027.0 -134.0 1735.0 $offsetX $offsetY
+connect r action_68 action_32 0 16.0 2388.0 -59.0 2057.0 -134.0 1735.0 $offsetX $offsetY
+connect r action_44 action_35 0 -374.0 2088.0 -374.0 2082.0 -374.0 2085.0 $offsetX $offsetY
+connect r subnet_29 action_30 0 -294.0 1068.0 -294.0 1057.0 -294.0 1055.0 $offsetX $offsetY
+connect r action_74 action_32 0 346.0 1648.0 86.0 1687.0 -174.0 1735.0 $offsetX $offsetY
+connect r queryone_54 action_32 1 516.0 2418.0 191.0 2072.0 -134.0 1735.0 $offsetX $offsetY
+connect r action_26 action_72 0 -304.0 1508.0 -304.0 1507.0 -304.0 1515.0 $offsetX $offsetY
+connect r action_60 action_61 0 -174.0 2148.0 -159.0 2152.0 -144.0 2165.0 $offsetX $offsetY
+connect r queryone_27 action_24 0 -114.0 1468.0 -184.0 1347.0 -254.0 1235.0 $offsetX $offsetY
+connect r prect_53 openmic_55 0 416.0 2298.0 401.0 2307.0 386.0 2325.0 $offsetX $offsetY
+connect r action_59 action_58 0 626.0 1968.0 626.0 1957.0 626.0 1955.0 $offsetX $offsetY
+connect r prect_33 action_73 12 -24.0 1938.0 56.0 1722.0 136.0 1515.0 $offsetX $offsetY
+connect r prect_25 action_26 0 -304.0 1418.0 -304.0 1412.0 -304.0 1415.0 $offsetX $offsetY
+connect r action_32 prect_33 0 -174.0 1828.0 -174.0 1832.0 -174.0 1845.0 $offsetX $offsetY
+connect r action_34 action_32 0 -414.0 2018.0 -314.0 1872.0 -214.0 1735.0 $offsetX $offsetY
+connect r action_28 action_70 0 -334.0 1228.0 -389.0 1197.0 -444.0 1175.0 $offsetX $offsetY
+connect r action_46 action_32 0 -134.0 2168.0 -134.0 1947.0 -134.0 1735.0 $offsetX $offsetY
+connect r subnet_64 action_32 0 826.0 1898.0 346.0 1812.0 -134.0 1735.0 $offsetX $offsetY
+connect r action_61 prect_62 0 -144.0 2258.0 -144.0 2262.0 -144.0 2275.0 $offsetX $offsetY
+connect r action_24 prect_25 0 -294.0 1328.0 -294.0 1322.0 -294.0 1325.0 $offsetX $offsetY
+connect r action_40 subnet_29 0 -294.0 978.0 -294.0 972.0 -294.0 975.0 $offsetX $offsetY
+connect r action_35 prect_37 0 -374.0 2178.0 -374.0 2182.0 -374.0 2195.0 $offsetX $offsetY
+connect r prect_37 action_36 0 -394.0 2288.0 -424.0 2287.0 -454.0 2295.0 $offsetX $offsetY
+connect r prect_33 action_65 11 -84.0 1938.0 -34.0 1972.0 16.0 2015.0 $offsetX $offsetY
+connect r action_58 action_32 0 586.0 2048.0 226.0 1887.0 -134.0 1735.0 $offsetX $offsetY
+connect r action_41 action_32 0 -334.0 2418.0 -274.0 2072.0 -214.0 1735.0 $offsetX $offsetY
+connect r prect_62 action_43 0 -154.0 2368.0 -164.0 2397.0 -174.0 2435.0 $offsetX $offsetY
+connect r prect_33 action_34 0 -304.0 1938.0 -379.0 1927.0 -454.0 1925.0 $offsetX $offsetY
+connect r action_36 action_32 0 -414.0 2388.0 -314.0 2057.0 -214.0 1735.0 $offsetX $offsetY
+connect r prect_33 action_42 5 -244.0 1938.0 -254.0 1772.0 -264.0 1615.0 $offsetX $offsetY
+connect r prect_62 action_63 1 -134.0 2368.0 -99.0 2397.0 -64.0 2435.0 $offsetX $offsetY
+connect r prect_66 action_67 0 -34.0 2248.0 -49.0 2237.0 -64.0 2235.0 $offsetX $offsetY
+connect r action_49 action_32 0 66.0 2188.0 -34.0 1957.0 -134.0 1735.0 $offsetX $offsetY
+connect r prect_66 action_68 1 -14.0 2248.0 21.0 2267.0 56.0 2295.0 $offsetX $offsetY
+connect r action_30 action_28 0 -294.0 1148.0 -294.0 1137.0 -294.0 1135.0 $offsetX $offsetY
+connect r action_67 action_32 0 -104.0 2328.0 -129.0 2027.0 -134.0 1735.0 $offsetX $offsetY
+connect r action_51 action_32 0 226.0 2188.0 46.0 1957.0 -134.0 1735.0 $offsetX $offsetY
+connect r action_63 action_42 0 -104.0 2528.0 -184.0 2067.0 -264.0 1615.0 $offsetX $offsetY
+connect r openmic_55 action_57 0 386.0 2418.0 386.0 2422.0 386.0 2435.0 $offsetX $offsetY
+connect r prect_33 action_44 1 -284.0 1938.0 -329.0 1962.0 -374.0 1995.0 $offsetX $offsetY
+connect r prect_33 action_74 13 -4.0 1938.0 151.0 1742.0 306.0 1555.0 $offsetX $offsetY
+connect r action_65 prect_66 0 16.0 2108.0 1.0 2127.0 -14.0 2155.0 $offsetX $offsetY
+connect r action_73 action_32 0 176.0 1608.0 1.0 1667.0 -174.0 1735.0 $offsetX $offsetY
+connect r prect_37 action_38 2 -354.0 2288.0 -329.0 2282.0 -304.0 2285.0 $offsetX $offsetY
+connect r prect_33 action_39 2 -264.0 1938.0 -259.0 1967.0 -254.0 2005.0 $offsetX $offsetY
+connect r action_42 action_32 0 -304.0 1708.0 -239.0 1717.0 -174.0 1735.0 $offsetX $offsetY
+connect r prect_33 action_47 4 -224.0 1938.0 -164.0 1962.0 -104.0 1995.0 $offsetX $offsetY
+connect r action_50 action_51 0 266.0 2088.0 266.0 2087.0 266.0 2095.0 $offsetX $offsetY
+connect r action_72 action_42 0 -304.0 1608.0 -304.0 1607.0 -304.0 1615.0 $offsetX $offsetY
+connect r action_38 action_32 0 -264.0 2378.0 -239.0 2052.0 -214.0 1735.0 $offsetX $offsetY
+connect r input_23 action_40 0 -294.0 898.0 -294.0 887.0 -294.0 885.0 $offsetX $offsetY
+connect r prect_33 queryone_52 8 -144.0 1938.0 156.0 1962.0 456.0 1995.0 $offsetX $offsetY
+connect r prect_37 action_41 1 -374.0 2288.0 -374.0 2302.0 -374.0 2325.0 $offsetX $offsetY
+connect r queryone_54 action_56 0 496.0 2418.0 481.0 2252.0 466.0 2095.0 $offsetX $offsetY
+connect r action_39 goodbye_45 0 -254.0 2098.0 -254.0 2087.0 -254.0 2085.0 $offsetX $offsetY
+connect r action_47 action_46 0 -104.0 2088.0 -99.0 2077.0 -94.0 2075.0 $offsetX $offsetY
+
+##### SUBDIALOGUE
+set offsetX 0
+set offsetY 0
+set id [registerScreen "Initialisation_Procedures"]
+lappend newScreens subnet_29 $id
+recordActiveScreen $id
+
+# enter_147
+set x0 [expr -10 + $offsetX] 
+set y0 [expr 10 + $offsetY] 
+set obvar [newO enter $x0 $y0 {no 1}]
+set r(enter_147) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {enter}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+
+# action_148
+set x0 [expr -10 + $offsetX] 
+set y0 [expr 200 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_148) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {Yarp_Initialisation}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {load [file join [pwd] libtclyarp.dll] yarp
+Network_init
+Bottle bottle
+Bottle reply
+
+global ConnectionToCheck
+set ConnectionToCheck { }
+
+proc ConnectionChecker_Add { p1 p2 } {
+set c $p1
+set c [lappend c $p2]
+   global ConnectionToCheck
+   set ConnectionToCheck [lappend ConnectionToCheck $c]
+}
+
+proc ConnectionChecker_Check { } {
+   global ConnectionToCheck
+   set result 1
+   foreach c $ConnectionToCheck {
+     set p1 [lindex $c 1]
+     set p2 [lindex $c 2]
+     puts "Checking connection : $p1 $p2"
+     if { [NetworkBase_isConnected $p1 $p2] == 0 } {
+       puts "Not connected : $p1 $p2"
+       set result 0
+     }
+   }
+return $result
+}
+
+proc ConnectionChecker_Connect { } {
+   global ConnectionToCheck
+   set result 1
+   foreach c $ConnectionToCheck {
+     set p1 [lindex $c 0]
+     set p2 [lindex $c 1]
+     puts "Connecting : $p1 $p2"
+     if { [NetworkBase_connect $p1 $p2] == 0 } {
+       puts "Not connected : $p1 $p2"
+       set result 0
+     }
+   }
+return $result
+}}
+
+# action_149
+set x0 [expr 0 + $offsetX] 
+set y0 [expr 120 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_149) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {Helpers_procedures}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set using_robot 1
+
+proc Say { what } {
+tts $what
+puts "Say : $what"
+}
+
+#return a number between $low and $high
+proc Random { low high } {
+	return [ expr rand() * [expr $high - $low ] +$low ]
+}
+
+#String replace is not available in TCL8.0 so here is a home made one
+proc StringReplace {str srcStr destStr} {
+
+set i 1
+while { $i != -1 } {
+	set i [string first $srcStr $str]
+	if { $i != -1} {
+#	puts "Found $srcStr at $i"
+	set buff [string range $str 0 [expr $i -1]]
+
+	set buff "$buff$destStr"
+
+	set buff "$buff[string range $str [expr $i + [string length $srcStr]] [string length $str]]"
+
+	set str $buff
+	}
+}
+return $str
+}}
+
+# exit_150
+set x0 [expr -20 + $offsetX] 
+set y0 [expr 290 + $offsetY] 
+set obvar [newO exit $x0 $y0 {no 0}]
+set r(exit_150) $obvar
+upvar #0 $obvar ob
+set ob(bargein) {off}
+set ob(override:recognizer) {0}
+set ob(recogType) {Tree}
+set ob(dtmf,interrupt) {0}
+set ob(dtmf,mode) {off}
+set ob(package) {Base}
+set ob(override:tts) {0}
+set ob(exitStatus) {continue}
+set ob(override:caption) {0}
+set ob(prompt,type) {tts}
+set ob(name) {return:continue}
+set ob(override:vumeter) {0}
+set ob(override:sdet) {0}
+set ob(prompt,recordFlag) {0}
+
+####### CONNECTIONS
+connect r action_149 action_148 0 16.0 198.0 11.0 187.0 6.0 185.0 $offsetX $offsetY
+connect r action_148 exit_150 0 6.0 278.0 1.0 272.0 -4.0 275.0 $offsetX $offsetY
+connect r enter_147 action_149 0 6.0 88.0 11.0 92.0 16.0 105.0 $offsetX $offsetY
+
+##### SUBDIALOGUE
+set offsetX 0
+set offsetY 0
+set id [registerScreen "SharedPlan"]
+lappend newScreens subnet_64 $id
+recordActiveScreen $id
+
+# enter_154
+set x0 [expr 0 + $offsetX] 
+set y0 [expr 150 + $offsetY] 
+set obvar [newO enter $x0 $y0 {no 1}]
+set r(enter_154) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {enter}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+
+# action_155
+set x0 [expr -10 + $offsetX] 
+set y0 [expr 220 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_155) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {variables}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set  Learning false
+set execute_learned_action  -1
+set coop_count 0
+set using_robot  1
+set Cooperating 0
+set OROboolean "true"}
+
+# action_156
+set x0 [expr -10 + $offsetX] 
+set y0 [expr 280 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_156) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {read_ActionDefns}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set file [open "ActionDefinitionsSimple.txt" r]
+set i 0
+
+
+# gets with two arguments returns the length of the line,
+# -1 if the end of the file is found
+#
+while { [gets $file line] >= 0 } {
+  set action_name($i) [lindex $line 0]
+  set action_defined($i) [lindex $line 1]
+  incr i
+}
+close $file
+
+  set action_name($i) stop
+  set action_defined($i) stop}
+
+# action_157
+set x0 [expr -240 + $offsetX] 
+set y0 [expr 290 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_157) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {go_to_home}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {MIL_Home}
+
+# action_158
+set x0 [expr 80 + $offsetX] 
+set y0 [expr 780 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_158) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {next_action}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set action $learned_action_action($action_count)
+set object $learned_action_arg1($action_count)
+
+
+incr action_count}
+
+# prect_159
+set x0 [expr 670 + $offsetX] 
+set y0 [expr 590 + $offsetY] 
+set obvar [newO prect $x0 $y0 {no 3}]
+set r(prect_159) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {manage_coop_play}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{$Agent == "I"}} {} {}} {{{$Agent == "you"}} {} {}} {{{$Agent == "stop"}} {} {}}}
+set ob(grammar) {{} {} {}}
+set ob(program) {#tts "Cooperation count $coop_count"
+
+	set Agent $coop_agent($coop_count) 
+	set Action $coop_action($coop_count) 
+	set Object $coop_object($coop_count) 
+	set Location $coop_location($coop_count) 
+
+
+
+incr coop_count 1}
+
+# action_160
+set x0 [expr -170 + $offsetX] 
+set y0 [expr 340 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_160) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {query_ORO}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set OROboolean "true"
+puts "checking oro $action $object"
+if {$using_robot == 1} {
+
+if {$action == "grasp"} {
+
+  if {$object == "toy"} {
+     set result [ ORO_Cmd "check" {"[ toy isVisible true]" } ] 
+     }
+
+  if {$object == "box"} {
+     set result [ ORO_Cmd "check" {"[ cover-box-small isVisible true]" } ] 
+     }
+set OROboolean [lindex  $result 0]
+}
+
+if {$action == "release"} {
+ if {$OROboolean == "solo"} {
+
+  if {$object == "middle"} {
+     set result [ ORO_Cmd "check" {"[ middle-marke isVisible true]" } ] 
+     }
+
+set OROboolean [lindex  $result 0]
+}
+}
+
+
+
+
+}}
+
+# action_161
+set x0 [expr 10.0 + $offsetX] 
+set y0 [expr 410.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_161) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {verifyActionDefinitionSimple}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set RequestedAction $action
+set ActionDefined finish
+
+#puts "Verify: $RequestedAction"
+
+set i 0
+
+while {$action_name($i) != "stop"  } {
+  if [string match $RequestedAction $action_name($i)] {
+		
+		if [string match "defined" $action_defined($i)] {
+		Say "I know how to $RequestedAction"
+                                set ActionDefined true
+		}
+                              
+		if [string match "not-defined" $action_defined($i)] {
+		Say "I dont know how to $RequestedAction"
+                                set ActionDefined false
+		}
+                              
+		if [string match "learned" $action_defined($i)] {
+		Say "I learned how to $RequestedAction"
+                                set ActionDefined learned
+		}
+                              
+  }
+  incr i
+}}
+
+# action_162
+set x0 [expr -180 + $offsetX] 
+set y0 [expr 520 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_162) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {cant_see_it}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {Say "I can't see the $object"
+after 2000}
+
+# action_163
+set x0 [expr 460 + $offsetX] 
+set y0 [expr 770 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_163) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {updateActionDefinitionSimple}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set RequestedAction $action
+set ActionDefined finish
+
+puts "Verify: $RequestedAction"
+
+set i 0
+
+while {$action_name($i) != "stop"  } {
+  if [string match $LearnedAction $action_name($i)] {
+		
+		set action_defined($i) learned
+                       
+  }
+  incr i
+}}
+
+# action_164
+set x0 [expr -130 + $offsetX] 
+set y0 [expr 420 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_164) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {check_cooperation}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {if {$OROboolean == "false"  && $Cooperating == "solo"} {
+set OROboolean  "solo"
+}}
+
+# action_165
+set x0 [expr 460 + $offsetX] 
+set y0 [expr 800 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_165) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {storeUpdatedActDefs}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set file [open "ActionDefinitionsSimple.txt" w+]
+set i 0
+while {$action_name($i)  != "stop" } {
+	puts $file  "$action_name($i)     $action_defined($i)"
+	incr i
+	}
+puts $file "$action_name($i)     $action_defined($i)"
+close $file}
+
+# action_166
+set x0 [expr 850 + $offsetX] 
+set y0 [expr 460 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_166) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {solo}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {if {$coop_agent(0) == "larry"} {
+set replace_larry_with "I"
+set replace_robert_with "I"} else {
+set replace_larry_with "I"
+set replace_robert_with "I"
+}
+
+set Cooperating  solo}
+
+# action_167
+set x0 [expr -140 + $offsetX] 
+set y0 [expr 650 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_167) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {MotorCommand}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {#### distribute the commands
+Say "Motor Command  $action $object"
+
+if {$using_robot == 1} {
+
+if {"grasp" == $action} {
+	MIL_Take_Hold $object
+}
+
+
+if {"release" == $action}  {
+	if { $location != "" } {
+		MIL_Drop_On $location
+	} else {
+		MIL_Drop
+	}
+}
+
+if [string match raise $action]  {
+Say "Motor command raise"
+}
+
+
+
+}
+
+if [string match stop $action]  {
+puts "Motor command stop"
+set execute_learned_action -1
+}}
+
+# queryone_168
+set x0 [expr -80 + $offsetX] 
+set y0 [expr 570 + $offsetY] 
+set obvar [newO queryone $x0 $y0 {no 1}]
+set r(queryone_168) $obvar
+upvar #0 $obvar ob
+set ob(gif_original) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/base/gif/generic.gif}
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(changetrigger) {5}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(gif_tmmods) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/packages/Tucker-Maxon/gif_alt/generic.gif}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(action1) {Say "Need to learn $RequestedAction"}
+set ob(override:repair) {0}
+set ob(override:tts) {0}
+set ob(changerate) {5}
+set ob(dyn:recog) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {learn_Action}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set LearnedAction $RequestedAction
+set LearnedObject $object
+set LearnedLocation $location
+set Learning true
+set execute_learned_action 0
+set action_count 0}
+set ob(recognizer) {name adult_english_16khz_0.ob}
+
+# prect_169
+set x0 [expr -10 + $offsetX] 
+set y0 [expr 680 + $offsetY] 
+set obvar [newO prect $x0 $y0 {no 3}]
+set r(prect_169) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {state1}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{$execute_learned_action == 0}} {} {}} {{{$execute_learned_action == 1}} {} {}} {{{$execute_learned_action == -1}} {} {}}}
+set ob(grammar) {{} {} {}}
+set ob(program) {puts "execute_learned_action = $execute_learned_action"}
+
+# queryone_170
+set x0 [expr 100 + $offsetX] 
+set y0 [expr 590 + $offsetY] 
+set obvar [newO queryone $x0 $y0 {no 1}]
+set r(queryone_170) $obvar
+upvar #0 $obvar ob
+set ob(gif_original) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/base/gif/generic.gif}
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(changetrigger) {5}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(gif_tmmods) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/packages/Tucker-Maxon/gif_alt/generic.gif}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(action1) {Say "Ok now I know how to $LearnedAction"}
+set ob(override:repair) {0}
+set ob(override:tts) {0}
+set ob(changerate) {5}
+set ob(dyn:recog) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {learningFinished}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(recognizer) {name adult_english_16khz_0.ob}
+
+# action_171
+set x0 [expr 650 + $offsetX] 
+set y0 [expr 500 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_171) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {human_first}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {if {$coop_agent(0) == "larry"} {
+set replace_larry_with "you"
+set replace_robert_with "I"} else {
+set replace_larry_with "I"
+set replace_robert_with "you"
+}}
+
+# action_172
+set x0 [expr 110 + $offsetX] 
+set y0 [expr 880 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_172) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {commit}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {Say "Comit the new action"
+
+exec svn commit ActionDefinitionsSimple.txt
+
+Say "Done."
+
+Say "Done."}
+
+# queryone_173
+set x0 [expr 300.0 + $offsetX] 
+set y0 [expr 380.0 + $offsetY] 
+set obvar [newO queryone $x0 $y0 {no 2}]
+set r(queryone_173) $obvar
+upvar #0 $obvar ob
+set ob(gif_original) {R:/Tools/Tools/CSLU/Toolkit/2.0/apps/rad/base/gif/generic.gif}
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(changetrigger) {5}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(gif_tmmods) {R:/Tools/Tools/CSLU/Toolkit/2.0/apps/rad/packages/Tucker-Maxon/gif_alt/generic.gif}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(action1) {Say "action, or shared plan?"}
+set ob(recogportType,0) {Words}
+set ob(recogportType,1) {Words}
+set ob(recogportType,2) {Words}
+set ob(override:repair) {0}
+set ob(override:tts) {0}
+set ob(repairStatus) {default}
+set ob(changerate) {5}
+set ob(dynamicWords) {{action {@ kc kh S ^ n}} {do_action {dc d u [.pau] @ kc kh S ^ n}} {shared_plan {S E 9r dc d [.pau] pc ph l @ n}}}
+set ob(dyn:recog) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(portType,0) {Undefined}
+set ob(portType,1) {Undefined}
+set ob(package) {Base}
+set ob(portType,2) {Undefined}
+set ob(override:caption) {0}
+set ob(name) {Action_or_shared_plan}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{action {do action}} {} {{{@ kc kh S ^ n}} {{dc d u [.pau] @ kc kh S ^ n}}}} {{{shared plan}} {} {{{S E 9r dc d [.pau] pc ph l @ n}}}}}
+set ob(grammar) {{{} {}} {{} {}}}
+set ob(recognizer) {name adult_english_16khz_0.ob}
+
+# prect_174
+set x0 [expr -50 + $offsetX] 
+set y0 [expr 830 + $offsetY] 
+set obvar [newO prect $x0 $y0 {no 2}]
+set r(prect_174) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {cooperating?}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{$Cooperating == 0}} {} {}} {{{$Cooperating != 0}} {} {}}}
+set ob(grammar) {{} {}}
+
+# queryone_175
+set x0 [expr 260 + $offsetX] 
+set y0 [expr 840 + $offsetY] 
+set obvar [newO queryone $x0 $y0 {no 2}]
+set r(queryone_175) $obvar
+upvar #0 $obvar ob
+set ob(gif_original) {D:/Robots/Tools/CSLU/Toolkit/2.0/apps/rad/base/gif/generic.gif}
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(changetrigger) {5}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(gif_tmmods) {D:/Robots/Tools/CSLU/Toolkit/2.0/apps/rad/packages/Tucker-Maxon/gif_alt/generic.gif}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(action1) {Say "Do you want to commit the new action file to SVN?"}
+set ob(recogportType,0) {Words}
+set ob(recogportType,1) {Words}
+set ob(override:repair) {0}
+set ob(override:tts) {0}
+set ob(repairStatus) {default}
+set ob(changerate) {5}
+set ob(dynamicWords) {{yes_I_do {j E s [.pau] aI [.pau] dc d u}} {No_I_don't {n oU [.pau] aI [.pau] dc d oU n tc th}}}
+set ob(dyn:recog) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(portType,0) {Undefined}
+set ob(portType,1) {Undefined}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {Commit_to_svn}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{yes I do}} {} {{{j E s [.pau] aI [.pau] dc d u}}}} {{{No I don't}} {} {{{n oU [.pau] aI [.pau] dc d oU n tc th}}}}}
+set ob(grammar) {{{} {}} {{} {}}}
+set ob(recognizer) {name adult_english_16khz_0.ob}
+
+# queryone_176
+set x0 [expr 80 + $offsetX] 
+set y0 [expr 350 + $offsetY] 
+set obvar [newO queryone $x0 $y0 {no 2}]
+set r(queryone_176) $obvar
+upvar #0 $obvar ob
+set ob(gif_original) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/base/gif/generic.gif}
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(changetrigger) {5}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(gif_tmmods) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/packages/Tucker-Maxon/gif_alt/generic.gif}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(action1) {Say "Did you say to $action the $object on the  $location ?"}
+set ob(recogportType,0) {Words}
+set ob(recogportType,1) {Words}
+set ob(override:repair) {0}
+set ob(override:tts) {0}
+set ob(repairStatus) {default}
+set ob(changerate) {5}
+set ob(dynamicWords) {{Yes_I_did {j E s [.pau] aI [.pau] dc d I dc d}} {yes {j E s}} {No_I_did_not {n oU [.pau] aI [.pau] dc d I dc d [.pau] n A tc th}} {no {n oU}} {no_sir {n oU [.pau] s 3r}}}
+set ob(dyn:recog) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(portType,0) {Undefined}
+set ob(portType,1) {Undefined}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {validate}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{Yes I did} yes} {} {{{j E s [.pau] aI [.pau] dc d I dc d}} {{j E s}}}} {{{No I did not} no {no sir}} {} {{{n oU [.pau] aI [.pau] dc d I dc d [.pau] n A tc th}} {{n oU}} {{n oU [.pau] s 3r}}}}}
+set ob(grammar) {{{} {}} {{} {}}}
+set ob(recognizer) {name adult_english_16khz_0.ob}
+
+# action_177
+set x0 [expr 650 + $offsetX] 
+set y0 [expr 550 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_177) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {replace_larry_and_robert}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set i 0
+Say "Our shared plan is"
+while { $coop_agent($i) != "stop"} {
+if { $coop_agent($i) == "larry"} {set coop_agent($i) $replace_larry_with} else {
+set coop_agent($i) $replace_robert_with}
+Say "$coop_agent($i)   $coop_action($i)   the $coop_object($i)  $coop_location($i) "
+  incr i
+}
+
+set coop_count 0
+set continue_play 1}
+
+# prect_178
+set x0 [expr 10 + $offsetX] 
+set y0 [expr 500 + $offsetY] 
+set obvar [newO prect $x0 $y0 {no 4}]
+set r(prect_178) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {LearnIfNotDefined}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{$ActionDefined == "true"}} {} {}} {{{$ActionDefined == "false"}} {} {}} {{{$ActionDefined == "finish"}} {} {}} {{{$ActionDefined == "learned"}} {} {}}}
+set ob(grammar) {{} {} {} {}}
+
+# action_179
+set x0 [expr 660.0 + $offsetX] 
+set y0 [expr 320.0 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_179) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {get_the_old_game}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set Cooperating 1
+
+set file [open "SharedPlan.txt" r]
+set i 0
+Say " I remember"
+
+# gets with two arguments returns the length of the line,
+# -1 if the end of the file is found
+#
+while { [gets $file line] >= 0 } {
+  set coop_agent($i) [lindex $line 0]
+  set coop_action($i) [lindex $line 1]
+  set coop_object($i) [lindex $line 2]
+  set coop_location($i) [lindex $line 3]
+
+if {$coop_agent($i) != "stop"} {Say "$coop_agent($i)   $coop_action($i)   $coop_object($i)  $coop_location($i)"}
+  incr i
+}
+close $file
+
+set coop_play 1
+set coop_count 0}
+
+# prect_180
+set x0 [expr -110 + $offsetX] 
+set y0 [expr 500 + $offsetY] 
+set obvar [newO prect $x0 $y0 {no 3}]
+set r(prect_180) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {state8}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{$OROboolean == "false"}} {} {}} {{{$OROboolean == "true"}} {} {}} {{{$OROboolean == "solo"}} {} {}}}
+set ob(grammar) {{} {} {}}
+
+# action_181
+set x0 [expr 20 + $offsetX] 
+set y0 [expr 600 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_181) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {retrieve_learned_action}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {if {$RequestedAction == "put"} {
+set file [open "Place.txt" r]
+}
+
+if {$RequestedAction == "play"} {
+set file [open "Play.txt"  r]
+}
+
+
+set i 0
+
+
+# gets with two arguments returns the length of the line,
+# -1 if the end of the file is found
+#
+while { [gets $file line] >= 0 } {
+  set learned_action_action($i) [lindex $line 0]
+  set learned_action_arg1($i) [lindex $line 1]
+
+  if [string match [lindex $line 1] object ] {
+
+   set learned_action_arg1($i) $object
+    }
+
+  if [string match [lindex $line 1] location ] {
+
+   set learned_action_arg1($i) $location
+    }
+
+
+
+#  set learned_action_arg2($i) [lindex $line 2]
+
+puts "binding resolved  $learned_action_action($i)  $learned_action_arg1($i) "
+  incr i
+}
+close $file
+
+# now set the first action and start the sequence
+
+
+set action_count 0
+set execute_learned_action 1}
+
+# queryone_182
+set x0 [expr 700 + $offsetX] 
+set y0 [expr 650 + $offsetY] 
+set obvar [newO queryone $x0 $y0 {no 1}]
+set r(queryone_182) $obvar
+upvar #0 $obvar ob
+set ob(gif_original) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/base/gif/generic.gif}
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(changetrigger) {5}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(gif_tmmods) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/packages/Tucker-Maxon/gif_alt/generic.gif}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(action1) {Say "Now, you $Action the $Object $Location"
+after 2000
+Say "is it ok?"}
+set ob(recogportType,0) {Words}
+set ob(recogportType,1) {Words}
+set ob(override:repair) {0}
+set ob(override:tts) {0}
+set ob(repairStatus) {default}
+set ob(changerate) {5}
+set ob(dynamicWords) {{o_k {oU [.pau] kc kh ei}} {good {gc g U dc d}} {fine {f aI n}}}
+set ob(dyn:recog) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(portType,0) {Undefined}
+set ob(portType,1) {Undefined}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {user_movement_status}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{o k} good fine} {} {{{oU [.pau] kc kh ei}} {{gc g U dc d}} {{f aI n}}}}}
+set ob(grammar) {{{} {}}}
+set ob(recognizer) {name adult_english_16khz_0.ob}
+
+# action_183
+set x0 [expr 470 + $offsetX] 
+set y0 [expr 570 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_183) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {robot_first}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {if {$coop_agent(0) == "larry"} {
+set replace_larry_with "I"
+set replace_robert_with "you"} else {
+set replace_larry_with "you"
+set replace_robert_with "I"
+}}
+
+# action_184
+set x0 [expr 230 + $offsetX] 
+set y0 [expr 650 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_184) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {store_learned_action}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set learned_action_action($action_count) stop
+set learned_action_arg1($action_count) stop
+set i 0
+
+Say "requested action is $LearnedAction"
+
+if {$LearnedAction == "put"} {
+set file [open "Place.txt" w+]
+}
+
+if {$LearnedAction == "play"} {
+set file [open "Play.txt" w+]
+}
+set i 0
+while {$learned_action_action($i)  != "stop" } {
+	puts $file  "$learned_action_action($i)  $learned_action_arg1($i)"
+	incr i
+	}
+puts $file "$learned_action_action($i)      $learned_action_arg1($i)"
+close $file
+
+
+# put in cooperative play state}
+
+# action_185
+set x0 [expr -170 + $offsetX] 
+set y0 [expr 780 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_185) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {update_action_learning}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set learned_action_action($action_count) $action
+set learned_action_arg1($action_count) $object
+
+
+
+tts "learn $action"
+
+# do correct argument binding
+
+if  [string match $LearnedObject $object] {
+#tts "arg 1 binding"
+set learned_action_arg1($action_count) object
+}
+
+if  [string match $LearnedLocation $object] {
+#tts "arg2 binding"
+set learned_action_arg1($action_count) location
+}
+
+set learned_action_action($action_count) $action
+
+ incr action_count}
+
+# queryone_186
+set x0 [expr 650 + $offsetX] 
+set y0 [expr 460 + $offsetY] 
+set obvar [newO queryone $x0 $y0 {no 3}]
+set r(queryone_186) $obvar
+upvar #0 $obvar ob
+set ob(gif_original) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/base/gif/generic.gif}
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(changetrigger) {5}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(gif_tmmods) {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/packages/Tucker-Maxon/gif_alt/generic.gif}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(prompt,markupText) {<SABLE></SABLE>
+}
+set ob(action1) {Say "Who goes first - you or me?  Or solo."}
+set ob(recogportType,0) {Words}
+set ob(recogportType,1) {Words}
+set ob(recogportType,2) {Words}
+set ob(override:repair) {0}
+set ob(override:tts) {0}
+set ob(repairStatus) {default}
+set ob(changerate) {5}
+set ob(dynamicWords) {{you {j u}} {you_go_first {j u [.pau] gc g oU [.pau] f 3r s tc th}} {me {m i:}} {solo {s oU l oU}}}
+set ob(dyn:recog) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(portType,0) {Undefined}
+set ob(portType,1) {Undefined}
+set ob(package) {Base}
+set ob(portType,2) {Undefined}
+set ob(override:caption) {0}
+set ob(name) {decide_roles}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{you {you go first}} {} {{{j u}} {{j u [.pau] gc g oU [.pau] f 3r s tc th}}}} {me {} {{{m i:}}}} {solo {} {{{s oU l oU}}}}}
+set ob(grammar) {{{} {}} {{} {}} {{} {}}}
+set ob(program) {set Cooperating 1
+
+#WriteDown "Starting shared plan"}
+set ob(recognizer) {name adult_english_16khz_0.ob}
+
+# action_187
+set x0 [expr 500 + $offsetX] 
+set y0 [expr 700 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_187) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {my_move}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {Say "Now, I $Action the $Object $Location"
+set action $Action
+set object $Object
+set location $Location}
+
+# exit_188
+set x0 [expr 350 + $offsetX] 
+set y0 [expr 320 + $offsetY] 
+set obvar [newO exit $x0 $y0 {no 0}]
+set r(exit_188) $obvar
+upvar #0 $obvar ob
+set ob(bargein) {off}
+set ob(override:recognizer) {0}
+set ob(recogType) {Tree}
+set ob(dtmf,interrupt) {0}
+set ob(dtmf,mode) {off}
+set ob(package) {Base}
+set ob(override:tts) {0}
+set ob(exitStatus) {continue}
+set ob(override:caption) {0}
+set ob(prompt,type) {tts}
+set ob(name) {return:continue}
+set ob(override:vumeter) {0}
+set ob(override:sdet) {0}
+set ob(prompt,recordFlag) {0}
+
+# action_189
+set x0 [expr 150 + $offsetX] 
+set y0 [expr 230 + $offsetY] 
+set obvar [newO action $x0 $y0 {no 1}]
+set r(action_189) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {RecognizeSpokenAction}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{} {} {}}}
+set ob(grammar) {{}}
+set ob(program) {set results -1
+
+set action "sharedPlan"
+
+while { $results == -1 } {
+	Say "What is the action?"
+	set g "grasp the #Object | release the #Object on the #Object | release the #Object |  put the #Object on the #Object | finish | shared plan" 
+	set results [SM_Reco_Grammar $g ]
+	puts "Reco : $results"
+}
+set recoValue [lindex $results 0]
+
+if { $recoValue == "grasp"} {
+	set action "grasp"
+	set object [lindex $results 2]
+	set location ""
+}
+
+if { $recoValue == "release"} {
+	set action "release"
+	set object [lindex $results 2]
+	set location [lindex $results 5]
+}
+
+if { $recoValue == "put"} {
+	set action "put"
+	set object [lindex $results 2]
+	set location [lindex $results 5]
+}
+
+if { $recoValue == "finish"} {
+	set action "finish"
+	set object '""
+	set location ""
+}}
+
+# prect_190
+set x0 [expr 150 + $offsetX] 
+set y0 [expr 310 + $offsetY] 
+set obvar [newO prect $x0 $y0 {no 2}]
+set r(prect_190) $obvar
+upvar #0 $obvar ob
+set ob(recogType) {Tree}
+set ob(override:recognizer) {0}
+set ob(dtmf,mode) {off}
+set ob(prompt,type) {tts}
+set ob(override:sdet) {0}
+set ob(override:vumeter) {0}
+set ob(override:tts) {0}
+set ob(prompt,recordFlag) {0}
+set ob(bargein) {off}
+set ob(package) {Base}
+set ob(override:caption) {0}
+set ob(name) {state4}
+set ob(dtmf,interrupt) {0}
+set ob(words) {{{{$action == "sharedPlan"}} {} {}} {1 {} {}}}
+set ob(grammar) {{} {}}
+
+####### CONNECTIONS
+connect r action_162 action_164 0 -204.0 598.0 -204.0 405.0 -114.0 405.0 $offsetX $offsetY
+connect r prect_180 action_162 0 -74.0 578.0 -74.0 505.0 -164.0 505.0 $offsetX $offsetY
+connect r prect_190 queryone_176 1 136.0 388.0 136.0 357.0 136.0 335.0 $offsetX $offsetY
+connect r action_165 queryone_175 0 436.0 878.0 376.0 847.0 316.0 825.0 $offsetX $offsetY
+connect r action_185 action_189 0 -114.0 858.0 6.0 532.0 126.0 215.0 $offsetX $offsetY
+connect r queryone_170 action_184 0 116.0 668.0 181.0 647.0 246.0 635.0 $offsetX $offsetY
+connect r action_177 prect_159 0 626.0 628.0 626.0 575.0 686.0 575.0 $offsetX $offsetY
+connect r prect_180 prect_159 2 -74.0 578.0 306.0 572.0 686.0 575.0 $offsetX $offsetY
+connect r action_155 action_156 0 6.0 298.0 6.0 277.0 6.0 265.0 $offsetX $offsetY
+connect r prect_178 queryone_168 1 16.0 578.0 -24.0 562.0 -64.0 555.0 $offsetX $offsetY
+connect r prect_190 action_179 0 156.0 388.0 416.0 346.5 676.0 305.0 $offsetX $offsetY
+connect r prect_159 queryone_173 2 666.0 668.0 511.0 516.5 356.0 365.0 $offsetX $offsetY
+connect r queryone_176 action_161 0 86.0 428.0 56.0 411.5 26.0 395.0 $offsetX $offsetY
+connect r prect_169 action_185 0 -14.0 758.0 -84.0 757.0 -154.0 765.0 $offsetX $offsetY
+connect r queryone_175 action_189 1 246.0 918.0 226.0 562.0 206.0 215.0 $offsetX $offsetY
+connect r action_181 action_158 0 36.0 678.0 66.0 717.0 96.0 765.0 $offsetX $offsetY
+connect r action_167 prect_169 0 -84.0 728.0 -59.0 692.0 -34.0 665.0 $offsetX $offsetY
+connect r queryone_173 action_179 1 366.0 458.0 501.0 381.5 636.0 305.0 $offsetX $offsetY
+connect r action_183 action_177 0 526.0 648.0 576.0 587.0 626.0 535.0 $offsetX $offsetY
+connect r queryone_175 action_172 0 226.0 918.0 196.0 887.0 166.0 865.0 $offsetX $offsetY
+connect r action_164 prect_180 0 -114.0 498.0 -104.0 487.0 -94.0 485.0 $offsetX $offsetY
+connect r queryone_186 action_183 0 646.0 538.0 566.0 542.0 486.0 555.0 $offsetX $offsetY
+connect r prect_159 action_187 0 666.0 668.0 591.0 672.0 516.0 685.0 $offsetX $offsetY
+connect r queryone_173 action_189 0 236.0 508.0 256.0 336.5 166.0 215.0 $offsetX $offsetY
+connect r prect_169 action_158 1 6.0 758.0 51.0 757.0 96.0 765.0 $offsetX $offsetY
+connect r prect_178 action_164 0 -44.0 578.0 -59.0 487.0 -74.0 405.0 $offsetX $offsetY
+connect r action_166 action_177 0 866.0 538.0 766.0 532.0 666.0 535.0 $offsetX $offsetY
+connect r action_157 queryone_173 0 -224.0 368.0 46.0 366.5 316.0 365.0 $offsetX $offsetY
+connect r action_179 queryone_186 0 636.0 398.0 651.0 421.5 666.0 445.0 $offsetX $offsetY
+connect r prect_178 queryone_170 2 36.0 578.0 76.0 572.0 116.0 575.0 $offsetX $offsetY
+connect r prect_174 action_189 0 -4.0 908.0 61.0 557.0 126.0 215.0 $offsetX $offsetY
+connect r action_189 prect_190 0 166.0 308.0 166.0 297.0 166.0 295.0 $offsetX $offsetY
+connect r prect_174 prect_159 1 16.0 908.0 331.0 737.0 646.0 575.0 $offsetX $offsetY
+connect r action_184 action_163 0 246.0 728.0 361.0 737.0 476.0 755.0 $offsetX $offsetY
+connect r queryone_182 prect_159 0 756.0 728.0 756.0 575.0 686.0 575.0 $offsetX $offsetY
+connect r action_172 action_189 0 86.0 958.0 86.0 215.0 166.0 215.0 $offsetX $offsetY
+connect r queryone_186 action_171 1 626.0 538.0 626.0 485.0 666.0 485.0 $offsetX $offsetY
+connect r queryone_186 action_166 2 726.0 538.0 776.0 487.0 826.0 445.0 $offsetX $offsetY
+connect r enter_154 action_155 0 16.0 228.0 11.0 212.0 6.0 205.0 $offsetX $offsetY
+connect r queryone_176 action_189 1 146.0 428.0 136.0 317.0 126.0 215.0 $offsetX $offsetY
+connect r action_161 prect_178 0 26.0 488.0 26.0 486.5 26.0 485.0 $offsetX $offsetY
+connect r queryone_168 action_189 0 -24.0 648.0 51.0 427.0 126.0 215.0 $offsetX $offsetY
+connect r action_156 queryone_173 0 6.0 358.0 161.0 361.5 316.0 365.0 $offsetX $offsetY
+connect r prect_178 action_181 3 56.0 578.0 46.0 577.0 36.0 585.0 $offsetX $offsetY
+connect r action_187 action_161 0 476.0 778.0 271.0 586.5 66.0 395.0 $offsetX $offsetY
+connect r action_160 action_164 0 -154.0 418.0 -134.0 407.0 -114.0 405.0 $offsetX $offsetY
+connect r prect_159 queryone_182 1 686.0 668.0 701.0 647.0 716.0 635.0 $offsetX $offsetY
+connect r action_158 action_167 0 56.0 858.0 -14.0 742.0 -84.0 635.0 $offsetX $offsetY
+connect r prect_180 action_167 1 -94.0 578.0 -109.0 602.0 -124.0 635.0 $offsetX $offsetY
+connect r prect_169 prect_174 2 26.0 758.0 -4.0 782.0 -34.0 815.0 $offsetX $offsetY
+connect r action_171 action_177 0 626.0 578.0 626.0 535.0 666.0 535.0 $offsetX $offsetY
+connect r action_163 action_165 0 436.0 848.0 436.0 785.0 476.0 785.0 $offsetX $offsetY
+recordActiveScreen $p
+array set config {vumeter,geometry +100+10 arrayName config changetrigger 5 warning,load:inappropriate 1 alpha,searchsize 100000 RAD_VERSION 2.0 tmmods:pause 0 dtmf,endchar 0 dtmf,mode off beep 1 releaseServices 0 about,comments {Click on the URL above for tutorial details.} backup 1 garbageThreshold -417 alpha,reject 0.1 input live highlight 1 about,author CSLU review 0 rejection 22 alpha,prune 0.0001 default:tts,voice {name mwm} showConsole 0 reRun 0 confirm,nuke 1 RAD_PATCHLEVEL 0 caption 0 stdevMic 21 palette,zoom 100 dtmf,var {} defaultTtsDevice {type Festival} useRepair 1 confirm,clear 1 palette,stick 1 ttsDevice {type Festival hostname *} about,date 06/27/99 confirm,quit 1 palette,rows {} lsilence 5000 pronun,tts 1 changerate 5 audioDevice {type audio hostname local name {Line 1/2 (2- M-Audio FastTrack } devid 0} snapToGrid 1 longpen 0.135 confirm,newload 1 palette,columns 2 backoff 150 dtmf,maxlen 1 dyn:recog 0 showCanvas 1 mic,device 0 dtmf,timeout 5000 mic,key <Space> vumeter,enabled 1 beepwave {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/endbeep.wav} tts,pitch 158 mic,event 0 tsilence 804 bargein 0 about,url docs/2.0/apps/rad/tutorials/tutorial015/index.html confirm,new 1 active 1.0 configfile C:/Users/icub/.rad/config.tcl dataCapture 0 visual,iMode 0 defaultAudioDevice {type audio hostname local} edit,noEmptyPrompt 1 alpha,deletepen 0.05 wordspot 30 tmmods:listallmedia 0 repairFile {C:/Program Files/CSLU/Toolkit/2.0/apps/rad/Repair/default1.rad} tts,rate 1.00 runTrace 0 pronun,customdict 1 prompt,dir C:/.rad ttsCache 0 maxrec 100 tmmods:extralogging 0 alpha,langpower 0.0 audio tv faces {} nbest 4 dtmf,interrupt 0 tts,pitchrange 34 baldi 0 pronun,localdict 1 edit,usedFacesOnly 1 recognizer {name adult_english_16khz_0.ob infoLang * infoDial * infoRate * infoDesc *} paths {configfile {Configuration File} beepwave {Beep File} prompt,dir {Prompt Directory} repairFile {Default Repair File}} showRecog 0 pronun,cmu 1 shortpen 0.0025 tmmods:iconlook 0 tts,voice {name mwm language English dialect * gender *} face,type CUAnimate recogMode 1 cachesize 100 visual,DCP 0}
+

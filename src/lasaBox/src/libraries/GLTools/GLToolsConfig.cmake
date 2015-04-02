@@ -1,0 +1,14 @@
+#MESSAGE(STATUS "GLTools Library")
+
+FIND_LIBRARY(GLTools_LIBRARIES GLTools ${GLTools_DIR}/lib)
+
+IF (NOT GLTools_LIBRARIES)
+  SET(GLTools_LIBRARIES GLTools CACHE INTERNAL "GLTools library")
+  SET(GLTools_LIBRARIES GLTools)
+ENDIF (NOT GLTools_LIBRARIES)
+
+
+SET(GLTools_INCLUDE_DIR ${GLTools_DIR}/include)
+
+SET(GLTools_DEPENDENCIES MathLib StdTools)
+

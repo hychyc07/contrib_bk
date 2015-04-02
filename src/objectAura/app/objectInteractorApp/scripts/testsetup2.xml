@@ -1,0 +1,165 @@
+<application>
+    <name>test2</name>
+
+    <dependencies>
+    </dependencies>
+
+    <!--Tracker-->  
+
+    <module>
+        <name>/home/bluerabbit/iCubsvn/src/objectAura/src/simulatedTracker/build/simulatedTracker</name>
+		<parameters></parameters>
+        <node>test2</node>
+        <tag>simulatedTracker</tag>
+    </module>
+    
+
+	<module>
+      	<name>iCub_SIM</name>
+		<parameters></parameters>
+      	<node>test2</node>
+      		<tag>iCubSim</tag>
+   	</module>
+
+	<module>
+      	<name>iKinGazeCtrl</name>
+		<parameters>--robot icubSim</parameters>
+      	<node>test2</node>
+      		<tag>iKin</tag>
+   	</module>
+
+	<!--<module>
+      	<name>yarpdev</name>
+		<parameters>--device opencv_grabber --movie Desktop/out.avi --framerate 25 --verbose --loop</parameters>
+      	<node>test2</node>
+      		<tag>yarpdev</tag>
+   	</module>-->
+
+ 
+
+    <module>
+        <name>/home/bluerabbit/iCubsvn/src/objectAura/build/src/objectAura</name>
+		<parameters></parameters>
+        <node>test2</node>
+        <tag>objectAura</tag>
+    </module>
+    
+	<module>
+      	<name>yarp</name>
+		<parameters>read /r1</parameters>
+      	<node>test2</node>
+		<stdio>test2</stdio>
+      		<tag>reader1</tag>
+   	</module>
+
+	<module>
+      	<name>yarp</name>
+		<parameters>read /r2</parameters>
+      	<node>test2</node>
+		<stdio>test2</stdio>
+      		<tag>reader2</tag>
+   	</module>
+
+
+	<module>
+      	<name>yarp</name>
+		<parameters>read /r3</parameters>
+      	<node>test2</node>
+		<stdio>test2</stdio>
+      		<tag>reader3</tag>
+   	</module>
+
+	<module>
+      	<name>yarp</name>
+		<parameters>read /r4</parameters>
+      	<node>test2</node>
+		<stdio>test2</stdio>
+      		<tag>reader4</tag>
+   	</module>
+
+	<module>
+      	<name>yarp</name>
+		<parameters>write /w</parameters>
+      	<node>test2</node>
+		<stdio>test2</stdio>
+      		<tag>writer</tag>
+   	</module>
+
+	<module>
+      	<name>yarp</name>
+		<parameters>read /log</parameters>
+      	<node>test2</node>
+		<stdio>test2</stdio>
+      		<tag>logger</tag>
+   	</module>
+    
+     <!-- connection to the framework -->
+
+	<connection>
+       <from>/tracker1/out</from>
+       <to>/r1</to>
+       <protocol>tcp</protocol>
+     </connection>
+	
+	<connection>
+       <from>/tracker2/out</from>
+       <to>/r2</to>
+       <protocol>tcp</protocol>
+     </connection>
+
+	<connection>
+       <from>/tracker3/out</from>
+       <to>/r3</to>
+       <protocol>tcp</protocol>
+     </connection>
+
+     <connection>
+       <from>/tracker4/out</from>
+       <to>/r4</to>
+       <protocol>tcp</protocol>
+     </connection>	
+
+
+
+     <connection>
+       <from>/tracker1/out</from>
+       <to>/ObjectAura/balltracker1:i</to>
+       <protocol>tcp</protocol>
+     </connection>
+	
+	<connection>
+       <from>/tracker2/out</from>
+       <to>/ObjectAura/balltracker2:i</to>
+       <protocol>tcp</protocol>
+     </connection>
+
+	<connection>
+       <from>/tracker3/out</from>
+       <to>/ObjectAura/balltracker3:i</to>
+       <protocol>tcp</protocol>
+     </connection>
+
+     <connection>
+       <from>/tracker4/out</from>
+       <to>/ObjectAura/handtracker:i</to>
+       <protocol>tcp</protocol>
+     </connection>
+
+
+
+
+	<connection>
+       <from>/w</from>
+       <to>/activateTracker/in</to>
+       <protocol>tcp</protocol>
+     </connection>
+
+
+
+	<connection>
+       <from>/ObjectAura/log:o</from>
+       <to>/log</to>
+       <protocol>tcp</protocol>
+     </connection>	
+     
+</application>

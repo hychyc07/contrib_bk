@@ -1,0 +1,34 @@
+<application>
+<name>perceptionActionCycleAction</name>
+<dependencies>
+<!--  <port>/icub/camcalib/left/out</port>
+  <port>/icub/camcalib/right/out</port>
+-->
+  <port>/leftTransform/image:o</port>
+  <port>/rightTransform/image:o</port>
+</dependencies>
+
+
+
+<module>
+  <name>vergence</name>
+  <parameters>--name /vergence --ctrl arbitrer </parameters>
+  <tag>vergence</tag>
+  <node>icub-b16</node>
+</module>
+
+
+
+<connection>
+  <from>/leftTransform/image:o</from>
+  <to>/vergence/left:i</to>
+  <protocol>udp</protocol>
+</connection> 
+<connection>
+  <from>/rightTransform/image:o</from>
+  <to>/vergence/right:i</to>
+  <protocol>udp</protocol>
+</connection> 
+
+
+</application>

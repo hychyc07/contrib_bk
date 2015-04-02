@@ -1,0 +1,43 @@
+
+<application>
+<name>Maryland Filters</name>
+
+        <dependencies>
+            <port>/icub/camcalib/left/out</port>
+			<port>/matlab/img:o</port>
+			<port>/matlab/mask:o</port>
+        </dependencies>
+
+        <module>
+            <name>yarpview</name>
+            <parameters>--name /view/filter --x 10 --y 380 --synch</parameters>
+            <node>icub16</node>
+            <tag>viewSeg</tag>
+        </module>
+        
+        <module>
+            <name>yarpview</name>
+            <parameters>--name /view/filterMask --x 350 --y 380 --synch</parameters>
+	    <node>icub16</node>
+            <tag>filterMask</tag>
+        </module>
+        
+        <connection>
+            <from>/icub/camcalib/left/out</from>
+            <to>/matlab/img:i</to>
+            <protocol>tcp</protocol>
+        </connection>
+        <connection>
+            <from>/matlab/img:o</from>
+            <to>/view/filter</to>
+            <protocol>tcp</protocol>
+        </connection>
+
+        <connection>
+            <from>/matlab/mask:o</from>
+            <to>/view/filterMask</to>
+            <protocol>tcp</protocol>
+        </connection>
+      
+        
+</application>

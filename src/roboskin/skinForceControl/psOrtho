@@ -1,0 +1,1 @@
+portScope --local /psOrtho --remote /skinForceControl/monitor:o --rows 1 --cols 1 --index "(41)"

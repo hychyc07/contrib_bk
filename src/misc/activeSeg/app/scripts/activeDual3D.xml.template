@@ -1,0 +1,192 @@
+<application>
+    <name>Active segmentation</name>
+
+    <dependencies>
+    </dependencies>
+
+     <module>
+        <name>activeSeg</name>
+        <node>console</node>
+        <parameters>--name activeSegTarget</parameters>
+        <tag>activeSeg</tag>
+    </module>
+    <module>
+        <name>activeSeg</name>
+        <node>console</node>
+        <parameters>--name activeSegObstacle</parameters>
+        <tag>activeSeg</tag>
+    </module>
+
+    <!--Optional modules-->  
+    <module>
+        <name>templatePFTracker</name>
+        <node>console</node>
+        <parameters>--name trackerTarget</parameters>
+        <tag>particleFilterTracker</tag>
+    </module>
+    <module>
+        <name>templatePFTracker</name>
+        <node>console</node>
+        <parameters>--name trackerObstacle</parameters>
+        <tag>particleFilterTracker</tag>
+    </module>
+
+    <module>
+        <name>yarpview</name>
+        <node>console</node>
+        <parameters>--name /segTarget --x 0 --y 0 --RefreshTime 33</parameters>
+        <tag>segmentation</tag>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <node>console</node>
+        <parameters>--name /segObstacle --x 0 --y 380 --RefreshTime 33</parameters>
+        <tag>segmentation</tag>
+    </module>
+
+     <module>
+        <name>yarpview</name>
+        <node>console</node>
+        <parameters>--name /segCropTarget --x 300 --y 0 --RefreshTime 33</parameters>
+        <tag>segmentationCrop</tag>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <node>console</node>
+        <parameters>--name /segCropObstacle --x 300 --y 380 --RefreshTime 33</parameters>
+        <tag>segmentationCrop</tag>
+    </module>
+    
+    <module>
+        <name>yarpview</name>
+        <node>console</node>
+        <parameters>--name /trackerTargetLeft --x 600 --y 0 --out /desiredTrackTarget --RefreshTime 33</parameters>
+        <tag>particleTracker</tag>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <node>console</node>
+        <parameters>--name /trackerObstacleLeft --x 600 --y 380 --out /desiredTrackObstacle --RefreshTime 33</parameters>
+        <tag>particleTracker</tag>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <node>console</node>
+        <parameters>--name /trackerTargetRight --x 900 --y 0 --RefreshTime 33</parameters>
+        <tag>particleTracker</tag>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <node>console</node>
+        <parameters>--name /trackerObstacleRight --x 900 --y 380 --RefreshTime 33</parameters>
+        <tag>particleTracker</tag>
+    </module>
+
+    <connection>
+        <from>/icub/camcalib/left/out</from>
+        <to>/activeSegTarget/image:i</to>
+        <protocol>udp</protocol>
+    </connection>
+    <connection>
+        <from>/icub/camcalib/left/out</from>
+        <to>/activeSegObstacle/image:i</to>
+        <protocol>udp</protocol>
+    </connection>
+
+    <connection>
+        <from>/icub/camcalib/left/out</from>
+        <to>/trackerTarget/left/image:i</to>
+        <protocol>udp</protocol>
+    </connection>
+    <connection>
+        <from>/icub/camcalib/right/out</from>
+        <to>/trackerTarget/right/image:i</to>
+        <protocol>udp</protocol>
+    </connection>
+    <connection>
+        <from>/icub/camcalib/left/out</from>
+        <to>/trackerObstacle/left/image:i</to>
+        <protocol>udp</protocol>
+    </connection>
+    <connection>
+        <from>/icub/camcalib/right/out</from>
+        <to>/trackerObstacle/right/image:i</to>
+        <protocol>udp</protocol>
+    </connection>
+
+    <connection>
+        <from>/activeSegTarget/image:o</from>
+        <to>/segTarget</to>
+        <protocol>udp</protocol>
+    </connection>
+    <connection>
+        <from>/activeSegObstacle/image:o</from>
+        <to>/segObstacle</to>
+        <protocol>udp</protocol>
+    </connection>
+
+    <connection>
+        <from>/activeSegTarget/imageCrop:o</from>
+        <to>/segCropTarget</to>
+        <protocol>udp</protocol>
+    </connection>
+    <connection>
+        <from>/activeSegObstacle/imageCrop:o</from>
+        <to>/segCropObstacle</to>
+        <protocol>udp</protocol>
+    </connection>
+
+    <connection>
+        <from>/activeSegTarget/imageCrop:o</from>
+        <to>/trackerTarget/template/image:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+    <connection>
+        <from>/activeSegObstacle/imageCrop:o</from>
+        <to>/trackerObstacle/template/image:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+    <connection>
+        <from>/trackerTarget/left/image:o</from>
+        <to>/trackerTargetLeft</to>
+        <protocol>tcp</protocol>
+    </connection>
+    <connection>
+        <from>/trackerTarget/right/image:o</from>
+        <to>/trackerTargetRight</to>
+        <protocol>tcp</protocol>
+    </connection>
+    <connection>
+        <from>/trackerObstacle/left/image:o</from>
+        <to>/trackerObstacleLeft</to>
+        <protocol>tcp</protocol>
+    </connection>
+    <connection>
+        <from>/trackerObstacle/right/image:o</from>
+        <to>/trackerObstacleRight</to>
+        <protocol>tcp</protocol>
+    </connection>
+    <connection>
+        <from>/desiredTrackTarget</from>
+        <to>/activeSegTarget/fixPoint:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+    <connection>
+        <from>/desiredTrackObstacle</from>
+        <to>/activeSegObstacle/fixPoint:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+    <connection>
+        <from>/trackerTarget/triangulation:io</from>
+        <to>/stereoDisparity/rpc</to>
+        <protocol>tcp</protocol>
+    </connection>
+    <connection>
+        <from>/trackerObstacle/triangulation:io</from>
+        <to>/stereoDisparity/rpc</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+
+</application>

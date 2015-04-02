@@ -1,0 +1,8 @@
+SpeechFingerprinter
+Christian Dondrup
+cdondrup@techfak.uni-bielefeld.de
+
+This program creates so-called fingerprints for wave files.
+This technic is mostly used in music identification tasks but
+should be used for word identification in this project.
+With this program you can create a database of fingerprints.

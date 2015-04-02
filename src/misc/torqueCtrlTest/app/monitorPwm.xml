@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<portscope rows="4" columns="1">
+    <plot gridx="0"
+          gridy="0"
+          title="Torque (B meas, R des, G Coulomb, K observer)"
+          size="500"
+          minval="-1"
+          maxval="2"
+          bgcolor="LightSlateGrey">
+        <graph remote="/torqueCtrlTest/monitor:o " index="1" color="Blue" title="tao_measured" type="lines" size="2" />
+        <graph remote="/torqueCtrlTest/monitor:o " index="0" color="Red" title="tao_desired" type="lines" size="3"/>
+        <graph remote="/torqueCtrlTest/monitor:o " index="24" color="Green" title="tao_coulomb" type="lines" size="2"/>
+        <graph remote="/torqueCtrlTest/monitor:o " index="23" color="Black" title="tao_fric_observed" type="lines" size="2"/>
+    </plot>
+    <plot gridx="0"
+          gridy="1"
+          title="PWM (B stic comp, R meas, K des, G coul)"
+          minval="-100"
+          maxval="100"
+          size="500"
+          bgcolor="LightGrey">
+        <graph remote="/torqueCtrlTest/monitor:o " index="2" color="Black" title="PWM_des" type="lines" size="2"/>
+        <graph remote="/torqueCtrlTest/monitor:o " index="3" color="Red" title="PWM_measure" type="lines" size="3"/>
+        <graph remote="/torqueCtrlTest/monitor:o " index="17" color="Blue" title="PWM_stic_comp" type="lines" size="2"/>
+        <graph remote="/torqueCtrlTest/monitor:o " index="22" color="Green" title="PWM_coulomb" type="lines" size="2"/>
+    </plot>
+    <plot gridx="0"
+          gridy="2"
+          title="Position (R meas, B ref, K des)"
+          minval="10"
+          maxval="120"
+          size="500"
+          bgcolor="LightGrey">
+        <graph remote="/torqueCtrlTest/monitor:o " index="4" color="Red" title="Position" type="lines" size="2"/>
+        <graph remote="/torqueCtrlTest/monitor:o " index="18" color="Blue" title="Ref" type="lines" size="2"/>
+        <graph remote="/torqueCtrlTest/monitor:o " index="19" color="Black" title="Des" type="lines" size="2"/>
+    </plot>
+    <plot gridx="0"
+          gridy="3"
+          title="Velocity (B meas, R ref, K acc)"
+          minval="-100"
+          maxval="100"
+          size="500"
+          bgcolor="LightGrey">
+        <graph remote="/torqueCtrlTest/monitor:o " index="5" color="Blue" title="Velocity" type="lines" size="2"/>
+        <graph remote="/torqueCtrlTest/monitor:o " index="20" color="Red" title="VelocityRef" type="lines" size="2"/>
+        <graph remote="/torqueCtrlTest/monitor:o " index="21" color="Black" title="AccRef" type="lines" size="2"/>
+    </plot>
+
+</portscope>
+

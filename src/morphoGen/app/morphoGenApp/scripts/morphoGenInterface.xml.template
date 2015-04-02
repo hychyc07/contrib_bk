@@ -1,0 +1,37 @@
+<application>
+<name>morphoGen Application </name>
+
+<dependencies>
+	<port>/icub/cam/left</port>	
+</dependencies>
+
+<module>
+   <name>colorVision</name>
+   <parameters>--model model.txt --colormap colormap.txt</parameters>
+   <node>icub-b15</node>
+   <tag>colorVisionModule</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>-x 100 -y 100 --name /v/l</parameters>
+   <node>icub14</node>
+   <tag>colorVisionViewer</tag>
+</module>
+
+
+<connection>
+        <from>/icub/camcalib/left/out</from>
+	<to>/v1/imagePortRTL</to>
+	<protocol>tcp</protocol>
+</connection>
+
+<connection>
+        <from>/v1/imagePortRTL</from>
+	<to>/v/l</to>
+	<protocol>tcp</protocol>
+</connection>
+
+
+
+</application>

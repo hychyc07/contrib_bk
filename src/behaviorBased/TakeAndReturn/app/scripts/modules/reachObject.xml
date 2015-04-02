@@ -1,0 +1,49 @@
+<module>
+	<name>reachObject</name>
+	<description>Controls the iCub arm in the operational space by making use of the Cartesian Interface</description>
+	<version>1.0</version>
+	
+	<arguments>
+		<param default="right_arm" required="no" desc="select robot arm (right_arm/left_arm)">part</param>
+		<param default="2.0" required="no" desc="specify the task execution time in seconds">T</param>
+		<param default="icub" required="no" desc="robot name">robot</param>
+		<switch default="no" required="no" desc="enable the control of torso yaw joint">DOF8</switch>
+		<switch default="no" required="no" desc="enable the control of torso yaw/pitch joints">DOF9</switch>
+		<switch default="no" required="no" desc="enable the control of torso yaw/pitch/roll joints">DOF10</switch>
+		<switch default="no" required="no" desc="disable orientation control">onlyXYZ</switch>
+	</arguments>
+			
+	<authors>
+        <author email="ugo.pattacini@iit.it">Ugo Pattacini</author>
+    </authors>
+	
+	<data>
+        <input>
+            <type>Vector</type>
+            <port carrier="tcp">/reachObject/xd:i</port>
+            <required>no</required>
+            <priority>no</priority>
+            <description>a vector of 3d position and orientation of robot hand</description>
+        </input>
+
+        <input>
+            <type>Rpc</type>
+            <port carrier="tcp">/reachObject/rpc</port>
+            <required>no</required>
+            <priority>no</priority>
+            <description>rpc interface</description>
+        </input>
+	</data>		
+
+    <dependencies>
+        <computer>
+        </computer>
+    </dependencies>
+
+	<development>
+		<include></include>
+		<library>YARP</library>
+        <library>OpenCv</library>
+	</development>
+	
+</module>

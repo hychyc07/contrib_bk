@@ -1,0 +1,40 @@
+<grammar xml:lang="fr-fr">
+  <rule id="numbers">
+    <one-of>
+      <item>one</item>
+      <item>two</item>
+      <item>three</item>
+      <item>four</item>
+    </one-of>
+  </rule>
+
+  <rule id="quantity">
+    <one-of>
+      <item>a bit</item>
+      <item>a few</item>
+    </one-of>
+  </rule>
+  
+  <rule id="product">
+    <one-of>
+      <item>tequila</item>
+      <item>vodka</item>
+    </one-of>
+  </rule>
+
+  <rule id="request" scope="public">
+    I would like to buy
+    <one-of>
+      <item>
+        <ruleref uri="#numbers"/>
+      </item>
+      <item>
+        <ruleref uri="#quantity"/>
+      </item>
+    </one-of>
+    of
+    <item>
+      <ruleref uri="#product"/>
+    </item>
+  </rule>
+</grammar>

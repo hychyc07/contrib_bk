@@ -1,0 +1,47 @@
+
+<application>
+<name>Demo Gesture Recognition</name>
+
+		<module>
+			<name>iSpeak</name>
+			<node>icub15</node>
+			<tag>iSpeakTag</tag>
+        </module>
+		
+		<module>
+			<name>executionModule</name>
+			<node>icub-b11</node>
+			<tag>executionModuleTag</tag>
+        </module>
+		
+		<module>
+			<name>demoGestureRecognitionModule</name>
+			<node>/icub-b12</node>
+			<tag>demoGestRecTag</tag>
+        </module>
+		
+        <connection>
+            <from>/GestRecognition/scores</from>
+            <to>/demoActionRecognition/in</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/donePort</from>
+            <to>/demoActionRecognition/rpc</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/demoActionRecognition/out</from>
+            <to>/executionModule/rpc</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/demoActionRecognition/outspeak</from>
+            <to>/iSpeak</to>
+            <protocol>tcp</protocol>
+        </connection>
+
+</application>

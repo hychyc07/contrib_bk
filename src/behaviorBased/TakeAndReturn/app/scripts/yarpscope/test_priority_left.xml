@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<portscope rows="6" columns="1" carrier="mcast">
+    <plot gridx="0"
+          gridy="0"
+          hspan="1"
+          vspan="1"
+          title="WonderAround"
+          size="1000"
+          minval="-3"
+          maxval="3"
+          bgcolor="White">
+        <graph remote="/reachObject/xd:i/wonderAround/leftArmXd:debug"
+               index="1"
+               color="Blue"
+               title="Stimulation"
+               type="Line"
+               size="2" />
+        <graph remote="/reachObject/xd:i/wonderAround/leftArmXd:debug"
+               index="2"
+               color="Red"
+               title="Activation"
+               size="2"
+               type="Line" />
+    </plot>
+
+    <plot gridx="0"
+          gridy="1"
+          hspan="1"
+          vspan="1"
+          title="pf3dDetector"
+          size="1000"
+          minval="-3"
+          maxval="3"
+          bgcolor="White">
+        <graph remote="/reachObject/xd:i/pf3dDetector/gazeXd:debug"
+               index="1"
+               color="Blue"
+               title="Stimulation"
+               type="Line"
+               size="2" />
+        <graph remote="/reachObject/xd:i/pf3dDetector/gazeXd:debug"
+               index="2"
+               color="Red"
+               title="Activation"
+               size="2"
+               type="Line" />
+    </plot>
+
+
+    <plot gridx="0"
+          gridy="2"
+          hspan="1"
+          vspan="1"
+          title="graspDetect"
+          size="1000"
+          minval="-3"
+          maxval="3"
+          bgcolor="White">
+        <graph remote="/reachObject/xd:i/graspDetect/graspCmd:debug"
+               index="1"
+               color="Blue"
+               title="Stimulation"
+               type="Line"
+               size="2" />
+        <graph remote="/reachObject/xd:i/graspDetect/graspCmd:debug"
+               index="2"
+               color="Red"
+               title="Activation"
+               size="2"
+               type="Line" />
+    </plot>
+
+
+    <plot gridx="0"
+          gridy="3"
+          hspan="1"
+          vspan="1"
+          title="faceDetector"
+          size="1000"
+          minval="-3"
+          maxval="3"
+          bgcolor="White">
+        <graph remote="/reachObject/xd:i/faceDetector/gazeXd:debug"
+               index="1"
+               color="Blue"
+               title="Stimulation"
+               type="Line"
+               size="2" />
+        <graph remote="/reachObject/xd:i/faceDetector/gazeXd:debug"
+               index="2"
+               color="Red"
+               title="Activation"
+               size="2"
+               type="Line" />
+    </plot>
+
+    <plot gridx="0"
+          gridy="4"
+          hspan="1"
+          vspan="1"
+          title="releaseDetect"
+          size="1000"
+          minval="-3"
+          maxval="3"
+          bgcolor="White">
+        <graph remote="/reachObject/xd:i/releaseDetect/releaseCmd:debug"
+               index="1"
+               color="Blue"
+               title="Stimulation"
+               type="Line"
+               size="2" />
+        <graph remote="/reachObject/xd:i/releaseDetect/releaseCmd:debug"
+               index="2"
+               color="Red"
+               title="Activation"
+               size="2"
+               type="Line" />
+    </plot>
+
+
+    <plot gridx="0"
+          gridy="5"
+          hspan="1"
+          vspan="1"
+          title="graspObject"
+          size="1000"
+          minval="-3"
+          maxval="3"
+          bgcolor="White">
+        <graph remote="/reachObject/xd:i/graspObject/status/out:debug"
+               index="1"
+               color="Blue"
+               title="Stimulation"
+               type="Line"
+               size="2" />
+        <graph remote="/reachObject/xd:i/graspObject/status/out:debug"
+               index="2"
+               color="Red"
+               title="Activation"
+               size="2"
+               type="Line" />
+    </plot>
+
+
+
+
+
+</portscope>

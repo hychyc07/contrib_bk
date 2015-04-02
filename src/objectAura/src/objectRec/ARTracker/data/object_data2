@@ -1,0 +1,38 @@
+#the number of patterns to be recognized
+6
+
+#pattern 1
+Triangle
+Data/patt_triangle
+80.0
+0.0 0.0
+
+#pattern 2
+Moon
+Data/patt_moon
+80.0
+0.0 0.0
+
+#pattern 3
+Square
+Data/patt_square
+80.0
+0.0 0.0
+
+#pattern 4
+Heart
+Data/patt_heart
+80.0
+0.0 0.0
+
+#pattern 5
+Circle
+Data/patt_circle
+80.0
+0.0 0.0
+
+#pattern 6
+Star
+Data/patt_star
+80.0
+0.0 0.0

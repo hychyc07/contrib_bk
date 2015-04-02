@@ -1,0 +1,162 @@
+<application>
+<name>POETICON++ Affordance Descriptors</name>
+
+<dependencies>
+      <port>/icub/camcalib/left/out</port>
+</dependencies>
+
+<!-- vision - segmentation -->
+
+<module>
+	<name>lumaChroma</name>
+	<parameters>--image yuv --out</parameters>
+	<node>pwrNode</node>
+	<tag>lumaChromaModule</tag>
+</module>
+<module>
+	<name>blobExtractor</name>
+        <node>pwrNode</node>
+        <tag>blobExtractorModule</tag>
+</module>
+<!--
+<module>
+      <name>edisonSegmenter</name>
+      <parameters>- -from edison.ini</parameters>
+      <node>pwrNode</node>
+      <stdio>console</stdio>
+      <tag>edisonSegModule</tag>
+</module>
+-->
+
+<!-- vision - affordances -->
+
+<module>
+      <name>sequentialLabeller</name>
+      <node>pwrNode</node>
+      <!-- <stdio>console</stdio> -->
+      <tag>seqLabModule</tag>
+</module>
+<module>
+      <name>blobDescriptor</name>
+      <parameters>--from blobDescriptor.ini</parameters>
+      <node>pwrNode</node>
+      <!-- <stdio>console</stdio> -->
+      <tag>blobDescriptorModule</tag>
+</module>
+
+<!-- viewers -->
+
+<module>
+	<name>yarpview</name>
+	<parameters>--name /view/luma --x 0 --y 0 --RefreshTime 50</parameters>
+	<node>console</node>
+	<tag>lumaView</tag>
+</module>
+<module>
+	<name>yarpview</name>
+	<parameters>--name /view/blobs  --x 320 --y 0 --RefreshTime 50</parameters>
+	<node>console</node>
+	<tag>blobsView</tag>
+</module>
+<module>
+	<name>yarpview</name>
+	<parameters>--name /view/binary  --x 640 --y 0 --RefreshTime 50</parameters>
+	<node>console</node>
+	<tag>blobsView</tag>
+</module>
+
+<module>
+      <name>yarpview</name>
+      <parameters>--name /view/raw --x 0 --y 400 --RefreshTime 50</parameters>
+      <node>console</node>
+      <tag>raw_viewer</tag>
+</module>
+<module>
+      <name>yarpview</name>
+      <parameters>--name /view/lab --x 320 --y 400 --RefreshTime 50</parameters>
+      <node>console</node>
+      <tag>seq_viewer</tag>
+</module>
+<module>
+      <name>yarpview</name>
+      <parameters>--name /view/bd --x 640 --y 400 --RefreshTime 50</parameters>
+      <node>console</node>
+      <tag>aff_viewer</tag>
+</module>
+
+<!-- vision - segmentation connections -->
+
+<connection>
+	<from>/icub/camcalib/left/out</from>
+	<to>/lumaChroma/image:i</to>
+	<protocol>udp</protocol>
+</connection>
+<connection>
+	<from>/lumaChroma/image:o</from>
+	<to>/blobExtractor/img:i</to>
+	<protocol>udp</protocol>
+</connection>
+<connection>
+	<from>/lumaChroma/propImg:o</from>
+	<to>/blobExtractor/propImg:i</to>
+	<protocol>udp</protocol>
+</connection> 
+
+<!-- vision - affordances connections -->
+
+<connection>
+      <from>/blobExtractor/propImg:o</from>
+      <to>/sequentialLabeller/rawImg:i</to>
+      <protocol>udp</protocol>
+</connection>
+<connection>
+      <from>/blobExtractor/binary:o</from>
+      <to>/sequentialLabeller/binImg:i</to>
+      <protocol>udp</protocol>
+</connection>
+<connection>
+      <from>/sequentialLabeller/rawImg:o</from>
+      <to>/blobDescriptor/rawImg:i</to>
+      <protocol>udp</protocol>
+</connection>
+<connection>
+      <from>/sequentialLabeller/labeledImg:o</from>
+      <to>/blobDescriptor/labeledImg:i</to>
+      <protocol>udp</protocol>
+</connection>
+
+<!-- viewers connections -->
+
+<connection>
+	<from>/lumaChroma/image:o</from>
+	<to>/view/luma</to>
+	<protocol>udp</protocol>
+</connection>
+<connection>
+	<from>/blobExtractor/img:o</from>
+	<to>/view/blobs</to>
+	<protocol>udp</protocol>
+</connection> 
+<connection>
+	<from>/blobExtractor/binary:o</from>
+	<to>/view/binary</to>
+	<protocol>udp</protocol>
+</connection> 
+
+<connection>
+      <from>/sequentialLabeller/rawImg:o</from>
+      <to>/view/raw</to>
+      <protocol>udp</protocol>
+</connection>
+<connection>
+      <from>/sequentialLabeller/labeledImg:o</from>
+      <to>/view/lab</to>
+      <protocol>udp</protocol>
+</connection>
+<connection>
+      <from>/blobDescriptor/viewImg:o</from>
+      <to>/view/bd</to>
+      <protocol>udp</protocol>
+</connection>
+
+</application>

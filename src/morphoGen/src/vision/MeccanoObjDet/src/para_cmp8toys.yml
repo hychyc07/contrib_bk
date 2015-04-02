@@ -1,0 +1,57 @@
+%YAML:1.0
+% 1. table_method can be 1 (TableGrouppt) and 0 (TablePlain)
+% 2. You may change chamfer_para.th_match_score for different recall-precision
+%    Higher this threshold, less false positive and less true positive 
+% 3. change the path and name for the training data binary file or yml file
+%    tr_bin_file, tr_yml_file
+%    You should offer either of these two files.
+table_method: 1
+tr_bin_file: data/tr_data_cmp8toys.bin
+tr_yml_file: data/tr_data_cmp8toys.yml
+norm_para:
+   h_fix: 48
+   w_fix: 48
+test_para:
+   max_cols_rows: 640
+   scale_factor: 1.20
+   aspect_factor: 1.15
+   min_scale: -10
+   max_scale: -1
+   min_aspect: 0
+   max_aspect: 0
+   canny_thigh: 180.
+   canny_tlow: 90.
+   min_edge_pt: 120
+   th_overlap_out: 0.3
+   nmin_matches: 12
+   sliding_step: 3
+chamfer_para:
+   th_dis: 3.1
+   th_ori: 3.4906587004661560e-01
+   th_match_score: 0.64
+   k_linear: 0.7143
+   b_linear: 51.4
+quantize_para:
+   n_bin_dis: 4
+   n_bin_ori: 8
+   MAX_range_dis: 12.
+   MAX_range_ori: 6.2831854820251465
+grouppt_para:
+   n_pt: 3
+   n_table: 50
+   nmin_matches: 4
+cluster_para:
+   K: 1000
+   sigma_2: 6.25e-02
+inds_para:
+   n_cell_x: 8
+   n_cell_y: 8
+n_obj_cls: 8
+obj0: block
+obj1: eye
+obj2: screw
+obj3: driver
+obj4: bridge
+obj5: whiteblock
+obj6: cup
+obj7: lid

@@ -1,0 +1,54 @@
+<application>
+
+	<!--Generic Information-->
+	<name> SimBalancerApp </name>
+	<description> Very first version of balancerApp for use with iCub_SIM</description>
+	<version>0.1</version>
+
+	<authors>
+			<author> email="jorhabib.eljaik@iit.it" </author>
+	</authors>
+
+	<!--Required modules-->
+	<module>
+		<name>iCub_SIM</name>
+		<node>localhost</node>
+	</module>
+
+	<module>
+		<name>wholeBodyDynamics</name>
+		<parameters>--robot icubSim --autoconnect --dummy_ft --enable_w0_dw0</parameters>
+		<node>localhost</node>
+		<dependencies> <port timeout="10"> /icubSim/torso/state:o </port>
+		</dependencies>
+	</module>
+
+	<module>
+		<name>iCubGui</name>
+		<parameters>--robot icubSim</parameters>
+		<node>localhost</node>
+	</module>	
+
+	<module>
+		<name>/home/jorhabib/Documents/IIT/BalancerModule/build/balancerModule</name>
+		<parameters>--robot icubSim --headV2 --display_zmp</parameters>
+		<node>localhost</node>
+		<dependencies> <port timeout="30"> /wholeBodyDynamics/right_leg/endEffectorWrench:o </port>
+					   <port timeout="30"> /wholeBodyDynamics/left_leg/endEffectorWrench:o </port>
+					   <port timeout="30"> /iCubGui/iCubGui/objects </port>
+					   <port timeout="30"> /wholeBodyDynamics/left_leg/EE:o </port>
+					   <port timeout="30"> /wholeBodyDynamics/right_leg/EE:o </port>
+		</dependencies>
+	</module>
+
+	<module>
+		<name>/home/jorhabib/Documents/IIT/GuiBalancer/build/GuiBalancer</name>
+		<node>localhost</node>
+		<dependencies><port timeout="30"> /iCubGui/iCubGui/objects </port>
+					  <port timeout="30"> /balanceModule/DSPzmp:o </port>
+		</dependencies>
+	</module>
+
+	<!--connections-->
+
+</application>

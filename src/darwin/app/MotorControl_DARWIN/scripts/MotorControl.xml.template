@@ -1,0 +1,107 @@
+<application>
+<name>MotorControl_DARWIN</name>
+
+<dependencies>
+	<port>/icub/skin/left_hand_comp</port>
+	<port>/icub/skin/right_hand_comp</port>
+</dependencies>
+
+<module>
+  <name>LowLevelController_DARWIN</name>
+  <node>icub14</node>
+  <stdio>icub14</stdio>
+  <tag>LLController</tag>
+</module>
+
+<module>
+  <name>PassiveMotionParadigm_DARWIN</name>
+  <node>icub14</node>
+  <stdio>icub14</stdio>
+  <tag>pmp</tag>
+</module>
+
+<module>
+  <name>Grasper_DARWIN</name>
+  <node>icub14</node>
+  <stdio>icub14</stdio>
+  <tag>Grasper</tag>
+</module>
+
+<module>
+  <name>yarp read</name>
+    <parameters> /activatedFingersR:i</parameters>
+  <node>icub14</node>
+  <stdio>icub14</stdio>
+  <tag>touchinfoR</tag>
+</module>
+
+<module>
+  <name>yarp read</name>
+    <parameters> /activatedFingersL:i</parameters>
+  <node>icub14</node>
+  <stdio>icub14</stdio>
+  <tag>touchinfoL</tag>
+</module>
+
+<connection>
+  <from>/PMPthread/rpc</from>
+  <to>/DevDriver/rpc</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+<from>/grasper/cmd:o</from>
+<to>/DevDriver/rpc</to>
+</connection>
+
+<connection>
+<from>/icub/skin/right_hand_comp </from>
+<to>/touchHandler/right_hand:i </to>
+<protocol>tcp</protocol>
+</connection>
+
+<connection>
+<from>/icub/skin/left_hand_comp </from>
+<to>/touchHandler/left_hand:i </to>
+<protocol>tcp</protocol>
+</connection>
+
+<connection>
+<from>/touchHandler/right_hand:state</from>
+<to>/activatedFingersR:i</to>
+</connection>
+
+<connection>
+<from>/touchHandler/left_hand:state</from>
+<to>/activatedFingersL:i</to>
+</connection>
+
+ </application>
+
+ <module>
+	<name>yarp rpc</name>
+	<parameters> --client /pmp/cmd:rpc</parameters>
+	<node>icub14</node>
+	<stdio>icub14</stdio>
+	<tag>pmp_cmds</tag>
+ </module>
+
+ <module>
+	<name>yarp rpc</name>
+	<parameters>--client /dev/cmd:rpc</parameters>
+	<node>icub14</node>
+	<stdio>icub14</stdio>
+	<tag>dev_cmds</tag>
+ </module>
+ 
+<connection>
+  <from>/dev/cmd:rpc</from>
+  <to>/DevDriver/rpc</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/pmp/cmd:rpc</from>
+  <to>/PMPmodule/rpc</to>
+  <protocol>tcp</protocol>
+</connection>

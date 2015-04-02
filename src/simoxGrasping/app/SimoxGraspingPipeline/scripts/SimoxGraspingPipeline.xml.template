@@ -1,0 +1,47 @@
+<application>
+<name>Simox Grasping Pipeline</name>
+    
+        <module>
+                <name>SimoxIkSolverModule</name>
+                <parameters>--robot icub</parameters>
+                <node>localhost</node>
+                <tag>SimoxIkSolverModule</tag>
+        </module>
+        
+        <module>
+                <name>SimoxRobotViewerModule</name>
+                <parameters>--robot icub --from SimoxRobotViewer_iCub_RightHand.ini</parameters>
+                <node>localhost</node> 
+                <tag>SimoxRobotViewerModule</tag>
+        </module>
+       
+        <module>
+                <name>SimoxMotionPlannerModule</name>
+                <parameters>--robot icub</parameters>
+                <node>localhost</node> 
+                <tag>SimoxMotionPlannerModule</tag>
+        </module>
+     
+        <module>
+                <name>SimoxLegoLocalizerModule</name>
+                <parameters>--robot icub</parameters>
+                <node>localhost</node>
+                <tag>SimoxLegoLocalizerModule</tag>
+        </module>
+
+        <module>
+                <name>SimoxGraspExecutionModule</name>
+                <parameters>--robot icub</parameters>
+                <node>localhost</node>
+                <tag>SimoxGraspExecutionModule</tag>
+        </module>
+
+        <module>
+                <name>SimoxGraspingPipelineControl</name>
+                <parameters>--robot icub</parameters>
+                <node>localhost</node>
+                <tag>SimoxGraspingPipelineControl</tag>
+        </module>
+
+
+</application>

@@ -1,0 +1,54 @@
+<application>
+    <name>Multi Sensory Object Recognition</name>
+
+    <dependencies>
+    </dependencies>
+
+   <module>
+      <name>skinDriftCompensation</name>
+      <parameters>--from SkinDriftCompensationRight.ini --context graspingDemo/conf</parameters>
+	    <node>console</node>
+      <stdio>console</stdio>
+	    <tag>drifCompR</tag>
+   </module>
+
+  <module>
+    <name>iCubSkinGui</name>
+    <parameters>--from righthand.ini --useCalibration</parameters>
+    <node>console</node>
+    <tag>skinGuiR</tag>
+  </module>  
+
+    <module>
+        <name>multiSensoryObjRec</name>
+        <node>bjoern-laptop</node>
+        <parameters>--from multiSensoryObjRec.ini --arm right</parameters>
+        <tag>multiSensoryObjRec</tag>
+    </module>
+
+    <!--Connections between SkinDriftCompensation module and the SkinGui-->
+    <connection>
+        <from>/icub/skin/righthandcomp</from>
+        <to>/skinGui/right_hand:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+    <!--Connections between skinDriftCompensation module and tactileGrasp-->
+    <connection>
+        <from>/icub/skin/righthandcomp</from>
+        <to>/multiSensoryObjRec/compTactData:i</to>
+        <protocol>rpc</protocol>
+    </connection>
+
+    <connection>
+        <from>/icub/camRight:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+    <connection>
+        <from>/icub/cam/left</from>
+        <to>/multiSensoryObjRec/camLeft:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+</application>

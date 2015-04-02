@@ -1,0 +1,216 @@
+
+<application>
+<name>procedural memory demo; covert offline</name>
+
+<dependencies>
+</dependencies>
+
+<module>
+   <name>imageSource</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/proceduralMemory/conf</parameters>
+   <node>icub1</node>
+   <tag>imageSource</tag>
+</module>
+
+<module>
+   <name>selectiveTuning</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/proceduralMemory/conf </parameters>
+   <node>icub1</node>
+   <tag>selectiveTuning</tag>
+</module>
+
+<module>
+   <name>overtAttention</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/proceduralMemory/conf --covertMode 1</parameters>
+   <node>icub1</node>
+   <tag>overtAttention</tag>
+</module>
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/proceduralMemory/conf </parameters>
+   <node>icub1</node>
+   <tag>logpolarTransform</tag>
+</module>
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--name inverseLogpolarTransformA --direction LOGPOLAR2CARTESIAN --context ../contrib/src/cognitiveArchitecture/app/proceduralMemory/conf </parameters>
+   <node>icub1</node>
+   <tag>inverseLogpolarTransformA</tag>
+</module>
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--name inverseLogpolarTransformB --direction LOGPOLAR2CARTESIAN --context ../contrib/src/cognitiveArchitecture/app/proceduralMemory/conf </parameters>
+   <node>icub1</node>
+   <tag>inverseLogpolarTransformB</tag>
+</module>
+
+<module>
+   <name>episodicMemory</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/proceduralMemory/conf</parameters>
+   <node>icub1</node>
+   <tag>episodicMemory</tag>
+</module>
+ 
+
+<module>
+   <name>proceduralMemory</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/proceduralMemory/conf </parameters>
+   <node>icub1</node>
+   <tag>proceduralMemory</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /inputImage --x 000 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>input_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /wtaImage --x 340 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>wta_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /iorImage --x 680 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>ior_image</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /postSaccadeImage --x 1020 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>postsaccade_image</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /episodic_images --x 680 --y 360 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>episodic_images</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /recalled_image --x 1020 --y 360 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>recalled_image</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /graph_image --x 340 --y 360 --w 320 --h 318</parameters>
+   <node>icub1</node>
+   <tag>graph_image</tag>
+</module>
+
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/inputImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/selectiveTuning/visualImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/overtAttention/visualImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/selectiveTuning/wtaImage:o</from>
+  <to>/wtaImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/selectiveTuning/wtaUnits:o</from>
+  <to>/overtAttention/wtaUnits:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/overtAttention/iorImage:o</from>
+  <to>/iorImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/overtAttention/visualImage:o</from>
+  <to>/postSaccadeImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/overtAttention/iorImage:o</from>
+  <to>/selectiveTuning/biasImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+   <from>/overtAttention/visualImage:o</from>
+   <to>/logpolarTransform/image:i</to>
+   <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/overtAttention/gazeAngles:o</from>
+  <to>/episodicMemory/action:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+   <from>/logpolarTransform/image:o</from>
+   <to>/episodicMemory/image:i</to>
+   <protocol>tcp</protocol>
+</connection>
+
+<connection>
+   <from>/episodicMemory/recalledImage:o</from>
+   <to>/inverseLogpolarTransformB/image:i</to>
+   <protocol>tcp</protocol>
+</connection>
+
+<connection>
+   <from>/inverseLogpolarTransformB/image:o</from>
+   <to>/recalled_image</to>
+   <protocol>tcp</protocol>
+</connection>
+
+<connection>
+   <from>/episodicMemory/mosaicImage:o</from>
+   <to>/episodic_images</to>
+   <protocol>tcp</protocol>
+</connection>
+
+<connection>
+   <from>/episodicMemory/imageId:o</from>
+   <to>/proceduralMemory/imageId:i</to>
+   <protocol>tcp</protocol>
+ </connection>
+
+ 
+<connection>
+   <from>/proceduralMemory/graph:o</from>
+   <to>/graph_image</to>
+   <protocol>tcp</protocol>
+</connection>
+
+</application>

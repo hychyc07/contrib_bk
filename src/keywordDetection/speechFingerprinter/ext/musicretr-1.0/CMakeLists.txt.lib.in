@@ -1,0 +1,36 @@
+# Copyright: (C) 2010 RobotCub Consortium
+# Authors: Christian Dondrup
+# CopyPolicy: Released under the terms of the GNU GPL v2.0.
+
+cmake_minimum_required(VERSION 2.6)
+SET(KEYWORD @KEYWORD@)
+PROJECT(${KEYWORD})
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated")
+
+INCLUDE(FindPkgConfig)
+
+pkg_check_modules(FFTW3 REQUIRED fftw3)
+
+message(STATUS "Creating pkg-config file")
+CONFIGURE_FILE(@CMAKE_CURRENT_SOURCE_DIR@/${KEYWORD}.pc.in @CMAKE_CURRENT_BINARY_DIR@/${KEYWORD}.pc @ONLY)
+
+FILE(GLOB source @CMAKE_CURRENT_BINARY_DIR@/@downloaddir@/${KEYWORD}/*.cc)
+FILE(GLOB header @CMAKE_CURRENT_BINARY_DIR@/@downloaddir@/${KEYWORD}/*.h)
+
+INCLUDE_DIRECTORIES(${FFTW3_INCLUDE_DIRS})
+
+ADD_LIBRARY(${KEYWORD} SHARED ${source})
+
+LINK_DIRECTORIES(${FFTW3_LIBRARY_DIRS})
+
+TARGET_LINK_LIBRARIES(${KEYWORD} ${FFTW3_LIBRARIES})
+
+INSTALL(FILES ${header} ${source} DESTINATION include/${KEYWORD})
+INSTALL(FILES @CMAKE_CURRENT_BINARY_DIR@/${KEYWORD}.pc DESTINATION lib/pkgconfig)
+INSTALL(TARGETS ${KEYWORD} LIBRARY DESTINATION lib)
+INSTALL(FILES 
+	@CMAKE_CURRENT_BINARY_DIR@/@downloaddir@/${KEYWORD}/boostdescr3.txt 
+	@CMAKE_CURRENT_BINARY_DIR@/@downloaddir@/${KEYWORD}/emparams3.bin
+	DESTINATION etc/${KEYWORD}
+)

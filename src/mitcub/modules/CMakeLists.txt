@@ -1,0 +1,5 @@
+
+add_subdirectory(imageLabeler)
+add_subdirectory(featureExtractor)
+add_subdirectory(datasetCreator)
+add_subdirectory(extractorManager)

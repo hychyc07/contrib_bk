@@ -1,0 +1,50 @@
+<application>
+<name>mitcub_experiment</name>
+
+		<module>
+				<name>extractorManager</name>
+				<node>icub14</node>
+				<tag>extractor_manager</tag>
+		</module>
+		<module>
+				<name>featureExtractor</name>
+				<parameters>--from config.ini</parameters>
+				<node>icub-b14</node>
+				<tag>feature_extractor</tag>
+		</module>
+		<module>
+				<name>dataSetPlayer</name>
+				<parameters>--hidden --add_prefix</parameters>
+				<node>icub14</node>
+				<tag>dataset_player</tag>
+		</module>
+
+
+
+		<connection persist="true">
+                <from>/extractorManager/dataSetPlayer:io</from>
+                <to>/dataSetPlayer/rpc:i</to>
+                <protocol>tcp</protocol>
+        </connection>
+		<connection persist="true">
+                <from>/extractorManager/featureExtractor:io</from>
+                <to>/featureExtractor/rpc</to>
+                <protocol>tcp</protocol>
+        </connection>
+		
+		<connection persist="true">
+                <from>/featureExtractor/dataset:io</from>
+                <to>/dataSetPlayer/rpc:i</to>
+                <protocol>tcp</protocol>
+        </connection>
+		<connection persist="true">
+                <from>/dataSetPlayer/icub/camcalib/left/out</from>
+                <to>/featureExtractor/img:i</to>
+                <protocol>tcp</protocol>
+        </connection>
+		<connection persist="true">
+                <from>/dataSetPlayer/image_labeler/label:o</from>
+                <to>/featureExtractor/label:i</to>
+                <protocol>tcp</protocol>
+        </connection>
+</application>

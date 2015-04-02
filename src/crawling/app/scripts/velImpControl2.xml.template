@@ -1,0 +1,56 @@
+<application>
+<name>Crawling_velocity_impedance_control_2</name>
+
+        <dependencies>
+                <port>/icub/torso/state:o</port>
+                <port>/icub/head/state:o</port>
+                <port>/icub/right_arm/state:o</port>
+                <port>/icub/left_arm/state:o</port>
+                <port>/icub/right_leg/state:o</port>
+                <port>/icub/left_leg/state:o</port>
+        </dependencies>
+    
+        <module>
+                <name>velImpControl2</name>
+                <parameters>--from left_armStiffnessConfig.ini --robot icub --part left_arm --period 50</parameters>
+                <node>node1</node>
+                <tag>velLeftArm</tag>
+        </module>
+        
+        <module>
+                <name>velImpControl2</name>
+                <parameters>--from right_armStiffnessConfig.ini --robot icub --part right_arm --period 50</parameters>
+                <node>node1</node>
+                <tag>velRightArm</tag>
+        </module>
+        
+        <module>
+                <name>velImpControl2</name>
+                <parameters>--from left_legStiffnessConfig.ini --robot icub --part left_leg --period 50</parameters>
+                <node>node1</node>
+                <tag>velLeftLeg</tag>
+        </module>
+   
+        <module>
+                <name>velImpControl2</name>
+                <parameters>--from right_legStiffnessConfig.ini --robot icub --part right_leg --period 50</parameters>
+                <node>node1</node>
+                <tag>velRightLeg</tag>
+        </module> 
+          
+        <module>
+                <name>velImpControl</name>
+                <parameters>--from headStiffnessConfig.ini --robot icub --part head --period 50</parameters>
+                <node>node1</node>
+                <tag>velHead</tag>
+        </module>
+        
+        <module>
+                <name>velImpControl</name>
+                <parameters>--from torsoStiffnessConfig.ini --robot icub --part torso --period 50</parameters>
+                <node>node1</node>
+                <tag>velTorso</tag>
+        </module>
+   
+
+</application>

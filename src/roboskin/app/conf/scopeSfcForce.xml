@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<portscope rows="3" columns="1">
+    <plot gridx="0"
+          gridy="0"
+          hspan="1"
+          vspan="1"
+          title="Force X"
+          size="60"
+          minval="-20"
+          maxval="20"
+          bgcolor="LightSlateGrey">
+        <graph remote="/skinForceControl/monitor:o"
+               index="10"
+               color="Red"
+               title="F"
+               type="lines"
+               size="3" />
+        <graph remote="/skinForceControl/monitor:o"
+               index="11"
+               color="Green"
+               title="Fd"
+               size="3"
+               type="lines" />
+    </plot>
+    
+    <plot gridx="0"
+          gridy="1"
+          hspan="1"
+          vspan="1"
+          title="Force Y"
+          size="60"
+          minval="-20"
+          maxval="20"
+          bgcolor="LightSlateGrey">
+        <graph remote="/skinForceControl/monitor:o"
+               index="12"
+               color="Red"
+               title="F"
+               type="lines"
+               size="3" />
+        <graph remote="/skinForceControl/monitor:o"
+               index="13"
+               color="Green"
+               title="Fd"
+               size="3"
+               type="lines" />
+    </plot>
+    
+    <plot gridx="0"
+          gridy="2"
+          hspan="1"
+          vspan="1"
+          title="Force Z"
+          size="60"
+          minval="-20"
+          maxval="20"
+          bgcolor="LightSlateGrey">
+        <graph remote="/skinForceControl/monitor:o"
+               index="14"
+               color="Red"
+               title="F"
+               type="lines"
+               size="3" />
+        <graph remote="/skinForceControl/monitor:o"
+               index="15"
+               color="Green"
+               title="Fd"
+               size="3"
+               type="lines" />
+    </plot>
+
+</portscope>

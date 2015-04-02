@@ -1,0 +1,13 @@
+<launch>
+
+  <!-- dynamic map generation -->
+  <node name="gmapping_node" pkg="gmapping" type="slam_gmapping" respawn="false" >
+  <remap to="/ikart_ros_bridge/laser_out" from="scan" />
+  <param name="temporalUpdate" value="0.5" />
+  </node>
+
+  <!-- for visualization -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find iKartRosBridge)/display/rviz_build_map.vcg"/>
+
+</launch>
+

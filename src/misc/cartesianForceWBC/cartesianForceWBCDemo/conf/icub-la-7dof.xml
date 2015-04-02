@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<!-- perfect COMs for id0 and id1 and id3 and id4 and id5 and id6-->
+<!-- SAIxml general rules -->
+<!-- ROT affects JOINT OF SAME jointNode, but NOT LINK OF SAME jointNode-->
+<!-- ROT affects ALL CHILDREN jointNodes (on both JOINTS AND LINKS), and therefore ACCUMULATE-->
+<dynworld>
+  <baseNode>
+    <gravity>0, 0, -9.81</gravity>
+    <rot>0, 0, 1, 0</rot>
+    <jointNode>
+      <ID>0</ID>
+      <jointName>joint1</jointName>
+      <linkName>link1</linkName>
+      <type>R</type>
+      <axis>Y</axis>
+      <lowerJointLimit>-1.6668</lowerJointLimit>
+      <upperJointLimit>0.087266</upperJointLimit>
+      <mass>0.189</mass>
+      <inertia>0.0001209534, 0.0000095986, 0.0001207801</inertia>
+      <com>-0.00119, -0.0187, -0.000005</com>
+      <pos>0, 0, 0</pos><!-- This link is not painted, but creates offset -->
+      <rot>0, 0, 1, 0</rot>
+
+      <jointNode>
+        <ID>1</ID>
+        <jointName>joint2</jointName>
+        <linkName>link2</linkName>
+        <type>R</type>
+        <axis>X</axis>
+        <lowerJointLimit>-0.01</lowerJointLimit>
+        <upperJointLimit>2.8065</upperJointLimit>
+        <mass>0.179</mass>
+        <inertia>0.0001322538, 0.0001935622, 0.0001063126</inertia>
+        <com>-0.00627, 0.000094, -0.0166</com>
+        <pos>0, 0, 0</pos>
+        <rot>0, 0, 1, 0</rot>
+    
+    <jointNode>
+      <ID>2</ID>
+      <jointName>joint3</jointName>
+      <linkName>link3</linkName>
+      <type>R</type>
+      <axis>Z</axis><!-- affected by rot1 [see end of this jointNode] -->
+      <lowerJointLimit>-0.64577</lowerJointLimit>
+      <upperJointLimit>1.5708</upperJointLimit>
+	  <mass>0.884</mass>
+	  <inertia>0.0078203736, 0.0079476094, 0.0004923682</inertia>
+      <com>-0.012743, 0.003481, 0.089380</com><!-- screen -->
+      <pos>0, 0, 0</pos>
+      <rot>0, 1, 0,  3.14159265</rot><!-- lets call this rot1 -->
+      
+      <jointNode>
+        <ID>3</ID>
+        <jointName>joint4</jointName>
+        <linkName>link4</linkName>
+        <type>R</type>
+        <axis>Y</axis><!-- affected by rot2 [see end of this jointNode] -->
+        <lowerJointLimit>0.095993</lowerJointLimit>
+        <upperJointLimit>1.8500</upperJointLimit>
+	    <mass>0.074</mass>
+	    <inertia>0.0000279492, 0.0000109906, 0.0000311116</inertia><!-- H: by rot1 -->
+        <com>-0.0013, 0.00371, -0.001050</com><!-- H: by rot1 -->
+        <pos>-0.014488887394, 0.003882285677, 0.15228</pos><!-- affected by rot1 -->
+        <rot>0, 0, 1, 2.87979326579064</rot><!-- lets call this rot2, accumulates on rot1 -->
+
+        <jointNode>
+          <ID>4</ID>
+          <jointName>joint5</jointName>
+          <linkName>link5</linkName>
+          <type>R</type>
+          <axis>Z</axis><!-- affected by rot2 -->
+          <lowerJointLimit>-1.5708</lowerJointLimit>
+          <upperJointLimit>1.5708</upperJointLimit>
+	      <mass>0.525</mass>
+	      <inertia>0.0029896532, 0.0024633732, 0.0007727215</inertia><!-- H: by rot2 -->
+          <com>-0.00476, -0.000347, 0.066</com><!-- H: by rot2 -->
+          <pos>-0.015, 0, 0</pos><!-- affected by rot2 -->
+          <rot>0, 0, 1, 0</rot>
+
+        <jointNode>
+          <ID>5</ID>
+          <jointName>joint6</jointName>
+          <linkName>link6</linkName>
+          <type>R</type>
+          <axis>X</axis><!-- affected by rot3 -->
+          <lowerJointLimit>-1.5708</lowerJointLimit>
+          <upperJointLimit>1.5708</upperJointLimit>
+	      <mass>0.000000001</mass>
+	      <inertia>0.000000001, 0.000000001, 0.000000001</inertia>
+          <com>0, 0, 0</com><!-- H: by rot2 -->
+          <pos>0, 0, 0.1373</pos><!-- affected by rot2 -->
+          <rot>0, 0, 1, 3.14159265</rot><!-- lets call this rot3, accumulates on rot2 -->
+
+        <jointNode>
+          <ID>6</ID>
+          <jointName>joint7</jointName>
+          <linkName>link7</linkName>
+          <type>R</type>
+          <axis>Y</axis><!-- affected by rot3 -->
+          <lowerJointLimit>-1.5708</lowerJointLimit>
+          <upperJointLimit>1.5708</upperJointLimit>
+	      <mass>0.213</mass>
+	      <inertia>0.0013108817, 0.0014472224, 0.0001813867</inertia><!-- H: rot3 -->
+          <com>-0.0080511, -0.007000, 0.0703</com>
+          <pos>0, 0, 0</pos><!-- affected by rot3 -->
+          <rot>0, 0, 1, 0</rot>
+
+        </jointNode>
+      </jointNode>
+        </jointNode>
+      </jointNode>
+    </jointNode>
+      </jointNode>
+    </jointNode>
+  </baseNode>
+</dynworld>

@@ -1,0 +1,25 @@
+<application>
+<name>Skin Calibration</name>
+    <module>
+        <name>skinCalibration</name>
+        <parameters></parameters>
+        <node>thinkpad</node>
+        <stdio>thinkpad</stdio>
+        <tag>skinCalibration</tag>
+    </module>
+    <module>
+        <name>iCub_SIM</name>
+        <parameters></parameters>
+        <node>thinkpad</node>
+        <stdio>thinkpad</stdio>
+        <tag>simulator</tag>
+    </module>
+    <module>
+        <name>simWholeBodyTorqueObserver</name>
+        <parameters></parameters>
+        <node>thinkpad</node>
+        <stdio>thinkpad</stdio>
+        <tag>simWholeBodyTorqueObserver</tag>
+    </module>
+    
+</application>

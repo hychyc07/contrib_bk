@@ -1,0 +1,17 @@
+# Copyright: (C) 2010 RobotCub Consortium
+# Authors: Giorgio Metta, Francesco Rea
+# CopyPolicy: Released under the terms of the GNU GPL v2.0.
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+SET(PROJECTNAME eyePathFinder)
+PROJECT(${PROJECTNAME})
+
+INCLUDE_DIRECTORIES(${ICUB_INCLUDE_DIRS}
+                    ${OpenCV_INCLUDE_DIRS}
+                    ${YARP_INCLUDE_DIRS}
+)
+					
+SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${ICUB_LINK_FLAGS}")					
+
+ADD_EXECUTABLE(${PROJECTNAME} main.cpp)
+TARGET_LINK_LIBRARIES(${PROJECTNAME} ${OpenCV_LIBRARIES} ${YARP_LIBRARIES})
+INSTALL_TARGETS(/bin ${PROJECTNAME})

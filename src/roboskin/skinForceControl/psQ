@@ -1,0 +1,1 @@
+portScope --local /psQ --title JointAngle --dx 600 --dy 1000 --x 1100 --y 0 --remote /skinForceControl/monitor:o --rows 5 --cols 1 --index "((41 102) (42 103) (43 104) (44 105) (45 106))"

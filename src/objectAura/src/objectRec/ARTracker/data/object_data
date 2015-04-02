@@ -1,0 +1,18 @@
+#the number of patterns to be recognized
+3
+
+#pattern 1
+cube
+Data/patt_square
+80.0
+
+#pattern 2
+cone
+Data/patt_triangle
+80.0
+
+#pattern 3
+sphere
+Data/patt_circle
+80.0
+

@@ -1,0 +1,18 @@
+LoomingDetector
+Christian Dondrup
+cdondrup@techfach.uni-bielefeld.de
+
+This program was designed to detect looming behavior of a tutoring
+person. This detection is achieved via a Kinect.
+The looming classification is calculated by the mean distance of the
+hand and the variance from that mean distance. If the hand comes closer
+to the kinect and the distance from the mean distance is greater than 
+two times the variance, looming will be assumed. The mean distance and
+variance are resetted if the hand moves backwards more than 10 cm to get
+a reliable looming detection.
+
+TODO:
+Output Bottle description
+
+Installation:
+See INSTALL file in this directory.

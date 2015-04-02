@@ -1,0 +1,11 @@
+
+<application>
+<name>Demo Gesture Recognition Dependencies</name>
+
+		<module>
+			<name>speechRecognizer</name>
+			<node>icub-win1</node>
+			<tag>speechRecognizerTag</tag>
+        </module>
+		
+</application>

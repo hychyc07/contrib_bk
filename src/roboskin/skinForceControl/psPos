@@ -1,0 +1,1 @@
+portScope --local /psPos --title Pos_xref_x --dx 400 --dy 600 --x 2100 --y 0 --remote /skinForceControl/monitor:o --rows 3 --cols 1 --index "((16 17 ) (18 19) ( 20 21))"

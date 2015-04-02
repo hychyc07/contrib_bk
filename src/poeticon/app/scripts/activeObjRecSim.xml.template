@@ -1,0 +1,66 @@
+<application>
+    <name>Active Object Recognition Application</name>
+
+    <dependencies>
+    </dependencies>
+
+    <module>
+        <name>iCub_SIM</name>
+        <parameters></parameters>
+        <node>picard</node>
+        <tag>iCub_SIM</tag>
+    </module>
+
+    <module>
+        <name>iKinCartesianSolver</name>
+        <parameters>--context simCartesianControl/conf --part right_arm</parameters>
+        <node></node>
+        <tag>rightArmSolver</tag>
+    </module>
+
+    <module>
+        <name>simCartesianControl</name>
+        <parameters></parameters>
+        <node></node>
+        <tag>simCartesianSolverRight</tag>
+    </module>
+
+    <module>
+        <name>iKinGazeCtrl</name>
+        <parameters>--from configSim.ini --robot icubSim</parameters>
+        <node></node>
+        <tag>iKinGazeCtrl</tag>
+    </module>
+
+    <connection>
+        <from>/icubSim/skin/right_hand</from>
+        <to>/activeObjRec/compTactData:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+    <connection>
+        <from>/activeObjRec/world:o</from>
+        <to>/icubSim/world</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+    <connection>
+        <from>/activeObjRec/worldSync:o</from>
+        <to>/icubSim/world</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+    <connection>
+        <from>/icubSim/cam/right</from>
+        <to>/activeObjRec/camRight:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+    <connection>
+        <from>/icubSim/cam/left</from>
+        <to>/activeObjRec/camLeft:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+</application>
+

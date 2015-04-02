@@ -1,0 +1,13 @@
+/**
+* \defgroup icub_contrib_module_example example
+* @ingroup icub_contrib_modules
+*
+*
+* A doxygen example. This is just an example to include your module in the group of documented iCub contrib modules. If you want to have a look at the Doxygen code used to genereate this simple documentation you can have a look at the following file:
+\verbatim
+   
+    user@pc:ICUB_ROOT/contrib/src/doc/example.dox
+   
+\endverbatim
+*
+*/

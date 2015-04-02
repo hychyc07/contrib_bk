@@ -1,0 +1,67 @@
+<application>
+<name>PassiveMotionParadigm_DARWIN</name>
+
+<dependencies>
+	<port>/icub/skin/left_hand_comp</port>
+	<port>/icub/skin/right_hand_comp</port>
+</dependencies>
+
+<module>
+  <name>LowLevelController_DARWIN</name>
+  <node>icub14</node>
+  <stdio>icub14</stdio>
+  <tag>LLController</tag>
+</module>
+
+<module>
+  <name>PassiveMotionParadigm_DARWIN</name>
+  <node>icub14</node>
+  <stdio>icub14</stdio>
+  <tag>pmp</tag>
+</module>
+ 
+ <module>
+	<name>yarp rpc</name>
+	<parameters>/PMPmodule/rpc</parameters>
+	<node>icub14</node>
+	<stdio>icub14</stdio>
+	<tag>pmp_cmds</tag>
+ </module>
+ 
+<connection>
+  <from>/PMPthread/rpc</from>
+  <to>/DevDriver/rpc</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/PMPthread/right:o</from>
+  <to>/DevDriver/right:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/PMPthread/left:o</from>
+  <to>/DevDriver/left:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/PMPthread/torso:o</from>
+  <to>/DevDriver/torso:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+<from>/icub/skin/right_hand_comp </from>
+<to>/touchHandler/right_hand:i </to>
+<protocol>tcp</protocol>
+</connection>
+
+<connection>
+<from>/icub/skin/left_hand_comp </from>
+<to>/touchHandler/left_hand:i </to>
+<protocol>tcp</protocol>
+</connection>
+
+ </application>

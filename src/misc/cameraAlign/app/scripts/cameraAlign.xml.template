@@ -1,0 +1,65 @@
+<application>
+    <name>cameraAlign</name>
+
+    <dependencies>
+    </dependencies>
+
+    <module>
+        <name>cameraAlign</name>
+        <node>node</node>
+	<parameters>--name cameraAlignLeft</parameters>
+        <tag>cameraAlignLeft</tag>
+    </module>
+    <module>
+        <name>cameraAlign</name>
+        <node>node</node>
+	<parameters>--name cameraAlignRight</parameters>
+        <tag>cameraAlignRight</tag>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <node>node</node>
+        <parameters>--name /viewAlignLeft --x 0 --y 0 --out /desiredLineLeft --RefreshTime 33</parameters>
+        <tag>viewAlignLeft</tag>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <node>node</node>
+        <parameters>--name /viewAlignRight --x 320 --y 0 --out /desiredLineRight --RefreshTime 33</parameters>
+        <tag>viewAlignRight</tag>
+    </module>
+
+
+    <connection>
+        <from>/icub/camcalib/left/out</from>
+        <to>/cameraAlignLeft/image:i</to>
+        <protocol>udp</protocol>
+    </connection>
+    <connection>
+        <from>/icub/camcalib/right/out</from>
+        <to>/cameraAlignRight/image:i</to>
+        <protocol>udp</protocol>
+    </connection>
+
+    <connection>
+        <from>/desiredLineLeft</from>
+        <to>/cameraAlignLeft/coord:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+    <connection>
+        <from>/desiredLineRight</from>
+        <to>/cameraAlignRight/coord:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+    <connection>
+        <from>/cameraAlignLeft/image:o</from>
+        <to>/viewAlignLeft</to>
+        <protocol>udp</protocol>
+    </connection>
+    <connection>
+        <from>/cameraAlignRight/image:o</from>
+        <to>/viewAlignRight</to>
+        <protocol>udp</protocol>
+    </connection>
+</application>

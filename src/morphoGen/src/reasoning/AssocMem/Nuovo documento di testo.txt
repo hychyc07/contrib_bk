@@ -1,0 +1,38 @@
+int **p;
+for (m = 0 ; m < 2 ; m++) 
+{
+   p =  new int *[2] ;
+    for (m = 0 ; m < 2 ; n++)
+			{
+				p[m]=new int[5];
+			}
+}
+for (m = 0 ; m < 2 ; m++) 
+{
+    for (n = 0 ; n < 5 ; n++)
+			{
+				p[m][n]=A[m][n];
+			}
+}
+
+
+
+void AMem::TxposeMat(int **mat, int rows, int columns)
+{
+   mat = new int*[rows];
+   for (int i = 0; i < rows; ++i)
+   {
+      mat[i] = new int[columns];
+   }
+   int temp;
+   for (int i = 0; i<rows; i++)
+   {
+      for (int j = i+1; j<columns; j++)
+      {
+         temp=mat[i][j];
+         mat[i][j]=mat[j][i];
+         mat[j][i]=temp;
+      }
+   }
+ 
+};

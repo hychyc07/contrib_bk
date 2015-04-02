@@ -1,0 +1,97 @@
+<application>
+<name>Crawling_traj_generator_SIM</name>
+
+        <dependencies>
+                <port>/icubSim/vc/left_leg/fastCommand</port>
+                <port>/icubSim/vc/left_arm/fastCommand</port>
+                <port>/icubSim/vc/right_leg/fastCommand</port>
+                <port>/icubSim/vc/right_arm/fastCommand</port>
+                <port>/icubSim/vc/torso/fastCommand</port>
+                <port>/icubSim/vc/head/fastCommand</port> 
+        </dependencies>
+        
+        <module>
+                <name>crawlGeneratorModule</name>
+                <parameters>--from left_armConfig.ini --robot icubSim --part left_arm</parameters>
+                <node>node1</node>
+                <tag>genLeftArm</tag>
+        </module>
+        
+        <module>
+                <name>crawlGeneratorModule</name>
+                <parameters>--from right_armConfig.ini --robot icubSim --part right_arm</parameters>
+                <node>node1</node>
+                <tag>genRightArm</tag>
+        </module>
+        
+        <module>
+                <name>crawlGeneratorModule</name>
+                <parameters>--from left_legConfig.ini --robot icubSim --part left_leg</parameters>
+                <node>node1</node>
+                <tag>genLeftLeg</tag>
+        </module>
+        
+        <module>
+                <name>crawlGeneratorModule</name>
+                <parameters>--from right_legConfig.ini --robot icubSim --part right_leg</parameters>
+                <node>node1</node>
+                <tag>genRightLeg</tag>
+        </module>
+        
+        <module>
+                <name>crawlGeneratorModule</name>
+                <parameters>--from headConfig.ini --robot icubSim --part head</parameters>
+                <node>node1</node>
+                <tag>genHead</tag>
+        </module>
+        
+        <module>
+                <name>crawlGeneratorModule</name>
+                <parameters>--from torsoConfig.ini --robot icubSim --part torso</parameters>
+                <node>node1</node>
+                <tag>genTorso</tag>
+        </module>
+
+        
+        <connection>
+                <from>/crawlGenerator/left_arm/vcFastCommand</from>
+                <to>/icubSim/vc/left_arm/fastCommand</to>
+                <protocol>tcp</protocol>
+        </connection>
+        
+ 
+        <connection>
+                <from>/crawlGenerator/right_arm/vcFastCommand</from>
+                <to>/icubSim/vc/right_arm/fastCommand</to>
+                <protocol>tcp</protocol>
+        </connection>
+
+        <connection>
+                <from>/crawlGenerator/left_leg/vcFastCommand</from>
+                <to>/icubSim/vc/left_leg/fastCommand</to>
+                <protocol>tcp</protocol>
+        </connection>
+ 
+        <connection>
+                <from>/crawlGenerator/right_leg/vcFastCommand</from>
+                <to>/icubSim/vc/right_leg/fastCommand</to>
+                <protocol>tcp</protocol>
+        </connection>
+ 
+        <connection>
+                <from>/crawlGenerator/torso/vcFastCommand</from>
+                <to>/icubSim/vc/torso/fastCommand</to>
+                <protocol>tcp</protocol>
+        </connection>
+        
+        
+        <connection>
+                <from>/crawlGenerator/head/vcFastCommand</from>
+                <to>/icubSim/vc/head/fastCommand</to>
+                <protocol>tcp</protocol>
+        </connection>
+        
+  
+        
+</application>
+

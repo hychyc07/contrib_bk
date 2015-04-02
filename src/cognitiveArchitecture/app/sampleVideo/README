@@ -1,0 +1,22 @@
+sampleVideo.xml.template
+
+This application demonstates the use of the imageSource and sampleVideo modules.
+The imageSource module streams an image from a file to a port at a given frequency. 
+Random noise is added to each image to differentiate between frames. In this application, 
+the imageSource module streams the images to /icub/cam/left.
+The sampleVideo module sub-samples the stream of images to produce output images at a given frequency.
+
+The image file is provided in the $ICUB_ROOT/contrib/src/cognitiveArchitecture/src/sampleVideo/conf directory
+along with the imageSource.ini and sampleVideo.ini configuration files.
+
+Edit the xml.template file to suit your own platform.  
+The only changes that should be necessary are 
+
+- modify the node name to whatever is specified in your yarp run --server /nodename command (icub1 in the template)
+- modify the path to the /conf directory in the context parameter 
+  (remember: the resource finder searches from $ICUB_ROOT/app/ so make the path relative to this.
+- make sure that the port dependencies are satisfied
+
+David Vernon
+19/10/2010
+

@@ -1,0 +1,49 @@
+<module>
+	<name>pf3dTracker</name>
+	<description>Ball detector using particle filter</description>
+	<version>1.0</version>
+	
+	<arguments>
+		<param default="pf3dTracker_iCubGenova01_left.ini" required="yes" desc="pf3dTracker configuration file">from</param>
+		<!-- <switch default="" required="no" desc="">  </switch> -->
+	</arguments>
+			
+	<authors>
+        <author email=""></author>
+    </authors>
+	
+	<data>
+        <input>
+            <type>PixelRgb</type>
+            <port carrier="udp">/icub/PF3DTracker_L/videoIn</port>
+            <required>yes</required>
+            <priority>no</priority>
+            <description>pf3dTracker output data</description>
+        </input>
+
+        <output>
+            <type>Vector</type>
+            <port carrier="tcp">/icub/PF3DTracker_L/dataOut</port>
+            <description>information related to the detected object</description>
+        </output>
+
+        <output>
+            <type>PixelRgb</type>
+            <port carrier="udp">/icub/PF3DTracker_L/videoOut</port>
+            <description>video output</description>
+        </output>
+
+	</data>		
+
+    <dependencies>
+        <computer>
+        </computer>
+    </dependencies>
+
+	<development>
+		<include></include>
+		<library>YARP</library>
+        <library>OpenCv</library>
+	</development>
+	
+</module>

@@ -1,0 +1,8 @@
+run MainHeel3.m, it generates a ZMP based gait using the preview control, it is possible to set toe-off and heel-strike walking by setting the foot/ZMP trajactories. Note that the preview control in this code is rewritten with reference of preview control paper in 1960s, which is named LQI controller.
+
+Apart from the preview control, another main core of this code is the explicit computation of real ZMP based on multi-body dynamics, the m file 'calcMultiZMP'. It includes the distributed mass and the inertia tensor as well of all the body segments. 
+
+
+At the end of the code, plotrobot3Loops plots a simple animation of the generated gait.
+
+

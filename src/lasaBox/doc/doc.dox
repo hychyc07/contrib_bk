@@ -1,0 +1,144 @@
+/**
+* \defgroup icub_lasaBox_libraries Libraries
+* @ingroup icub_lasaBox
+*
+* Collection of libraries
+*
+* To add a library to this group add this to your code:
+\verbatim
+  /**
+   * \defgroup icub_your_library your_library
+   * @ingroup icub_lasaBox_libraries
+   *
+   */
+\endverbatim
+*
+*
+* \defgroup icub_lasaBox_modules Modules
+* @ingroup icub_lasaBox
+*
+* Collection of modules
+*
+* To add a module to this group add this to your code:
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_lasaBox_modules
+   *
+   */
+\endverbatim
+*
+*
+* \defgroup icub_lasaBox_tools Tools
+* @ingroup icub_lasaBox
+*
+* Collection of tools (useful little modules such as GUIs)
+*
+* To add a library to this group add this to your code:
+\verbatim
+  /**
+   * \defgroup icub_your_tool your_tool
+   * @ingroup icub_lasaBox_tools
+   *
+   */
+\endverbatim
+*
+*
+* \defgroup icub_lasaBox_guis GUIs
+* @ingroup icub_lasaBox
+*
+* Collection of tools (useful little modules such as GUIs)
+*
+* To add a library to this group add this to your code:
+\verbatim
+  /**
+   * \defgroup icub_your_tool your_tool
+   * @ingroup icub_lasaBox_tools
+   *
+   */
+\endverbatim
+*
+*/
+
+
+/**
+* \page icub_lasaBox_instructions Compilation, running and adding projects to the Lasa Box
+* @ingroup icub_lasaBox
+*
+
+<b> Compilation:</b>
+
+To compile the lasa box:
+\verbatim
+cd $ICUB_ROOT/contrib/src/lasaBox/src/
+cmake . (or ccmake . for some options)
+make
+\endverbatim
+
+<b> Running:</b>
+
+And then, to get direct access to the binaries from anywhere, you may also add the following bin folder to your path. e.g.,
+\verbatim
+export PATH=$PATH:$ICUB_ROOT/contrib/src/lasaBox/src/bin
+\endverbatim
+
+<b> Adding your own project:</b>
+
+Let's say you want to set-up a project <i>MyProject</i> to the Lasa-Box, and use 
+the same project tools for compilation and hence, get easy access to the Lasa-Box's
+libraries for instance. Let's also say that you consider it as a module.
+
+First create the folders:
+\verbatim
+cd $ICUB_ROOT/contrib/src/lasaBox/src/modules
+mkdir MyProject
+mkdir MyProject/src
+mkdir MyProject/include
+\endverbatim
+
+Copy the CMakeLists.pm template file:
+\verbatim
+cp $ICUB_ROOT/contrib/src/lasaBox/src/PMCMake/CMakeLists.txt.pm.template MyProject/CMakeLists.txt.pm
+\endverbatim
+Edit the file: MyProject/CMakeLists.txt.pm to fit your needs
+
+To generate the actual CMakeLists.txt file
+\verbatim
+cd $ICUB_ROOT/contrib/src/lasaBox/src
+PMCMake/PMGenerate.sh
+\endverbatim
+
+And finally, to definitively add your project to the Lasa-Box, edit
+the root CMakeLists.txt in $ICUB_ROOT/contrib/src/lasaBox/src/CMakeLists.txt
+and add the name of your project (MyProject in this case) to the 
+project list: MODULES_LIST.
+
+To compile it, again:
+\verbatim
+cd $ICUB_ROOT/contrib/src/lasaBox/src
+cmake .
+make
+\endverbatim
+
+A little final note: The generated CMakeLists.txt for the project assumes
+that all .cpp files in ./src have to be compiled, and checks for them at the 
+makefile generation time (When you run cmake .). So if you add or remove .cpp 
+files, you should touch the respective CMakeList.txt file. This way, the cmake
+process will restart automatically upon your next call to make. E.g.,
+\verbatim
+touch $ICUB_ROOT/contrib/src/lasaBox/src/modules/MyProject/CMakeLists.txt
+\endverbatim
+
+<b> Adding documentation:</b>
+
+To add a module documentation to this group add this to your code (but rather use the lasaBox's subgroups):
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_lasaBox
+   *
+   */
+\endverbatim
+
+*/
+

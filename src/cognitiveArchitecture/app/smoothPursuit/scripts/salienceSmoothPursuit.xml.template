@@ -1,0 +1,315 @@
+<application>
+<name>Demo of the prototype smooth pursuit module with endogenous salience</name>
+
+<dependencies>
+   <port>/icub/cam/right</port>
+   <port>/icub/head/state:o</port>
+</dependencies>
+
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/smoothPursuit/conf  </parameters>
+   <node>icub1</node>
+   <tag>logpolarTransform</tag>
+</module>
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--name inverseLogpolarTransform --direction LOGPOLAR2CARTESIAN --context ../contrib/src/cognitiveArchitecture/app/smoothPursuit/conf  </parameters>
+   <node>icub1</node>
+   <tag>inverseLogpolarTransform</tag>
+</module>
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--name inverseLogpolarTransformB --direction LOGPOLAR2CARTESIAN --context ../contrib/src/cognitiveArchitecture/app/smoothPursuit/conf </parameters>
+   <node>icub1</node>
+   <tag>inverseLogpolarTransformB</tag>
+</module>
+
+<module>
+   <name>selectiveTuning</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/smoothPursuit/conf </parameters>
+   <node>icub1</node>
+   <tag>selectiveTuning</tag>
+</module>
+
+<module>
+   <name>smoothPursuit</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/smoothPursuit/conf </parameters>
+   <node>icub1</node>
+   <tag>smoothPursuit</tag>
+</module>
+
+<module>
+   <name>episodicMemory</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/smoothPursuit/conf</parameters>
+   <node>icub1</node>
+   <tag>episodicMemory</tag>
+</module>
+
+<module>
+   <name>endogenousSalience</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/smoothPursuit/conf </parameters>
+   <node>icub1</node>
+   <tag>endogenousSalience</tag>
+</module>
+
+<module>
+   <name>proceduralMemory</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/smoothPursuit/conf </parameters>
+   <node>icub1</node>
+   <tag>proceduralMemory</tag>
+</module>
+
+<module>
+   <name>affectiveState</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/smoothPursuit/conf </parameters>
+   <node>icub1</node>
+   <tag>affectiveState</tag>
+</module>
+
+<module>
+   <name>actionSelection</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/smoothPursuit/conf </parameters>
+   <node>icub1</node>
+   <tag>actionSelection</tag>
+</module>
+
+<module>
+   <name>iKinGazeCtrl</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/smoothPursuit/conf --config iKinGazeCtrl.ini </parameters>
+   <node>icub1</node>
+   <tag>iKinGazeCtrl</tag>
+</module>
+ 
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /rightInputImage      --x 1920 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>right_image</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /salienceOutputImage  --x 2260 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>salience_image</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /logpolarImage        --x 2600 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>logpolar_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /inverseLogpolarImage --x 2940 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>inverse_logpolar_image</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /wtaImage             --x 2260 --y 360 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>wta_image</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /episodic_images      --x 2600 --y 360 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>episodic_images</tag>
+</module>
+ 
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /recalled_image        --x 2940 --y 360 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>recalled_image</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /graph_image           --x 2940 --y 720 --w 320 --h 318</parameters>
+   <node>icub1</node>
+   <tag>graph_image</tag>
+</module>
+
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/endogenousSalience/cartesianImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/rightInputImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/logpolarTransform/image:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+  <from>/episodicMemory/recalledImage:o</from>
+  <to>/endogenousSalience/logpolarImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+   <from>/logpolarTransform/image:o</from>
+   <to>/episodicMemory/image:i</to>
+   <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+  <from>/smoothPursuit/gazeAngles:o</from>
+  <to>/episodicMemory/action:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+   <from>/episodicMemory/recalledImage:o</from>
+   <to>/inverseLogpolarTransformB/image:i</to>
+   <protocol>tcp</protocol>
+</connection>
+
+<connection>
+   <from>/inverseLogpolarTransformB/image:o</from>
+   <to>/recalled_image</to>
+   <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+   <from>/episodicMemory/mosaicImage:o</from>
+   <to>/episodic_images</to>
+   <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+  <from>/logpolarTransform/image:o</from>
+  <to>/logpolarImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/logpolarTransform/image:o</from>
+  <to>/inverseLogpolarTransform/image:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/inverseLogpolarTransform/image:o</from>
+  <to>/inverseLogpolarImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/endogenousSalience/salienceImage:o</from>
+  <to>/salienceOutputImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+  <from>/endogenousSalience/salienceImage:o</from>
+  <to>/selectiveTuning/visualImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+  <from>/icub/head/state:o</from>
+  <to>/smoothPursuit/headState:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/selectiveTuning/wtaImage:o</from>
+  <to>/wtaImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/selectiveTuning/wtaUnits:o</from>
+  <to>/smoothPursuit/wtaUnits:i</to>
+  <protocol>tcp</protocol>
+</connection>
+ 
+<connection>
+  <from>/smoothPursuit/gazeAngles:o</from>
+  <to>/iKinGazeCtrl/head/angles:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+   <from>/actionSelection/mode:o</from>
+   <to>/proceduralMemory/mode:i</to>
+   <protocol>tcp</protocol>
+ </connection>
+
+
+<connection>
+   <from>/episodicMemory/imageId:o</from>
+   <to>/proceduralMemory/imageId:i</to>
+   <protocol>tcp</protocol>
+ </connection>
+
+
+<connection>
+   <from>/proceduralMemory/graph:o</from>
+   <to>/graph_image</to>
+   <protocol>tcp</protocol>
+</connection>
+
+<connection>
+   <from>/proceduralMemory/imageId:o</from>
+   <to>/episodicMemory/imageId:i</to>
+   <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+   <from>/episodicMemory/imageId:o</from>
+   <to>/affectiveState/imageId:i</to>
+   <protocol>tcp</protocol>
+ </connection>
+
+<connection>
+   <from>/actionSelection/mode:o</from>
+   <to>/affectiveState/mode:i</to>
+   <protocol>tcp</protocol>
+ </connection>
+
+<connection>
+   <from>/affectiveState/state:o</from>
+   <to>/actionSelection/state:i</to>
+   <protocol>tcp</protocol>
+ </connection>
+
+
+</application>

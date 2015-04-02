@@ -1,0 +1,59 @@
+<module>
+	<name>statelessGrasp</name>
+	<description>An stateless implementaion of demoGrasp</description>
+	<version>1.0</version>
+	
+	<arguments>
+		<param default="config.ini" required="yes" desc="default config file">from</param>
+		<param default="icub" required="no" desc="robot name">robot</param>
+	</arguments>
+			
+	<authors>
+        <author email="ugo.pattacini@iit.it">Ugo Pattacini</author>
+    </authors>
+	
+	<data>
+        <input>
+            <type>Vector</type>
+            <port carrier="tcp">/statelessGrasp/gaze:i</port>
+            <required>no</required>
+            <priority>no</priority>
+            <description>a vector of 3d position to gaze</description>
+        </input>
+
+        <input>
+            <type>Vector</type>
+            <port carrier="tcp">/statelessGrasp/arm:i</port>
+            <required>no</required>
+            <priority>no</priority>
+            <description>a vector of 3d position and orientation of robot hand to reach</description>
+        </input>
+
+        <input>
+            <type>Rpc</type>
+            <port carrier="tcp">/statelessGrasp/hand:i</port>
+            <required>no</required>
+            <priority>no</priority>
+            <description>a rpc grasp command ('grasp' / 'release')</description>
+        </input>
+
+        <output>
+            <type>Rpc</type>
+            <port carrier="udp">/statelessGrasp/grasp:out</port>
+            <description>produces status massege whenever an object is grasped</description>
+        </output>
+
+	</data>		
+
+    <dependencies>
+        <computer>
+        </computer>
+    </dependencies>
+
+	<development>
+		<include></include>
+		<library>YARP</library>
+        <library>OpenCv</library>
+	</development>
+	
+</module>

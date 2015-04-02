@@ -1,0 +1,55 @@
+<application>
+<name>iCub POETICON karma2</name>
+
+        <dependencies>
+                <port>/icub/camcalib/left/out</port>
+        </dependencies>
+        <module>
+                <name>toolSpace</name>
+                <node>node1</node>
+                <tag>toolSpace</tag>
+        </module>
+        <module>
+                <name>motionCUT</name>
+                <parameters>--recogThres 0.6</parameters>
+                <node>node1</node>
+                <tag>motionCut</tag>
+        </module>
+        
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /mcut --x 0 --y 0 --RefreshTime 50</parameters>
+                <node>node1</node>
+                <tag>motionView</tag>
+        </module>
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /toolImg --x 0 --y 330 --RefreshTime 50</parameters>
+				<node>node1</node>
+                <tag>toolImg</tag>
+        </module>
+		<connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/motionCUT/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+		<connection>
+                <from>/motionCUT/img:o</from>
+                <to>/mcut</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/toolSpace/img:o</from>
+                <to>/toolImg</to>
+                <protocol>udp</protocol>
+        </connection>
+		
+        <connection>
+    		<from>/motionCUT/nodes:o</from>
+    		<to>/toolSpace/motionFilter:i</to>
+    		<protocol>udp</protocol>
+    	</connection>
+        
+</application>
+
+

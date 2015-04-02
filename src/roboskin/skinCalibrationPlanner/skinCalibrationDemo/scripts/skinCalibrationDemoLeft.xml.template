@@ -1,0 +1,44 @@
+<application>
+<name>Skin Calibration Demo (left)</name>
+  <dependencies>
+    <port>/wholeBodyDynamics/contacts:o</port>
+    <port>/skinManager/skin_events:o</port>
+  </dependencies>
+  
+  <module>
+    <name>skinForceControl</name>
+    <parameters>--period 5 --left_arm</parameters>
+    <node>icubsrv</node>
+    <stdio>icubsrv</stdio>
+    <tag>sfcL</tag>
+  </module>
+  <module>
+    <name>skinCalibrationPlanner</name>
+    <parameters>--left_forearm</parameters>
+    <node>icubsrv</node>
+    <stdio>icubsrv</stdio>
+    <tag>scpL</tag>
+  </module>
+  <module>
+    <name>iCubSkinGui</name>
+    <parameters>--from left_forearm_green.ini --name skinDest --useCalibration --xpos 400 --ypos 0 --width 400 --height 400</parameters>
+    <node>icubsrv</node>
+    <tag>skinGuiDestL</tag>
+  </module>
+	<module>
+		<name>iSpeak</name>
+		<node>icubsrv</node>
+		<tag>iSpk</tag>
+	</module>
+	
+  <connection>
+    <from>/skinCalibrationPlanner/skin_dest:o</from>
+    <to>/skinDest/left_forearm:i</to>
+    <protocol>udp</protocol>
+  </connection>
+	<connection>
+		<from>/skinCalibrationPlanner/info:o</from>
+		<to>/iSpeak</to>
+		<protocol>tcp</protocol>
+	</connection>
+</application>

@@ -1,0 +1,4 @@
+
+ADD_SUBDIRECTORY(libYARP_QWidgets)
+ADD_SUBDIRECTORY(libICUB_QWidgets)
+ADD_SUBDIRECTORY(applicationGui)

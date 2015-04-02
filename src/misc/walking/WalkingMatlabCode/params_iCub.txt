@@ -1,0 +1,16 @@
+hip_Comy       	0.0681		
+lengthupperleg 	0.234547		
+lengthunderleg 	0.2005		
+footankletotip 	0.1345		
+footankletoside	0.0445		
+footankletoback	0.0605		
+ankle_height   	0.0685894		
+MassUpperbody  	10.2749		
+MassUpperleg   	3.199		
+MassUnderleg   	2.675		
+MassFoot       	0.861		
+MassTot        	23.7449		
+COG_UpperLeg   	 0.000880	 0.002152	-0.101417
+COG_UnderLeg   	 0.002431	-0.004938	-0.106012
+COG_UB         	 0.015316	-0.000007	 0.127706
+COG_foot       	-0.018020	 0.023177	-0.042623

@@ -1,0 +1,239 @@
+<application>
+<name>Crawling_ArmsDataLog_a </name>
+
+        <dependencies>     
+                <port>/icub/right_arm/rpc:i</port>
+                <port>/icub/right_arm/command:i</port>
+                <port>/icub/right_arm/state:o</port>
+                <port>/icub/left_arm/rpc:i</port>
+                <port>/icub/left_arm/command:i</port>
+                <port>/icub/left_arm/state:o</port>
+        </dependencies>
+    
+        <module>
+                <name>controlBoardDumper</name>
+                <parameters>--context crawlingApplication/conf/logconf --from log_right_arm_advanced.ini</parameters>
+                <node>icub16</node>
+                <tag>controlBoardDumperRightArm</tag>
+        </module>
+        
+        <module>
+                <name>controlBoardDumper</name>
+                <parameters>--context crawlingApplication/conf/logconf --from log_left_arm_advanced.ini</parameters>
+                <node>icub16</node>
+                <tag>controlBoardDumperLeftArm</tag>
+        </module>
+        
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/right_arm_pos_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperRightArmPs</tag>   
+        </module>    
+
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/right_arm_pos_error_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperRightArmPsErr</tag>   
+        </module> 
+        
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/right_arm_speed_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperRightArmSp</tag>   
+        </module>     
+
+        
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/right_arm_torque_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperRightArmTq</tag>   
+        </module>  
+
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/right_arm_torque_error_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperRightArmTqErr</tag>   
+        </module> 
+        
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/left_arm_pos_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperLeftArmPs</tag>   
+        </module>  
+
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/left_arm_pos_error_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperLeftArmPsErr</tag>   
+        </module>  
+
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/left_arm_speed_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperLeftArmSp</tag>   
+        </module>     
+
+        
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/left_arm_torque_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperLeftArmTq</tag>   
+        </module>  
+
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/left_arm_torque_error_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperLeftArmTqErr</tag>   
+        </module>  
+    
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/left_arm_stiffness_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperLeftArmStiff</tag>   
+        </module>     
+
+        
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/left_arm_damping_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperLeftArmDamp</tag>   
+        </module>  
+
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/left_arm_velocity_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperLeftArmVel</tag>   
+        </module>  
+  
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/right_arm_stiffness_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperRightArmStiff</tag>   
+        </module>     
+
+        
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/right_arm_damping_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperRightArmDamp</tag>   
+        </module>  
+
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /crawlinglog/right_arm_velocity_log --type bottle --downsample 10</parameters>
+                <node>icub16</node>
+                <tag>dataDumperRightArmVel</tag>   
+        </module>  
+                  
+        <connection>
+                <from>/controlBoardDumper/right_arm/getEncoders</from>
+                <to>/crawlinglog/right_arm_pos_log</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/controlBoardDumper/right_arm/getPositionErrors</from>
+                <to>/crawlinglog/right_arm_pos_error_log</to>
+                <protocol>udp</protocol>
+        </connection>
+        
+        <connection>
+                <from>/controlBoardDumper/right_arm/getEncoderSpeeds</from>
+                <to>/crawlinglog/right_arm_speed_log</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/controlBoardDumper/right_arm/getTorques</from>
+                <to>/crawlinglog/right_arm_torque_log</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/controlBoardDumper/right_arm/getTorqueErrors</from>
+                <to>/crawlinglog/right_arm_torque_error_log</to>
+                <protocol>udp</protocol>
+        </connection>
+        
+        <connection>
+                <from>/controlBoardDumper/left_arm/getEncoders</from>
+                <to>/crawlinglog/left_arm_pos_log</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/controlBoardDumper/left_arm/getPositionErrors</from>
+                <to>/crawlinglog/left_arm_pos_error_log</to>
+                <protocol>udp</protocol>
+        </connection>
+        
+        <connection>
+                <from>/controlBoardDumper/left_arm/getEncoderSpeeds</from>
+                <to>/crawlinglog/left_arm_speed_log</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/controlBoardDumper/left_arm/getTorques</from>
+                <to>/crawlinglog/left_arm_torque_log</to>
+                <protocol>udp</protocol>
+        </connection>
+        
+        <connection>
+                <from>/controlBoardDumper/left_arm/getTorqueErrors</from>
+                <to>/crawlinglog/left_arm_torque_error_log</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/vc/left_arm/damping:o</from>
+                <to>/crawlinglog/left_arm_damping_log</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/vc/left_arm/stiffness:o</from>
+                <to>/crawlinglog/left_arm_stiffness_log</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/vc/left_arm/velocity:o</from>
+                <to>/crawlinglog/left_arm_velocity_log</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/vc/right_arm/damping:o</from>
+                <to>/crawlinglog/right_arm_damping_log</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/vc/right_arm/stiffness:o</from>
+                <to>/crawlinglog/right_arm_stiffness_log</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/vc/right_arm/velocity:o</from>
+                <to>/crawlinglog/right_arm_velocity_log</to>
+                <protocol>udp</protocol>
+        </connection>
+
+ </application>

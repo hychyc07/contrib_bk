@@ -1,0 +1,1 @@
+portScope --local /psForces --title forces --dx 400 --dy 800 --x 1500 --y 0 --remote /skinForceControl/monitor:o --rows 4 --cols 1 --index "((10 11) (12 13) (14 15) (23))"

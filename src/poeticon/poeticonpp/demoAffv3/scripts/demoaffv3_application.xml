@@ -1,0 +1,177 @@
+<application>
+    <name>demoAffv3_Application</name>
+    <module>
+        <name>affordanceController</name>
+        <parameters>--from ../conf/demoAffv3.ini</parameters>
+        <node>localhost</node>
+        <prefix></prefix>
+        <stdio>localhost</stdio>
+        <geometry>(Pos (x 1305.97) (y 180.829))</geometry>
+    </module>
+    <module>
+        <name>behaviorController</name>
+        <parameters></parameters>
+        <node>localhost</node>
+        <prefix></prefix>
+        <stdio>localhost</stdio>
+        <geometry>(Pos (x 1305.26) (y 555.114))</geometry>
+    </module>
+    <module>
+        <name>blobDescriptor</name>
+        <parameters>--from ../conf/blobDescriptor.ini</parameters>
+        <node>localhost</node>
+        <prefix></prefix>
+        <stdio>localhost</stdio>
+        <geometry>(Pos (x 750.114) (y 60.6857))</geometry>
+    </module>
+    <module>
+        <name>edisonSegmenter</name>
+        <parameters>--from ../conf/edisonConfig.ini</parameters>
+        <node>localhost</node>
+        <prefix></prefix>
+        <stdio>localhost</stdio>
+        <geometry>(Pos (x 225.855) (y 30.1273))</geometry>
+    </module>
+    <module>
+        <name>effectDetector</name>
+        <parameters>--from ../conf/effectDetector.ini</parameters>
+        <node>localhost</node>
+        <prefix></prefix>
+        <stdio>localhost</stdio>
+        <geometry>(Pos (x 450.829) (y 150.543))</geometry>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <parameters>--name /userSelection:view --out /userSelection:o --synch</parameters>
+        <node>localhost</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 420.4) (y 345.257))</geometry>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <parameters>--name /blobDescriptor/yarpview/view --synch</parameters>
+        <node>localhost</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 1050.4) (y 150.257))</geometry>
+    </module>
+    <connection>
+        <from external="true">/controlGaze/status:o</from>
+        <to external="true">/demoAffv2/behavior/gaze</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 1276) (y 642)) ((x 1258) (y 642)) ((x 1315) (y 642))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/demoAffv2/behavior/att</from>
+        <to external="true">/attentionSelection/conf</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 1523) (y 702)) ((x 1497) (y 702)) ((x 1570) (y 702))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/demoAffv2/behavior/aff_out</from>
+        <to external="true">/demoAffv2/behavior:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 1409.5) (y 529.5)) ((x 1525) (y 672)) ((x 1315) (y 387))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/demoAffv2/behavior:o</from>
+        <to external="true">/demoAffv2/behavior/aff_in</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 1389) (y 559.5)) ((x 1484) (y 507)) ((x 1315) (y 612))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/icubSim/cam/left</from>
+        <to external="true">/edisonSegmenter/rawImg:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 189.5) (y 139)) ((x 165) (y 191)) ((x 235) (y 87))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/icubSim/cam/left</from>
+        <to external="true">/userSelection:view</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 287) (y 296.5)) ((x 165) (y 191)) ((x 430) (y 402))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/edisonSegmenter/rawImg:o</from>
+        <to external="true">/blobDescriptor/rawImg:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 567.5) (y 146.5)) ((x 396) (y 146)) ((x 760) (y 147))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/edisonSegmenter/labeledImg:o</from>
+        <to external="true">/blobDescriptor/labeledImg:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 581.5) (y 116.5)) ((x 424) (y 116)) ((x 760) (y 117))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/blobDescriptor/viewImg:o</from>
+        <to external="true">/blobDescriptor/yarpview/view</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 997.5) (y 207)) ((x 956) (y 207)) ((x 1060) (y 207))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/userSelection:o</from>
+        <to external="true">/blobDescriptor/userSelection:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 651) (y 304.5)) ((x 563) (y 432)) ((x 760) (y 177))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/icubSim/cam/left</from>
+        <to external="true">/effectDetector/rawcurrimg</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 302) (y 214)) ((x 165) (y 191)) ((x 460) (y 237))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/edisonSegmenter/rawImg:o</from>
+        <to external="true">/effectDetector/rawsegmimg</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 417.5) (y 176.5)) ((x 396) (y 146)) ((x 460) (y 207))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/demoAffv2/synccamshift</from>
+        <to external="true">/effectDetector/init</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 968) (y 372)) ((x 1497) (y 477)) ((x 460) (y 267))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/blobDescriptor/trackerInit:o</from>
+        <to external="true">/demoAffv2/trackdesc</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 1139) (y 237)) ((x 984) (y 237)) ((x 1315) (y 237))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/blobDescriptor/affDescriptor:o</from>
+        <to external="true">/demoAffv2/objsdesc</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 1146) (y 267)) ((x 998) (y 267)) ((x 1315) (y 267))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/effectDetector/effect</from>
+        <to external="true">/demoAffv2/effect</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 964.5) (y 297)) ((x 635) (y 297)) ((x 1315) (y 297))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/icubSim/head/state:o</from>
+        <to external="true">/demoAffv2/headState</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 1276) (y 357)) ((x 1258) (y 357)) ((x 1315) (y 357))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/icubSim/torso/state:o</from>
+        <to external="true">/demoAffv2/torsoState</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 1279.5) (y 327)) ((x 1265) (y 327)) ((x 1315) (y 327))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/demoAffv2/gazeposcmd</from>
+        <to external="true">/controlGaze/pos</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 1516.5) (y 417)) ((x 1484) (y 417)) ((x 1570) (y 417))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/demoAffv2/gazevelcmd</from>
+        <to external="true">/controlGaze/vel</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 1516) (y 447)) ((x 1483) (y 447)) ((x 1570) (y 447))  )</geometry>
+    </connection>
+</application>

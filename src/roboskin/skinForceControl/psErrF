@@ -1,0 +1,1 @@
+portScope --local /psErrF --remote /skinForceControl/monitor:o --rows 3 --cols 1 --index "((47) (48) (49))"

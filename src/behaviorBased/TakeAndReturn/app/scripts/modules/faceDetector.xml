@@ -1,0 +1,61 @@
+<module>
+	<name>faceDetector</name>
+	<description>An opencv-based face detection</description>
+	<version>1.0</version>
+	
+	<arguments>
+		<param default="" required="yes" desc="path to the faces cascade file">cascade</param> -->
+		<param default="left" required="no" desc="specifies which icub eyes (left/right) should be used">eye</param>
+		<param default="1.0" required="no" desc="an imaginary nce (in meter) of the face to the icub">eyeDist</param>
+		<param default="1" required="no" desc="this indicates that after how many times a face should be considered as detected">certainty</param>
+		<param default="ang" required="no" desc="iCub face expression (neu, tal, hap, sad, sur ,evi, ang, shy, cun)">expression</param>						
+        <param default="face_detector.ini" required="no" desc="extcra config file">from</param>
+		<!-- <switch default="" required="no" desc="">  </switch> -->
+	</arguments>
+			
+	<authors>
+        <author email="vadim.tikhanoff@iit.it">Vadim Tikhanoff</author>
+        <author email="ali.paikan@iit.it">Ali Paikan</author>
+    </authors>
+	
+	<data>
+        <input>
+            <type>ImageOfPixelRgb</type>
+            <port carrier="udp">/faceDetector/image/in</port>
+            <required>yes</required>
+            <priority>no</priority>
+            <description> image input from camera</description>
+        </input>
+
+        <output>
+            <type>ImageOfPixelRgb</type>
+            <port carrier="udp">/faceDetector/image/out</port>
+            <description>same as image input with marked face</description>
+        </output>
+
+        <output>
+            <type>Vector</type>
+            <port carrier="tcp">/faceDetector/gazeXd</port>
+            <description>a vector of (x,y,z) of detected face with respect to the robot frame</description>
+        </output>
+
+        <output>
+            <type>Rpc</type>
+            <port carrier="tcp">/faceDetector/face:rpc</port>
+            <description>icub face expression output</description>
+        </output>
+
+	</data>		
+
+    <dependencies>
+        <computer>
+        </computer>
+    </dependencies>
+
+	<development>
+		<include></include>
+		<library>YARP</library>
+        <library>OpenCv</library>
+	</development>
+	
+</module>

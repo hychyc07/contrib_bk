@@ -1,0 +1,63 @@
+<application>
+<name>Demo of opticalFlow</name>
+
+<dependencies>
+/icub/head/state:o
+</dependencies>
+
+<module>
+   <name>imageSource</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/opticalFlow/conf </parameters>
+   <node>icub1</node>
+   <tag>imageSource</tag>
+</module>
+
+<module>
+   <name>opticalFlow</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/opticalFlow/conf --x1ROI 110 --y1ROI 0 --x2ROI 210 --y2ROI 240 </parameters>
+   <node>icub1</node>
+   <tag>opticalFlow</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /inputImage --x 000 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>input_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /plotImage --x 340 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>plot_image</tag>
+</module>
+
+
+<connection>
+  <from>/icub/cam/left</from>
+  <to>/inputImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/cam/left</from>
+  <to>/opticalFlow/visualImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/head/state:o</from>
+  <to>/opticalFlow/headState:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/opticalFlow/plotImage:o</from>
+  <to>/plotImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+</application>

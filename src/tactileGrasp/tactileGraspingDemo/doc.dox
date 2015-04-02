@@ -1,0 +1,45 @@
+/**
+@ingroup  icub_applications
+\defgroup icub_tactileGraspingDemo tactileGraspingDemo
+
+Grasp an object using tactile feedback.
+
+\section intro_sec Description
+This application allows the user to launch the modules that are necessary to perform
+grasps using the tactileGrasp module.
+
+\section dep_sec Dependencies
+Assumes \ref icub_iCubInterface is running.
+
+\section int_sec Instantiated Modules
+- \ref skinDriftCompensation "skinDriftCompensation"
+- \ref skinGui "skinGui"
+- \ref tactileGrasp "tactileGrasp"
+
+\section config_sec Configuration Files
+- ./conf/skinDriftCompensationLeft.ini: initialization parameters of the skinDriftCompensation module 
+	for the left hand
+- ./conf/skinDriftCompensationRight.ini: initialization parameters of the skinDriftCompensation module 
+	for the right hand
+- ./conf/tactileGraspLeft.ini: initialization parameters of the tactileGrasp module for the left hand
+- ./conf/tactileGraspRight.ini: initialization parameters of the tactileGrasp module for the right hand
+
+\section howto How to run the Application
+Customize the file ./scripts/*.template for your specific platform
+before launching them.
+
+- ./scripts/graspingDemoLeft.xml.template
+  launches the module for the: <i>left_arm, left_hand</i>
+- ./scripts/graspingDemoRight.xml.template
+  launches the module for the: <i>right_arm, right_hand</i>
+
+\author Andrea Del Prete
+
+Copyright (C) 2009 RobotCub Consortium
+
+CopyPolicy: Released under the terms of the GNU GPL v2.0.
+
+This file can be edited at app/graspingDemo/doc.dox
+**/
+
+

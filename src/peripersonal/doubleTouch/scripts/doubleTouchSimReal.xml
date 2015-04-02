@@ -1,0 +1,33 @@
+<application>
+<name>doubleTouch Simulator RealRobot</name>
+
+<dependencies>
+    <port>/skinManager/skin_events:o</port>
+</dependencies>
+
+    <module>
+        <name>iCub_SIM</name>
+        <node>icub15</node>
+        <stdio></stdio>
+        <tag>iCub_SIM</tag>
+    </module>
+    <module>
+        <name>dataDumper</name>
+        <parameters>--name /data/skin</parameters>
+        <node>alecive</node>
+        <stdio></stdio>
+        <tag>dataDumper</tag>
+    </module>
+
+    <connection>
+        <from>/skinManager/skin_events:o</from>
+        <to>/doubleTouch/contacts:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+
+    <connection>
+        <from>/skinManager/skin_events:o</from>
+        <to>/data/skin</to>
+        <protocol>udp</protocol>
+    </connection>
+</application>

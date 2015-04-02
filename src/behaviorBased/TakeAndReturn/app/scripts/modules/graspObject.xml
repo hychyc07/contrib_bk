@@ -1,0 +1,54 @@
+<module>
+	<name>graspObject</name>
+	<description>grasps an object by simply closing the hand</description>
+	<version>1.0</version>
+	
+	<arguments>
+		<param default="right" required="no" desc="select robot arm (right_arm/left_arm)">hand</param>
+		<param default="icub" required="no" desc="robot name">robot</param>
+		<switch default="no" required="no" desc="enable feedback from tactile sensors">tactile</switch>
+		<param default="50" required="no" desc="tactile sensors threshold">tactile_threshold</param>
+        <param default="grasp_object.ini" required="no" desc="extcra config file">from</param>
+	</arguments>
+			
+	<authors>
+        <author email="ali.paikan@iit.it">Ali Paikan</author>
+    </authors>
+	
+	<data>
+        <input>
+            <type>Rpc</type>
+            <port carrier="tcp">/graspObject/cmd/in</port>
+            <required>no</required>
+            <priority>no</priority>
+            <description>a rpc grasp command ('grasp' / 'release')</description>
+        </input>
+
+        <input>
+            <type>Vector</type>
+            <port carrier="tcp">/graspObject/tactile/in</port>
+            <required>no</required>
+            <priority>no</priority>
+            <description>a vector of tactile data from SkinManager</description>
+        </input>
+
+        <output>
+            <type>Rpc</type>
+            <port carrier="tcp">/graspObject/status/out</port>
+            <description>produces status massege whenever an object is grasped</description>
+        </output>
+
+	</data>		
+
+    <dependencies>
+        <computer>
+        </computer>
+    </dependencies>
+
+	<development>
+		<include></include>
+		<library>YARP</library>
+        <library>OpenCv</library>
+	</development>
+	
+</module>

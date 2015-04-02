@@ -1,0 +1,34 @@
+/**
+* \page contrib_grouping Organizing modules in contrib 
+*
+* This page shows how to create a new groups for organizing modules in 
+* contrib.
+*
+* First, make sure the organization of the repository matches the organization
+* of the documentation. For example if you are going to create a group
+* called foo also make a directory contrib/src/foo and place there all
+* the modules that are part of the group. 
+*
+* To create a new group edit $ICUB_ROOT/contrib/src/doc/group.dox and add this 
+* doxygen command:
+*
+\verbatim
+/**
+* \defgroup icub_yourgroup Your Group
+* @ingroup icub_contrib_software
+* 
+* Add here a description of what modules in the group do.
+*/
+\endverbatim
+*
+* Now somewhere in the source code of each module add the following doxygen code:
+\verbatim
+/**
+*
+* \defgroup icub_your_module_name your_module_name
+* @ingroup icub_yourgroup
+*
+*/
+\endverbatim
+
+*/

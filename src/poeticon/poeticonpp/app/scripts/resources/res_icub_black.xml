@@ -1,0 +1,47 @@
+<resources>
+    <!-- Multiple computer descriptions can be introduced -->
+    <computer>
+        <name>pc104</name>
+        <description>pc104</description>
+        <!-- A disabled resource will not be used. -->
+        <disable>yes</disable>
+    </computer>
+    <computer>
+        <name>icub15</name>
+        <description>console machine</description>
+        <!-- A disabled resource will not be used. -->
+        <disable>no</disable>
+    </computer>
+    <computer>
+        <name>icub16</name>
+        <description>display machine</description>
+        <!-- A disabled resource will not be used. -->
+        <disable>no</disable>
+    </computer>
+    <computer>
+        <name>icub-b11</name>
+        <description>cluster server b11</description>
+        <!-- A disabled resource will not be used. -->
+        <disable>no</disable>
+    </computer>
+    <computer>
+        <name>icub-b12</name>
+        <description>cluster server b12</description>
+        <!-- A disabled resource will not be used. -->
+        <disable>no</disable>
+    </computer>
+    <computer>
+        <name>icub-b13</name>
+        <description>cluster server b13</description>
+        <!-- A disabled resource will not be used. -->
+        <disable>no</disable>
+    </computer>
+    <computer>
+        <name>icub-cuda</name>
+        <description>cluster cuda server</description>
+        <!-- A disabled resource will not be used. -->
+        <disable>no</disable>
+    </computer>
+
+</resources>
+

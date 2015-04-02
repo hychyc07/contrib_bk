@@ -1,0 +1,53 @@
+-------------------------------------------------------------------------------
+test7 -> including experimental calculateOperationalMass().
+ * Note: Last test as migrated to $ICUB_ROOT/contrib/src/misc/cartesianForce
+-------------------------------------------------------------------------------
+test6 -> fixed the coordinate problem. Bug was due to assigning H_tf_ab in
+cartesianForce class constructor before having passed through the configure().
+Now we work in the root frame. Two next problems to face:
+
+* Open loop: deviation, possibly due to not taking masses/inertias into account
+(all 3D space axis deviate, X is especially bad). Possible fixes:
+ * Creating an estimate of M (test-based).
+ * Creating an estimate of M (Q: how?) -> A: USING CAD MODEL!!!
+ * Note: Compensating through closing the loop with velocity estimate would NOT
+ be a solution as we are counting on external interferences (this measure will
+ actually be a guide for contour following).
+
+* On closing the loop: the force sensor is not to reliable: I'm commanding
+2.5N max, and have a 4N max error (2.5N on X quite standard, even 5N max on Y
+from what I've seen) on the readings. Fixes:
+ * Analyse wholeBodyTorqueObserver and related, try to perfect how it
+ calibrates the force/torque sensor measurements. Or try a layer on top of
+ wholeBodyTorqueObserver to re-calibrate the measurements, perhaps.
+ -> Update: Have checked the code, not much to do, already calibrates based on
+ CAD parameters.
+ * Only way I see to perfect is getting an empirical M (not based on CAD).
+
+-------------------------------------------------------------------------------
+test5 -> hacked it, so now does some open loop force (w/gcomp) in arm base
+coordinates. Y (up and down in arm base) perfect, Z (left and right in arm
+base) more or less, X (back and forth) hopeless. All tested in left_arm. For
+some reason passing to root frame does not give expected results (Z upside-down).
+The reason I do open loop in my code (I do count on a closed loop force
+control at joint level) is because closing the loop with the force sensor is
+not to reliable: I'm commanding 2.5N max, and have a 4N max error on the
+readings.
+
+-------------------------------------------------------------------------------
+test4 -> doesn't work, gcomp alone does. what I added was torso, and now I
+describe Fread and Jac in the root frame. running, Z is pointing down, and Y
+more or less does the job. X acts like Y.
+
+-------------------------------------------------------------------------------
+test3 -> did gravity compensation
+* removed the use of += on Vector as yarp::math does not seem to implement it
+* added "home" function and corrected some stuff related to setting joint
+control modes
+
+-------------------------------------------------------------------------------
+test2 -> does strange things, tends to go up
+
+-------------------------------------------------------------------------------
+test1 -> did not try
+

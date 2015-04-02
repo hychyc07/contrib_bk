@@ -1,0 +1,153 @@
+<application>
+<name>Demo of selectiveTuning and overtAttention</name>
+
+<dependencies>
+   <port>/icub/cam/right</port>
+   <port>/icub/head/state:o</port>
+</dependencies>
+
+<module>
+   <name>opticalFlow</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/overtAttention/conf --x1ROI 0 --y1ROI 0 --x2ROI 0 --y2ROI 0 </parameters>
+   <node>icub1</node>
+   <tag>opticalFlow</tag>
+</module>
+
+<module>
+   <name>selectiveTuning</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/overtAttention/conf </parameters>
+   <node>icub1</node>
+   <tag>selectiveTuning</tag>
+</module>
+
+<module>
+   <name>overtAttention</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/overtAttention/conf </parameters>
+   <node>icub1</node>
+   <tag>overtAttention</tag>
+</module>
+
+<module>
+   <name>iKinGazeCtrl</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/overtAttention/conf --config iKinGazeCtrl.ini </parameters>
+   <node>icub1</node>
+   <tag>iKinGazeCtrl</tag>
+</module>
+ 
+<module>
+   <name>yarpview</name>
+   <parameters>--name /inputImage --x 1920 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>input_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /plotImage --x 2260 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>plot_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /wtaImage --x 2600 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>wta_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /iorImage --x 2940 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>ior_image</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /postSaccadeImage --x 3280 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>postsaccade_image</tag>
+</module>
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/inputImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/opticalFlow/visualImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/head/state:o</from>
+  <to>/opticalFlow/headState:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/opticalFlow/plotImage:o</from>
+  <to>/plotImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/opticalFlow/magnitudeImage:o</from>
+  <to>/selectiveTuning/visualImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/overtAttention/visualImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/head/state:o</from>
+  <to>/overtAttention/headState:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+  <from>/selectiveTuning/wtaImage:o</from>
+  <to>/wtaImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/selectiveTuning/wtaUnits:o</from>
+  <to>/overtAttention/wtaUnits:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/overtAttention/visualImage:o</from>
+  <to>/postSaccadeImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/overtAttention/iorImage:o</from>
+  <to>/selectiveTuning/biasImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/overtAttention/iorImage:o</from>
+  <to>/iorImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/overtAttention/gazeAngles:o</from>
+  <to>/iKinGazeCtrl/head/angles:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+</application>

@@ -1,0 +1,37 @@
+<application>
+<name>cartesianForce Simulator Application</name>
+
+	<module>
+		<name>iCub_SIM</name>
+		<node>console</node>
+		<stdio>console</stdio>
+		<tag>iCubSimulator</tag>
+	</module>
+
+	<module>
+		<name>wholeBodyDynamics</name>
+	    <parameters>--autoconnect</parameters>
+		<node>console</node>
+		<stdio>console</stdio>
+		<tag>simWholeBody</tag>
+	</module>
+
+	<module>
+		<name>wholeBodyDynamics</name>
+	    <parameters>--autoconnect --robot icubSim</parameters>
+		<node>console</node>
+		<stdio>console</stdio>
+		<tag>wholeBody</tag>
+	</module>
+
+	<module>
+		<name>cartesianForce</name>
+	    <parameters>--robot icubSim --part left_arm</parameters>
+		<node>console</node>
+		<stdio>console</stdio>
+		<tag>LeftArmTest1</tag>
+	</module>
+
+</application>
+
+

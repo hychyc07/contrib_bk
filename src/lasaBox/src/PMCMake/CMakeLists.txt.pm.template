@@ -1,0 +1,27 @@
+# Project name
+SET(PM_PROJECT_NAME MyProjectName)
+
+# Project type (Executable or Library)
+SET(PM_PROJECT_TYPE Executable)
+
+# Project dependencies
+# example: SET(PM_PROJECT_DEPS ICUB YARP MathLib )
+SET(PM_PROJECT_DEPS )
+
+# Project external dependencies (from findable using cmake FindPackage tool)
+# example: SET(PM_EXTERNAL_DEPS Qt4 )
+SET(PM_EXTERNAL_DEPS )
+
+# Additional libraries directory
+# example: SET(PM_EXTERNAL_LIBDIR  /usr/local/someCoolLib/lib)
+SET(PM_EXTERNAL_LIBDIR )
+
+# Additional libraries this source needs to be linked to
+# example (to include libXYZ): SET(PM_EXTERNAL_LIBS  XYZ) 
+SET(PM_EXTERNAL_LIBS )
+
+# Additional include directory
+#example SET(PM_EXTERNAL_INCDIR  /usr/local/someCoolIncludes/include)
+SET(PM_EXTERNAL_INCDIR  )
+
+

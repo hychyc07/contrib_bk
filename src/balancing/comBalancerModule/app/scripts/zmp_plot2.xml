@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<portscope rows="2" columns="2">
+    <plot gridx="0"
+          gridy="0"
+          hspan="1"
+          vspan="1"
+          title="COP X Coord - AnkleSens: Violet, LegSens: LightBlue "
+          size="60"
+          minval="-0.1"
+          maxval="0.1"
+          bgcolor="white">
+        <graph remote="/anklesens_balanceModule/DSPzmp:o"
+               index="0"
+               color="#4B0082" 
+               type="points"
+               size="4" />  <!-- Violet -->
+        <graph remote="/legsens_balanceModule/DSPzmp:o"
+               index="0"
+               color="#00BFFF"
+               type="points"
+               size="4" />  <!-- Light blue -->
+    </plot>
+
+    <plot gridx="1"
+          gridy="0"
+          hspan="1"
+          vspan="1"
+          title="COP Y Coord - AnkleSens: Violet, LegSens: LightBlue"
+          size="60"
+          minval="-0.1"
+          maxval="0.1"
+          bgcolor="white">
+        <graph remote="/anklesens_balanceModule/DSPzmp:o"
+               index="1"
+               color="#4B0082"
+               type="points"
+               size="4" /> <!-- Violet -->
+        <graph remote="/legsens_balanceModule/DSPzmp:o"
+               index="1"
+               color="#00BFFF" 
+               type="points"
+               size="4" /> <!-- LightBlue -->
+    </plot>
+
+<!--     <plot gridx="0"
+          gridy="1"
+          hspan="1"
+          vspan="1"
+          title="Ankles Torque"
+          size="60"
+          minval="-0.1"
+          maxval="0.1"
+          bgcolor="white">
+        <graph remote="/icub/right_foot/analog:o"
+               index="4"
+               color="#00FA9A"
+               type="points"
+               size="4" /> 
+    </plot> -->
+
+    <plot gridx="0"
+          gridy="1"
+          hspan="1"
+          vspan="1"
+          title="COM_ref"
+          size="60"
+          minval="-0.1"
+          maxval="0.1"
+          bgcolor="white">
+        <graph remote="/anklesens_balanceModule/com_ref:o"
+               index="0"
+               color="#00FA9A"
+               type="points"
+               size="4" /> 
+        <graph remote ="/wholeBodyDynamics/com_foot:o"
+               index="0"
+               color="black"
+               type="points"
+               size="4" />
+    </plot>
+
+    <plot gridx="1"
+          gridy="1"
+          hspan="1"
+          vspan="1"
+          title="ANKLE ANGLE - Commanded: Brown Real:Orange "
+          size="60"
+          minval="-4"
+          maxval="4"
+          bgcolor="white">
+        <graph remote="/icub/right_leg/state:o"
+               index="4"
+               color="#FF7F00"
+               type="points"
+               size="4" 
+               title="Real"/> 
+        <graph remote="/anklesens_balanceModule/commanded_ankle_ang:o"
+               index="0"
+               color="#8B4500"
+               type="points"
+               size="4" /> 
+    </plot>
+</portscope>

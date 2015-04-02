@@ -1,0 +1,75 @@
+<module>
+    <!-- module's name should match its executable file's name. -->
+    <name>stereoDisparity</name>
+    <description>Builds a depth map using the vision system</description>
+    <version>1.0</version>
+
+    <!-- <arguments> can have multiple <param> tags-->
+    <arguments>
+        <param default="" required="no" desc="config file"> from</param> 
+        <param default="" required="no" desc="context"> context</param> 
+        <!-- <switch desc="" default="off"> inverted </switch> -->
+    </arguments>
+
+    <!-- <authors> can have multiple <author> tags. -->
+    <authors>
+        <author email="vadim.tikhanoff@iit.it">Vadim Tikhanoff</author>
+        <author email="ali.paikan@iit.it">Ali Paikan</author>
+    </authors>
+
+     <!-- <data> can have multiple <input> or <output> tags. -->
+     <data>
+        <!--
+        <input>
+            <type>ImageOfPixelRgbFloat</type>
+            <port carrier="udp">/approximateSensing/stereo/world:i</port>
+            <required>yes</required>
+            <priority>no</priority>
+            <description>StereoDisparity world image</description>
+        </input>
+        -->
+        <input>
+            <type>ImageOfPixelRgb</type>
+            <port carrier="udp">/stereoDisparity/cam/left:i</port>
+            <required>yes</required>
+            <priority>no</priority>
+            <description>camera image left</description>
+        </input>
+
+        <input>
+            <type>ImageOfPixelRgb</type>
+            <port carrier="udp">/stereoDisparity/cam/right:i</port>
+            <required>yes</required>
+            <priority>no</priority>
+            <description>camera image right</description>
+        </input>
+
+        <!-- output datas if available -->
+        <output>
+            <type>ImageOfPixelFloat</type>
+            <port carrier="udp">/stereoDisparity/world:o</port>
+            <description></description>
+        </output>
+
+        <output>
+            <type>ImageOfPixelMono</type>
+            <port carrier="udp">/stereoDisparity/disparity:o</port>
+            <description>image disparity</description>
+        </output>
+
+    </data>
+
+    <dependencies>
+        <computer>
+        </computer>
+    </dependencies>
+
+    <!-- specific libraries or header files which are used for development -->
+    <development>
+        <header></header>
+        <library>YARP</library>
+	    <library>OpenCV</library>
+    </development>
+
+</module>
+

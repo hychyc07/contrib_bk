@@ -1,0 +1,112 @@
+<application>
+<name>Endogenous Salience Demo</name>
+
+<!-- Example application to show how the endogenousSalience module works -->
+
+<dependencies>
+</dependencies>
+
+<module>
+   <name>endogenousSalience</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/endogenousSalience/conf </parameters>
+   <node>icub1</node>
+   <tag>endogenousSalience</tag>
+</module>
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/endogenousSalience/conf  </parameters>
+   <node>icub1</node>
+   <tag>logpolarTransform</tag>
+</module>
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--name inverseLogpolarTransform --direction LOGPOLAR2CARTESIAN --context ../contrib/src/cognitiveArchitecture/app/endogenousSalience/conf  </parameters>
+   <node>icub1</node>
+   <tag>inverseLogpolarTransform</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /rightInputImage --x 000 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>right_image</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /salienceOutputImage --x 340 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>salience_image</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /logpolarImage --x 680 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>logpolar_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /inverseLogpolarImage --x 1020 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>inverse_logpolar_image</tag>
+</module>
+
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/endogenousSalience/cartesianImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/rightInputImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/logpolarTransform/image:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/logpolarTransform/image:o</from>
+  <to>/endogenousSalience/logpolarImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+<connection>
+  <from>/logpolarTransform/image:o</from>
+  <to>/logpolarImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/logpolarTransform/image:o</from>
+  <to>/inverseLogpolarTransform/image:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/inverseLogpolarTransform/image:o</from>
+  <to>/inverseLogpolarImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/endogenousSalience/salienceImage:o</from>
+  <to>/salienceOutputImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+</application>

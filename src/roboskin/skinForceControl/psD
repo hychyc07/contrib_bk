@@ -1,0 +1,1 @@
+portScope --local /psddB --title ddBd_ddB__ddFd_ddF --dx 600 --dy 800 --x 1100 --y 0 --remote /skinForceControl/monitor:o --rows 3 --cols 1 --index "((165 172) (166 173) (167 174) (171 178))"

@@ -1,0 +1,108 @@
+
+<application>
+<name>All Gestures You Can 2.0</name>
+
+		<module>
+			<name>iSpeak</name>
+			<node>icub15</node>
+			<tag>iSpeakTag</tag>
+        </module>
+		
+		<module>
+			<name>executionModule</name>
+			<node>icub-b11</node>
+			<tag>executionModuleTag</tag>
+        </module>
+		
+		<module>
+			<name>demoGestureRecognitionModule</name>
+			<node>icub-b12</node>
+			<tag>demoGestRecTag</tag>
+        </module>
+		
+		<module>
+			<name>speechRecognizer</name>
+			<node>icub-win1</node>
+			<tag>speechRecognizerTag</tag>
+        </module>
+		
+		<module>
+			<name>linearClassifierModule</name>
+			<parameters>--BufferSize 1 --databaseFolder DBActions --CSVM 0.1</parameters>
+			<node>icub15</node>
+			<tag>speechRecognizerTag</tag>
+        </module>
+		
+		<module>
+			<name>yarpview --name /disparityViewer</name>
+			<node>icub16</node>
+			<tag>yarpviewTag</tag>
+        </module>
+		
+		<connection>
+            <from>/GestRecognition/outImage</from>
+            <to>/disparityViewer</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/icub/camcalib/right/out</from>
+            <to>/rightPort</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/icub/camcalib/left/out</from>
+            <to>/leftPort</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/gest_rec/classify:rpc</from>
+            <to>/linearClassifier/rpc</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/gest_rec/features:o</from>
+            <to>/linearClassifier/features:i</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/linearClassifier/scores:o</from>
+            <to>/gest_rec/scores:i</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+        <connection>
+            <from>/GestRecognition/scores</from>
+            <to>/demoActionRecognition/scores:i</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/demoActionRecognition/gestRec:o</from>
+            <to>/gest_rec/rpc</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/donePort</from>
+            <to>/demoActionRecognition/rpc</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/demoActionRecognition/exec:o</from>
+            <to>/executionModule/rpc</to>
+            <protocol>tcp</protocol>
+        </connection>
+		
+		<connection>
+            <from>/demoActionRecognition/outspeak</from>
+            <to>/iSpeak</to>
+            <protocol>tcp</protocol>
+        </connection>
+
+</application>

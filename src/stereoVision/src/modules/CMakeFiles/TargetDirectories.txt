@@ -1,0 +1,3 @@
+/usr/local/robot/iCub/contrib/src/stereoVision/src/modules/sceneFlow/CMakeFiles/sceneFlowModule.dir
+/usr/local/robot/iCub/contrib/src/stereoVision/src/modules/stereoDisparity/CMakeFiles/stereoDisparity.dir
+/usr/local/robot/iCub/contrib/src/stereoVision/src/modules/testWorldImage/CMakeFiles/testWorldImage.dir

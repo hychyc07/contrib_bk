@@ -1,0 +1,40 @@
+/**
+  * \mainpage iCub Contrib Documentation
+
+This is the iCub online code documentation for the contrib modules. This is the result of an 
+automatic process that parses the doxygen documentation in the contrib folder 
+of the iCub repository. <b> Since the contrib part of the iCub repository is open to many users, 
+this part of the documentation may be innaccurate adn sometimes, completely broken! </b>
+
+The main topic in this section is:
+
+- \ref icub_contrib_software : most of the documented contrib software.
+
+But, you can also refer to the official documentation:
+
+- <a href="http://wiki.icub.org/iCub/main/dox/html/index.html"> <b> iCub Main Sofware </b></a>: the main repository documentation.
+- <a href="http://wiki.icub.org/wiki/Manual"> <b> iCub Software and Hardware Wiki Manual </b> </a> : the iCub manual containing all kind of documentation.
+- <a href="http://yarp0.sourceforge.net/"> <b> YARP </b> </a>: the iCub software middleware .
+
+In order to test your contrib documented software you can execute:
+
+\verbatim
+user@pc:ICUB_ROOT/contrib$ doxygen conf/Doxyfile.txt
+\endverbatim
+
+locally on your repository, to figure out what is going on.
+The output can be browsed at doc/html/index.html.
+
+To add documentation you can follow the same instructions for the code in the main repository: <a href="http://wiki.icub.org/wiki/Writing_new_documentation"> <b>Writing Documentation</b></a>.
+
+We suggest you group the documentation using instructions \link contrib_grouping here \endlink.
+
+
+<b>Important</b> by default doxygen does not perform a full scan of all the directories in
+contrib. This means that to add a group of modules to the documentation you have to manually
+edit the INPUT field in the doxygen configuration file (i.e. contrib/conf/Doxyfile.txt).
+
+This page can be edited at $ICUB_ROOT/contrib/src/doc/main.dox.
+
+*
+*/

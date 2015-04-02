@@ -1,0 +1,57 @@
+<module>
+	<name>pf3dDetector</name>
+	<description>convert pf3dTracker module's command to (x,y,z) position in robot frame </description>
+	<version>1.0</version>
+	
+	<arguments>
+		<param default="left" required="no" desc="specifies which icub eyes (left/right) should be used">eye</param>
+		<param default="right_arm" required="no" desc="select robot arm (right_arm/left_arm)">part</param>
+		<param default="hap" required="no" desc="iCub face expression (neu, tal, hap, sad, sur ,evi, ang, shy, cun)">expression</param>						
+		<param default="icub" required="no" desc="robot name">robot</param>
+		<param default="0.00" required="no" desc="robot name">x_offset</param>
+		<param default="0.05" required="no" desc="robot name">y_offset</param>
+		<param default="0.00" required="no" desc="robot name">z_offset</param>
+
+		<!-- <switch default="" required="no" desc="">  </switch> -->
+	</arguments>
+			
+	<authors>
+        <author email="vadim.tikhanoff@iit.it">Vadim Tikhanoff</author>
+        <author email="ali.paikan@iit.it">Ali Paikan</author>
+    </authors>
+	
+	<data>
+        <input>
+            <type>Vector</type>
+            <port carrier="tcp">/pf3dDetector/data/in</port>
+            <required>yes</required>
+            <priority>no</priority>
+            <description>pf3dTracker output data</description>
+        </input>
+
+        <output>
+            <type>Vector</type>
+            <port carrier="tcp">/pf3dDetector/gazeXd</port>
+            <description>a vector of (x,y,z) of detected object with respect to the robot frame</description>
+        </output>
+
+        <output>
+            <type>Rpc</type>
+            <port carrier="tcp">/pf3dDetector/face:rpc</port>
+            <description>icub face expression output</description>
+        </output>
+
+	</data>		
+
+    <dependencies>
+        <computer>
+        </computer>
+    </dependencies>
+
+	<development>
+		<include></include>
+		<library>YARP</library>
+        <library>OpenCv</library>
+	</development>
+	
+</module>

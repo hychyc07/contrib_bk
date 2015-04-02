@@ -1,0 +1,32 @@
+<application>
+<name>DemoY1_DARWIN</name>
+
+<dependencies>
+	<module>LowLevelController_DARWIN</module>
+	<module>PassiveMotionParadigm_DARWIN</module>
+	<module>Grasper_DARWIN</module>
+</dependencies>
+
+<module>
+  <name>DemoY1_IIT_DARWIN</name>
+  <node>icub14</node>
+  <stdio>icub14</stdio>
+  <tag>DemoY1DARWIN</tag>
+</module>
+
+<connection>
+<from>/planner/dev:rpc</from>
+<to>/DevDriver/rpc</to>
+</connection>
+
+<connection>
+<from>/planner/pmp:rpc</from>
+<to>/PMPmodule/rpc</to>
+</connection>
+
+<connection>
+<from>/planner/grasp:rpc</from>
+<to>/grasper/rpc</to>
+</connection>
+
+ </application>

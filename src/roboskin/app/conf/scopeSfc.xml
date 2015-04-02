@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<portscope rows="4" columns="2">
+	
+    <plot gridx="0" gridy="0" hspan="1" vspan="1" title="Force X" size="100" minval="-15" maxval="15" bgcolor="LightSlateGrey">
+        <graph remote="/skinForceControl/monitor:o" index="10" color="Red" title="Fd" size="3" />
+        <graph remote="/skinForceControl/monitor:o" index="11" color="Green" title="F" size="3"/>
+    </plot>
+    
+    <plot gridx="0" gridy="1" hspan="1" vspan="1" title="Force Y" size="100" minval="-15" maxval="15" bgcolor="LightSlateGrey">
+        <graph remote="/skinForceControl/monitor:o" index="12" color="Red" title="Fd" size="3" />
+        <graph remote="/skinForceControl/monitor:o" index="13" color="Green" title="F" size="3"/>
+    </plot>
+    
+    <plot gridx="0" gridy="2" hspan="1" vspan="1" title="Force Z" size="100" minval="-15" maxval="15" bgcolor="LightSlateGrey">
+        <graph remote="/skinForceControl/monitor:o" index="14" color="Red" title="Fd" size="3" />
+        <graph remote="/skinForceControl/monitor:o" index="15" color="Green" title="F" size="3"/>
+    </plot>
+	
+	<plot gridx="0" gridy="3" hspan="1" vspan="1" title="Force Norm" size="100" minval="0" maxval="15" bgcolor="LightSlateGrey">
+		<graph remote="/skinForceControl/monitor:o" index="24" color="Green" title="F norm" size="3"/>
+	</plot>
+	
+	
+    
+    <plot gridx="1" gridy="0" hspan="1" vspan="1" title="Pos X" size="100" minval="-0.5" maxval="0" bgcolor="LightSlateGrey">
+        <graph remote="/skinForceControl/monitor:o" index="16" color="Red" title="X" size="2" />
+        <graph remote="/skinForceControl/monitor:o" index="17" color="Green" title="Xd" size="2" />
+    </plot>
+    
+    <plot gridx="1" gridy="1" hspan="1" vspan="1" title="Pos Y" size="100" minval="-0.5" maxval="0.5" bgcolor="LightSlateGrey">
+        <graph remote="/skinForceControl/monitor:o" index="18" color="Red" title="Y" size="2" />
+        <graph remote="/skinForceControl/monitor:o" index="19" color="Green" title="Yd" size="2" />
+    </plot>
+    
+    <plot gridx="1" gridy="2" hspan="1" vspan="1" title="Pos Z" size="100" minval="-0.1" maxval="0.5" bgcolor="LightSlateGrey">
+        <graph remote="/skinForceControl/monitor:o" index="20" color="Red" title="Z" size="2" />
+        <graph remote="/skinForceControl/monitor:o" index="21" color="Green" title="Zd" size="2" />
+    </plot>
+
+	<plot gridx="1" gridy="3" hspan="1" vspan="1" title="PWM Norm" size="100" minval="0" maxval="1000" bgcolor="LightSlateGrey">
+		<graph remote="/skinForceControl/monitor:o" index="25" color="Green" title="PWM norm" size="2"/>
+	</plot>
+
+</portscope>

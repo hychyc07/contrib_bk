@@ -1,0 +1,1 @@
+put this all these in Debug folder, these are differnt neural connections needed

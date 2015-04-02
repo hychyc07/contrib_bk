@@ -1,0 +1,96 @@
+<application>
+<name>Find the Tool Dimensions</name>
+
+        <dependencies>
+                <port>/icub/camcalib/left/out</port>
+        </dependencies>
+
+        <module>
+                <name>motionCUT</name>
+                <parameters>--recogThres 0.6</parameters>
+                <node>node1</node>
+                <tag>motionCut</tag>
+        </module>        
+        <module>
+                <name>karmaToolProjection</name>
+                <node>node2</node>
+                <tag>karmaToolProjection</tag>
+        </module>
+        <module>
+                <name>karmaToolFinder</name>
+                <node>node3</node>
+                <tag>karmaToolFinder</tag>
+        </module>
+        <module>
+                <name>karmaMotor</name>
+                <node>node4</node>
+                <tag>karmaMotor</tag>
+        </module>
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /mcut --x 0 --y 0 --RefreshTime 50</parameters>
+                <node>console</node>
+                <tag>motionView</tag>
+        </module>
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /toolEstimator --x 0 --y 330 --RefreshTime 50</parameters>
+				<node>console</node>
+                <tag>toolEstimator</tag>
+        </module>
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /toolImg --x 0 --y 660 --RefreshTime 50</parameters>
+                <node>console</node>
+                <tag>toolImg</tag>
+        </module>
+
+		<connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/motionCUT/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+		<connection>
+                <from>/motionCUT/img:o</from>
+                <to>/mcut</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+            <from>/motionCUT/nodes:o</from>
+            <to>/karmaToolProjection/motionFilter:i</to>
+            <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/karmaToolProjection/img:o</from>
+                <to>/toolEstimator</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/karmaToolProjection/target:o</from>
+                <to>/karmaToolFinder/in</to>
+                <protocol>tcp</protocol>
+        </connection>
+        <connection>
+                <from>/karmaToolProjection/target:o</from>
+                <to>/karmaMotor/vision:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/karmaMotor/finder:rpc</from>
+                <to>/karmaToolFinder/rpc</to>
+                <protocol>tcp</protocol>
+        </connection>
+        <connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/karmaToolFinder/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/karmaToolFinder/img:o</from>
+                <to>/toolImg</to>
+                <protocol>udp</protocol>
+        </connection>
+
+</application>
+
+

@@ -1,0 +1,46 @@
+<application>
+<name>demoAffv3 Dependencies</name>
+
+<dependencies>
+        <port>/icubSim/head/state:o</port>
+</dependencies>
+
+<module>
+        <name>simCartesianControl</name>
+        <node>localhost</node> 
+        <tag>simulatorCartesianController</tag>
+        <stdio>localhost</stdio>
+</module>
+
+<module>
+        <name>iKinCartesianSolver</name>
+	<parameters>--context simCartesianControl/conf --part left_arm</parameters>
+        <node>localhost</node> 
+        <tag>CartesianSolver_Left</tag>
+        <stdio>localhost</stdio>
+</module>
+
+<module>
+        <name>iKinCartesianSolver</name>
+	<parameters>--context simCartesianControl/conf --part right_arm</parameters>
+        <node>localhost</node> 
+        <tag>CartesianSolver_Right</tag>
+        <stdio>localhost</stdio>
+</module>
+
+<module>
+        <name>attentionSelection</name>
+        <node>localhost</node> 
+        <tag>attentionSelectionModule</tag>
+        <stdio>localhost</stdio>
+</module>
+
+<module>
+        <name>controlGaze</name>
+        <parameters>--from ../conf/controlGaze.ini</parameters>
+        <node>localhost</node> 
+        <tag>controlGazeModule</tag>
+        <stdio>localhost</stdio>
+</module>
+
+</application>

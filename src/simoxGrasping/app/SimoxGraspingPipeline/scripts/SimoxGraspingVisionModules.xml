@@ -1,0 +1,112 @@
+<application>
+<name>Simox Grasping Pipeline Vision Modules</name>
+    
+        <module>
+                <name>lumaChroma</name>
+                <parameters>--name lumaChromaLeft --image hsv</parameters>
+                <node>localhost</node>
+                <tag>lumaChromaLeft</tag>
+        </module>
+        
+        <module>
+                <name>lumaChroma</name>
+                <parameters>--name lumaChromaRight --image hsv</parameters>
+                <node>localhost</node> 
+                <tag>lumaChromaRight</tag>
+        </module>
+       
+      <module>
+                <name>blobExtractor</name>
+                <parameters>--name blobExtractorLeft</parameters>
+                <node>localhost</node>
+                <tag>blobExtractorLeft</tag>
+        </module>
+        
+        <module>
+                <name>blobExtractor</name>
+                <parameters>--name blobExtractorRight</parameters>
+                <node>localhost</node> 
+                <tag>blobExtractorRight</tag>
+        </module>
+
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /h_left --x 0 --y 210 --w 200 --h 200</parameters>
+                <node>localhost</node>
+                <tag>h_left</tag>
+        </module>
+
+
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /h_right --x 220 --y 210 --w 200 --h 200</parameters>
+                <node>localhost</node>
+                <tag>h_right</tag>
+        </module>
+
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /blobs_left --x 0 --y 420 --w 200 --h 200</parameters>
+                <node>localhost</node>
+                <tag>blobs_left</tag>
+        </module>
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /blobs_right --x 220 --y 420 --w 200 --h 200</parameters>
+                <node>localhost</node>
+                <tag>blobs_right</tag>
+        </module>
+
+
+
+        <connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/lumaChromaLeft/image:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/camcalib/right/out</from>
+                <to>/lumaChromaRight/image:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+
+        <connection>
+                <from>/lumaChromaLeft/H/image:o</from>
+                <to>/h_left</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/lumaChromaRight/H/image:o</from>
+                <to>/h_right</to>
+                <protocol>udp</protocol>
+        </connection>
+
+
+        <connection>
+                <from>/lumaChromaLeft/H/image:o</from>
+                <to>/blobExtractorLeft/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/lumaChromaRight/H/image:o</from>
+                <to>/blobExtractorRight/img:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+
+        <connection>
+                <from>/blobExtractorLeft/img:o</from>
+                <to>/blobs_left</to>
+                <protocol>udp</protocol>
+        </connection>
+
+         <connection>
+                <from>/blobExtractorRight/img:o</from>
+                <to>/blobs_right</to>
+                <protocol>udp</protocol>
+        </connection>
+</application>

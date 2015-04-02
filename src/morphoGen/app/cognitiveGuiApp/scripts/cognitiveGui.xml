@@ -1,0 +1,309 @@
+<application>
+<name>cognitiveGui</name>
+<dependencies>
+
+  <port>/PlanXplore:o</port>
+  <port>/Hub:o</port>
+  <port>/Useful/PastXperiences:o</port>
+  <port>/MyRemembered:o</port>
+	
+</dependencies>
+
+<module>
+ <name>yarpview</name>
+  <parameters>--name /hubBottomView   --x 980  --y 000 --w 280 --h 210 --RefreshTime 33</parameters>
+  <node>node3</node>
+  <tag>hubBottomView</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /rememberedView0 --x 1290 --y 000 --w 280 --h 210 --RefreshTime 33</parameters>
+  <node>node3</node>
+  <tag>rememberedView0</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /rememberedView1 --x 1600 --y 000 --w 280 --h 210 --RefreshTime 33</parameters>
+  <node>node3</node>
+  <tag>rememberedView1</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /rememberedView2 --x 000 --y 000 --w 280 --h 210 --RefreshTime 33</parameters>
+  <tag>rememberedView2</tag>
+  <node>node1</node>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /rememberedView3 --x 310 --y 000 --w 280 --h 210 --RefreshTime 33</parameters>
+  <tag>rememberedView3</tag>
+  <node>node1</node>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /rememberedView4 --x 620 --y 000 --w 280 --h 210 --RefreshTime 33</parameters>
+  <tag>rememberedView4</tag>
+  <node>node1</node>
+</module>
+
+
+
+
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /hubView0 --x 980 --y 250 --w 280 --h 210 --RefreshTime 33</parameters>
+  <node>node3</node>
+  <tag>hubView0</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /hubView1 --x 1290 --y 250 --w 280 --h 210 --RefreshTime 33</parameters>
+  <node>node3</node>
+  <tag>hubView1</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /hubView2 --x 1600 --y 250 --w 280 --h 210 --RefreshTime 33</parameters>
+  <tag>hubView2</tag>
+  <node>node3</node>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /hubView3 --x 000 --y 250 --w 280 --h 210 --RefreshTime 33</parameters>
+  <tag>hubView3</tag>
+  <node>node1</node>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /hubView4 --x 310 --y 250 --w 280 --h 210 --RefreshTime 33</parameters>
+  <tag>hubView4</tag>
+  <node>node1</node>
+</module>
+
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /hubTopView --x 620 --y 250 --w 280 --h 210 --RefreshTime 33</parameters>
+  <node>node1</node>
+  <tag>hubTopView</tag>
+</module>
+
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /partialCueView0 --x 980 --y 500 --w 280 --h 210 --RefreshTime 33</parameters>
+  <node>node3</node>
+  <tag>partialCueView0</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /partialCueView1 --x 1290 --y 500 --w 280 --h 210 --RefreshTime 33</parameters>
+  <node>node3</node>
+  <tag>partialCueView1</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /partialCueView2 --x 1600 --y 500 --w 280 --h 210 --RefreshTime 33</parameters>
+  <tag>partialCueView2</tag>
+  <node>node3</node>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /partialCueView3 --x 000 --y 500 --w 280 --h 210 --RefreshTime 33</parameters>
+  <tag>partialCueView3</tag>
+  <node>node1</node>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /partialCueView4 --x 310 --y 500 --w 280 --h 210 --RefreshTime 33</parameters>
+  <tag>partialCueView4</tag>
+  <node>node1</node>
+</module>
+
+
+
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /plan1View     --x 980 --y 750 --w 280 --h 210 --RefreshTime 33</parameters>
+  <node>node3</node>
+  <tag>plan1View</tag>
+</module>
+<module>
+  <name>yarpview</name>
+  <parameters>--name /plan2View     --x 1290 --y 750 --w 280 --h 210 --RefreshTime 33</parameters>
+  <node>node3</node>
+  <tag>plan2View</tag>
+</module>
+
+<module>
+  <name>emPlotter</name>
+  <parameters>--name /emPlotter </parameters>
+  <tag>emPlotter</tag>
+  <node>node1</node>
+</module>
+
+
+
+
+
+
+
+
+
+<connection>
+  <from>/PlanXplore:o</from>
+  <to>/emPlotter/plan:i</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/Hub:o</from>
+  <to>/emPlotter/hub:i</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/Useful/PastXperiences:o</from>
+  <to>/emPlotter/cue:i</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/MyRemembered:o</from>
+  <to>/emPlotter/rememberedX:i</to>
+  <protocol>udp</protocol>
+</connection>
+
+
+
+
+<connection>
+  <from>/emPlotter/hubBottom/img:o</from>
+  <to>/hubBottomView</to>
+  <protocol>udp</protocol>
+</connection>
+
+
+
+<connection>
+  <from>/emPlotter/rem0/img:o</from>
+  <to>/rememberedView0</to>
+  <protocol>udp</protocol>
+</connection> 
+<connection>
+  <from>/emPlotter/rem1/img:o</from>
+  <to>/rememberedView1</to>
+  <protocol>udp</protocol>
+</connection> 
+<connection>
+  <from>/emPlotter/rem2/img:o</from>
+  <to>/rememberedView2</to>
+  <protocol>udp</protocol>
+</connection> 
+<connection>
+  <from>/emPlotter/rem3/img:o</from>
+  <to>/rememberedView3</to>
+  <protocol>udp</protocol>
+</connection> 
+<connection>
+  <from>/emPlotter/rem4/img:o</from>
+  <to>/rememberedView4</to>
+  <protocol>udp</protocol>
+</connection> 
+
+
+
+
+
+
+<connection>
+  <from>/emPlotter/hub0/img:o</from>
+  <to>/hubView0</to>
+  <protocol>udp</protocol>
+</connection> 
+ <connection>
+  <from>/emPlotter/hub1/img:o</from>
+  <to>/hubView1</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/emPlotter/hub2/img:o</from>
+  <to>/hubView2</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/emPlotter/hub3/img:o</from>
+  <to>/hubView3</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/emPlotter/hub4/img:o</from>
+  <to>/hubView4</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/emPlotter/hubTop/img:o</from>
+  <to>/hubTopView</to>
+  <protocol>udp</protocol>
+</connection>
+
+
+
+
+
+<connection>
+  <from>/emPlotter/partialQ0/img:o</from>
+  <to>/partialCueView0</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/emPlotter/partialQ1/img:o</from>
+  <to>/partialCueView1</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/emPlotter/partialQ2/img:o</from>
+  <to>/partialCueView2</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/emPlotter/partialQ3/img:o</from>
+  <to>/partialCueView3</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/emPlotter/partialQ4/img:o</from>
+  <to>/partialCueView4</to>
+  <protocol>udp</protocol>
+</connection>
+
+
+
+
+
+
+<connection>
+  <from>/emPlotter/plan1/img:o</from>
+  <to>/plan1View</to>
+  <protocol>udp</protocol>
+</connection>
+<connection>
+  <from>/emPlotter/plan2/img:o</from>
+  <to>/plan2View</to>
+  <protocol>udp</protocol>
+</connection>
+ 
+
+</application>

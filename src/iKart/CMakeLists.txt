@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 2.6)
+
+PROJECT(iKart)
+IF(WIN32)
+    #disable annoying warnings about use of deprecated c functions
+    ADD_DEFINITIONS(-D_CRT_SECURE_NO_DEPRECATE)
+    ADD_DEFINITIONS(/wd4250)
+ENDIF(WIN32)
+
+FIND_PACKAGE(YARP)
+FIND_PACKAGE(ICUB)
+
+SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ICUB_MODULE_PATH} ${YARP_MODULE_PATH})
+
+FIND_PACKAGE(GtkMM)
+FIND_PACKAGE(OpenCV)
+find_package(GSL)
+find_package(SDL)
+
+ADD_SUBDIRECTORY(src)
+ADD_SUBDIRECTORY(app)

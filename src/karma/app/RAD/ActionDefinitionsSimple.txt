@@ -1,0 +1,8 @@
+release     defined
+play     not-defined
+goto     defined
+grasp     defined
+put     learned
+touch     defined
+tap     defined
+stop     stop

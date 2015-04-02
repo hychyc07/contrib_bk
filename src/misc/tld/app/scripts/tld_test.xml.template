@@ -1,0 +1,60 @@
+<application>
+<name>TLD test</name>
+        <dependencies>
+                <port>/icub/camcalib/left/out</port>
+        </dependencies>
+      
+        <module>
+                <name>tld</name>
+                <node>node1</node>
+                <tag>tracker</tag>
+        </module>
+
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /viewer1 --x 0 --y 0 --out /viewer1/out --RefreshTime 33</parameters>
+                <node>console</node>
+                <tag>viewer1</tag>
+        </module>
+
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /viewer2 --x 0 --y 350 --RefreshTime 33</parameters>
+                <node>console</node>
+                <tag>viewer2</tag>
+        </module>
+
+        <module>
+                <name>yarp read</name>
+                <parameters>/pixels </parameters>
+                <node>console</node>
+                <stdio>console</stdio>
+                <tag>reader</tag>
+        </module>
+  
+        <connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/viewer1</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/tld/img:i</to>
+                <protocol>tcp</protocol>
+        </connection>
+
+        <connection>
+                <from>/tld/img:o</from>
+                <to>/viewer2</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/viewer1/out</from>
+                <to>/pixels</to>
+                <protocol>udp</protocol>
+        </connection>
+
+</application>
+

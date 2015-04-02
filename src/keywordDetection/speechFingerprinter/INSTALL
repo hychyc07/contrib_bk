@@ -1,0 +1,21 @@
+Installation instructions:
+
+Dependencies:
+ * FFTW3: http://www.fftw.org/
+ * musicretr-1.0: see directory ext/
+
+Installation:
+ * Make sure that both dependencies can be found by pkg-config
+ * Go to the root directory of the project (where this file is located)
+ * Create a build directory
+	mkdir build
+ * Change to that directory
+	cd build
+ * Run cmake
+	cmake ..
+   or
+	cmake .. -DCMAKE_INSTALL_PREFIX=<prefix>
+ * Run make
+	make
+ * Run make install
+	make install 

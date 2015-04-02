@@ -1,0 +1,61 @@
+<module>
+	<name>wonderAround</name>
+	<description>Randomly moves the robot head to llok around, reset the arms positions and produce "release" command for graspObject module</description>
+	<version>1.0</version>
+	
+	<arguments>
+		<param default="none" required="no" desc="specifies which icub's arm (left,right,both,none) should be used">eye</param>
+		<param default="shy" required="no" desc="iCub face expression (neu, tal, hap, sad, sur ,evi, ang, shy, cun)">expression</param>	
+		<!-- <switch default="" required="no" desc="">  </switch> -->
+	</arguments>
+			
+	<authors>
+        <author email="vadim.tikhanoff@iit.it">Vadim Tikhanoff</author>
+        <author email="ali.paikan@iit.it">Ali Paikan</author>
+    </authors>
+	
+	<data>
+        <output>
+            <type>Vector</type>
+            <port carrier="tcp">/wonderAround/gazeXd</port>
+            <description>a vector of (x,y,z) to set the icub gaze</description>
+        </output>
+
+        <output>
+            <type>Vector</type>
+            <port carrier="tcp">/wonderAround/leftArmXd</port>
+            <description>a vector of (x,y,z) to set the icub hand</description>
+        </output>
+
+        <output>
+            <type>Vector</type>
+            <port carrier="tcp">/wonderAround/rightArmXd</port>
+            <description>a vector of (x,y,z) to set the icub hand</description>
+        </output>
+
+        <output>
+            <type>Rpc</type>
+            <port carrier="tcp">/wonderAround/face:rpc</port>
+            <description>icub face expression output</description>
+        </output>
+
+        <output>
+            <type>Rpc</type>
+            <port carrier="tcp">/wonderAround/graspCmd</port>
+            <description>send "release" command to "graspObject" modules</description>
+        </output>
+
+	</data>		
+
+    <dependencies>
+        <computer>
+        </computer>
+    </dependencies>
+
+	<development>
+		<include></include>
+		<library>YARP</library>
+        <library>OpenCv</library>
+	</development>
+	
+</module>

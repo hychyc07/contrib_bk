@@ -1,0 +1,107 @@
+<application>
+<name>ObjectRecognition_DARWIN</name>
+
+<module>
+  <name>colorsegModule_DARWIN</name>
+  <node>icub14</node>
+  <tag>colseg</tag>
+</module>
+
+<module>
+  <name>colorsegModule_DARWIN</name>
+  <parameters>--from colorsegConfiguration2.ini</parameters>
+  <node>icub14</node>
+  <tag>colseg2</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /segR</parameters>
+  <node>icub12</node>
+  <tag>segR</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /segL</parameters>
+  <node>icub12</node>
+  <tag>segL</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /grayscale</parameters>
+  <node>icub12</node>
+  <tag>gsimg</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /current</parameters>
+  <node>icub12</node>
+  <tag>currentScene</tag>
+</module>
+
+<module>
+    <name>yarp read /point3d:o</name>
+	<node display="true">icub12</node>
+	<tag>point3d</tag>
+	<stdio>icub12</stdio>
+</module>
+ 
+  
+<connection>
+	<from>/icub/camcalib/right/out</from>
+	<to>/colorseg/img:i</to>
+	<protocol>tcp</protocol>
+</connection>
+
+<connection>
+	<from>/icub/camcalib/left/out</from>
+	<to>/colorseg2/img:i</to>
+	<protocol>tcp</protocol>
+</connection>
+
+<connection>
+	<from>/colorseg/img:o</from>
+	<to>/segR</to>
+	<protocol>udp</protocol>
+</connection>
+
+<connection>
+	<from>/colorseg2/img:o</from>
+	<to>/segL</to>
+	<protocol>udp</protocol>
+</connection>
+
+<connection>
+	<from>/colorseg/out</from>
+	<to>/objPoseThread/bb:i</to>
+	<protocol>tcp</protocol>
+</connection>
+
+<connection>
+	<from>/icub/camcalib/right/out</from>
+	<to>/objPoseThread/R_eye:i</to>
+	<protocol>tcp</protocol>
+</connection>
+
+<connection>
+	<from>/objPoseThread/output:o</from>
+	<to>/point3d:o</to>
+	<protocol>tcp</protocol>
+</connection>
+
+<connection>
+	<from>/objPoseThread/testPort:o</from>
+	<to>/grayscale</to>
+	<protocol>udp</protocol>
+</connection>
+
+<connection>
+	<from>/objPoseThread/currentIMG:o</from>
+	<to>/current</to>
+	<protocol>udp</protocol>
+</connection>
+
+</application>

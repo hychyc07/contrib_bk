@@ -1,0 +1,32 @@
+<application>
+    <name>doubleTouch Simulator</name>
+
+    <dependencies>
+    </dependencies>
+
+    <module>
+        <name>iCub_SIM</name>
+        <node>alecivecubo</node>
+        <stdio></stdio>
+        <tag>iCub_SIM</tag>
+    </module>
+    <module>
+        <name>iKinGazeCtrl</name>
+        <parameters>--from configSim.ini</parameters>
+        <node>alecivecubo</node>
+        <stdio></stdio>
+        <tag>iCub_SIM</tag>
+    </module>
+    <module>
+        <name>dataSetPlayer</name>
+        <node>alecive</node>
+        <stdio></stdio>
+        <tag>dataSetPlayer</tag>
+    </module>
+
+    <connection>
+        <from>/skinManager/skin_events:o</from>
+        <to>/doubleTouch/contacts:i</to>
+        <protocol>tcp</protocol>
+    </connection>
+</application>

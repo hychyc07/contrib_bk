@@ -1,0 +1,7 @@
+moon 3
+star 5
+cross 0
+arrow 1
+hart 4
+circle 2
+

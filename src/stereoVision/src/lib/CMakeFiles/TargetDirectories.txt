@@ -1,0 +1,1 @@
+/usr/local/robot/iCub/contrib/src/stereoVision/src/lib/CMakeFiles/stereoVision.dir

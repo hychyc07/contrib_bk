@@ -1,0 +1,276 @@
+/* 
+ * Copyright (C) 2009 RobotCub Consortium, European Commission FP6 Project IST-004370
+ * Authors: David Vernon
+ * email:   david@vernon.eu
+ * website: www.robotcub.org 
+ * Permission is granted to copy, distribute, and/or modify this program
+ * under the terms of the GNU General Public License, version 2 or any
+ * later version published by the Free Software Foundation.
+ *
+ * A copy of the license can be found at
+ * http://www.robotcub.org/icub/license/gpl.txt
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+ * Public License for more details
+ */
+  
+
+/*
+ * Audit Trail
+ * -----------
+ * 26/07/07  First version validated   DV
+ */ 
+
+#include "iFaR.h" 
+
+int main(int argc, char * argv[])
+{
+   /* initialize yarp network */ 
+  Network yarp;   
+  /* create your module */   
+  IfarModule myModule; 
+  /* prepare and configure the resource finder */
+  ResourceFinder rf;
+  rf.setVerbose(true);
+  //  rf.configure("ICUB_ROOT", argc, argv);
+  rf.setDefaultConfigFile("iFar.ini");
+  rf.setDefaultContext("/default/conf");   //overridden by --context parameter
+  rf.configure("ICUB_ROOT", argc, argv);
+  /* run the module: runModule() calls configure first and, if successful, it then runs */
+  myModule.runModule(rf);
+  return 0;
+}
+ 
+
+Ifar::Ifar(int ratePeriod, BufferedPort<ImageOf<PixelMono> > *imageInL, BufferedPort<ImageOf<PixelMono> > *imageInR, BufferedPort<Bottle> *attentionOut):RateThread(ratePeriod)
+{
+	imagePortInL = imageInL;
+	imagePortInR = imageInR;
+	attentionPortOut = attentionOut;
+}
+
+bool Ifar::threadInit() 
+{
+	leftFilter1 = new MonoFilter(imageL, imageL2);
+	rightFilter1 = new MonoFilter(imageR, imageR2);
+	binocFilter1 = new BinocFilter(imageL2, imageR2, imageBoth);
+	mySalienceMap = new SalienceMap(imageBoth, attentionX, attentionY);
+	attentionOutBottle = new Bottle();
+
+	return true;
+}
+
+void Ifar::threadRelease()
+{
+
+}
+
+void Ifar::run()
+{
+	imageL = NULL; imageR = NULL;
+    do {
+         imageL = imagePortInL->read(true);
+		 imageR = imagePortInR->read(true);
+    } 
+	while (imageL == NULL || imageR == NULL);
+	leftFilter1->filter();
+	rightFilter1->filter();
+	binocFilter1->filter();
+	mySalienceMap->setROI();
+	attentionOutBottle->clear();
+	attentionOutBottle->addInt(*attentionX);
+	attentionOutBottle->addInt(*attentionY);
+	*attentionOutBottle = attentionPortOut->prepare();
+	attentionPortOut->write();
+} 
+
+MonoFilter::MonoFilter(ImageOf<PixelMono> *imageInput, ImageOf<PixelMono> *imageOutput)/*:convolve*/
+{
+	imageIn = imageInput;
+	imageOut = imageOutput;
+}
+
+void MonoFilter::filter()
+{
+	// override this function in subclasses to implement specific filters
+	//PERFORM FILTERING HERE
+	imageOut = imageIn; // default does nothing
+}
+
+SalienceMap::SalienceMap(ImageOf<PixelMono> *imageInput, int *attX, int *attY)
+{
+	imageIn = imageInput;
+	attentionX = attX;
+	attentionY = attY;
+}
+
+void SalienceMap::setROI()
+{
+	// set current region of interest in retinal coordinates
+	//x = ...
+	//y = ...
+	
+	*attentionX = 10; *attentionY = 10; //arbitrary settings
+}
+
+BinocFilter::BinocFilter(ImageOf<PixelMono> *imageInputL, ImageOf<PixelMono> *imageInputR, ImageOf<PixelMono> *imageOutput)
+{  
+	imageL = imageInputL;
+	imageR = imageInputR;
+	imageBoth = imageOutput;
+}
+
+void BinocFilter::filter()
+{
+	//Perform filtering here
+	// this version just multiplies the the two inputs pixelwise
+	preImageL = (IplImage*) imageL->getIplImage();
+	preImageR = (IplImage*) imageR->getIplImage();
+	cvConvertScale(preImageL,origL,1,0);
+	cvConvertScale(preImageR,origR,1,0);
+	cvMul(origL, origR, filtBoth);
+	cvConvertScale(filtBoth, filtImageBoth);
+	imageBoth->wrapIplImage(filtImageBoth);
+}
+
+bool IfarModule::configure(yarp::os::ResourceFinder &rf)
+{    
+   moduleName            = rf.check("name", 
+                           Value("ifarModule"), 
+                           "module name (string)").asString(); 
+	setName(moduleName.c_str());
+
+   robotName             = rf.check("robot", 
+                           Value("icubSIM"), 
+                           "Robot name (string)").asString();
+ 
+   robotPortName         = "/" + robotName + "/head";
+  
+   inputPortNameL         = "/";
+   inputPortNameL        += getName(
+                           rf.check("myInputPortL", 
+                           Value("ifar/imageL:i"),
+                           "Input left image port (string)").asString()
+                           );
+   inputPortNameR         = "/";
+   inputPortNameR        += getName(
+                           rf.check("myInputPortR", 
+                           Value("ifar/imageR:i"),
+                           "Input right image port (string)").asString()
+                           );
+
+   outputPortName        = "/";
+   outputPortName       += getName(
+                           rf.check("myOutputPort", 
+                           Value("ifar/attention:o"),
+                           "Output image port (string)").asString()
+                           );
+
+   if (!attentionOut.open(outputPortName.c_str())) {
+      cout << getName() << ": unable to open port " << outputPortName << endl;
+      return false;  // unable to open; let RFModule know so that it won't run
+   }
+
+   if (!imageInL.open(inputPortNameL.c_str())) {
+      cout << getName() << ": unable to open port " << inputPortNameL << endl;
+      return false;  // unable to open; let RFModule know so that it won't run
+   }
+
+   if (!imageInR.open(inputPortNameR.c_str())) {
+      cout << getName() << ": unable to open port " << inputPortNameR << endl;
+      return false;  // unable to open; let RFModule know so that it won't run
+   }
+
+   handlerPortName =  "/";
+   handlerPortName += getName();         // use getName() rather than a literal 
+
+   if (!handlerPort.open(handlerPortName.c_str())) {           
+      cout << getName() << ": Unable to open port " << handlerPortName << endl;  
+      return false;
+   } 
+
+   attach(handlerPort);                  // attach to port
+  // attachTerminal();                     // attach to terminal
+
+
+   /* create the thread and pass pointers to the module parameters */
+   	myIfarThread = new Ifar(10,&imageInL, &imageInR, &attentionOut);
+   /* now start the thread to do the work */
+
+ 	myIfarThread->start();
+
+   return true ;      // let the RFModule know everything went well
+                      // so that it will then run the module
+} 
+
+
+bool IfarModule::interruptModule()
+{
+   imageInL.interrupt();
+   imageInR.interrupt();
+   attentionOut.interrupt();
+   handlerPort.interrupt();
+
+   return true;
+}
+
+
+bool IfarModule::close()
+{
+   imageInL.close();
+   imageInR.close();
+   attentionOut.close();
+   handlerPort.close();
+
+   /* stop the thread */
+
+  
+   myIfarThread->stop();
+	
+   return true;
+}
+
+
+bool IfarModule::respond(const Bottle& commandIn, Bottle& reply) 
+{
+  string helpMessage =  string(getName().c_str()) + 
+                        " commands are: \n" + 
+                         "help \n" + 
+                         "quit \n" + 
+                         "set gain <n> ... set the gain \n" + 
+                         "(where <n> is an integer number) \n";
+ 
+   reply.clear(); 
+
+   if (commandIn.get(0).asString()=="quit") {
+        reply.addString("quitting");
+        return false;     
+   }
+   else if (commandIn.get(0).asString()=="help") {
+      cout << helpMessage;
+      reply.addString("ok");
+   }
+/*  
+   else if (commandIn.get(0).asString()=="set") {
+      if (commandIn.get(1).asString()=="gain") {
+         gain = commandIn.get(2).asInt(); // set parameter value
+         reply.addString("ok");
+      }
+   }
+*/
+   return true;
+} 
+bool IfarModule::updateModule()
+{
+   return true;
+} 
+
+
+
+double IfarModule::getPeriod()
+{
+   /* module periodicity (seconds), called implicitly by myModule */
+   return 0.5;
+}

@@ -1,0 +1,35 @@
+Installation instructions
+
+Dependencies:
+FFTW3: http://www.fftw.org/
+
+Simple Instructions:
+* Make sure that the fftw3 library can be found by pkg-config
+
+* Run the install.sh script (WARNING: Will delete any directory 
+  called "build" in the directory it is executed in)
+	./install.sh <prefix>
+  * Creates a build directory in the current directory
+  * Downloads, patches and builds everything
+  * Installs the result to <prefix> or /usr/local if prefix is omitted.
+
+Detailed Instructions:
+These instructions do not rely on the install script
+
+* Make sure that the fftw3 library can be found by pkg-config
+
+* Run cmake in a build directory of your own choosing, e.g. from the 
+  diretory where this file is located:
+	mkdir build
+	cd build
+	cmake ..
+
+* Run make
+  This downloads and patches everything.
+
+* Change to the "create_lib" directory which was created in your build directory
+
+* Run cmake, e.g.
+	cmake . -DCMAKE_INSTALL_PREFIX=/home/joeuser/myfiles
+
+* Run make install

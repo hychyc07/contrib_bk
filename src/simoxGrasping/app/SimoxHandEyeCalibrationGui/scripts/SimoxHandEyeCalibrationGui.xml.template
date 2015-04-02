@@ -1,0 +1,141 @@
+<application>
+<name>Simox Hand Eye Calibration Gui</name>
+    
+        <dependencies>
+                <port>/icub/camcalib/left/out</port>
+                <port>/icub/camcalib/right/out</port>
+                <port>/icub/cartesianController/left_arm/state:o</port>
+                <port>/icub/cartesianController/right_arm/state:o</port>
+                <port>/iKinGazeCtrl/head/rpc</port>
+        </dependencies>
+
+        <module>
+                <name>SimoxHandTrackerModule</name>
+                <parameters>--robot icub</parameters>
+                <node>localhost</node>
+                <tag>SimoxHandTrackerModule</tag>
+        </module>
+
+        <module>
+                <name>lumaChroma</name>
+                <parameters>--name lumaChromaLeft</parameters>
+                <node>icub-b5</node>
+                <tag>lumaChromaModuleLeft</tag>
+        </module>
+        
+        <module>
+                <name>lumaChroma</name>
+                <parameters>--name lumaChromaRight</parameters>
+                <node>icub-b5</node>
+                <tag>lumaChromaModuleRight</tag>
+        </module>
+        
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /SimoxHandEyeCalibration/YUV/viewLeft --x 0 --y 0</parameters>
+                <node>localhost</node>
+                <tag>yuvViewLeft</tag>
+        </module>
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /SimoxHandEyeCalibration/YUV/viewRight --x 320 --y 0</parameters>
+                <node>localhost</node>
+                <tag>yuvViewRight</tag>
+        </module>
+
+       <module>
+                <name>yarpview</name>
+                <parameters>--name /SimoxHandEyeCalibration/Segmentation/viewLeft --x 0 --y 300</parameters>
+                <node>localhost</node>
+                <tag>segmentationViewLeft</tag>
+        </module>
+       <module>
+                <name>yarpview</name>
+                <parameters>--name /SimoxHandEyeCalibration/Segmentation/viewRight --x 320 --y 300</parameters>
+                <node>localhost</node>
+                <tag>segmentationViewRight</tag>
+        </module>
+
+       <module>
+                <name>yarpview</name>
+                <parameters>--name /SimoxHandEyeCalibration/Blobs/viewLeft --x 0 --y 600</parameters>
+                <node>localhost</node>
+                <tag>blobsViewLeft</tag>
+        </module>
+
+        <module>
+                <name>yarpview</name>
+                <parameters>--name /SimoxHandEyeCalibration/Blobs/viewRight --x 320 --y 600</parameters>
+                <node>localhost</node>
+                <tag>blobsViewRight</tag>
+        </module>
+
+        <module>
+                <name>SimoxHandEyeCalibrationGui</name>
+                <parameters>--robot icub</parameters>
+                <node>localhost</node>
+                <tag>SimoxHandEyeCalibrationGui</tag>
+        </module>
+     
+        <connection>
+                <from>/lumaChromaLeft/Y/image:o</from>
+                <to>/SimoxHandEyeCalibration/YUV/viewLeft</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/lumaChromaRight/Y/image:o</from>
+                <to>/SimoxHandEyeCalibration/YUV/viewRight</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/lumaChromaLeft/Y/image:o</from>
+                <to>/SimoxHandTracker/imgL:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/lumaChromaRight/Y/image:o</from>
+                <to>/SimoxHandTracker/imgR:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+       <connection>
+                <from>/SimoxHandTracker/segmentationL:o</from>
+                <to>/SimoxHandEyeCalibration/Segmentation/viewLeft</to>
+                <protocol>udp</protocol>
+        </connection>
+
+       <connection>
+                <from>/SimoxHandTracker/segmentationR:o</from>
+                <to>/SimoxHandEyeCalibration/Segmentation/viewRight</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/SimoxHandTracker/blobL:o</from>
+                <to>/SimoxHandEyeCalibration/Blobs/viewLeft</to>
+                <protocol>udp</protocol>
+        </connection>
+
+       <connection>
+                <from>/SimoxHandTracker/blobR:o</from>
+                <to>/SimoxHandEyeCalibration/Blobs/viewRight</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/lumaChromaLeft/image:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>
+                <from>/icub/camcalib/right/out</from>
+                <to>/lumaChromaRight/image:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+
+</application>

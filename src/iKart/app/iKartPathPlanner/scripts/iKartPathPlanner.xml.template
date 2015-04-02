@@ -1,0 +1,100 @@
+<application>
+<name>iKartPathPlanner</name>
+
+<dependencies>
+</dependencies>
+
+<module>
+   <name>iKartGoto</name>
+   <parameters></parameters>
+   <node>ikart</node>
+   <tag>iKartGoto</tag>
+</module>
+
+<module>
+   <name>iKartPathPlanner</name>
+   <parameters>--map_file rbcsLab</parameters>
+   <node>ikart</node>
+   <tag>iKartPathPlanner</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /plannerView:i --out /mapClick:o</parameters>
+   <node>icub14</node>
+   <tag>PlannerViewer</tag>
+</module>
+
+<module>
+   <name>iKartUtils</name>
+   <node>icub14</node>
+   <tag>iKartUtils</tag>
+</module>
+
+<connection>
+  <from>/ikartGoto/control:o</from>
+  <to>/ikart/control:i</to>
+  <protocol>udp</protocol>
+</connection>
+
+<connection>
+  <from>/ikart_ros_bridge/localization:o</from>
+  <to>/ikartGoto/localization:i</to>
+  <protocol>udp</protocol>
+</connection>
+
+<connection>
+  <from>/ikart_ros_bridge/localization:o</from>
+  <to>/ikartPathPlanner/localization:i</to>
+  <protocol>udp</protocol>
+</connection>
+
+<connection>
+  <from>/ikartPathPlanner/map:o</from>
+  <to>/plannerView:i</to>
+  <protocol>udp</protocol>
+</connection>
+
+<connection>
+  <from>/ikartPathPlanner/commands:o</from>
+  <to>/ikartGoto/rpc:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/ikartGoto/status:o</from>
+  <to>/ikartPathPlanner/navigationStatus:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/ikartGoto/speak:o</from>
+  <to>/iSpeak</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/ikart/odometry:o</from>
+  <to>/ikartGoto/odometry:i</to>
+  <protocol>udp</protocol>
+</connection>
+
+<connection>
+  <from>/ikart/laser_map:o</from>
+  <to>/ikartGoto/laser_map:i</to>
+  <protocol>udp</protocol>
+</connection>
+
+<connection>
+  <from>/ikart/laser_map:o</from>
+  <to>/ikartPathPlanner/laser_map:i</to>
+  <protocol>udp</protocol>
+</connection>
+
+<connection>
+  <from>/mapClick:o</from>
+  <to>/ikartPathPlanner/yarpviewTarget:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+</application>

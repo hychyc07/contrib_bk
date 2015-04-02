@@ -1,0 +1,7 @@
+for sim:
+check app/...../.....ini for icubSim
+use actionPrimitivesLayer1 in define instead of Layer2
+
+for real:
+icub
+Layer2

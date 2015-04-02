@@ -1,0 +1,1773 @@
+diff -crB tmp/align.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/align.cc
+*** tmp/align.cc	2012-08-29 10:39:13.817959851 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/align.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 10,15 ****
+--- 10,18 ----
+  #include <iostream>
+  #include <map>
+  #include <string>
++ #include <cstdio>
++ #include <cstdlib>
++ #include <limits.h>
+  
+  //#include "linsearch.h"
+  //#include "lshdisk.h"
+***************
+*** 126,132 ****
+  }
+  
+  
+! int main(int argc, char * argv[])
+  {
+          if (argc != 3 ) {
+                  printf("Usage: %s origs.txt recorded.txt\n", argv[0]);
+--- 129,135 ----
+  }
+  
+  
+! /*int main(int argc, char * argv[])
+  {
+          if (argc != 3 ) {
+                  printf("Usage: %s origs.txt recorded.txt\n", argv[0]);
+***************
+*** 198,203 ****
+  
+          return 0;
+  
+! }
+  
+  
+--- 201,206 ----
+  
+          return 0;
+  
+! }*/
+  
+  
+diff -crB tmp/builddb.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/builddb.cc
+*** tmp/builddb.cc	2012-08-29 10:39:13.820959902 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/builddb.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 9,20 ****
+  
+  #include <assert.h>
+  #include <iostream>
+  #include "keypointdb.h"
+  
+  using namespace std;
+  
+  /** Builds filelist db and keypoints db from individual files */
+! int main(int argc, char * argv[])
+  {
+          if (argc != 4 ) {
+                  printf("Usage: %s fileslist.txt db.fdb db.kdb\n", argv[0]);
+--- 9,21 ----
+  
+  #include <assert.h>
+  #include <iostream>
++ #include <cstdio>
+  #include "keypointdb.h"
+  
+  using namespace std;
+  
+  /** Builds filelist db and keypoints db from individual files */
+! /*int main(int argc, char * argv[])
+  {
+          if (argc != 4 ) {
+                  printf("Usage: %s fileslist.txt db.fdb db.kdb\n", argv[0]);
+***************
+*** 29,32 ****
+  
+          return 0;
+  
+! }
+--- 30,33 ----
+  
+          return 0;
+  
+! }*/
+diff -crB tmp/codewav.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/codewav.cc
+*** tmp/codewav.cc	2012-08-29 10:39:13.822959226 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/codewav.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 5,17 ****
+  
+  #include <stdio.h>
+  #include <assert.h>
+  
+  using namespace std;
+  
+  #include "sigproc.h"
+  #include "keypoint.h"
+  
+! int main(int argc, char * argv[]) {
+    
+  	if (argc != 4) {
+  		printf("Usage: %s descriptors.txt recording.wav outbits.keys\n", argv[0]);
+--- 5,19 ----
+  
+  #include <stdio.h>
+  #include <assert.h>
++ #include <cstdio>
++ #include <cstdlib>
+  
+  using namespace std;
+  
+  #include "sigproc.h"
+  #include "keypoint.h"
+  
+! /*int main(int argc, char * argv[]) {
+    
+  	if (argc != 4) {
+  		printf("Usage: %s descriptors.txt recording.wav outbits.keys\n", argv[0]);
+***************
+*** 46,52 ****
+  
+  	return 0;  
+    
+! }
+  
+  
+  
+--- 48,54 ----
+  
+  	return 0;  
+    
+! }*/
+  
+  
+  
+diff -crB tmp/csapp.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/csapp.cc
+*** tmp/csapp.cc	2012-08-29 10:39:13.825959791 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/csapp.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 46,52 ****
+      pid_t pid;
+  
+      if ((pid = fork()) < 0)
+! 	unix_error("Fork error");
+      return pid;
+  }
+  /* $end forkwrapper */
+--- 46,52 ----
+      pid_t pid;
+  
+      if ((pid = fork()) < 0)
+! 	unix_error((char*)"Fork error");
+      return pid;
+  }
+  /* $end forkwrapper */
+***************
+*** 54,60 ****
+  void Execve(const char *filename, char *const argv[], char *const envp[]) 
+  {
+      if (execve(filename, argv, envp) < 0)
+! 	unix_error("Execve error");
+  }
+  
+  /* $begin wait */
+--- 54,60 ----
+  void Execve(const char *filename, char *const argv[], char *const envp[]) 
+  {
+      if (execve(filename, argv, envp) < 0)
+! 	unix_error((char*)"Execve error");
+  }
+  
+  /* $begin wait */
+***************
+*** 63,69 ****
+      pid_t pid;
+  
+      if ((pid  = wait(status)) < 0)
+! 	unix_error("Wait error");
+      return pid;
+  }
+  /* $end wait */
+--- 63,69 ----
+      pid_t pid;
+  
+      if ((pid  = wait(status)) < 0)
+! 	unix_error((char*)"Wait error");
+      return pid;
+  }
+  /* $end wait */
+***************
+*** 73,79 ****
+      pid_t retpid;
+  
+      if ((retpid  = waitpid(pid, iptr, options)) < 0) 
+! 	unix_error("Waitpid error");
+      return(retpid);
+  }
+  
+--- 73,79 ----
+      pid_t retpid;
+  
+      if ((retpid  = waitpid(pid, iptr, options)) < 0) 
+! 	unix_error((char*)"Waitpid error");
+      return(retpid);
+  }
+  
+***************
+*** 87,93 ****
+      action.sa_flags = SA_RESTART; /* restart syscalls if possible */
+  
+      if (sigaction(signum, &action, &old_action) < 0)
+! 	unix_error("Signal error");
+      return (old_action.sa_handler);
+  }
+  /* $end sigaction */
+--- 87,93 ----
+      action.sa_flags = SA_RESTART; /* restart syscalls if possible */
+  
+      if (sigaction(signum, &action, &old_action) < 0)
+! 	unix_error((char*)"Signal error");
+      return (old_action.sa_handler);
+  }
+  /* $end sigaction */
+***************
+*** 98,104 ****
+      int rc;
+  
+      if ((rc = kill(pid, signum)) < 0)
+! 	unix_error("Kill error");
+  }
+  /* $end kill */
+  
+--- 98,104 ----
+      int rc;
+  
+      if ((rc = kill(pid, signum)) < 0)
+! 	unix_error((char*)"Kill error");
+  }
+  /* $end kill */
+  
+***************
+*** 113,119 ****
+      unsigned int rc;
+  
+      if ((rc = sleep(secs)) < 0)
+! 	unix_error("Sleep error");
+      return rc;
+  }
+  
+--- 113,119 ----
+      unsigned int rc;
+  
+      if ((rc = sleep(secs)) < 0)
+! 	unix_error((char*)"Sleep error");
+      return rc;
+  }
+  
+***************
+*** 125,131 ****
+      int rc;
+  
+      if ((rc = setpgid(pid, pgid)) < 0)
+! 	unix_error("Setpgid error");
+      return;
+  }
+  
+--- 125,131 ----
+      int rc;
+  
+      if ((rc = setpgid(pid, pgid)) < 0)
+! 	unix_error((char*)"Setpgid error");
+      return;
+  }
+  
+***************
+*** 142,148 ****
+      int rc;
+  
+      if ((rc = open(pathname, flags, mode))  < 0)
+! 	unix_error("Open error");
+      return rc;
+  }
+  
+--- 142,148 ----
+      int rc;
+  
+      if ((rc = open(pathname, flags, mode))  < 0)
+! 	unix_error((char*)"Open error");
+      return rc;
+  }
+  
+***************
+*** 151,157 ****
+      ssize_t rc;
+  
+      if ((rc = read(fd, buf, count)) < 0) 
+! 	unix_error("Read error");
+      return rc;
+  }
+  
+--- 151,157 ----
+      ssize_t rc;
+  
+      if ((rc = read(fd, buf, count)) < 0) 
+! 	unix_error((char*)"Read error");
+      return rc;
+  }
+  
+***************
+*** 160,166 ****
+      ssize_t rc;
+  
+      if ((rc = write(fd, buf, count)) < 0)
+! 	unix_error("Write error");
+      return rc;
+  }
+  
+--- 160,166 ----
+      ssize_t rc;
+  
+      if ((rc = write(fd, buf, count)) < 0)
+! 	unix_error((char*)"Write error");
+      return rc;
+  }
+  
+***************
+*** 169,175 ****
+      off_t rc;
+  
+      if ((rc = lseek(fildes, offset, whence)) < 0)
+! 	unix_error("Lseek error");
+      return rc;
+  }
+  
+--- 169,175 ----
+      off_t rc;
+  
+      if ((rc = lseek(fildes, offset, whence)) < 0)
+! 	unix_error((char*)"Lseek error");
+      return rc;
+  }
+  
+***************
+*** 178,184 ****
+      int rc;
+  
+      if ((rc = close(fd)) < 0)
+! 	unix_error("Close error");
+  }
+  
+  int Select(int  n, fd_set *readfds, fd_set *writefds,
+--- 178,184 ----
+      int rc;
+  
+      if ((rc = close(fd)) < 0)
+! 	unix_error((char*)"Close error");
+  }
+  
+  int Select(int  n, fd_set *readfds, fd_set *writefds,
+***************
+*** 187,193 ****
+      int rc;
+  
+      if ((rc = select(n, readfds, writefds, exceptfds, timeout)) < 0)
+! 	unix_error("Select error");
+      return rc;
+  }
+  
+--- 187,193 ----
+      int rc;
+  
+      if ((rc = select(n, readfds, writefds, exceptfds, timeout)) < 0)
+! 	unix_error((char*)"Select error");
+      return rc;
+  }
+  
+***************
+*** 196,215 ****
+      int rc;
+  
+      if ((rc = dup2(fd1, fd2)) < 0)
+! 	unix_error("Dup2 error");
+      return rc;
+  }
+  
+  void Stat(const char *filename, struct stat *buf) 
+  {
+      if (stat(filename, buf) < 0)
+! 	unix_error("Stat error");
+  }
+  
+  void Fstat(int fd, struct stat *buf) 
+  {
+      if (fstat(fd, buf) < 0)
+! 	unix_error("Fstat error");
+  }
+  
+  /***************************************
+--- 196,215 ----
+      int rc;
+  
+      if ((rc = dup2(fd1, fd2)) < 0)
+! 	unix_error((char*)"Dup2 error");
+      return rc;
+  }
+  
+  void Stat(const char *filename, struct stat *buf) 
+  {
+      if (stat(filename, buf) < 0)
+! 	unix_error((char*)"Stat error");
+  }
+  
+  void Fstat(int fd, struct stat *buf) 
+  {
+      if (fstat(fd, buf) < 0)
+! 	unix_error((char*)"Fstat error");
+  }
+  
+  /***************************************
+***************
+*** 220,233 ****
+      void *ptr;
+  
+      if ((ptr = mmap(addr, len, prot, flags, fd, offset)) == ((void *) -1))
+! 	unix_error("mmap error");
+      return(ptr);
+  }
+  
+  void Munmap(void *start, size_t length) 
+  {
+      if (munmap(start, length) < 0)
+! 	unix_error("munmap error");
+  }
+  
+  /***************************************************
+--- 220,233 ----
+      void *ptr;
+  
+      if ((ptr = mmap(addr, len, prot, flags, fd, offset)) == ((void *) -1))
+! 	unix_error((char*)"mmap error");
+      return(ptr);
+  }
+  
+  void Munmap(void *start, size_t length) 
+  {
+      if (munmap(start, length) < 0)
+! 	unix_error((char*)"munmap error");
+  }
+  
+  /***************************************************
+***************
+*** 239,245 ****
+      void *p;
+  
+      if ((p  = malloc(size)) == NULL)
+! 	unix_error("Malloc error");
+      return p;
+  }
+  
+--- 239,245 ----
+      void *p;
+  
+      if ((p  = malloc(size)) == NULL)
+! 	unix_error((char*)"Malloc error");
+      return p;
+  }
+  
+***************
+*** 248,254 ****
+      void *p;
+  
+      if ((p  = realloc(ptr, size)) == NULL)
+! 	unix_error("Realloc error");
+      return p;
+  }
+  
+--- 248,254 ----
+      void *p;
+  
+      if ((p  = realloc(ptr, size)) == NULL)
+! 	unix_error((char*)"Realloc error");
+      return p;
+  }
+  
+***************
+*** 257,263 ****
+      void *p;
+  
+      if ((p = calloc(nmemb, size)) == NULL)
+! 	unix_error("Calloc error");
+      return p;
+  }
+  
+--- 257,263 ----
+      void *p;
+  
+      if ((p = calloc(nmemb, size)) == NULL)
+! 	unix_error((char*)"Calloc error");
+      return p;
+  }
+  
+***************
+*** 272,278 ****
+  void Fclose(FILE *fp) 
+  {
+      if (fclose(fp) != 0)
+! 	unix_error("Fclose error");
+  }
+  
+  FILE *Fdopen(int fd, const char *type) 
+--- 272,278 ----
+  void Fclose(FILE *fp) 
+  {
+      if (fclose(fp) != 0)
+! 	unix_error((char*)"Fclose error");
+  }
+  
+  FILE *Fdopen(int fd, const char *type) 
+***************
+*** 280,286 ****
+      FILE *fp;
+  
+      if ((fp = fdopen(fd, type)) == NULL)
+! 	unix_error("Fdopen error");
+  
+      return fp;
+  }
+--- 280,286 ----
+      FILE *fp;
+  
+      if ((fp = fdopen(fd, type)) == NULL)
+! 	unix_error((char*)"Fdopen error");
+  
+      return fp;
+  }
+***************
+*** 290,296 ****
+      char *rptr;
+  
+      if (((rptr = fgets(ptr, n, stream)) == NULL) && ferror(stream))
+! 	app_error("Fgets error");
+  
+      return rptr;
+  }
+--- 290,296 ----
+      char *rptr;
+  
+      if (((rptr = fgets(ptr, n, stream)) == NULL) && ferror(stream))
+! 	app_error((char*)"Fgets error");
+  
+      return rptr;
+  }
+***************
+*** 300,306 ****
+      FILE *fp;
+  
+      if ((fp = fopen(filename, mode)) == NULL)
+! 	unix_error("Fopen error");
+  
+      return fp;
+  }
+--- 300,306 ----
+      FILE *fp;
+  
+      if ((fp = fopen(filename, mode)) == NULL)
+! 	unix_error((char*)"Fopen error");
+  
+      return fp;
+  }
+***************
+*** 308,314 ****
+  void Fputs(const char *ptr, FILE *stream) 
+  {
+      if (fputs(ptr, stream) == EOF)
+! 	unix_error("Fputs error");
+  }
+  
+  size_t Fread(void *ptr, size_t size, size_t nmemb, FILE *stream) 
+--- 308,314 ----
+  void Fputs(const char *ptr, FILE *stream) 
+  {
+      if (fputs(ptr, stream) == EOF)
+! 	unix_error((char*)"Fputs error");
+  }
+  
+  size_t Fread(void *ptr, size_t size, size_t nmemb, FILE *stream) 
+***************
+*** 316,329 ****
+      size_t n;
+  
+      if (((n = fread(ptr, size, nmemb, stream)) < nmemb) && ferror(stream)) 
+! 	unix_error("Fread error");
+      return n;
+  }
+  
+  void Fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream) 
+  {
+      if (fwrite(ptr, size, nmemb, stream) < nmemb)
+! 	unix_error("Fwrite error");
+  }
+  
+  
+--- 316,329 ----
+      size_t n;
+  
+      if (((n = fread(ptr, size, nmemb, stream)) < nmemb) && ferror(stream)) 
+! 	unix_error((char*)"Fread error");
+      return n;
+  }
+  
+  void Fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream) 
+  {
+      if (fwrite(ptr, size, nmemb, stream) < nmemb)
+! 	unix_error((char*)"Fwrite error");
+  }
+  
+  
+***************
+*** 336,342 ****
+      int rc;
+  
+      if ((rc = socket(domain, type, protocol)) < 0)
+! 	unix_error("Socket error");
+      return rc;
+  }
+  
+--- 336,342 ----
+      int rc;
+  
+      if ((rc = socket(domain, type, protocol)) < 0)
+! 	unix_error((char*)"Socket error");
+      return rc;
+  }
+  
+***************
+*** 345,351 ****
+      int rc;
+  
+      if ((rc = setsockopt(s, level, optname, optval, optlen)) < 0)
+! 	unix_error("Setsockopt error");
+  }
+  
+  void Bind(int sockfd, struct sockaddr *my_addr, int addrlen) 
+--- 345,351 ----
+      int rc;
+  
+      if ((rc = setsockopt(s, level, optname, optval, optlen)) < 0)
+! 	unix_error((char*)"Setsockopt error");
+  }
+  
+  void Bind(int sockfd, struct sockaddr *my_addr, int addrlen) 
+***************
+*** 353,359 ****
+      int rc;
+  
+      if ((rc = bind(sockfd, my_addr, addrlen)) < 0)
+! 	unix_error("Bind error");
+  }
+  
+  void Listen(int s, int backlog) 
+--- 353,359 ----
+      int rc;
+  
+      if ((rc = bind(sockfd, my_addr, addrlen)) < 0)
+! 	unix_error((char*)"Bind error");
+  }
+  
+  void Listen(int s, int backlog) 
+***************
+*** 361,367 ****
+      int rc;
+  
+      if ((rc = listen(s,  backlog)) < 0)
+! 	unix_error("Listen error");
+  }
+  
+  int Accept(int s, struct sockaddr *addr, int *addrlen) 
+--- 361,367 ----
+      int rc;
+  
+      if ((rc = listen(s,  backlog)) < 0)
+! 	unix_error((char*)"Listen error");
+  }
+  
+  int Accept(int s, struct sockaddr *addr, int *addrlen) 
+***************
+*** 369,375 ****
+      int rc;
+  
+      if ((rc = accept(s, addr, (socklen_t*)addrlen)) < 0)
+! 	unix_error("Accept error");
+      return rc;
+  }
+  
+--- 369,375 ----
+      int rc;
+  
+      if ((rc = accept(s, addr, (socklen_t*)addrlen)) < 0)
+! 	unix_error((char*)"Accept error");
+      return rc;
+  }
+  
+***************
+*** 378,384 ****
+      int rc;
+  
+      if ((rc = connect(sockfd, serv_addr, addrlen)) < 0)
+! 	unix_error("Connect error");
+  }
+  
+  /************************
+--- 378,384 ----
+      int rc;
+  
+      if ((rc = connect(sockfd, serv_addr, addrlen)) < 0)
+! 	unix_error((char*)"Connect error");
+  }
+  
+  /************************
+***************
+*** 391,397 ****
+      struct hostent *p;
+  
+      if ((p = gethostbyname(name)) == NULL)
+! 	dns_error("Gethostbyname error");
+      return p;
+  }
+  /* $end gethostbyname */
+--- 391,397 ----
+      struct hostent *p;
+  
+      if ((p = gethostbyname(name)) == NULL)
+! 	dns_error((char*)"Gethostbyname error");
+      return p;
+  }
+  /* $end gethostbyname */
+***************
+*** 401,407 ****
+      struct hostent *p;
+  
+      if ((p = gethostbyaddr(addr, len, type)) == NULL)
+! 	dns_error("Gethostbyaddr error");
+      return p;
+  }
+  
+--- 401,407 ----
+      struct hostent *p;
+  
+      if ((p = gethostbyaddr(addr, len, type)) == NULL)
+! 	dns_error((char*)"Gethostbyaddr error");
+      return p;
+  }
+  
+***************
+*** 415,442 ****
+      int rc;
+  
+      if ((rc = pthread_create(tidp, attrp, routine, argp)) != 0)
+! 	posix_error(rc, "Pthread_create error");
+  }
+  
+  void Pthread_cancel(pthread_t tid) {
+      int rc;
+  
+      if ((rc = pthread_cancel(tid)) != 0)
+! 	posix_error(rc, "Pthread_cancel error");
+  }
+  
+  void Pthread_join(pthread_t tid, void **thread_return) {
+      int rc;
+  
+      if ((rc = pthread_join(tid, thread_return)) != 0)
+! 	posix_error(rc, "Pthread_join error");
+  }
+  
+  void Pthread_detach(pthread_t tid) {
+      int rc;
+  
+      if ((rc = pthread_detach(tid)) != 0)
+! 	posix_error(rc, "Pthread_detach error");
+  }
+  
+  void Pthread_exit(void *retval) {
+--- 415,442 ----
+      int rc;
+  
+      if ((rc = pthread_create(tidp, attrp, routine, argp)) != 0)
+! 	posix_error(rc, (char*)"Pthread_create error");
+  }
+  
+  void Pthread_cancel(pthread_t tid) {
+      int rc;
+  
+      if ((rc = pthread_cancel(tid)) != 0)
+! 	posix_error(rc, (char*)"Pthread_cancel error");
+  }
+  
+  void Pthread_join(pthread_t tid, void **thread_return) {
+      int rc;
+  
+      if ((rc = pthread_join(tid, thread_return)) != 0)
+! 	posix_error(rc, (char*)"Pthread_join error");
+  }
+  
+  void Pthread_detach(pthread_t tid) {
+      int rc;
+  
+      if ((rc = pthread_detach(tid)) != 0)
+! 	posix_error(rc, (char*)"Pthread_detach error");
+  }
+  
+  void Pthread_exit(void *retval) {
+***************
+*** 460,466 ****
+      int rc;
+  
+      if ((rc = pthread_mutex_init(mutex, attr)) != 0)
+! 	posix_error(rc, "Pthread_mutex_init error");
+  }
+  
+  /* $begin lock */
+--- 460,466 ----
+      int rc;
+  
+      if ((rc = pthread_mutex_init(mutex, attr)) != 0)
+! 	posix_error(rc, (char*)"Pthread_mutex_init error");
+  }
+  
+  /* $begin lock */
+***************
+*** 469,475 ****
+      int rc;
+  
+      if ((rc = pthread_mutex_lock(mutex)) != 0)
+! 	posix_error(rc, "Pthread_mutex_lock error");
+  }
+  /* $end lock */
+  
+--- 469,475 ----
+      int rc;
+  
+      if ((rc = pthread_mutex_lock(mutex)) != 0)
+! 	posix_error(rc, (char*)"Pthread_mutex_lock error");
+  }
+  /* $end lock */
+  
+***************
+*** 478,484 ****
+      int rc;
+  
+      if ((rc = pthread_mutex_unlock(mutex)) != 0)
+! 	posix_error(rc, "Pthread_mutex_unlock error");
+  }
+  
+  void Pthread_cond_init(pthread_cond_t *cond, pthread_condattr_t *attr) 
+--- 478,484 ----
+      int rc;
+  
+      if ((rc = pthread_mutex_unlock(mutex)) != 0)
+! 	posix_error(rc, (char*)"Pthread_mutex_unlock error");
+  }
+  
+  void Pthread_cond_init(pthread_cond_t *cond, pthread_condattr_t *attr) 
+***************
+*** 486,492 ****
+      int rc;
+  
+      if ((rc = pthread_cond_init(cond, attr)) != 0)
+! 	posix_error(rc, "Pthread_cond_init error");
+  }
+  
+  void Pthread_cond_signal(pthread_cond_t *cond) 
+--- 486,492 ----
+      int rc;
+  
+      if ((rc = pthread_cond_init(cond, attr)) != 0)
+! 	posix_error(rc, (char*)"Pthread_cond_init error");
+  }
+  
+  void Pthread_cond_signal(pthread_cond_t *cond) 
+***************
+*** 494,500 ****
+      int rc;
+  
+      if ((rc = pthread_cond_signal(cond)) != 0)
+! 	posix_error(rc, "Pthread_cond_signal error");
+  }
+  
+  void Pthread_cond_broadcast(pthread_cond_t *cond) 
+--- 494,500 ----
+      int rc;
+  
+      if ((rc = pthread_cond_signal(cond)) != 0)
+! 	posix_error(rc, (char*)"Pthread_cond_signal error");
+  }
+  
+  void Pthread_cond_broadcast(pthread_cond_t *cond) 
+***************
+*** 502,508 ****
+      int rc;
+  
+      if ((rc = pthread_cond_broadcast(cond)) != 0)
+! 	posix_error(rc, "Pthread_cond_broadcast error");
+  }
+  
+  void Pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex) 
+--- 502,508 ----
+      int rc;
+  
+      if ((rc = pthread_cond_broadcast(cond)) != 0)
+! 	posix_error(rc, (char*)"Pthread_cond_broadcast error");
+  }
+  
+  void Pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex) 
+***************
+*** 510,516 ****
+      int rc;
+  
+      if ((rc = pthread_cond_wait(cond, mutex)) != 0)
+! 	posix_error(rc, "Pthread_cond_wait error");
+  }
+  
+  /* $begin timedwait */
+--- 510,516 ----
+      int rc;
+  
+      if ((rc = pthread_cond_wait(cond, mutex)) != 0)
+! 	posix_error(rc, (char*)"Pthread_cond_wait error");
+  }
+  
+  /* $begin timedwait */
+***************
+*** 521,527 ****
+      int rc = pthread_cond_timedwait(cond, mutex, abstime);
+  
+      if ((rc != 0) && (rc != ETIMEDOUT))  
+! 	posix_error(rc, "Pthread_cond_timedwait error");
+      return rc;
+  }  
+  /* $end timedwait */
+--- 521,527 ----
+      int rc = pthread_cond_timedwait(cond, mutex, abstime);
+  
+      if ((rc != 0) && (rc != ETIMEDOUT))  
+! 	posix_error(rc, (char*)"Pthread_cond_timedwait error");
+      return rc;
+  }  
+  /* $end timedwait */
+***************
+*** 533,551 ****
+  void Sem_init(sem_t *sem, int pshared, unsigned int value) 
+  {
+      if (sem_init(sem, pshared, value) < 0)
+! 	unix_error("Sem_init error");
+  }
+  
+  void P(sem_t *sem) 
+  {
+      if (sem_wait(sem) < 0)
+! 	unix_error("P error");
+  }
+  
+  void V(sem_t *sem) 
+  {
+      if (sem_post(sem) < 0)
+! 	unix_error("V error");
+  }
+  
+  /*********************************************************************
+--- 533,551 ----
+  void Sem_init(sem_t *sem, int pshared, unsigned int value) 
+  {
+      if (sem_init(sem, pshared, value) < 0)
+! 	unix_error((char*)"Sem_init error");
+  }
+  
+  void P(sem_t *sem) 
+  {
+      if (sem_wait(sem) < 0)
+! 	unix_error((char*)"P error");
+  }
+  
+  void V(sem_t *sem) 
+  {
+      if (sem_post(sem) < 0)
+! 	unix_error((char*)"V error");
+  }
+  
+  /*********************************************************************
+***************
+*** 717,723 ****
+      ssize_t n;
+    
+      if ((n = rio_readn(fd, ptr, nbytes)) < 0)
+! 	unix_error("Rio_readn error");
+      return n;
+  }
+  
+--- 717,723 ----
+      ssize_t n;
+    
+      if ((n = rio_readn(fd, ptr, nbytes)) < 0)
+! 	unix_error((char*)"Rio_readn error");
+      return n;
+  }
+  
+***************
+*** 727,733 ****
+          if (errno == EPIPE)
+              return;
+          else
+!             unix_error("Rio_writenb error");
+      }
+      
+  }
+--- 727,733 ----
+          if (errno == EPIPE)
+              return;
+          else
+!             unix_error((char*)"Rio_writenb error");
+      }
+      
+  }
+***************
+*** 742,748 ****
+      ssize_t rc;
+  
+      if ((rc = rio_readnb(rp, usrbuf, n)) < 0)
+! 	unix_error("Rio_readnb error");
+      return rc;
+  }
+  
+--- 742,748 ----
+      ssize_t rc;
+  
+      if ((rc = rio_readnb(rp, usrbuf, n)) < 0)
+! 	unix_error((char*)"Rio_readnb error");
+      return rc;
+  }
+  
+***************
+*** 751,757 ****
+      ssize_t rc;
+  
+      if ((rc = rio_readlineb(rp, usrbuf, maxlen)) < 0)
+! 	unix_error("Rio_readlineb error");
+      return rc;
+  } 
+  
+--- 751,757 ----
+      ssize_t rc;
+  
+      if ((rc = rio_readlineb(rp, usrbuf, maxlen)) < 0)
+! 	unix_error((char*)"Rio_readlineb error");
+      return rc;
+  } 
+  
+***************
+*** 834,842 ****
+  
+      if ((rc = open_clientfd(hostname, port)) < 0) {
+  	if (rc == -1)
+! 	    unix_error("Open_clientfd Unix error");
+  	else        
+! 	    dns_error("Open_clientfd DNS error");
+      }
+      return rc;
+  }
+--- 834,842 ----
+  
+      if ((rc = open_clientfd(hostname, port)) < 0) {
+  	if (rc == -1)
+! 	    unix_error((char*)"Open_clientfd Unix error");
+  	else        
+! 	    dns_error((char*)"Open_clientfd DNS error");
+      }
+      return rc;
+  }
+***************
+*** 846,852 ****
+      int rc;
+  
+      if ((rc = open_listenfd(port)) < 0)
+! 	unix_error("Open_listenfd error");
+      return rc;
+  }
+  /* $end csapp.c */
+--- 846,852 ----
+      int rc;
+  
+      if ((rc = open_listenfd(port)) < 0)
+! 	unix_error((char*)"Open_listenfd error");
+      return rc;
+  }
+  /* $end csapp.c */
+diff -crB tmp/directhash2.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/directhash2.cc
+*** tmp/directhash2.cc	2012-08-29 10:39:13.828959600 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/directhash2.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 11,16 ****
+--- 11,17 ----
+  #include <algorithm>
+  #include <iostream>
+  #include <bitset>
++ #include <cstdio>
+  using namespace std;
+  
+  #include "directhash.h"
+diff -crB tmp/directhash.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/directhash.cc
+*** tmp/directhash.cc	2012-08-29 10:39:13.831959198 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/directhash.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 4,16 ****
+  August 2004
+  */
+  
+! #define _FILE_OFFSET_BITS 64
+  
+  #include <assert.h>
+  
+  #include <algorithm>
+  #include <iostream>
+  #include <bitset>
+  using namespace std;
+  
+  #include "directhash.h"
+--- 4,19 ----
+  August 2004
+  */
+  
+! /*#define _FILE_OFFSET_BITS 64
+  
+  #include <assert.h>
+  
+  #include <algorithm>
+  #include <iostream>
+  #include <bitset>
++ #include <cstdio>
++ #include <cstdlib>
++ #include <limits.h>
+  using namespace std;
+  
+  #include "directhash.h"
+***************
+*** 42,51 ****
+  
+  vector<vector<Keypoint *> > DirectHash::getNeighbors(vector<Keypoint *> & keys,
+  						    unsigned int dist) {
+  	vector<vector<Keypoint *> > neighbors(keys.size());
+  
+  	for (unsigned int i = 0; i < keys.size(); i++) {
+! 		//cout << "Looking for ld: " << keys[i]->ld << endl;
+  		
+  		#ifdef KEYDIST0
+  		
+--- 45,55 ----
+  
+  vector<vector<Keypoint *> > DirectHash::getNeighbors(vector<Keypoint *> & keys,
+  						    unsigned int dist) {
++ 	cout<<"test"<<endl;
+  	vector<vector<Keypoint *> > neighbors(keys.size());
+  
+  	for (unsigned int i = 0; i < keys.size(); i++) {
+! 		cout << "Looking for ld: " << keys[i]->ld << endl;
+  		
+  		#ifdef KEYDIST0
+  		
+***************
+*** 92,95 ****
+  	//cout << endl;
+  	
+  	return neighbors;
+! }
+--- 96,99 ----
+  	//cout << endl;
+  	
+  	return neighbors;
+! }*/
+diff -crB tmp/emalignsongs.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/emalignsongs.cc
+*** tmp/emalignsongs.cc	2012-08-29 10:39:13.833955992 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/emalignsongs.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 9,14 ****
+--- 9,17 ----
+  #include <iostream>
+  #include <map>
+  #include <string>
++ #include <cstdio>
++ #include <cstdlib>
++ #include <limits.h>
+  
+  //#include "linsearch.h"
+  //#include "lshdisk.h"
+***************
+*** 40,46 ****
+  
+  
+  
+! void countmatches(map<unsigned int, vector<Keypoint *> > & matches, KeypointDB * kdb,
+                    int & nummatched, int & truepos, int & falsepos,
+                    char * qfn) {
+          // map match count -> file id
+--- 43,49 ----
+  
+  
+  
+! void emcountmatches(map<unsigned int, vector<Keypoint *> > & matches, KeypointDB * kdb,
+                    int & nummatched, int & truepos, int & falsepos,
+                    char * qfn) {
+          // map match count -> file id
+***************
+*** 68,74 ****
+          }
+  }
+  
+! void printmatches(map<unsigned int, vector<Keypoint *> > & matches,
+  		  KeypointDB & kdb, unsigned int * db_start_frame,
+  		  unsigned int * query_start_frame, unsigned int * length ) {
+  	
+--- 71,77 ----
+          }
+  }
+  
+! void emprintmatches(map<unsigned int, vector<Keypoint *> > & matches,
+  		  KeypointDB & kdb, unsigned int * db_start_frame,
+  		  unsigned int * query_start_frame, unsigned int * length ) {
+  	
+***************
+*** 111,117 ****
+  }
+  
+  
+! map<string, string> readKeysList(char * fn) {
+  	map<string, string> ret;
+  
+  	printf("Reading %s\n", fn);
+--- 114,120 ----
+  }
+  
+  
+! map<string, string> emreadKeysList(char * fn) {
+  	map<string, string> ret;
+  
+  	printf("Reading %s\n", fn);
+***************
+*** 136,142 ****
+  ...
+  */
+  
+! void writeKeys(FILE * outfile, KeypointDB & kdb, unsigned int db_start_frame,
+  	       vector<Keypoint *> & qkeys, unsigned int query_start_frame,
+  	       unsigned int length) {
+  	
+--- 139,145 ----
+  ...
+  */
+  
+! void emwriteKeys(FILE * outfile, KeypointDB & kdb, unsigned int db_start_frame,
+  	       vector<Keypoint *> & qkeys, unsigned int query_start_frame,
+  	       unsigned int length) {
+  	
+***************
+*** 151,157 ****
+  }
+  		
+  
+! int main(int argc, char * argv[])
+  {
+          if (argc != 4 ) {
+                  printf("Usage: %s origs.txt recorded.txt out.kpr\n", argv[0]);
+--- 154,160 ----
+  }
+  		
+  
+! /*int main(int argc, char * argv[])
+  {
+          if (argc != 4 ) {
+                  printf("Usage: %s origs.txt recorded.txt out.kpr\n", argv[0]);
+***************
+*** 247,252 ****
+  
+          return 0;
+  
+! }
+  
+  
+--- 250,255 ----
+  
+          return 0;
+  
+! }*/
+  
+  
+diff -crB tmp/emverifytrain.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/emverifytrain.cc
+*** tmp/emverifytrain.cc	2012-08-29 10:39:13.836959860 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/emverifytrain.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 10,15 ****
+--- 10,19 ----
+  #include <string>
+  #include <vector>
+  #include <bitset>
++ #include <cstdio>
++ #include <cstdlib>
++ #include <limits.h>
++ #include <cmath>
+  
+  using namespace std;
+  
+***************
+*** 235,241 ****
+  
+  };
+  
+! int main(int argc, char * argv[])
+  {
+          if (argc != 3 ) {
+                  printf("Usage: %s keypointpairs.kpr paramout.bin\n", argv[0]);
+--- 239,245 ----
+  
+  };
+  
+! /*int main(int argc, char * argv[])
+  {
+          if (argc != 3 ) {
+                  printf("Usage: %s keypointpairs.kpr paramout.bin\n", argv[0]);
+***************
+*** 256,259 ****
+  
+  	fflush(f2);
+  	fclose(f2);
+! }
+--- 260,263 ----
+  
+  	fflush(f2);
+  	fclose(f2);
+! }*/
+diff -crB tmp/filters.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/filters.cc
+*** tmp/filters.cc	2012-08-29 10:39:13.838950884 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/filters.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 10,15 ****
+--- 10,17 ----
+  #include <iostream>
+  #include <map>
+  #include <string>
++ #include <cstdio>
++ #include <cstdlib>
+  
+  #include "filters.h"
+  #include "util.h"
+diff -crB tmp/keypoint.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/keypoint.cc
+*** tmp/keypoint.cc	2012-08-29 10:39:13.841951548 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/keypoint.cc	2012-08-29 10:15:34.364971877 +0200
+***************
+*** 6,11 ****
+--- 6,13 ----
+  
+  #include <math.h>
+  #include <assert.h>
++ #include <cstdio>
++ #include <cstdlib>
+  
+  #include "keypoint.h"
+  
+***************
+*** 165,175 ****
+  	fclose(f);
+  }
+  
+! void writebits(unsigned int bits[], unsigned int nbits, char * fn) {
+  	FILE * f = fopen(fn, "wb");
+  	if (!f) {
+  		printf("Error: Can't open %s for writing.\n", fn);
+! 		exit(1);
+  	}
+  
+  	unsigned int t = 32000; // special case to represent packed bits
+--- 167,177 ----
+  	fclose(f);
+  }
+  
+! bool writebits(unsigned int bits[], unsigned int nbits, char * fn) {
+  	FILE * f = fopen(fn, "wb");
+  	if (!f) {
+  		printf("Error: Can't open %s for writing.\n", fn);
+! 		return false;
+  	}
+  
+  	unsigned int t = 32000; // special case to represent packed bits
+***************
+*** 183,186 ****
+--- 185,189 ----
+  
+  	fflush(f);
+  	fclose(f);
++ 	return true;
+  }
+diff -crB tmp/keypointdb.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/keypointdb.cc
+*** tmp/keypointdb.cc	2012-08-29 10:39:13.843959846 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/keypointdb.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 10,15 ****
+--- 10,18 ----
+  #include <string>
+  #include <iostream>
+  #include <bitset>
++ #include <cstdio>
++ #include <cstdlib>
++ #include <cstring>
+  
+  #include "keypointdb.h"
+  
+***************
+*** 187,193 ****
+  
+  	/////////////////////////////////////////
+  	// Write keys list
+! 	char * hdr2 = "KPDB0001";
+  	fwrite(hdr2, strlen(hdr2), 1, keys_fid);
+  
+  	fseeko(keys_fid, (long long) HEADERSIZE, SEEK_SET);
+--- 190,196 ----
+  
+  	/////////////////////////////////////////
+  	// Write keys list
+! 	const char * hdr2 = "KPDB0001";
+  	fwrite(hdr2, strlen(hdr2), 1, keys_fid);
+  
+  	fseeko(keys_fid, (long long) HEADERSIZE, SEEK_SET);
+***************
+*** 239,245 ****
+  
+  	// Initialize headers.
+  
+! 	char * hdr = "FLDB0001";
+  	fwrite(hdr, strlen(hdr), 1, fl_fid);
+  
+  
+--- 242,248 ----
+  
+  	// Initialize headers.
+  
+! 	const char * hdr = "FLDB0001";
+  	fwrite(hdr, strlen(hdr), 1, fl_fid);
+  
+  
+diff -crB tmp/keypoint.h /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/keypoint.h
+*** tmp/keypoint.h	2012-08-29 10:39:17.137965458 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/keypoint.h	2012-08-29 10:15:07.219929855 +0200
+***************
+*** 42,48 ****
+  void writebits2(unsigned int bits[], unsigned int nbits, char * fn);
+  
+  /** write bits to disk (packing bits to ints) */
+! void writebits(unsigned int bits[], unsigned int nbits, char * fn);
+  
+  vector<Keypoint *> bitsToKeys(unsigned int * bits, unsigned int nbits);
+  
+--- 42,48 ----
+  void writebits2(unsigned int bits[], unsigned int nbits, char * fn);
+  
+  /** write bits to disk (packing bits to ints) */
+! bool writebits(unsigned int bits[], unsigned int nbits, char * fn);
+  
+  vector<Keypoint *> bitsToKeys(unsigned int * bits, unsigned int nbits);
+  
+diff -crB tmp/mrserver.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/mrserver.cc
+*** tmp/mrserver.cc	2012-08-29 10:39:13.846959119 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/mrserver.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 8,13 ****
+--- 8,16 ----
+  
+  #include <iostream>
+  #include <map>
++ #include <cstdio>
++ #include <cstdlib>
++ #include <limits.h>
+  using namespace std;
+  
+  // CSAPP Unix library header
+***************
+*** 359,365 ****
+  }
+  
+  
+! int main(int argc, char * argv[]) {
+    
+  	if (argc != 6 && argc != 5) {
+  		printf("Usage: %s descriptors.txt db.fdb db.kdb emparams.bin [port]\n", argv[0]);
+--- 362,368 ----
+  }
+  
+  
+! /*int main(int argc, char * argv[]) {
+    
+  	if (argc != 6 && argc != 5) {
+  		printf("Usage: %s descriptors.txt db.fdb db.kdb emparams.bin [port]\n", argv[0]);
+***************
+*** 371,377 ****
+  	char * kdbfn = argv[3];
+  	char * emparamfn =argv[4];
+  	
+! 	int port = 2000;
+  
+  /* test code for char[2] -> short int conversion
+  	for (short int i = SHRT_MIN; i < SHRT_MAX; i++) {
+--- 374,380 ----
+  	char * kdbfn = argv[3];
+  	char * emparamfn =argv[4];
+  	
+! 	int port = 2000;*/
+  
+  /* test code for char[2] -> short int conversion
+  	for (short int i = SHRT_MIN; i < SHRT_MAX; i++) {
+***************
+*** 385,391 ****
+  	return 0;
+  */	
+  
+! 	if (argc == 6)
+  		port = atoi(argv[5]);
+  
+  	emparams params = readEMParams(emparamfn);
+--- 388,394 ----
+  	return 0;
+  */	
+  
+! 	/*if (argc == 6)
+  		port = atoi(argv[5]);
+  
+  	emparams params = readEMParams(emparamfn);
+***************
+*** 408,414 ****
+         
+  	return 0;  
+    
+! }
+  
+  
+  
+--- 411,417 ----
+         
+  	return 0;  
+    
+! }*/
+  
+  
+  
+diff -crB tmp/sigproc.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/sigproc.cc
+*** tmp/sigproc.cc	2012-08-29 10:39:13.849960230 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/sigproc.cc	2012-08-28 17:21:04.397970082 +0200
+***************
+*** 9,14 ****
+--- 9,18 ----
+  #include <assert.h>
+  #include <vector>
+  #include <bitset>
++ #include <cstdio>
++ #include <cstdlib>
++ #include <limits.h>
++ #include <cstring>
+  
+  using namespace std;
+  
+***************
+*** 285,291 ****
+  	double * in;
+  	in = (double *) fftw_malloc(sizeof(double) * FRAMESIZE);
+  	out = (fftw_complex *) fftw_malloc(sizeof(fftw_complex) * (FRAMESIZE/2 + 1));
+! 	
+  	// in destroyed when line executed
+  	p = fftw_plan_dft_r2c_1d(FRAMESIZE, in, out, FFTW_ESTIMATE); // FFTW_ESTIMATE or FFTW_MEASURE
+  
+--- 289,295 ----
+  	double * in;
+  	in = (double *) fftw_malloc(sizeof(double) * FRAMESIZE);
+  	out = (fftw_complex *) fftw_malloc(sizeof(fftw_complex) * (FRAMESIZE/2 + 1));
+! 
+  	// in destroyed when line executed
+  	p = fftw_plan_dft_r2c_1d(FRAMESIZE, in, out, FFTW_ESTIMATE); // FFTW_ESTIMATE or FFTW_MEASURE
+  
+***************
+*** 336,342 ****
+  		}
+  		
+  	}
+! 	
+  	fftw_destroy_plan(p);
+  	
+  	fftw_free(in);
+--- 340,346 ----
+  		}
+  		
+  	}
+! 
+  	fftw_destroy_plan(p);
+  	
+  	fftw_free(in);
+***************
+*** 372,378 ****
+  	*nbits = last_time - first_time + 1;
+  
+  	unsigned int * bits = (unsigned int *) malloc(sizeof(unsigned int) * *nbits);
+!        
+  	for (unsigned int t2 = first_time; t2 <= last_time; t2++) {
+  		bitset<32> bt;
+  
+--- 376,382 ----
+  	*nbits = last_time - first_time + 1;
+  
+  	unsigned int * bits = (unsigned int *) malloc(sizeof(unsigned int) * *nbits);
+! 
+  	for (unsigned int t2 = first_time; t2 <= last_time; t2++) {
+  		bitset<32> bt;
+  
+***************
+*** 496,508 ****
+  
+  	float * dsamples;
+  
+! 	if (freq == OFREQ1 || freq == OFREQ2) {
+! 		printf("Downsampling to 5512.5 KHz...\n");
+! 		dsamples = downsample(samples, &nsamples, freq);
+! 	} else {
+  		dsamples = (float *) malloc(sizeof (float) * nsamples);
+  		memcpy(dsamples, samples, sizeof(float) * nsamples);
+! 	}
+  
+  	printf("  Got %d samples.\n", nsamples);
+  	// dsamples now at 5512.5 Hz sample rate
+--- 500,512 ----
+  
+  	float * dsamples;
+  
+! //	if (freq == OFREQ1 || freq == OFREQ2) {
+! //		printf("Downsampling to 5512.5 KHz...\n");
+! //		dsamples = downsample(samples, &nsamples, freq);
+! //	} else {
+  		dsamples = (float *) malloc(sizeof (float) * nsamples);
+  		memcpy(dsamples, samples, sizeof(float) * nsamples);
+! //	}
+  
+  	printf("  Got %d samples.\n", nsamples);
+  	// dsamples now at 5512.5 Hz sample rate
+***************
+*** 524,529 ****
+--- 528,535 ----
+  	integralimage(frames, nframes);
+  	
+  	printf("Computing bit descriptors...\n");
++ 	if(nframes < KEYWIDTH/2 + 1)
++ 		return NULL;
+  	unsigned int * bits = computebits(filters, frames, nframes, nbits);
+  
+  	printf("  Got %d descriptors.\n", *nbits);
+diff -crB tmp/util.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/util.cc
+*** tmp/util.cc	2012-08-29 10:39:13.851934315 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/util.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 10,15 ****
+--- 10,16 ----
+  #include <map>
+  #include <string>
+  #include <set>
++ #include <cstdio>
+  
+  //#include "lshdisk.h"
+  #include "keypoint.h"
+***************
+*** 23,29 ****
+  string basename(string fn) {
+  	size_t pos = fn.rfind("/");
+  
+! 	string ret = fn.substr(pos+1, 11);
+  			       
+  	//cout << "BASE: " << ret << endl;
+  
+--- 24,30 ----
+  string basename(string fn) {
+  	size_t pos = fn.rfind("/");
+  
+! 	string ret = fn.substr(pos+1);
+  			       
+  	//cout << "BASE: " << ret << endl;
+  
+diff -crB tmp/verify2.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/verify2.cc
+*** tmp/verify2.cc	2012-08-29 10:39:13.853959908 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/verify2.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 8,13 ****
+--- 8,16 ----
+  #include <map>
+  #include <string>
+  #include <limits>
++ #include <cstdio>
++ #include <cstdlib>
++ #include <limits.h>
+  
+  #include "keypoint.h"
+  #include "util.h"
+diff -crB tmp/verify4.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/verify4.cc
+*** tmp/verify4.cc	2012-08-29 10:39:13.856959104 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/verify4.cc	2012-07-02 14:18:47.000000000 +0200
+***************
+*** 9,14 ****
+--- 9,15 ----
+  #include <map>
+  #include <string>
+  #include <limits>
++ #include <cstdlib>
+  
+  #include "verify.h"
+  #include "keypoint.h"
+diff -crB tmp/verify4em.cc /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/verify4em.cc
+*** tmp/verify4em.cc	2012-08-29 10:39:13.858920044 +0200
+--- /homes/cdondrup/Dipl/contrib/include/musicretr-1.0/verify4em.cc	2012-07-03 11:11:04.619456711 +0200
+***************
+*** 10,15 ****
+--- 10,18 ----
+  #include <string>
+  #include <limits>
+  #include <bitset>
++ #include <cstdlib>
++ #include <cstdio>
++ #include <limits.h>
+  
+  #include "verify.h"
+  #include "keypoint.h"
+***************
+*** 18,24 ****
+  // ratio of frames in the query song that must overlap with the database song
+  #define MIN_FRAMES_RATIO 0.75
+  
+! #define MIN_SCORE -1000
+  //#define MIN_SCORE -2100
+  //#define MIN_SCORE -500
+  
+--- 21,27 ----
+  // ratio of frames in the query song that must overlap with the database song
+  #define MIN_FRAMES_RATIO 0.75
+  
+! #define MIN_SCORE INT_MAX
+  //#define MIN_SCORE -2100
+  //#define MIN_SCORE -500
+  
+***************
+*** 269,277 ****
+  		vsong song = verify(it->second, qkeys, kdb, params, it->first);
+  		//printf("MLRatioTest Score for file %d: %f\n", it->first, song.score);
+  			
+! 		if (song.score < MIN_SCORE) {
+  			scores[it->first] = song;
+! 		}
+          }
+  
+  	return scores;
+--- 272,280 ----
+  		vsong song = verify(it->second, qkeys, kdb, params, it->first);
+  		//printf("MLRatioTest Score for file %d: %f\n", it->first, song.score);
+  			
+! //		if (song.score < MIN_SCORE) {
+  			scores[it->first] = song;
+! //		}
+          }
+  
+  	return scores;

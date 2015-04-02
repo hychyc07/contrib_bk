@@ -1,0 +1,61 @@
+<application>
+<name> CrawlingMonitor </name>		
+    <dependencies>
+    </dependencies>
+
+    <module>
+        <name>portScope</name>
+        <tag>iCubScopeJointPositions</tag>
+        <parameters>--context crawlingApplication/conf/logconf --from scope_encoders.ini</parameters>
+        <node>console</node>
+    </module>
+
+    <module>
+        <name>portScope</name>
+        <tag>iCubScopeJointSpeeds</tag>
+        <parameters>--context crawlingApplication/conf/logconf --from scope_encodersSpeed.ini</parameters>
+        <node>console</node>
+    </module>
+
+    <module>
+        <name>portScope</name>
+        <tag>iCubScopeJointTorques</tag>
+        <parameters>--context crawlingApplication/conf/logconf --from scope_torques.ini</parameters>
+        <node>console</node>
+    </module>
+
+    <module>
+        <name>portScope</name>
+        <tag>iCubScopeJointPositionsErrors</tag>
+        <parameters>--context crawlingApplication/conf/logconf --from scope_encodersError.ini</parameters>
+        <node>console</node>
+    </module>
+    
+    <module>
+        <name>portScope</name>
+        <tag>iCubScopeJointTorquesErrors</tag>
+        <parameters>--context crawlingApplication/conf/logconf --from scope_torquesError.ini</parameters>
+        <node>console</node>
+    </module>
+	
+    <module>
+        <name>portScope</name>
+        <tag>iCubScopeStiffness</tag>
+        <parameters>--context crawlingApplication/conf/logconf --from scope_stiffness.ini</parameters>
+        <node>console</node>
+    </module>
+	
+    <module>
+        <name>portScope</name>
+        <tag>iCubScopeDamping</tag>
+        <parameters>--context crawlingApplication/conf/logconf --from scope_damping.ini</parameters>
+        <node>console</node>
+    </module>
+	
+	<module>
+        <name>portScope</name>
+        <tag>iCubScopeVelocityCommand</tag>
+        <parameters>--context crawlingApplication/conf/logconf --from scope_velocityCommand.ini</parameters>
+        <node>console</node>
+    </module>
+</application>

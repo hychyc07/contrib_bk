@@ -1,0 +1,106 @@
+<application>
+
+	<!--Generic Information-->
+	<name> BalancerApp </name>
+	<description> Very first version of balancerApp </description>
+	<version>0.1</version>
+
+	<authors>
+			<author> email="jorhabib.eljaik@iit.it" </author>
+	</authors>
+
+	<!--Required modules-->
+	<module>
+		<name>wholeBodyDynamics</name>
+		<parameters>--local mywholeBodyDynamics --autoconnect --headV2 --legsV2 --experimental_com_vel</parameters>
+		<node>/jorh</node>
+	</module>
+
+	<module>
+		<name>iCubGui</name>
+		<parameters>--name myiCubGui --robot icub</parameters>
+		<node>/jorh</node>
+	</module>
+
+  <module>
+          <name>velocityObserver</name>
+          <parameters>--name /zmpVel</parameters>
+          <node>/jorh</node>
+  </module>
+
+  <module>
+          <name>velocityObserver</name>
+          <parameters>--name /comVel</parameters>
+          <node>/jorh</node>
+  </module>
+
+
+	<module>
+		<name>/home/jorhabib/iCub/contrib/src/balancing/balancerModuleZMP/build/balancerModule</name>
+		<parameters>--robot icub --local balancerModule_ankles --headV2 --display_zmp --ankles_sens</parameters>
+		<node>/jorh</node>
+		<dependencies> <port timeout="30"> /mywholeBodyDynamics/right_leg/endEffectorWrench:o </port>
+					   <port timeout="30"> /mywholeBodyDynamics/left_leg/endEffectorWrench:o </port>
+					   <port timeout="30"> /myiCubGui/objects </port>
+		</dependencies>		
+    <stdio>/jorh</stdio>
+	</module>
+
+	<module>
+		<name>/home/jorhabib/Documents/IIT/GuiBalancer/build/GuiBalancer</name>
+		<node>/jorh</node>
+<!-- 		<dependencies><port timeout="30"> /myiCubGui/objects </port>
+					        <port timeout="30"> /balancerModule_legs/DSPzmp:o </port>
+		</dependencies> -->
+	</module>
+
+	<!--connections-->
+  <connection>
+      <from>/icub/left_arm/state:o</from>
+      <to>/myiCubGui/left_arm:i</to>
+      <protocol>udp</protocol>
+  </connection>
+
+  <connection>
+      <from>/icub/right_arm/state:o</from>
+      <to>/myiCubGui/right_arm:i</to>
+      <protocol>udp</protocol>
+  </connection>
+
+  <connection>
+      <from>/icub/left_leg/state:o</from>
+      <to>/myiCubGui/left_leg:i</to>
+      <protocol>udp</protocol>
+  </connection>
+
+  <connection>
+      <from>/icub/right_leg/state:o</from>
+      <to>/myiCubGui/right_leg:i</to>
+      <protocol>udp</protocol>
+  </connection>
+
+  <connection>
+      <from>/icub/torso/state:o</from>
+      <to>/myiCubGui/torso:i</to>
+      <protocol>udp</protocol>
+  </connection>
+
+  <connection>
+      <from>/icub/head/state:o</from>
+      <to>/myiCubGui/head:i</to>
+      <protocol>udp</protocol>
+  </connection>
+
+  <connection>
+      <from>/plotZMP:o</from>
+      <to>/myiCubGui/objects</to>
+      <protocol>udp</protocol>
+  </connection>
+
+  <connection>
+      <from>/balancerModule_ankles/DSPzmp2iCubGui:o</from>
+      <to>/plotZMP:i</to>
+      <protocol>udp</protocol>
+  </connection>
+  
+</application>

@@ -1,0 +1,118 @@
+/* 
+ * Copyright (C) 2011 RobotCub Consortium, European Commission FP6 Project IST-004370
+ * Author:  Eric Sauser
+ * email:   eric.sauser@a3.epfl.ch
+ * website: www.robotcub.org
+ * Permission is granted to copy, distribute, and/or modify this program
+ * under the terms of the GNU General Public License, version 2 or any
+ * later version published by the Free Software Foundation.
+ *
+ * A copy of the license can be found at
+ * http://www.robotcub.org/icub/license/gpl.txt
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+ * Public License for more details
+ */
+
+/**
+ *
+\defgroup icub_RobotToolKitInterface RobotToolKit Interface
+@ingroup icub_lasaBox_modules
+
+
+
+Documentation page explaining how to control the iCub using an interface to RobotToolKit.
+
+
+
+
+\section intro_sec Description
+
+
+This page aims at describing the necessary steps to be able to control the iCub using an interface to RobotToolKit,<br/>
+yet another robot simulator and development toolkit developed at LASA-EPFL. 
+
+First of all, you should install RobotToolKit: http://lasa.epfl.ch/RobotToolKit <br/>
+which can be downloaded here: http://lasa.epfl.ch/RobotToolKit/getit.html <br/>
+and installed following these intructions: http://lasa.epfl.ch/RobotToolKit/install.html
+
+Furthermore, you should also install the RobotToolKit package: <b> iCubInterface</b>. <br/>
+which can be downloaded here: http://lasa.epfl.ch/RobotToolKit/getit.html <br/>
+and installed following these intructions: http://lasa.epfl.ch/RobotToolKit/packages.html <br/>
+
+You may also have a look at its documentation page: http://lasa.epfl.ch/RobotToolKit/packages/iCubInterface/index.html
+
+
+\section running_sec Running your module on the robot
+
+Prior running a control module on your iCub, I would suggest
+you to give a try running a module in simulaton. <br/>
+For instance 
+the inverse kinematics example whose quick description can be found here: http://lasa.epfl.ch/RobotToolKit/examples.html
+
+To run it from the RobotToolKit directory:
+\verbatim
+./bin/RobotSimulator --config Examples/InverseKinematics
+\endverbatim
+
+Play a bit with it and when you're ready, let's move on to the iCub.
+
+In order to control the iCub uning RobotToolKit, you need to run the
+\ref icub_iCubMotionControllerExt module that can be found in the iCub repository.
+The typical command line that should run it (preferentially on the pc104) is
+
+\verbatim
+iCubMotionControllerExt --robot icub --period 0.01 --part right_arm+left_arm+torso+head
+\endverbatim
+
+<b>Important!!!</b>: The parameters --part xxx should be run exactly as indicated above. The current version
+of the RobotToolKit interface assumes that. Otherwise, the iCub may behave really badly.
+
+However, if you don't want, for instance to activate the left arm and the head, you should use
+the following alternative parameters:
+\verbatim
+iCubMotionControllerExt --robot icub --period 0.01 --part right_arm+fake_left_arm+torso+fake_head
+\endverbatim
+
+Once the \ref icub_iCubMotionControllerExt is running, you should activate it using the "run" command in its terminal.<br/>
+To stop it, commands such as "idle", "stop", or "susp" are suggested. Ctrl-C works also fine :)
+
+Once all these steps are done, you can run the InverseKinematic example as follow from the RobotToolKit base 
+directory.
+\verbatim
+./bin/iCubRobotInterface --config Examples/InverseKinematics
+\endverbatim
+
+By hitting "PageDown", you will finally get to the module console, and can start typing the commands you want the 
+robot to execute. As in the simulation.
+
+
+\section dependencies_sec Dependencies
+
+- YARP
+- RobotToolKit
+- iCubInterface
+
+
+\section tested_os_sec Tested OS
+
+Linux
+
+
+\author Eric Sauser
+
+Copyright (C) 2011 RobotCub Consortium
+ 
+CopyPolicy: Released under the terms of the GNU GPL v2.0.
+
+This file can be edited at $ICUB_ROOT/contrib/src/lasaBox/src/modules/RobotToolKitInterface
+**/
+
+
+
+
+*/
+
+

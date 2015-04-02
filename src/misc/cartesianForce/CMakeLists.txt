@@ -1,0 +1,47 @@
+# Copyright (C) 2011 RBCS IIT
+# Author: Juan G Victores
+# CopyPolicy: Released under the terms of the GNU GPL v2.0.
+
+cmake_minimum_required(VERSION 2.6)
+
+set(KEYWORD "cartesianForce")
+
+# Start a project.
+project(${KEYWORD})
+
+# Find YARP.  Point the YARP_DIR environment variable at your build.
+find_package(YARP REQUIRED)
+FIND_PACKAGE(ICUB)
+
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${YARP_MODULE_PATH})
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ICUB_MODULE_PATH})
+
+INCLUDE(iCubOptions)
+INCLUDE(iCubHelpers)
+
+# Search for source code.
+file(GLOB folder_source src/*.cpp *.cc *.c)
+file(GLOB folder_header *.h)
+source_group("Source Files" FILES ${folder_source})
+source_group("Header Files" FILES ${folder_header})
+
+# Automatically add include directories if needed.
+foreach(header_file ${folder_header})
+  get_filename_component(p ${header_file} PATH)
+  include_directories(${p})
+endforeach(header_file ${folder_header})
+
+# Inclue any directories needed for YARP
+INCLUDE_DIRECTORIES(${ICUB_INCLUDE_DIRS}
+                    ${YARP_INCLUDE_DIRS}
+                    ${PROJECT_SOURCE_DIR}/include)
+
+SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${ICUB_LINK_FLAGS}")					
+
+# Set up our main executable.
+if (folder_source)
+  add_executable(${KEYWORD} ${folder_source} ${folder_header})
+  target_link_libraries(${KEYWORD} ${YARP_LIBRARIES} icubmod iDyn)
+else (folder_source)
+  message(FATAL_ERROR "No source code files found. Please add something")
+endif (folder_source)

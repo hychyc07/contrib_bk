@@ -1,0 +1,23 @@
+<application>
+<name>pmp_network_test</name>
+
+<module>
+	<name>pmp_network_server</name>
+	<node>icub14</node>
+	<tag>pmp_server</tag>
+</module>
+
+<module>
+	<name>yarp rpc</name>
+	<parameters>/pmpServer/rpc</parameters>
+	<node>icub14</node>
+	<stdio>icub14</stdio>
+	<tag>pmp_server_rpc</tag>
+ </module>
+
+<connection>
+	<from>/PMPserver/rpc </from>
+	<to>/pmpServer/rpc </to>
+</connection>
+
+</application>

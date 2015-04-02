@@ -1,0 +1,68 @@
+Application Files
+-----------------
+opticalFlow.xml.template
+logpolarOpticalFlow.xml.template
+
+These applications demonstates the use of the opticalFlow module which computes the instantaneous optical flow 
+between two images in an Gaussian-apodized window at a sample of points.
+
+The opticalFlow.xml application runs on a standard Cartesian image.
+The logpolarOpticalFlow.xml run on a log-polar transform of a Cartesian image (see below for more information
+on the parameters of the log-polar transform).
+          
+The sampling period, window size, and standard deviation of the Gaussian apodization function can be provided
+as parameters to the module. The default values are 16, 64, and 16.  A value of 32 can also be used for the 
+window size, significantly increasing the speed of the flow computation, but at the cost of introducing occasional errors
+in image regions without significant variation in intensity.
+
+A rectangular region of interest within the image can also be specifed by providing the top left and bottom right
+coordinates of the region as module parameters. Optical flow is computed only in this region of interest.  
+The default region of interest is the entire image; this is specified when both top left and bottom right 
+coordinates have values (0, 0) or when no region of interest is specified.
+
+The module takes one input: the port on which images at time t0 and t1 are acquired.
+
+The module produces three outputs: the magnitude and phase of the interpolated optical flow field, 
+and a plot of the flow field. Optionally,by setting a module parameter, the plot can be superimposed on 
+the first of the two input images.
+
+The application runs offline and the imageSource module simulates the icub camera and streams an image from 
+a file to a port at a given frequency. A 320x240 region is extracted from the image file, with the origin of the region
+shifting between frames to simulate a panning motion.  
+ 
+The image file is provided in the $ICUB_ROOT/contrib/src/cognitiveArchitecture/app/opticalFlow/conf directory
+along with the relevant initialization configuration files.
+
+Please refer to the imageSource module documentation for further details on the module parameters 
+(this is contained in Doxygen format in the header of opticalFlow.h)
+
+Edit the xml.template files to suit your own platform.  The only change that should be 
+necessary is to replace the node name (icub1 in the template).
+
+To run the application online, simply delete the instantiation of the imageSource module and 
+make sure /icub/cam/left is available.
+
+
+Note on Log-polar Optical Flow
+------------------------------
+The parameters of the log-polar transform in logpolarTransform.ini, strongly influence the success
+of the instantaneous optical flow computation. The flow computation uses a Fourier transform phase technique 
+to compute the flow and assumes a pure local translation, which is appropriate when operating with Cartesian images
+and fronto-parallel motion.  However, the log-polar transform maps translation into a dilation and rotation 
+(and, vice versa dilation, i.e. scaling, and rotation into translation).  Consequently, the flow computation assumptions
+are broken.  However, if the dimensions of the log-polar image are sufficiently large, then the resultant dilation
+and rotation are manifest as diverging or converging translations in a local image region (in the transform domain).
+In such circumstances, the flow computation works reasonably well.   
+
+The choice of parameters for the log-polar transform doesn't depend heavily on the size of the original image and, for both
+320x240 images and 640x480 images, the log-polar transform spaces should be at least 512x128 (angles x rings). 
+1024x256 also works well with 640x480 but the flow computation is slow as a result.
+
+The ratio of angles (512) to rings (128) is important. The large number of angles provides a sufficiently large image for the 
+flow computation and the low number of angles ensures that only a relative small proportion (<50%) of the image corresponds
+to the fovea, where the dilation is extreme and the flow computation breaks down. For that reason, the flow is computed 
+in the sample application in a region of interest that excludes the fovea (see opticalFlowLogpolar.ini for details).
+
+David Vernon
+21/4/2011
+

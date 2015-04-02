@@ -1,0 +1,6 @@
+add_subdirectory(bml)
+add_subdirectory(bmlInterface)
+add_subdirectory(bmlEngine)
+#add_subdirectory(cudaTest)
+add_subdirectory(inputFeeder)
+add_subdirectory(fileFeeder)

@@ -1,0 +1,15 @@
+add_subdirectory(iKartCtrl)
+add_subdirectory(iKartNav)
+add_subdirectory(iKartBatteryManager)
+add_subdirectory(iKartSpeedTest)
+add_subdirectory(iKartBatteryDisplay)
+add_subdirectory(forceGuidance)
+add_subdirectory(iKartUtils)
+add_subdirectory(iKartGoto)
+add_subdirectory(iKartPathPlanner)
+add_subdirectory(laserScannerGui)
+add_subdirectory(laserUtils)
+add_subdirectory(iKartWirelessDisplay)
+
+
+

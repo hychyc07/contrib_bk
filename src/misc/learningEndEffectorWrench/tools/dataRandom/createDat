@@ -1,0 +1,5 @@
+#!/bin/bash
+for var in {1..3000}
+do
+  echo $var $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+done

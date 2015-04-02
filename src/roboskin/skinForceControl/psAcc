@@ -1,0 +1,1 @@
+portScope --local /psAcc --title Accelerations --dx 400 --dy 600 --x 3000 --y 0 --remote /skinForceControl/monitor:o --rows 3 --cols 1 --index "((54 57) (55 58) (56 59))"

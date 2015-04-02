@@ -1,0 +1,106 @@
+<application>
+<name>Global launcher for Simulator</name>
+
+	<module>
+      		<name>iCub_SIM</name>
+      		<parameters></parameters>
+			<node>node</node>
+			<stdio>node</stdio>
+			<tag>icubsim</tag>
+   	</module>
+	<module>
+      		<name>simWholeBodyTorqueObserver</name>
+      		<parameters>--context simWholeBodyTorqueObserver/conf --from simWholeBodyTorqueObserver.ini </parameters>
+			<node>node</node>
+			<stdio>node</stdio>
+			<tag>simWBTO</tag>
+   	</module>
+
+   <module>
+      <name>yarpview</name>
+      <parameters>--name /view/left --x 0 --y 0 --synch</parameters>
+      <node>node</node>
+	<tag>viewleft</tag>
+   </module>
+   <module>
+      <name>yarpview</name>
+      <parameters>--name /view/right --x 320 --y 0 --synch</parameters>
+      <node>node</node>
+	<tag>viewright</tag>
+   </module>
+
+<module>
+	<name>iKinGazeCtrl</name> 
+	<parameters>--robot icubSim --context cameraCalibration/conf --config icubSimEyes.ini</parameters>
+	<node>node</node>
+	<tag>simGaze</tag>
+</module>
+
+<module>
+	<name>simCartesianControl</name> 
+	<parameters>--robot icubSim</parameters>
+	<node>node</node>
+	<tag>simCartesian</tag>
+</module>
+
+<module>
+	<name>iKinCartesianSolver</name> 
+	<parameters>--context simCartesianControl/conf --part left_arm</parameters>
+	<node>node</node>
+	<tag>iKinLeft</tag>
+</module>
+
+<module>
+	<name>iKinCartesianSolver</name> 
+	<parameters>--context simCartesianControl/conf --part right_arm</parameters>
+	<node>node</node>
+	<tag>iKinRight</tag>
+</module>
+
+	<connection>
+                <from>/icubSim/inertial</from>
+         <to>/simWholeBodyTorqueObserver/unfiltered/inertial:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>            	<from>/simWholeBodyTorqueObserver/filtered/inertial:o</from>
+                <to>/simWholeBodyTorqueObserver/inertial:i</to>
+                <protocol>udp</protocol>
+        </connection>
+	
+        <connection>
+                <from>/icubSim/cam/left</from>
+                <to>/view/left</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/icubSim/cam/right</from>
+                <to>/view/right</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>            
+		<from>/simWholeBodyTorqueObserver/right_arm/Torques:o</from>
+                <to>/icubSim/joint_vsens/right_arm:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>            
+		<from>/simWholeBodyTorqueObserver/left_arm/Torques:o</from>
+                <to>/icubSim/joint_vsens/left_arm:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>            
+		<from>/simWholeBodyTorqueObserver/right_leg/Torques:o</from>
+                <to>/icubSim/joint_vsens/right_leg:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+        <connection>            
+		<from>/simWholeBodyTorqueObserver/left_leg/Torques:o</from>
+                <to>/icubSim/joint_vsens/left_leg:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+</application>

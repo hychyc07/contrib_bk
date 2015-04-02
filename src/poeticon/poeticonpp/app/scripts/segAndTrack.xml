@@ -1,0 +1,66 @@
+<application>
+    <name>segAndTrack</name>
+    <version>1.0</version>
+    <authors>
+        <author email="vadim.tikhanoff@iit.it">Vadim Tikhanoff</author>
+        <author email="ali.paikan@iit.it">Ali Paikan</author>
+    </authors>
+    <module>
+        <name>activeSeg</name>
+        <parameters></parameters>
+        <node>icub-b14</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 244) (y 125.9))</geometry>
+    </module>
+    <module>
+        <name>templatePFTracker</name>
+        <parameters></parameters>
+        <node>icub-b15</node>
+        <prefix></prefix>
+        <geometry>(Pos (x 479) (y 153.9))</geometry>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <parameters>--x 500 --y 500</parameters>
+        <node>icub16</node>
+        <prefix>/track</prefix>
+        <geometry>(Pos (x 799) (y 133.9))</geometry>
+    </module>
+    <module>
+        <name>yarpview</name>
+        <parameters>--x 500</parameters>
+        <node>icub16</node>
+        <prefix>/crop</prefix>
+        <geometry>(Pos (x 678) (y 44.9))</geometry>
+    </module>
+    <connection>
+        <from>/activeSeg/imageCrop:o</from>
+        <to>/templatePFTracker/template/image:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 425) (y 195)) ((x 370) (y 181)) ((x 480) (y 209))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/icub/camcalib/left/out</from>
+        <to>/activeSeg/image:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 229) (y 232.5)) ((x 213) (y 314)) ((x 245) (y 144))  )</geometry>
+    </connection>
+    <connection>
+        <from external="true">/icub/camcalib/left/out</from>
+        <to>/templatePFTracker/left/image:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 346.5) (y 274.5)) ((x 213) (y 314)) ((x 480) (y 234))  )</geometry>
+    </connection>
+    <connection>
+        <from>/activeSeg/imageCrop:o</from>
+        <to>/crop/yarpview/img:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 533.5) (y 122)) ((x 370) (y 181)) ((x 679) (y 63))  )</geometry>
+    </connection>
+    <connection>
+        <from>/templatePFTracker/left/image:o</from>
+        <to>/track/yarpview/img:i</to>
+        <protocol>udp</protocol>
+        <geometry>(Pos ((x 726.5) (y 162)) ((x 653) (y 172)) ((x 800) (y 152))  )</geometry>
+    </connection>
+</application>

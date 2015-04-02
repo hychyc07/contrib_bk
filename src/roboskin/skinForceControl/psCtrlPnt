@@ -1,0 +1,1 @@
+portScope --local /psCtrlPnt --remote /skinForceControl/monitor:o --rows 3 --cols 1 --index "((25 28 35) (26 29 36) ( 27 30 37))"

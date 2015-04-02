@@ -1,0 +1,81 @@
+<application>
+<name>ColorSegmentation_DARWIN</name>
+
+<module>
+  <name>colorsegModule_DARWIN</name>
+  <node>icub14</node>
+  <tag>colseg</tag>
+</module>
+
+<module>
+  <name>colorsegModule_DARWIN</name>
+  <parameters>--from colorsegConfiguration2.ini</parameters>
+  <node>icub14</node>
+  <tag>colseg2</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /viewR</parameters>
+  <node>icub12</node>
+  <tag>viewR</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /viewL</parameters>
+  <node>icub12</node>
+  <tag>viewL</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /eyeR</parameters>
+  <node>icub12</node>
+  <tag>eyeR</tag>
+</module>
+
+<module>
+  <name>yarpview</name>
+  <parameters>--name /eyeL</parameters>
+  <node>icub12</node>
+  <tag>eyeL</tag>
+</module>
+
+<connection>
+	<from>/icub/camcalib/right/out</from>
+	<to>/eyeR</to>
+	<protocol>udp</protocol>
+</connection>
+
+<connection>
+	<from>/icub/camcalib/left/out</from>
+	<to>/eyeL</to>
+	<protocol>udp</protocol>
+</connection>
+ 
+<connection>
+	<from>/icub/camcalib/right/out</from>
+	<to>/colorseg/img:i</to>
+	<protocol>tcp</protocol>
+</connection>
+
+<connection>
+	<from>/icub/camcalib/left/out</from>
+	<to>/colorseg2/img:i</to>
+	<protocol>tcp</protocol>
+</connection>
+
+<connection>
+	<from>/colorseg/img:o</from>
+	<to>/viewR</to>
+	<protocol>tcp</protocol>
+</connection>
+
+<connection>
+	<from>/colorseg2/img:o</from>
+	<to>/viewL</to>
+	<protocol>tcp</protocol>
+</connection>
+
+</application>

@@ -1,0 +1,26 @@
+<application>
+<name>comDisplay Launcher</name>
+
+        <dependencies>
+        </dependencies>
+      		
+        <module>
+                <name>wholeBodyDynamics</name>
+				<parameters>--robot icubSim --autoconnect --dummy_ft</parameters>
+                <node>node1</node>
+                <tag>wholeBodySim</tag>
+        </module>
+
+        <module>
+                <name>icubSimCom</name>
+                <node>node1</node>
+                <tag>comDisplay</tag>
+        </module>
+
+        <connection>
+                <from>/in</from>
+                <to>/out</to>
+                <protocol>tcp</protocol>
+        </connection>
+
+</application>

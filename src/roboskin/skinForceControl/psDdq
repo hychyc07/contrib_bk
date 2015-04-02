@@ -1,0 +1,1 @@
+portScope --local /psDdq --title ddqDesired --dx 400 --dy 800 --x 1500 --y 0 --remote /skinForceControl/monitor:o --rows 5 --cols 1 --index "((185) (186) (187) (188) (189))"

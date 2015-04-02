@@ -1,0 +1,1 @@
+portScope --local /psDq --title Joint_Vel_Acc --dx 400 --dy 900 --x 2100 --y 0 --remote /skinForceControl/monitor:o --rows 4 --cols 2 --index "((72) (74) (82) (84) (73) (75) (83) (85) )"

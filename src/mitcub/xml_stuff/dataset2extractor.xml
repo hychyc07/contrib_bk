@@ -1,0 +1,18 @@
+<application>
+<name>dataset2extractor</name>
+        <connection>
+                <from>/extractor/dataset:io</from>
+                <to>/dataSetPlayer/rpc:i</to>
+                <protocol>tcp</protocol>
+        </connection>
+        <connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/extractor/img:i</to>
+                <protocol>tcp</protocol>
+        </connection>
+        <connection>
+                <from>/image_labeler/label:o</from>
+                <to>/extractor/label:i</to>
+                <protocol>tcp</protocol>
+        </connection>
+</application>

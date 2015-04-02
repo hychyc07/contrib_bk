@@ -1,0 +1,25 @@
+<application>
+<name>learningEndEffectorWrench App</name>
+        <dependencies>
+                <port>/wholeBodyDynamics/left_arm/endEffectorWrench:o</port>
+                <port>/icub/left_arm/state:o</port>
+        </dependencies>
+        <module>
+                <name>learningEndEffectorWrench</name>
+                <parameters>--robot icub --part left_arm</parameters>
+                <node>console</node>
+        </module>
+
+        <connection>
+                <from>/wholeBodyDynamics/left_arm/endEffectorWrench:o</from>
+                <to>/learningEndEffectorWrench/f:i</to>
+                <protocol>udp</protocol>
+        </connection>
+        <connection>
+                <from>/icub/left_arm/state:o</from>
+                <to>/learningEndEffectorWrench/q:i</to>
+                <protocol>udp</protocol>
+        </connection>
+
+
+</application>

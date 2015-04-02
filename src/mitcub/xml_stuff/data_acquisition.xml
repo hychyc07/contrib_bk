@@ -1,0 +1,52 @@
+<application>
+<name>data_acquisition (IIT MIT)</name>
+
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /dumper/img/left --type image</parameters>
+                <node>icub14</node>
+                <tag>dumper_image_left</tag>
+        </module>
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /dumper/img/right --type image</parameters>
+                <node>icub14</node>
+                <tag>dumper_image_right</tag>
+        </module>
+   
+        <module>
+                <name>dataDumper</name>
+                <parameters>--name /dumper/label</parameters>
+                <node>icub14</node>
+                <tag>dumper_label</tag>
+        </module>
+   
+        <module>
+                <name>imageLabeler</name>
+                <node>icub-b7</node>
+                <tag>labeler</tag>
+        </module>
+  
+  
+        <connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/dumper/img/left</to>
+                <protocol>tcp</protocol>
+        </connection>
+        <connection>
+                <from>/icub/camcalib/right/out</from>
+                <to>/dumper/img/right</to>
+                <protocol>tcp</protocol>
+        </connection>
+        <connection>
+                <from>/icub/camcalib/left/out</from>
+                <to>/image_labeler/time_stamp:i</to>
+                <protocol>tcp</protocol>
+        </connection>
+        <connection>
+                <from>/image_labeler/label:o</from>
+                <to>/dumper/label</to>
+                <protocol>tcp</protocol>
+        </connection>
+		
+</application>

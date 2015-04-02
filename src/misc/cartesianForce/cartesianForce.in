@@ -1,0 +1,6 @@
+############################## AUTO GENERATED CONFIG.IN ##############################
+ 
+SET(cartesianForce_DIR @CMAKE_CURRENT_SOURCE_DIR@)
+SET(cartesianForce_INCLUDES @V_INCLUDE_LIST@)
+SET(cartesianForce_LIBRARY @V_LIBRARY@)
+SET(cartesianForce_LIBRARIES @V_LIBRARIES@)

@@ -1,0 +1,49 @@
+<module>
+	<name>touchDetector</name>
+	<description>icub body touch detection</description>
+	<version>1.0</version>
+	
+	<arguments>
+		<param default="ang" required="no" desc="iCub face expression (neu, tal, hap, sad, sur ,evi, ang, shy, cun)">expression</param>						
+		<!-- <switch default="" required="no" desc="">  </switch> -->
+	</arguments>
+			
+        <authors>
+            <author email="ali.paikan@iit.it">Ali Paikan</author>
+        </authors>
+	
+	<data>
+        <input>
+            <type>skinContactList</type>
+            <port carrier="udp">/touchDetector/contatcs/in</port>
+            <required>yes</required>
+            <priority>no</priority>
+            <description> contact list from skin manager</description>
+        </input>
+
+        <output>
+            <type>Vector</type>
+            <port carrier="tcp">/touchDetector/gazeXd</port>
+            <description>a vector of (x,y,z) of detected contatct with respect to the robot frame</description>
+        </output>
+
+        <output>
+            <type>Rpc</type>
+            <port carrier="tcp">/touchDetector/face:rpc</port>
+            <description>icub face expression output</description>
+        </output>
+
+	</data>		
+
+    <dependencies>
+        <computer>
+        </computer>
+    </dependencies>
+
+	<development>
+		<include></include>
+		<library>YARP</library>
+        <library>OpenCv</library>
+	</development>
+	
+</module>

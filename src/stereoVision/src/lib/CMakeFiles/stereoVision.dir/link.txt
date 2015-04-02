@@ -1,0 +1,2 @@
+/usr/bin/ar cr libstereoVision.a  CMakeFiles/stereoVision.dir/src/camera.cpp.o CMakeFiles/stereoVision.dir/src/stereoCamera.cpp.o CMakeFiles/stereoVision.dir/src/disparityThread.cpp.o CMakeFiles/stereoVision.dir/src/opticalFlowThread.cpp.o CMakeFiles/stereoVision.dir/src/sceneFlow.cpp.o
+/usr/bin/ranlib libstereoVision.a

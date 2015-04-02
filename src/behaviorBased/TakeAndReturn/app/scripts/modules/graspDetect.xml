@@ -1,0 +1,58 @@
+<module>
+	<name>graspDetect</name>
+	<description>Check if an object is close enough to the robot hand to be grassped</description>
+	<version>1.0</version>
+	
+	<arguments>
+		<param default="right_arm" required="no" desc="select robot arm (right_arm/left_arm)">part</param>
+		<param default="evi" required="no" desc="iCub face expression (neu, tal, hap, sad, sur ,evi, ang, shy, cun)">expression</param>
+		<param default="0.02" required="no" desc="Detection threshold (smaller number represents higher resolution)">threshold</param>
+		<param default="icub" required="no" desc="robot name">robot</param>
+		<!-- <switch default="" required="no" desc="">  </switch> -->
+	</arguments>
+			
+	<authors>
+        <author email="ali.paikan@iit.it">Ali Paikan</author>
+    </authors>
+	
+	<data>
+        <input>
+            <type>Vector</type>
+            <port carrier="tcp">/graspDetect/xd:i</port>
+            <required>yes</required>
+            <priority>no</priority>
+            <description>a vector of (x,y,z) of current position of the object</description>
+        </input>
+
+        <output>
+            <type>Rpc</type>
+            <port carrier="tcp">/graspDetect/graspCmd</port>
+            <description>produces grasp command to graspObject module</description>
+        </output>
+
+        <output>
+            <type>Vector</type>
+            <port carrier="tcp">/graspDetect/gazeXd</port>
+            <description>a vector of (x,y,z) of current robot's hand position</description>
+        </output>
+
+        <output>
+            <type>Rpc</type>
+            <port carrier="tcp">/graspDetect/face:rpc</port>
+            <description>icub face expression output</description>
+        </output>
+
+	</data>		
+
+    <dependencies>
+        <computer>
+        </computer>
+    </dependencies>
+
+	<development>
+		<include></include>
+		<library>YARP</library>
+        <library>OpenCv</library>
+	</development>
+	
+</module>

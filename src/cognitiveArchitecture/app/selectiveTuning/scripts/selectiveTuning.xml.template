@@ -1,0 +1,51 @@
+<application>
+<name>Demo of selectiveTuning</name>
+
+<dependencies>
+</dependencies>
+
+<module>
+   <name>selectiveTuning</name>
+   <parameters>--context ../contrib/src/cognitiveArchitecture/app/selectiveTuning/conf </parameters>
+   <node>icub1</node>
+   <tag>selectiveTuning</tag>
+</module>
+
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /inputImage --x 000 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>input_image</tag>
+</module>
+
+<module>
+   <name>yarpview</name>
+   <parameters>--name /wtaImage --x 340 --y 000 --w 320 --h 318 </parameters>
+   <node>icub1</node>
+   <tag>wta_image</tag>
+</module>
+
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/inputImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/cam/right</from>
+  <to>/selectiveTuning/visualImage:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+
+<connection>
+  <from>/selectiveTuning/wtaImage:o</from>
+  <to>/wtaImage</to>
+  <protocol>tcp</protocol>
+</connection>
+
+
+</application>

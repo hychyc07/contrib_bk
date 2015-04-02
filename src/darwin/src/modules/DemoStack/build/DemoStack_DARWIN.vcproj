@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding = "Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="DemoStack_DARWIN"
+	ProjectGUID="{917E5274-E733-452C-8725-97B13226229D}"
+	Keyword="Win32Proj">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="Debug"
+			IntermediateDirectory="DemoStack_DARWIN.dir\Debug"
+			ConfigurationType="1"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions=" /Zm1000"
+				AdditionalIncludeDirectories="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\include;C:\Installer\yarp2\generated_include;C:\Installer\yarp2\src\libYARP_OS\include;C:\Installer\yarp2\src\libYARP_sig\include;C:\Installer\yarp2\src\libYARP_math\include;C:\Installer\yarp2\src\libYARP_dev\include;C:\Installer\yarp2\src\libYARP_name\include;C:\Installer\yarp2\src\yarpserver\include;C:\Installer\yarp2\src\yarpmanager\libymanager\include;"
+				BasicRuntimeChecks="3"
+				CompileAs="2"
+				DebugInformationFormat="3"
+				ExceptionHandling="1"
+				InlineFunctionExpansion="0"
+				Optimization="0"
+				RuntimeLibrary="3"
+				RuntimeTypeInfo="TRUE"
+				WarningLevel="3"
+				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR=\&quot;Debug\&quot;"
+				AssemblerListingLocation="Debug"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\Debug/DemoStack_DARWIN.pdb"
+/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				AdditionalIncludeDirectories="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\include;C:\Installer\yarp2\generated_include;C:\Installer\yarp2\src\libYARP_OS\include;C:\Installer\yarp2\src\libYARP_sig\include;C:\Installer\yarp2\src\libYARP_math\include;C:\Installer\yarp2\src\libYARP_dev\include;C:\Installer\yarp2\src\libYARP_name\include;C:\Installer\yarp2\src\yarpserver\include;C:\Installer\yarp2\src\yarpmanager\libymanager\include;"
+				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR=\&quot;Debug\&quot;"/>
+			<Tool
+				Name="VCMIDLTool"
+				MkTypLibCompatible="FALSE"
+				TargetEnvironment="1"
+				GenerateStublessProxies="TRUE"
+				TypeLibraryName="$(InputName).tlb"
+				OutputDirectory="$(IntDir)"
+				HeaderFileName="$(InputName).h"
+				DLLDataFileName=""
+				InterfaceIdentifierFileName="$(InputName)_i.c"
+				ProxyFileName="$(InputName)_p.c"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkLibraryDependencies="false"
+				AdditionalOptions=" /STACK:10000000 /machine:X86 /debug"
+				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib  C:\Installer\yarp2\lib\Debug\YARP_OSd.lib C:\Installer\yarp2\lib\Debug\YARP_sigd.lib C:\Installer\yarp2\lib\Debug\YARP_mathd.lib C:\Installer\yarp2\lib\Debug\YARP_devd.lib C:\Installer\yarp2\lib\Debug\YARP_named.lib C:\Installer\yarp2\lib\Debug\YARP_initd.lib C:\Installer\yarp2\lib\Debug\YARP_mathd.lib C:\Installer\gsl-1.14-bin-msvc9\gsl-1.14\lib\gsl.lib C:\Installer\gsl-1.14-bin-msvc9\gsl-1.14\lib\gslcblas.lib C:\Installer\yarp2\lib\Debug\YARP_devd.lib C:\Installer\yarp2\lib\Debug\YARP_sigd.lib C:\Installer\yarp2\lib\Debug\YARP_named.lib C:\Installer\yarp2\lib\Debug\YARP_OSd.lib winmm.lib C:\Installer\ace-6.0.1\lib\ACEd.lib "
+				OutputFile="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\Debug\DemoStack_DARWIN.exe"
+				Version="0.0"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories=""
+				ProgramDatabaseFile="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\Debug/DemoStack_DARWIN.pdb"
+				GenerateDebugInformation="TRUE"
+				SubSystem="1"
+				ImportLibrary="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\Debug\DemoStack_DARWIN.lib"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="Release"
+			IntermediateDirectory="DemoStack_DARWIN.dir\Release"
+			ConfigurationType="1"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions=" /Zm1000"
+				AdditionalIncludeDirectories="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\include;C:\Installer\yarp2\generated_include;C:\Installer\yarp2\src\libYARP_OS\include;C:\Installer\yarp2\src\libYARP_sig\include;C:\Installer\yarp2\src\libYARP_math\include;C:\Installer\yarp2\src\libYARP_dev\include;C:\Installer\yarp2\src\libYARP_name\include;C:\Installer\yarp2\src\yarpserver\include;C:\Installer\yarp2\src\yarpmanager\libymanager\include;"
+				CompileAs="2"
+				ExceptionHandling="1"
+				InlineFunctionExpansion="2"
+				Optimization="2"
+				RuntimeLibrary="2"
+				RuntimeTypeInfo="TRUE"
+				WarningLevel="3"
+				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\&quot;Release\&quot;"
+				AssemblerListingLocation="Release"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\Release/DemoStack_DARWIN.pdb"
+/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				AdditionalIncludeDirectories="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\include;C:\Installer\yarp2\generated_include;C:\Installer\yarp2\src\libYARP_OS\include;C:\Installer\yarp2\src\libYARP_sig\include;C:\Installer\yarp2\src\libYARP_math\include;C:\Installer\yarp2\src\libYARP_dev\include;C:\Installer\yarp2\src\libYARP_name\include;C:\Installer\yarp2\src\yarpserver\include;C:\Installer\yarp2\src\yarpmanager\libymanager\include;"
+				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\&quot;Release\&quot;"/>
+			<Tool
+				Name="VCMIDLTool"
+				MkTypLibCompatible="FALSE"
+				TargetEnvironment="1"
+				GenerateStublessProxies="TRUE"
+				TypeLibraryName="$(InputName).tlb"
+				OutputDirectory="$(IntDir)"
+				HeaderFileName="$(InputName).h"
+				DLLDataFileName=""
+				InterfaceIdentifierFileName="$(InputName)_i.c"
+				ProxyFileName="$(InputName)_p.c"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkLibraryDependencies="false"
+				AdditionalOptions=" /STACK:10000000 /machine:X86"
+				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib  C:\Installer\yarp2\lib\Release\YARP_OS.lib C:\Installer\yarp2\lib\Release\YARP_sig.lib C:\Installer\yarp2\lib\Release\YARP_math.lib C:\Installer\yarp2\lib\Release\YARP_dev.lib C:\Installer\yarp2\lib\Release\YARP_name.lib C:\Installer\yarp2\lib\Release\YARP_init.lib C:\Installer\yarp2\lib\Release\YARP_math.lib C:\Installer\gsl-1.14-bin-msvc9\gsl-1.14\lib\gsl.lib C:\Installer\gsl-1.14-bin-msvc9\gsl-1.14\lib\gslcblas.lib C:\Installer\yarp2\lib\Release\YARP_dev.lib C:\Installer\yarp2\lib\Release\YARP_sig.lib C:\Installer\yarp2\lib\Release\YARP_name.lib C:\Installer\yarp2\lib\Release\YARP_OS.lib winmm.lib C:\Installer\ace-6.0.1\lib\ACE.lib "
+				OutputFile="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\Release\DemoStack_DARWIN.exe"
+				Version="0.0"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories=""
+				ProgramDatabaseFile="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\Release/DemoStack_DARWIN.pdb"
+				SubSystem="1"
+				ImportLibrary="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\Release\DemoStack_DARWIN.lib"/>
+		</Configuration>
+		<Configuration
+			Name="MinSizeRel|Win32"
+			OutputDirectory="MinSizeRel"
+			IntermediateDirectory="DemoStack_DARWIN.dir\MinSizeRel"
+			ConfigurationType="1"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions=" /Zm1000"
+				AdditionalIncludeDirectories="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\include;C:\Installer\yarp2\generated_include;C:\Installer\yarp2\src\libYARP_OS\include;C:\Installer\yarp2\src\libYARP_sig\include;C:\Installer\yarp2\src\libYARP_math\include;C:\Installer\yarp2\src\libYARP_dev\include;C:\Installer\yarp2\src\libYARP_name\include;C:\Installer\yarp2\src\yarpserver\include;C:\Installer\yarp2\src\yarpmanager\libymanager\include;"
+				CompileAs="2"
+				ExceptionHandling="1"
+				InlineFunctionExpansion="1"
+				Optimization="1"
+				RuntimeLibrary="2"
+				RuntimeTypeInfo="TRUE"
+				WarningLevel="3"
+				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\&quot;MinSizeRel\&quot;"
+				AssemblerListingLocation="MinSizeRel"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\MinSizeRel/DemoStack_DARWIN.pdb"
+/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				AdditionalIncludeDirectories="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\include;C:\Installer\yarp2\generated_include;C:\Installer\yarp2\src\libYARP_OS\include;C:\Installer\yarp2\src\libYARP_sig\include;C:\Installer\yarp2\src\libYARP_math\include;C:\Installer\yarp2\src\libYARP_dev\include;C:\Installer\yarp2\src\libYARP_name\include;C:\Installer\yarp2\src\yarpserver\include;C:\Installer\yarp2\src\yarpmanager\libymanager\include;"
+				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\&quot;MinSizeRel\&quot;"/>
+			<Tool
+				Name="VCMIDLTool"
+				MkTypLibCompatible="FALSE"
+				TargetEnvironment="1"
+				GenerateStublessProxies="TRUE"
+				TypeLibraryName="$(InputName).tlb"
+				OutputDirectory="$(IntDir)"
+				HeaderFileName="$(InputName).h"
+				DLLDataFileName=""
+				InterfaceIdentifierFileName="$(InputName)_i.c"
+				ProxyFileName="$(InputName)_p.c"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkLibraryDependencies="false"
+				AdditionalOptions=" /STACK:10000000 /machine:X86"
+				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib  C:\Installer\yarp2\lib\MinSizeRel\YARP_OS.lib C:\Installer\yarp2\lib\MinSizeRel\YARP_sig.lib C:\Installer\yarp2\lib\MinSizeRel\YARP_math.lib C:\Installer\yarp2\lib\MinSizeRel\YARP_dev.lib C:\Installer\yarp2\lib\MinSizeRel\YARP_name.lib C:\Installer\yarp2\lib\MinSizeRel\YARP_init.lib C:\Installer\yarp2\lib\MinSizeRel\YARP_math.lib C:\Installer\gsl-1.14-bin-msvc9\gsl-1.14\lib\gsl.lib C:\Installer\gsl-1.14-bin-msvc9\gsl-1.14\lib\gslcblas.lib C:\Installer\yarp2\lib\MinSizeRel\YARP_dev.lib C:\Installer\yarp2\lib\MinSizeRel\YARP_sig.lib C:\Installer\yarp2\lib\MinSizeRel\YARP_name.lib C:\Installer\yarp2\lib\MinSizeRel\YARP_OS.lib winmm.lib C:\Installer\ace-6.0.1\lib\ACE.lib "
+				OutputFile="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\MinSizeRel\DemoStack_DARWIN.exe"
+				Version="0.0"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories=""
+				ProgramDatabaseFile="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\MinSizeRel/DemoStack_DARWIN.pdb"
+				SubSystem="1"
+				ImportLibrary="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\MinSizeRel\DemoStack_DARWIN.lib"/>
+		</Configuration>
+		<Configuration
+			Name="RelWithDebInfo|Win32"
+			OutputDirectory="RelWithDebInfo"
+			IntermediateDirectory="DemoStack_DARWIN.dir\RelWithDebInfo"
+			ConfigurationType="1"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions=" /Zm1000"
+				AdditionalIncludeDirectories="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\include;C:\Installer\yarp2\generated_include;C:\Installer\yarp2\src\libYARP_OS\include;C:\Installer\yarp2\src\libYARP_sig\include;C:\Installer\yarp2\src\libYARP_math\include;C:\Installer\yarp2\src\libYARP_dev\include;C:\Installer\yarp2\src\libYARP_name\include;C:\Installer\yarp2\src\yarpserver\include;C:\Installer\yarp2\src\yarpmanager\libymanager\include;"
+				CompileAs="2"
+				DebugInformationFormat="3"
+				ExceptionHandling="1"
+				InlineFunctionExpansion="1"
+				Optimization="2"
+				RuntimeLibrary="2"
+				RuntimeTypeInfo="TRUE"
+				WarningLevel="3"
+				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;"
+				AssemblerListingLocation="RelWithDebInfo"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\RelWithDebInfo/DemoStack_DARWIN.pdb"
+/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				AdditionalIncludeDirectories="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\include;C:\Installer\yarp2\generated_include;C:\Installer\yarp2\src\libYARP_OS\include;C:\Installer\yarp2\src\libYARP_sig\include;C:\Installer\yarp2\src\libYARP_math\include;C:\Installer\yarp2\src\libYARP_dev\include;C:\Installer\yarp2\src\libYARP_name\include;C:\Installer\yarp2\src\yarpserver\include;C:\Installer\yarp2\src\yarpmanager\libymanager\include;"
+				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;"/>
+			<Tool
+				Name="VCMIDLTool"
+				MkTypLibCompatible="FALSE"
+				TargetEnvironment="1"
+				GenerateStublessProxies="TRUE"
+				TypeLibraryName="$(InputName).tlb"
+				OutputDirectory="$(IntDir)"
+				HeaderFileName="$(InputName).h"
+				DLLDataFileName=""
+				InterfaceIdentifierFileName="$(InputName)_i.c"
+				ProxyFileName="$(InputName)_p.c"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkLibraryDependencies="false"
+				AdditionalOptions=" /STACK:10000000 /machine:X86 /debug"
+				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib  C:\Installer\yarp2\lib\RelWithDebInfo\YARP_OS.lib C:\Installer\yarp2\lib\RelWithDebInfo\YARP_sig.lib C:\Installer\yarp2\lib\RelWithDebInfo\YARP_math.lib C:\Installer\yarp2\lib\RelWithDebInfo\YARP_dev.lib C:\Installer\yarp2\lib\RelWithDebInfo\YARP_name.lib C:\Installer\yarp2\lib\RelWithDebInfo\YARP_init.lib C:\Installer\yarp2\lib\RelWithDebInfo\YARP_math.lib C:\Installer\gsl-1.14-bin-msvc9\gsl-1.14\lib\gsl.lib C:\Installer\gsl-1.14-bin-msvc9\gsl-1.14\lib\gslcblas.lib C:\Installer\yarp2\lib\RelWithDebInfo\YARP_dev.lib C:\Installer\yarp2\lib\RelWithDebInfo\YARP_sig.lib C:\Installer\yarp2\lib\RelWithDebInfo\YARP_name.lib C:\Installer\yarp2\lib\RelWithDebInfo\YARP_OS.lib winmm.lib C:\Installer\ace-6.0.1\lib\ACE.lib "
+				OutputFile="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\RelWithDebInfo\DemoStack_DARWIN.exe"
+				Version="0.0"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories=""
+				ProgramDatabaseFile="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\RelWithDebInfo/DemoStack_DARWIN.pdb"
+				GenerateDebugInformation="TRUE"
+				SubSystem="1"
+				ImportLibrary="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\RelWithDebInfo\DemoStack_DARWIN.lib"/>
+		</Configuration>
+	</Configurations>
+	<Files>
+			<File
+				RelativePath="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\CMakeLists.txt">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+					Name="VCCustomBuildTool"
+					Description="Building Custom Rule C:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack/CMakeLists.txt"
+					CommandLine="&quot;C:\Program Files (x86)\CMake 2.8\bin\cmake.exe&quot; -HC:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack -BC:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack/build --check-stamp-file C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\generate.stamp&#x0D;&#x0A;if errorlevel 1 goto :VCReportError"
+					AdditionalDependencies="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\CMakeLists.txt;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeSystem.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCCompiler.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCXXCompiler.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake&quot;;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCPlatform.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake&quot;;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeRCCompiler.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake&quot;;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCPlatform.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;C:\Installer\yarp2\YARPConfigVersion.cmake;C:\Installer\yarp2\YARPConfig.cmake;C:\Installer\yarp2\YARPDependencies.cmake;C:\Installer\iCub\main\build\icub-config.cmake;C:\Installer\iCub\main\build\icub-export-build-includes.cmake;C:\Installer\iCub\main\build\icub-export-build.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\CMakeLists.txt;"
+					Outputs="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\generate.stamp"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+					Name="VCCustomBuildTool"
+					Description="Building Custom Rule C:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack/CMakeLists.txt"
+					CommandLine="&quot;C:\Program Files (x86)\CMake 2.8\bin\cmake.exe&quot; -HC:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack -BC:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack/build --check-stamp-file C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\generate.stamp&#x0D;&#x0A;if errorlevel 1 goto :VCReportError"
+					AdditionalDependencies="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\CMakeLists.txt;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeSystem.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCCompiler.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCXXCompiler.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake&quot;;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCPlatform.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake&quot;;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeRCCompiler.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake&quot;;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCPlatform.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;C:\Installer\yarp2\YARPConfigVersion.cmake;C:\Installer\yarp2\YARPConfig.cmake;C:\Installer\yarp2\YARPDependencies.cmake;C:\Installer\iCub\main\build\icub-config.cmake;C:\Installer\iCub\main\build\icub-export-build-includes.cmake;C:\Installer\iCub\main\build\icub-export-build.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\CMakeLists.txt;"
+					Outputs="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\generate.stamp"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="MinSizeRel|Win32">
+					<Tool
+					Name="VCCustomBuildTool"
+					Description="Building Custom Rule C:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack/CMakeLists.txt"
+					CommandLine="&quot;C:\Program Files (x86)\CMake 2.8\bin\cmake.exe&quot; -HC:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack -BC:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack/build --check-stamp-file C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\generate.stamp&#x0D;&#x0A;if errorlevel 1 goto :VCReportError"
+					AdditionalDependencies="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\CMakeLists.txt;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeSystem.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCCompiler.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCXXCompiler.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake&quot;;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCPlatform.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake&quot;;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeRCCompiler.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake&quot;;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCPlatform.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;C:\Installer\yarp2\YARPConfigVersion.cmake;C:\Installer\yarp2\YARPConfig.cmake;C:\Installer\yarp2\YARPDependencies.cmake;C:\Installer\iCub\main\build\icub-config.cmake;C:\Installer\iCub\main\build\icub-export-build-includes.cmake;C:\Installer\iCub\main\build\icub-export-build.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\CMakeLists.txt;"
+					Outputs="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\generate.stamp"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="RelWithDebInfo|Win32">
+					<Tool
+					Name="VCCustomBuildTool"
+					Description="Building Custom Rule C:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack/CMakeLists.txt"
+					CommandLine="&quot;C:\Program Files (x86)\CMake 2.8\bin\cmake.exe&quot; -HC:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack -BC:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack/build --check-stamp-file C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\generate.stamp&#x0D;&#x0A;if errorlevel 1 goto :VCReportError"
+					AdditionalDependencies="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\CMakeLists.txt;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeSystem.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCCompiler.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCXXCompiler.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake&quot;;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCPlatform.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake&quot;;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeRCCompiler.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake&quot;;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCPlatform.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake&quot;;&quot;C:\Program Files (x86)\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;C:\Installer\yarp2\YARPConfigVersion.cmake;C:\Installer\yarp2\YARPConfig.cmake;C:\Installer\yarp2\YARPDependencies.cmake;C:\Installer\iCub\main\build\icub-config.cmake;C:\Installer\iCub\main\build\icub-export-build-includes.cmake;C:\Installer\iCub\main\build\icub-export-build.cmake;C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\CMakeLists.txt;"
+					Outputs="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\build\CMakeFiles\generate.stamp"/>
+				</FileConfiguration>
+			</File>
+		<Filter
+			Name="Source Files"
+			Filter="">
+			<File
+				RelativePath="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\src\Demo1Main.cpp">
+			</File>
+			<File
+				RelativePath="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\src\Demo1Module.cpp">
+			</File>
+			<File
+				RelativePath="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\src\Demo1Helper.cpp">
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="">
+			<File
+				RelativePath="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\include\Darwin\Demo1Helper.h">
+			</File>
+			<File
+				RelativePath="C:\Installer\iCub\contrib\src\Darwin\src\modules\DemoStack\include\Darwin\Demo1Module.h">
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

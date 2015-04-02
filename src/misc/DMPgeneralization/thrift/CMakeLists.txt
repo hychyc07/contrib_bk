@@ -1,0 +1,5 @@
+INCLUDE(${YARP_MODULE_PATH}/YarpIDL.cmake)
+SET(generated_files_dir "${CMAKE_CURRENT_SOURCE_DIR}/../generated")
+yarp_idl_to_dir(iCub/dmpManager.thrift ${generated_files_dir})
+yarp_idl_to_dir(iCub/dmpLearner.thrift ${generated_files_dir})
+yarp_idl_to_dir(iCub/dmpExecutor.thrift ${generated_files_dir})

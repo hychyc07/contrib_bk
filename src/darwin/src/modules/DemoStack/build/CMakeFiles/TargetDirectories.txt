@@ -1,0 +1,3 @@
+C:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack/build/CMakeFiles/ALL_BUILD.dir
+C:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack/build/CMakeFiles/DemoStack_DARWIN.dir
+C:/Installer/iCub/contrib/src/Darwin/src/modules/DemoStack/build/CMakeFiles/ZERO_CHECK.dir

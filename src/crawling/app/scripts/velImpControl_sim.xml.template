@@ -1,0 +1,56 @@
+<application>
+<name>Crawling_velocity_impedance_control_SIM</name>
+
+        <dependencies>
+                <port>/icubSim/torso/state:o</port>
+                <port>/icubSim/head/state:o</port>
+                <port>/icubSim/right_arm/state:o</port>
+                <port>/icubSim/left_arm/state:o</port>
+                <port>/icubSim/right_leg/state:o</port>
+                <port>/icubSim/left_leg/state:o</port>
+        </dependencies>
+    
+        <module>
+                <name>velImpControl</name>
+                <parameters>--from left_armStiffnessConfig.ini --robot icubSim --part left_arm --period 50</parameters>
+                <node>node1</node>
+                <tag>velLeftArm</tag>
+        </module>
+        
+        <module>
+                <name>velImpControl</name>
+                <parameters>--from right_armStiffnessConfig.ini --robot icubSim --part right_arm --period 50</parameters>
+                <node>node1</node>
+                <tag>velRightArm</tag>
+        </module>
+        
+        <module>
+                <name>velImpControl</name>
+                <parameters>--from left_legStiffnessConfig.ini --robot icubSim --part left_leg --period 50</parameters>
+                <node>node1</node>
+                <tag>velLeftLeg</tag>
+        </module>
+   
+        <module>
+                <name>velImpControl</name>
+                <parameters>--from right_legStiffnessConfig.ini --robot icubSim --part right_leg --period 50</parameters>
+                <node>node1</node>
+                <tag>velRightLeg</tag>
+        </module> 
+          
+        <module>
+                <name>velImpControl</name>
+                <parameters>--from headStiffnessConfig.ini --robot icubSim --part head --period 50</parameters>
+                <node>node1</node>
+                <tag>velHead</tag>
+        </module>
+        
+        <module>
+                <name>velImpControl</name>
+                <parameters>--from torsoStiffnessConfig.ini --robot icubSim --part torso --period 50</parameters>
+                <node>node1</node>
+                <tag>velTorso</tag>
+        </module>
+   
+
+</application>

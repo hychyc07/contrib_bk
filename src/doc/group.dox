@@ -1,0 +1,361 @@
+/**
+* \defgroup icub_contrib_software iCub Contrib Software
+*
+* This is the entry page for the documentation of the  
+* modules contained in the $ICUB_ROOT/contrib directory.
+*
+* Documentation is organized in three main groups (modules, libraries and guis) 
+* that are intended for general purpose modules, libraries and guis.
+*
+* <b> Additional groups </b> are possible and <b> encouraged </b> to organize the documentation for software entities 
+* that are related.
+*
+* Instructions for creating new groups are available \link contrib_grouping here \endlink.
+* 
+*
+*/
+
+/**
+* \defgroup icub_contrib_libraries Contrib libraries
+* @ingroup icub_contrib_software
+*
+*
+* This is the list of libraries contributed by users that 
+* are of general use.
+* 
+* To add your own library to this list,
+* just add a comment like the following anywhere in your source
+* code (replacing "your_module_name" with the name of your module):
+\verbatim
+  /**
+   *
+   * \defgroup icub_your_module_name your_module_name
+   * @ingroup icub_contrib_libraries
+   *
+   */
+\endverbatim
+*
+* For convenience, try to keep the module name the same
+* as the directory it is placed in.  If you've a good reason
+* to do something different, of course you can do that too.
+*
+* (This page can be edited at $ICUB_ROOT/contrib/src/doc/group.dox)
+*
+*/
+
+/**
+* \defgroup icub_contrib_modules Contrib modules
+* @ingroup icub_contrib_software
+*
+* This is a list of modules contributed by users. Modules in 
+* this group should be of general interest. Consider 
+* further grouping of  modules that are related.
+*
+* To add a module to this group add this to your code:
+*
+\verbatim
+  /**
+   * \defgroup icub_your_gui your_gui
+   * @ingroup icub_contrib_modules
+   *
+   */
+\endverbatim
+*
+*
+*
+*/
+
+/**
+* \defgroup icub_contrib_guis Contrib GUIs
+* @ingroup icub_contrib_software
+*
+* This is a list of general purpose GUIs. If you 
+* commit a gui whose usage is strictly related to 
+* other modules consider creating a specific group 
+* that contain these modules and the gui.
+* 
+* To add a module to this group add this to your code:
+*
+\verbatim
+  /**
+   * \defgroup icub_your_gui your_gui
+   * @ingroup icub_contrib_guis
+   *
+   */
+\endverbatim
+*
+*
+*
+*/
+
+/**
+* \defgroup icub_controlbasis_architecture Control Basis Architecture
+* @ingroup icub_contrib_software
+*
+* This the control basis software architecture.
+*
+* To add a module to this group add this to your code:
+*
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_controlbasis_architecture
+   *
+   */
+\endverbatim
+*
+*
+*
+*/
+
+/**
+*
+* \defgroup icub_boltzmannMachineLibrary Boltzmann Machine Library
+* @ingroup icub_contrib_software
+*
+* The BoltzmannMachineLibrary is a library provided to the user with all the features and operations typical of deep learning
+* To add a module to this group add this to your code:
+*
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_boltzmannMachineLibrary
+   *
+   */
+\endverbatim
+*/
+
+/**
+*
+* \defgroup icub_eMorph eMorph
+* @ingroup icub_contrib_software
+*
+* All the code of the project eMorph.
+*
+* To add a module to this group add this to your code:
+*
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_eMorph
+   *
+   */
+\endverbatim
+*/
+
+/**
+*
+* \defgroup icub_morphoGen morphoGen
+* @ingroup icub_contrib_software
+*
+* All the code of the project Darwin.
+*
+* To add a module to this group add this to your code:
+*
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_morphoGen
+   *
+   */
+\endverbatim
+*/
+
+/**
+*
+* \defgroup icub_logpolarAttention LogPolarAttention
+* @ingroup icub_contrib_software
+*
+* The logpolarAttentionSystem is a visual attention system implemented
+* using logpolar images.
+* To add a module to this group add this to your code:
+*
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_logpolarAttention
+   *
+   */
+\endverbatim
+*/
+
+/**
+*
+* \defgroup icub_crawling Crawling 
+* @ingroup icub_contrib_software
+*
+* This set of modules have been developed at EPFL with the idea of performing a crawling movement by means of 
+* weakly coupled oscillators; to add a module to this group add this to your code:
+*
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_crawling
+   *
+   */
+\endverbatim
+*/
+
+/**
+*
+* \defgroup icub_stereoVision stereoVision
+* @ingroup icub_contrib_software
+*
+* These modules perform stereo cameras calibration and disparity map estimation.
+*
+* To add a module to this group add this to your code:
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_stereoVision
+   *
+   */
+\endverbatim
+*/
+
+/**
+*
+* \defgroup icub_lasaBox RoboSkin software and various tools from LASA-EPFL
+* @ingroup icub_contrib_software
+*
+* This is a collection of libraries, tools, GUI and modules developped at LASA-EPFL (Keywords: programming by demonstration, roboskin).
+*/
+
+/*
+*
+* (This page can be edited at $ICUB_ROOT/contrib/src/doc/group.dox)
+*/
+ 
+/**
+*
+* \defgroup icub_matlabViewers MATLAB Viewers
+* @ingroup icub_contrib_software
+*
+* These MATLAB viewers display some useful information such as gaze or arm configuration and can plot signals.
+*
+* To add a module to this group add this to your code:
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_matlabViewers
+   *
+   */
+\endverbatim
+*/
+
+/**
+*
+* \defgroup icub_superseded Superseded Modules
+* @ingroup icub_contrib_software
+*
+* This special group collects all the modules that have been superseded by newer implementations.
+*
+* To add a module to this group add this to your code:
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_superseded
+   *
+   */
+\endverbatim
+*/
+
+/**
+*
+* \defgroup SimoxGrasping Simox Grasping
+* @ingroup icub_contrib_software
+*
+* This group is for all Simox related modules and libraries which are used for Grasp and Motion Planning. 
+*
+* To add a module to this group add this to your code:
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup SimoxGrasping
+   *
+   */
+\endverbatim
+*/
+
+/**
+*
+* \defgroup icub_interactiveObjectsLearning Interactive Objects Learning Behavior
+* @ingroup icub_contrib_software
+*
+* This group collects modules that implement parts of the interactive objects learning behavior.
+*
+* To add a module to this group add this to your code:
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_interactiveObjectsLearning
+   *
+   */
+\endverbatim
+*/
+
+/**
+*
+* \defgroup icub_karma KARMA Experiment for Learning of Simple Objects Affordances
+* @ingroup icub_contrib_software
+*
+* This group collects modules that implement parts of the KARMA experiment for learning of
+* simple objects affordances.
+*
+* To add a module to this group add this to your code:
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_karma
+   *
+   */
+\endverbatim
+*/
+
+/**
+*
+* \defgroup icub_mitcub Documentation for modules developed in the mitcub project
+* @ingroup icub_contrib_software
+*
+* The mitcub project is a collaboration between RBCS and IIT@MIT. Here you will find all the software modulues that we are developing.
+*
+* To add a module to this group add this to your code:
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_mitcub
+   *
+   */
+\endverbatim
+*/
+
+
+
+/**
+*
+* \defgroup MoBeE Documentation of MoBeE, which provides various functionalities, including a collision detection/prevention for the iCub
+* @ingroup icub_contrib_software
+* 
+* MoBeE (Modular Behavioral Environment) is developed within the IM-CLeVeR project at IDSIA. It's main functionality is to provide some modular reflexive behaviors to prevent self-collisions and collisions with the environment (such as a table) on the iCub
+*/
+
+
+/**
+*
+* \defgroup icub_image_representation Documentation of hierarchical image representation methods
+* @ingroup icub_contrib_software
+*
+* This group is a collection of modules that perform features extraction, coding, pooling and learning through a linear classifier.
+*
+* To add a module to this group add this to your code:
+\verbatim
+  /**
+   * \defgroup icub_your_module your_module
+   * @ingroup icub_image_representation 
+   *
+   */
+\endverbatim
+*/
+
+
+

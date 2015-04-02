@@ -1,0 +1,1 @@
+portScope --local /psPwm --title PWM --dx 600 --dy 1000 --x 1100 --y 0 --remote /skinForceControl/monitor:o --rows 5 --cols 1 --index "((92) (93) (94) (95) (96))"

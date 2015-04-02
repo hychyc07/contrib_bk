@@ -1,0 +1,210 @@
+<application>
+<name>Poeticon Application </name>
+
+<dependencies>
+	<port>/icub/cam/left</port>
+	<port>/icub/cam/right</port>	
+</dependencies>
+
+<module>
+   <name>iKinGazeCtrl</name>
+   <parameters>--context logpolarAttention/conf --config icubEyes.ini --eyeTiltMin -7.5 --eyeTiltMax 15.0 --ping_robot_tmo 40.0</parameters>
+   <node>quad1</node>
+   <tag>gazeController</tag>
+</module>
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--name logPolarTransform/icub/left_cam --xsize 320 --ysize 240 --direction CARTESIAN2LOGPOLAR</parameters>
+   <node>quad2</node>
+   <tag>leftLogPolarTransform</tag>
+</module>
+
+<module>
+   <name>logpolarTransform</name>
+   <parameters>--name logPolarTransform/icub/right_cam --xsize 320 --ysixe 240 --direction CARTESIAN2LOGPOLAR</parameters>
+   <node>quad2</node>
+   <tag>rightLogPolarTransform</tag>
+</module>
+
+<module>
+   <name>vergence</name>
+   <parameters>--ctrl arbitrer</parameters>
+   <node>quad2</node>
+   <tag>vergenceModule</tag>
+</module>
+
+<module>
+	<name>zdfMod</name>
+	<node>quad2</node>
+	<tag>zdfMod</tag>
+</module>
+
+<module>
+    <name>icubDemo2010MotorIF</name>
+    <node>dual1</node>
+    <stdio>console</stdio>
+    <tag>armsCtrl</tag>
+</module>
+
+<module>
+    <name>graspDetector</name>
+    <parameters>--context graspDetector/conf --from left_armGraspDetector.ini</parameters>
+    <node>dual2</node>
+    <tag>graspDetectorLeft</tag>
+</module>
+    	
+<module>
+    <name>graspDetector</name>
+    <parameters>--context graspDetector/conf --from right_armGraspDetector.ini</parameters>
+    <node>dual3</node>
+    <tag>graspDetectorRight</tag>
+</module>
+
+<module>
+    <name>eye2world</name>
+    <node>dual4</node>
+    <parameters>--robot icub --context cameraCalibration/conf --eyeCalibration icubEyes.ini --tableConfiguration /usr/local/src/robot/chris/app/icubDemo2010MotorIF/conf/table.ini</parameters>
+    <tag>eye2world</tag>
+</module>
+
+<module>
+    <name>visionMotorBridge</name>
+    <node>pwrNode4</node>
+    <tag>spikeNetMotorBridge</tag>
+</module>
+
+<module>
+    <name>visionProcessors</name>
+    <parameters>--name vision --grabberName icub --spikenet --trainerSegmenter 5</parameters>
+    <stdio>console</stdio>
+    <node>winNode1</node>
+    <tag>spikeNetVision</tag>
+</module>
+
+<connection>
+  <from>/icub/camcalib/left/out</from>
+  <to>/logPolarTransform/icub/left_cam/image:i</to>
+  <protocol>mcast</protocol>
+</connection>
+
+<connection>
+  <from>/icub/camcalib/right/out</from>
+  <to>/logPolarTransform/icub/right_cam/image:i</to>
+  <protocol>mcast</protocol>
+</connection>
+
+<connection>
+  <from>/logPolarTransform/icub/left_cam/image:o</from>
+  <to>/vergence/left:i</to>
+  <protocol>shmem</protocol>
+</connection>
+
+<connection>
+  <from>/logPolarTransform/icub/right_cam/image:o</from>
+  <to>/vergence/right:i</to>
+  <protocol>shmem</protocol>
+</connection>
+
+<connection>
+  <from>/vergence/cmd:o</from>
+  <to>/gazeArbiter/icub/left_cam/cmd:i</to>
+  <protocol>udp</protocol>
+</connection
+
+<connection>
+  <from>/icub/camcalib/left/out</from>
+  <to>/zdfMod/imageLeft:i</to>
+  <protocol>mcast</protocol>
+</connection>
+
+<connection>
+  <from>/icub/camcalib/right/out</from>
+  <to>/zdfMod/imageRight:i</to>
+  <protocol>mcast</protocol>
+</connection>
+
+<connection>
+  <from>/motionCUT/icub/left_cam/opt:o</from>
+  <to>/vision/motionDetector/img:i</to>
+  <protocol>mcast</protocol>
+</connection>
+
+<connection>
+  <from>/icub/left_hand/analog:o/fingerDetector/status:o</from> 
+  <to>/icubDemo2010MotorIF/left_arm/detectGrasp:i</to>
+  <protocol>tcp</protocol>
+</connection>
+    
+<connection>
+  <from>/icub/right_hand/analog:o/fingerDetector/status:o</from> 
+  <to>/icubDemo2010MotorIF/right_arm/detectGrasp:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/head/state:o</from>
+  <to>/eye2world/icub/head/state:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/torso/state:o</from>
+  <to>/eye2world/icub/torso/state:i</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/icub/camcalib/left/out</from>
+  <to>/vision/icub/img:i</to>
+  <protocol>mcast</protocol>
+</connection>
+
+<connection>
+  <from>/visionMotorBridge/eye2world:o</from>
+  <to>/eye2world/in</to>
+  <protocol>mcast</protocol>
+</connection>
+    
+<connection>
+  <from>/eye2world/out</from>
+  <to>/visionMotorBridge/eye2world:i</to>
+  <protocol>mcast</protocol>
+</connection>
+
+<connection>
+  <from>/eye2world/out</from>
+  <to>/visionMotorBridge/eye2world:i</to>
+  <protocol>mcast</protocol>
+</connection>
+
+<connection>
+  <from>/visionMotorBridge/expression/rpc</from>
+  <to>/icub/face/emotions/in</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/visionMotorBridge/spikenet:o</from>
+  <to>/vision/rpc</to>
+  <protocol>tcp</protocol>
+</connection>
+
+<connection>
+   <from>/visionMotorBridge/icubDemo2010MotorIF:o</from>
+   <to>/icubDemo2010MotorIF/cmd:i</to>
+   <protocol>mcast</protocol>
+</connection>
+    
+<connection>
+    <from>/visionMotorBridge/icubDemo2010MotorIF/rpc</from>
+    <to>/icubDemo2010MotorIF/rpc</to>
+	<protocol>tcp</protocol>
+</connection>
+
+<connection>
+  <from>/motionCUT/icub/left_cam/blobs:o</from>
+  <to>/vision/SpikenetTrainer_segmenter/blobs:i</to>
+  <protocol>mcast</protocol>
+</connection>
+
+</application>
